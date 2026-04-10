@@ -1,0 +1,3684 @@
+---
+title: "Monitoramento de Eventos Disruptivos nos Portos Brasileiros"
+format:
+  html:
+    theme:
+      - darkly
+      - assets/theme-override.scss
+    css: assets/style.css
+    toc: false
+    page-layout: full
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+---
+
+```{ojs}
+//| output: false
+d3 = require("d3@7")
+topojson = require("topojson-client@3")
+
+// Load pre-processed JSON data (dates as strings, NaN→null, cutoff applied)
+series          = FileAttachment("data/_ojs_series.json").json()
+anomalias       = FileAttachment("data/_ojs_anomalias.json").json()
+residuos        = FileAttachment("data/_ojs_residuos.json").json()
+fingerprints    = FileAttachment("data/_ojs_fingerprints.json").json()
+gi              = FileAttachment("data/_ojs_indice_global.json").json()
+vuln            = FileAttachment("data/_ojs_vulnerabilidade.json").json()
+portos_meta     = FileAttachment("data/_ojs_portos_meta.json").json()
+comex_produto   = FileAttachment("data/_ojs_comex_perfil_produto.json").json()
+comex_hhi       = FileAttachment("data/_ojs_comex_hhi.json").json()
+comex_vuln      = FileAttachment("data/_ojs_comex_vulnerabilidade.json").json()
+comex_rank_uf   = FileAttachment("data/_ojs_comex_ranking_uf.json").json()
+comex_perfil_uf = FileAttachment("data/_ojs_comex_perfil_uf.json").json()
+comex_uf_prod   = FileAttachment("data/_ojs_comex_uf_produto_porto.json").json()
+comex_flows     = FileAttachment("data/_ojs_comex_flows.json").json()
+cuci_hhi_porto  = FileAttachment("data/_ojs_cuci_hhi_porto.json").json()
+cuci_scatter    = FileAttachment("data/_ojs_cuci_scatter.json").json()
+cuci_rank_cad   = FileAttachment("data/_ojs_cuci_ranking_cadeias.json").json()
+cuci_rank_port  = FileAttachment("data/_ojs_cuci_ranking_portos.json").json()
+cuci_hhi_cadeia = FileAttachment("data/_ojs_cuci_hhi_cadeia.json").json()
+export_via_ano  = FileAttachment("data/_ojs_export_via_ano.json").json()
+cuci_rank_cad_fob  = FileAttachment("data/_ojs_cuci_ranking_cadeias_fob.json").json()
+cuci_rank_port_fob = FileAttachment("data/_ojs_cuci_ranking_portos_fob.json").json()
+fob_exp_uf         = FileAttachment("data/_ojs_fob_exposto_uf.json").json()
+fob_exp_porto_cls  = FileAttachment("data/_ojs_fob_exposto_porto_cls.json").json()
+radar_origem       = FileAttachment("data/radar_alerta_origem.json").json()
+radar_destino      = FileAttachment("data/radar_alerta_destino.json").json()
+```
+
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 0 — TÍTULO                                     -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[0]{.tela-number}
+
+# Monitoramento e Diagnóstico de Eventos Disruptivos nos Portos Brasileiros
+#### Uma abordagem com dados de alta frequência
+
+<br>
+
+Proposta de TCC — MBA Ciência de Dados ENAP
+
+:::
+
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- INTRODUÇÃO METODOLÓGICA                             -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .tela-methodology}
+
+## Como funciona este estudo?
+:::{.subtitulo}
+Visão geral do pipeline analítico — da coleta de dados ao índice de vulnerabilidade
+:::
+
+<div style="max-width:860px; margin:1.5rem auto 0; color:#bbb; font-size:0.95rem; line-height:1.7;">
+
+Este trabalho propõe um **sistema de detecção de anomalias operacionais** em portos brasileiros, combinando dados do Anuário Estatístico Aquaviário (ANTAQ, 2010–2025), fluxos de comércio exterior (ComexStat/MDIC, 2014–2025) e indicadores de atividade portuária global (PortWatch/FMI).
+
+A ideia central é simples: **se um modelo de machine learning aprende o comportamento "normal" de um porto, desvios significativos revelam eventos anômalos** — desde choques logísticos globais (como a pandemia de COVID-19) até problemas operacionais locais.
+
+</div>
+
+<div style="max-width:860px; margin:1.5rem auto 0; color:#999; font-size:0.88rem; line-height:1.7;">
+
+**NB1 — Preparação:** Coleta, limpeza e padronização de ~710 mil registros de atracação (18 portos, ~620 semanas). Cálculo de séries temporais semanais em 4 dimensões operacionais.<br>
+**NB2 — Modelagem:** Treinamento de modelos XGBoost + AR(1) com validação walk-forward. Detecção de anomalias via resíduos e classificação em 3 níveis (global, nacional, isolado).<br>
+**NB3 — ComexStat:** Integração com dados de exportação (CUCI, 3 dígitos) para mapear vulnerabilidade cruzada porto × cadeia produtiva.<br>
+**Dashboard:** Visualização interativa dos resultados para comunicação e exploração dos achados.
+
+</div>
+
+<div style="text-align:left; color:#555; font-size:0.8rem; margin-top:1.5rem; max-width:860px; margin-left:auto; margin-right:auto;">
+18 portos · 4 dimensões · ~552 semanas · 1.609 anomalias detectadas · US$ 2.640 bi em exportações mapeadas
+</div>
+
+:::
+
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 0B — VIA MARÍTIMA NAS EXPORTAÇÕES              -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+
+## A via marítima nas exportações brasileiras
+:::{.subtitulo}
+Participação do transporte marítimo no total exportado (FOB), 2014–2025 — Fonte: ComexStat/MDIC
+:::
+
+:::{.grid-2-1}
+
+```{ojs}
+{
+  const raw = export_via_ano.slice().sort((a, b) => a.ano - b.ano);
+
+  const w = 960, h1 = 260, h2 = 220, gap = 30;
+  const totalH = h1 + gap + h2;
+  const m = {top: 30, right: 30, bottom: 10, left: 80};
+  const m2 = {top: 10, right: 30, bottom: 40, left: 80};
+
+  const container = d3.create("div").style("position", "relative");
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${w} ${totalH}`)
+    .style("max-width", "100%");
+
+  /* ── shared X scale ── */
+  const x = d3.scaleLinear()
+    .domain(d3.extent(raw, d => d.ano))
+    .range([m.left, w - m.right]);
+
+  /* ═══════════════════════════════════════════
+     PAINEL 1 — Participação marítima (%)
+     ═══════════════════════════════════════════ */
+  const g1 = svg.append("g");
+  const yPct = d3.scaleLinear()
+    .domain([78, 92]).nice()
+    .range([h1 - m.bottom, m.top]);
+
+  // shaded area under %
+  const areaPct = d3.area()
+    .x(d => x(d.ano))
+    .y0(h1 - m.bottom)
+    .y1(d => yPct(d.pct_maritima))
+    .curve(d3.curveMonotoneX);
+  g1.append("path").datum(raw).attr("d", areaPct)
+    .attr("fill", "#4fc3f7").attr("opacity", 0.10);
+
+  // line
+  const linePct = d3.line()
+    .x(d => x(d.ano)).y(d => yPct(d.pct_maritima))
+    .curve(d3.curveMonotoneX);
+  g1.append("path").datum(raw).attr("d", linePct)
+    .attr("fill", "none").attr("stroke", "#4fc3f7")
+    .attr("stroke-width", 3)
+    .attr("filter", "drop-shadow(0 0 4px rgba(79,195,247,0.6))");
+
+  // dots + labels
+  g1.selectAll("circle.dot1").data(raw).join("circle")
+    .attr("class", "dot1")
+    .attr("cx", d => x(d.ano)).attr("cy", d => yPct(d.pct_maritima))
+    .attr("r", 5).attr("fill", "#4fc3f7")
+    .attr("stroke", "#0d1b2a").attr("stroke-width", 2);
+
+  g1.selectAll("text.lbl1").data(raw).join("text")
+    .attr("class", "lbl1")
+    .attr("x", d => x(d.ano)).attr("y", d => yPct(d.pct_maritima) - 12)
+    .attr("text-anchor", "middle").attr("fill", "#e0e0e0")
+    .attr("font-size", "11px").attr("font-weight", "600")
+    .text(d => d.pct_maritima.toFixed(1) + "%");
+
+  // Y axis
+  g1.append("g").attr("transform", `translate(${m.left},0)`)
+    .call(d3.axisLeft(yPct).ticks(4).tickFormat(d => d + "%"))
+    .attr("color", "#555").selectAll("text").attr("fill", "#bbb");
+
+  // panel label
+  g1.append("text").attr("x", m.left + 8).attr("y", m.top - 10)
+    .attr("fill", "#4fc3f7").attr("font-size", "13px").attr("font-weight", "700")
+    .text("Participação marítima (%)");
+
+  // separator line
+  svg.append("line")
+    .attr("x1", m.left).attr("x2", w - m.right)
+    .attr("y1", h1 + gap / 2).attr("y2", h1 + gap / 2)
+    .attr("stroke", "#333").attr("stroke-dasharray", "4 4");
+
+  /* ═══════════════════════════════════════════
+     PAINEL 2 — FOB exportado (US$ bi)
+     ═══════════════════════════════════════════ */
+  const offy = h1 + gap;
+  const g2 = svg.append("g").attr("transform", `translate(0,${offy})`);
+
+  const maxFob = d3.max(raw, d => d.fob_total) / 1e9;
+  const yFob = d3.scaleLinear()
+    .domain([0, Math.ceil(maxFob / 50) * 50])
+    .range([h2 - m2.bottom, m2.top]);
+
+  // area: total
+  const areaTotal = d3.area()
+    .x(d => x(d.ano))
+    .y0(h2 - m2.bottom)
+    .y1(d => yFob(d.fob_total / 1e9))
+    .curve(d3.curveMonotoneX);
+  g2.append("path").datum(raw).attr("d", areaTotal)
+    .attr("fill", "#334155").attr("opacity", 0.45);
+
+  // area: maritime
+  const areaMar = d3.area()
+    .x(d => x(d.ano))
+    .y0(h2 - m2.bottom)
+    .y1(d => yFob(d.fob_maritima / 1e9))
+    .curve(d3.curveMonotoneX);
+  g2.append("path").datum(raw).attr("d", areaMar)
+    .attr("fill", "#4fc3f7").attr("opacity", 0.30);
+
+  // Y axis
+  g2.append("g").attr("transform", `translate(${m2.left},0)`)
+    .call(d3.axisLeft(yFob).ticks(4).tickFormat(d => "US$ " + d + " bi"))
+    .attr("color", "#555").selectAll("text").attr("fill", "#bbb");
+
+  // X axis (bottom)
+  g2.append("g").attr("transform", `translate(0,${h2 - m2.bottom})`)
+    .call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(raw.length))
+    .attr("color", "#555").selectAll("text").attr("fill", "#bbb").attr("font-size", "12px");
+
+  // panel label
+  g2.append("text").attr("x", m2.left + 8).attr("y", m2.top - 2)
+    .attr("fill", "#8899aa").attr("font-size", "13px").attr("font-weight", "700")
+    .text("FOB exportado (US$ bi)");
+
+  // legend
+  const leg = g2.append("g").attr("transform", `translate(${w - m2.right - 300}, ${m2.top - 2})`);
+  leg.append("rect").attr("width", 12).attr("height", 12).attr("rx", 2).attr("fill", "#4fc3f7").attr("opacity", 0.5);
+  leg.append("text").attr("x", 18).attr("y", 10).attr("fill", "#bbb").attr("font-size", "11px").text("Via marítima");
+  leg.append("rect").attr("x", 120).attr("width", 12).attr("height", 12).attr("rx", 2).attr("fill", "#334155").attr("opacity", 0.7);
+  leg.append("text").attr("x", 138).attr("y", 10).attr("fill", "#bbb").attr("font-size", "11px").text("Demais vias");
+
+  /* ── tooltip compartilhado ── */
+  const fmtFob = v => {
+    if (v >= 1e9) return "US$ " + (v/1e9).toFixed(0) + " bi";
+    if (v >= 1e6) return "US$ " + (v/1e6).toFixed(0) + " mi";
+    return "US$ " + d3.format(",.0f")(v);
+  };
+
+  const tooltip = container.append("div")
+    .style("position", "absolute").style("pointer-events", "none")
+    .style("background", "rgba(15,20,30,0.95)")
+    .style("border", "1px solid #4fc3f7").style("border-radius", "8px")
+    .style("padding", "10px 14px").style("font-size", "12px")
+    .style("color", "#ddd").style("line-height", "1.6")
+    .style("max-width", "300px")
+    .style("box-shadow", "0 4px 20px rgba(0,0,0,0.5)")
+    .style("opacity", 0).style("transition", "opacity 0.15s")
+    .style("z-index", 100);
+
+  // invisible hover rects spanning both panels
+  const bw = (w - m.left - m.right) / raw.length;
+  svg.selectAll("rect.hover").data(raw).join("rect")
+    .attr("class", "hover")
+    .attr("x", d => x(d.ano) - bw / 2).attr("y", 0)
+    .attr("width", bw).attr("height", totalH)
+    .attr("fill", "transparent").style("cursor", "pointer")
+    .on("mouseenter", function(event, d) {
+      tooltip.html(
+        '<div style="font-weight:700;color:#4fc3f7;font-size:14px">' + d.ano + '</div>'
+        + '<div><span style="color:#aaa">Via marítima:</span> <b>' + d.pct_maritima.toFixed(1) + '%</b></div>'
+        + '<div><span style="color:#aaa">FOB marítima:</span> ' + fmtFob(d.fob_maritima) + '</div>'
+        + '<div><span style="color:#aaa">FOB total:</span> ' + fmtFob(d.fob_total) + '</div>'
+      ).style("opacity", 1);
+    })
+    .on("mousemove", function(event) {
+      const rect = container.node().getBoundingClientRect();
+      const px = event.clientX - rect.left, py = event.clientY - rect.top;
+      tooltip
+        .style("left", (px > rect.width * 0.65 ? (px - 260) : (px + 16)) + "px")
+        .style("top", (py - 10) + "px");
+    })
+    .on("mouseleave", function() { tooltip.style("opacity", 0); });
+
+  return container.node();
+}
+```
+
+:::{.text-panel}
+
+### Fonte: ComexStat / MDIC
+
+[COMEXSTAT]{.source-tag}
+
+Os dados de comércio exterior são extraídos da plataforma **ComexStat** do Ministério do Desenvolvimento, Indústria, Comércio e Serviços (MDIC), que disponibiliza microdados de todas as operações de exportação e importação do Brasil.
+
+#### Principais números
+
+- **83–89%** de toda exportação brasileira viaja por **via marítima**
+- A participação subiu de 83% em 2016 para **88% em 2021–2024**
+- O aumento reflete a expansão das commodities (minério, soja, petróleo) que dependem quase exclusivamente de navios
+
+#### Série temporal
+
+- **Período:** 2014–2025 (dados mensais)
+- **Granularidade:** nível de produto (NCM 8 dígitos, agregado em grupos CUCI 3 dígitos) e URF de saída (Unidade da Receita Federal), que permite o cruzamento com os portos monitorados
+- **Variáveis:** FOB total, FOB por via de transporte, participação percentual
+- **Cobertura:** todas as operações de exportação registradas no Siscomex
+
+Uma disrupção portuária não é um problema logístico — é um **risco macroeconômico**.
+:::
+
+:::
+
+:::
+
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 1 — O BRASIL DEPENDE DOS PORTOS                -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[1]{.tela-number}
+
+## O Brasil depende dos portos
+:::{.subtitulo}
+18 portos monitorados, 2014–2025
+:::
+
+:::{.grid-2-1}
+
+:::{#mapa-portos}
+```{ojs}
+{
+  const w = 600, h = 550;
+
+  const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json");
+  const countries = topojson.feature(world, world.objects.countries);
+  const brazil = countries.features.find(f => f.id === "076");
+
+  const saIds = new Set([
+    "032","068","152","170","218","254","328","600","604","740","858","862"
+  ]);
+  const neighbors = countries.features.filter(f => saIds.has(f.id));
+
+  const data = portos_meta;
+
+  const proj = d3.geoMercator()
+    .fitExtent([[20, 20], [w - 20, h - 20]], brazil);
+  const path = d3.geoPath(proj);
+
+  const svg = d3.create("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .style("background", "transparent");
+
+  svg.selectAll(".neighbor")
+    .data(neighbors)
+    .join("path")
+    .attr("d", path)
+    .attr("fill", "#162230")
+    .attr("stroke", "#2a3a4a")
+    .attr("stroke-width", 0.5)
+    .attr("opacity", 0.5);
+
+  svg.append("path")
+    .datum(brazil)
+    .attr("d", path)
+    .attr("fill", "#1a3a4a")
+    .attr("stroke", "#4a7a8a")
+    .attr("stroke-width", 1.5)
+    .attr("opacity", 0.85);
+
+  const defs = svg.append("defs");
+  const filter = defs.append("filter").attr("id", "glow");
+  filter.append("feGaussianBlur").attr("stdDeviation", "2.5").attr("result", "blur");
+  filter.append("feMerge").selectAll("feMergeNode")
+    .data(["blur", "SourceGraphic"]).join("feMergeNode")
+    .attr("in", d => d);
+
+  const rScale = d3.scaleSqrt()
+    .domain(d3.extent(data, d => d.atracacoes_media))
+    .range([4, 22]);
+
+  // Merge vulnerability data for tooltips
+  const vulnMap = new Map(vuln.map(d => [d.porto, d]));
+
+  // Tooltip via foreignObject
+  const tooltipFO = svg.append("foreignObject")
+    .attr("width", 240).attr("height", 150)
+    .style("pointer-events", "none").style("display", "none");
+  const tooltipDiv = tooltipFO.append("xhtml:div")
+    .style("background", "rgba(22,33,62,0.95)").style("border", "1px solid #4fc3f7")
+    .style("border-radius", "6px").style("padding", "8px 12px")
+    .style("color", "#eee").style("font-size", "11px").style("line-height", "1.5");
+
+  const fmtNum = d3.format(",.0f");
+
+  svg.selectAll("circle")
+    .data(data)
+    .join("circle")
+    .attr("cx", d => proj([d.lon, d.lat])[0])
+    .attr("cy", d => proj([d.lon, d.lat])[1])
+    .attr("r", d => rScale(d.atracacoes_media))
+    .attr("fill", "#4fc3f7")
+    .attr("opacity", 0.8)
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 0.5)
+    .attr("filter", "url(#glow)")
+    .style("cursor", "pointer")
+    .on("mouseover", function(event, d) {
+      d3.select(this).attr("stroke-width", 2).attr("opacity", 1);
+      const v = vulnMap.get(d.porto) || {};
+      tooltipDiv.html(
+        `<strong style="color:#4fc3f7">${d.porto}</strong><br>`
+        + `Atracações/sem: ${fmtNum(d.atracacoes_media)}<br>`
+        + `Tonelagem média: ${fmtNum(d.tonelagem_media)} t<br>`
+        + (v.total_anomalias != null
+          ? `Anomalias: <strong>${v.total_anomalias}</strong>`
+            + ` (<span style="color:#f85149">${v.globais}g</span>`
+            + ` <span style="color:#ff9800">${v.nacionais}n</span>`
+            + ` <span style="color:#4fc3f7">${v.isoladas}i</span>)<br>`
+            + `Vulnerabilidade: ${v.vulnerabilidade.toFixed(1)}`
+          : "")
+      );
+      const cx = proj([d.lon, d.lat])[0];
+      const cy = proj([d.lon, d.lat])[1];
+      const tx = cx + 20 > w - 260 ? cx - 255 : cx + 20;
+      const ty = cy - 80 < 0 ? cy + 10 : cy - 80;
+      tooltipFO.raise().attr("x", tx).attr("y", ty).style("display", null);
+    })
+    .on("mouseout", function() {
+      d3.select(this).attr("stroke-width", 0.5).attr("opacity", 0.8);
+      tooltipFO.style("display", "none");
+    });
+
+  // --- Force-based label placement to avoid overlap ---
+  const labelNodes = data.map(d => {
+    const cx = proj([d.lon, d.lat])[0];
+    const cy = proj([d.lon, d.lat])[1];
+    return {porto: d.porto, cx, cy, x: cx + rScale(d.atracacoes_media) + 6, y: cy + 3};
+  });
+
+  const labelFontSize = 9;
+  const labelH = labelFontSize + 3;
+
+  // Run a small force simulation to push labels apart
+  const sim = d3.forceSimulation(labelNodes)
+    .force("x", d3.forceX(d => d.cx + 30).strength(0.3))
+    .force("y", d3.forceY(d => d.cy).strength(0.5))
+    .force("collide", d3.forceCollide().radius(labelH / 2 + 1).strength(1))
+    .stop();
+  for (let i = 0; i < 120; i++) sim.tick();
+
+  // Clamp labels within SVG bounds
+  labelNodes.forEach(d => {
+    d.x = Math.max(35, Math.min(w - 60, d.x));
+    d.y = Math.max(10, Math.min(h - 5, d.y));
+  });
+
+  // Leader lines from port dot to label
+  svg.selectAll(".leader-line")
+    .data(labelNodes)
+    .join("line")
+    .attr("class", "leader-line")
+    .attr("x1", d => d.cx).attr("y1", d => d.cy)
+    .attr("x2", d => d.x - 2).attr("y2", d => d.y - 2)
+    .attr("stroke", "#4a6a7a").attr("stroke-width", 0.5)
+    .attr("opacity", d => Math.hypot(d.x - d.cx, d.y - d.cy) > 18 ? 0.5 : 0);
+
+  // Labels
+  svg.selectAll(".port-label")
+    .data(labelNodes)
+    .join("text")
+    .attr("class", "port-label")
+    .attr("x", d => d.x)
+    .attr("y", d => d.y)
+    .text(d => d.porto)
+    .attr("fill", "#ccc")
+    .attr("font-size", `${labelFontSize}px`)
+    .attr("paint-order", "stroke")
+    .attr("stroke", "#1e2a38")
+    .attr("stroke-width", 2.5);
+
+  return svg.node();
+}
+```
+:::
+
+:::{.text-panel}
+
+### Fonte: ANTAQ
+
+[ANTAQ]{.source-tag}
+
+Os dados operacionais são extraídos do **Anuário Estatístico Aquaviário** da Agência Nacional de Transportes Aquaviários (ANTAQ), disponível como microdados abertos.
+
+#### 18 portos monitorados
+
+Selecionamos os principais portos de **navegação de longo curso** do Brasil — responsáveis pela quase totalidade das exportações marítimas. Cada porto é acompanhado semanalmente ao longo de ~630 semanas (2014–2026).
+
+#### Microdados operacionais
+
+Os registros são no **nível de atracação individual** — cada navio que atraca em um berço gera um registro com timestamps, tonelagem, tipo de carga e tempos operacionais.
+
+#### 4 dimensões consideradas
+
+- **Atracações** — quantidade de navios por semana
+- **Tonelagem de exportação** — volume movimentado (toneladas)
+- **Tempo de espera para atracar** — horas entre a chegada do navio e a atracação (`TEsperaAtracacao`). Captura congestionamento externo (fila)
+- **Tempo atracado** — tempo total do navio no berço, da atracação até a desatracação (`TAtracado` = T2 + T3 + T4). Inclui espera para início da operação, operação de carga/descarga e espera para desatracação
+
+Essas dimensões capturam tanto o **volume** de atividade quanto a **eficiência** operacional do porto.
+
+:::
+:::
+
+:::
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 2 — O QUE ACONTECE QUANDO ALGO DÁ ERRADO     -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[2]{.tela-number}
+
+## O que acontece quando algo dá errado?
+:::{.subtitulo}
+Selecione um porto para ver as 4 dimensões operacionais
+:::
+
+:::{.grid-2-1}
+
+::: {}
+
+```{ojs}
+viewof selectedPorto = Inputs.select(
+  [...new Set(series.map(d => d.porto))].sort(),
+  {value: "Santos", label: "Porto"}
+)
+```
+
+```{ojs}
+{
+  const data = series.filter(d => d.porto === selectedPorto);
+  const dims = ["atracacoes", "tonelagem_exp", "t1_mediano", "tatracado_mediano"];
+  const labels = {
+    atracacoes: "Atracações",
+    tonelagem_exp: "Tonelagem Exportação",
+    t1_mediano: "Espera p/ Atracar (h)",
+    tatracado_mediano: "Tempo no Berço (h)"
+  };
+  const dimColors = {
+    atracacoes: "#4fc3f7",
+    tonelagem_exp: "#3fb950",
+    t1_mediano: "#d29922",
+    tatracado_mediano: "#f85149"
+  };
+
+  const w = 960, hEach = 85, margin = {top: 18, right: 20, bottom: 12, left: 130};
+  const titleH = 25;
+  const totalH = titleH + dims.length * (hEach + margin.top + margin.bottom);
+
+  const svg = d3.create("svg")
+    .attr("viewBox", `0 0 ${w} ${totalH}`)
+    .attr("style", "max-width: 100%;");
+
+  svg.append("text")
+    .attr("x", w / 2).attr("y", 16)
+    .attr("text-anchor", "middle").attr("fill", "#4fc3f7")
+    .attr("font-size", "14px").attr("font-weight", "600")
+    .text(`Séries temporais — ${selectedPorto}`);
+
+  const parseDate = d3.timeParse("%Y-%m-%d");
+
+  const events = [
+    {start: "2018-05-21", end: "2018-06-10", label: "Greve Caminhoneiros", color: "#f85149"},
+    {start: "2020-03-01", end: "2020-06-30", label: "COVID-19", color: "#b388ff"},
+    {start: "2024-05-01", end: "2024-07-31", label: "Enchentes RS", color: "#d29922"},
+  ];
+
+  dims.forEach((dim, i) => {
+    const g = svg.append("g")
+      .attr("transform", `translate(0, ${titleH + i * (hEach + margin.top + margin.bottom)})`);
+
+    const x = d3.scaleTime()
+      .domain(d3.extent(data, d => parseDate(d.date)))
+      .range([margin.left, w - margin.right]);
+
+    const vals = data.map(d => d[dim]).filter(v => v != null);
+    const y = d3.scaleLinear()
+      .domain([d3.min(vals) * 0.9, d3.max(vals) * 1.1])
+      .range([hEach, 0]);
+
+    events.forEach(ev => {
+      const x0 = x(parseDate(ev.start)), x1 = x(parseDate(ev.end));
+      g.append("rect")
+        .attr("x", x0).attr("width", x1 - x0)
+        .attr("y", 0).attr("height", hEach)
+        .attr("fill", ev.color).attr("opacity", 0.1);
+      if (i === 0) {
+        g.append("text")
+          .attr("x", x1 + 4).attr("y", 12)
+          .attr("fill", ev.color).attr("font-size", "9px").attr("opacity", 0.85)
+          .text(ev.label);
+      }
+    });
+
+    const line = d3.line()
+      .defined(d => d[dim] != null)
+      .x(d => x(parseDate(d.date)))
+      .y(d => y(d[dim]));
+
+    g.append("path")
+      .datum(data).attr("d", line)
+      .attr("fill", "none").attr("stroke", dimColors[dim]).attr("stroke-width", 1.2);
+
+    g.append("g")
+      .attr("transform", `translate(${margin.left}, 0)`)
+      .call(d3.axisLeft(y).ticks(3)).attr("color", "#666");
+
+    g.append("text")
+      .attr("x", margin.left - 10).attr("y", -6)
+      .attr("text-anchor", "end").attr("fill", dimColors[dim]).attr("font-size", "11px")
+      .text(labels[dim]);
+  });
+
+  // Legend row
+  const legG = svg.append("g").attr("transform", `translate(${margin.left}, ${totalH - 12})`);
+  events.forEach((ev, i) => {
+    const xOff = i * 200;
+    legG.append("rect").attr("x", xOff).attr("y", -8).attr("width", 14).attr("height", 8)
+      .attr("fill", ev.color).attr("opacity", 0.4).attr("rx", 2);
+    legG.append("text").attr("x", xOff + 18).attr("y", 0)
+      .attr("fill", "#aaa").attr("font-size", "10px").text(ev.label);
+  });
+
+  return svg.node();
+}
+```
+
+:::
+
+:::{.text-panel}
+
+### Eventos disruptivos
+
+Eventos disruptivos podem ter abrangência **global**, **nacional** ou **local** — e cada tipo gera uma assinatura operacional distinta nas séries temporais dos portos.
+
+#### Validação com eventos conhecidos
+
+Para calibrar a classificação, validamos o sistema contra **10 eventos históricos conhecidos** (expandidos em 135 pares porto×evento). Abaixo, **alguns exemplos**:
+
+1. **Greve dos caminhoneiros** (mai/2018) — bloqueio logístico nacional
+2. **COVID-19** (mar–jun/2020) — choque global de demanda e oferta
+3. **Guerra na Ucrânia** (fev/2022) — disrupção de rotas comerciais
+4. **Ataques Houthi no Mar Vermelho** (dez/2023) — desvio de rotas marítimas
+5. **Enchentes no RS** (mai–jul/2024) — disrupção regional
+
+Todos os eventos de referência aparecem como **anomalia detectada** na série de pelo menos um porto — o gráfico à esquerda mostra como cada dimensão operacional reage.
+
+:::
+
+:::
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 3 — COMO DETECTAMOS                            -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[3]{.tela-number}
+
+## Como detectamos automaticamente?
+:::{.subtitulo}
+Modelo preditivo (XGBoost) captura o padrão normal. Desvios = anomalias.
+:::
+
+:::{.pipeline-bar}
+[Séries]{.pipeline-step}
+[→]{.pipeline-arrow}
+[XGBoost + AR(1)]{.pipeline-step .active}
+[→]{.pipeline-arrow}
+[Resíduos]{.pipeline-step .active}
+[→]{.pipeline-arrow}
+[Ensemble ≥2/3]{.pipeline-step}
+[→]{.pipeline-arrow}
+[Classificação]{.pipeline-step}
+:::
+
+:::{.grid-2-1}
+
+::: {}
+
+```{ojs}
+viewof selectedPorto3 = Inputs.select(
+  [...new Set(series.map(d => d.porto))].sort(),
+  {value: selectedPorto, label: "Porto"}
+)
+```
+
+```{ojs}
+viewof selectedDim = Inputs.select(
+  ["atracacoes", "tonelagem_exp", "t1_mediano", "tatracado_mediano"],
+  {value: "atracacoes", label: "Dimensão"}
+)
+```
+
+```{ojs}
+{
+  const porto3 = selectedPorto3 || selectedPorto;
+  const resData = residuos.filter(
+    d => d.porto === porto3 && d.dim === selectedDim
+  );
+  const anomData = anomalias.filter(
+    d => d.porto === porto3 && d.dim === selectedDim
+  );
+  const anomDates = new Set(anomData.map(d => d.date));
+
+  const w = 900, h1 = 180, h2 = 110;
+  const margin = {top: 20, right: 20, bottom: 30, left: 80};
+  const svg = d3.create("svg")
+    .attr("viewBox", `0 0 ${w} ${h1 + h2 + 60}`)
+    .attr("style", "max-width: 100%;");
+
+  const parseDate = d3.timeParse("%Y-%m-%d");
+
+  const x = d3.scaleTime()
+    .domain(d3.extent(resData, d => parseDate(d.date)))
+    .range([margin.left, w - margin.right]);
+
+  // Panel 1: Observed vs Predicted
+  const g1 = svg.append("g");
+  const yVals = resData.map(d => d.y_true).filter(v => v != null);
+  const y1 = d3.scaleLinear()
+    .domain([d3.min(yVals) * 0.9, d3.max(yVals) * 1.1])
+    .range([h1, margin.top]);
+
+  g1.append("path")
+    .datum(resData.filter(d => d.y_true != null))
+    .attr("d", d3.line().x(d => x(parseDate(d.date))).y(d => y1(d.y_true)))
+    .attr("fill", "none").attr("stroke", "#888").attr("stroke-width", 0.8);
+
+  g1.append("path")
+    .datum(resData.filter(d => d.y_pred != null))
+    .attr("d", d3.line().x(d => x(parseDate(d.date))).y(d => y1(d.y_pred)))
+    .attr("fill", "none").attr("stroke", "#4fc3f7").attr("stroke-width", 1.2)
+    .attr("stroke-dasharray", "4,2");
+
+  g1.append("g").attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y1).ticks(4)).attr("color", "#666");
+
+  const dimLabels = {
+    atracacoes: "Atracações", tonelagem_exp: "Tonelagem Exp.",
+    t1_mediano: "Espera p/ Atracar (h)", tatracado_mediano: "Tempo no Berço (h)"
+  };
+  g1.append("text")
+    .attr("transform", `rotate(-90)`)
+    .attr("x", -(margin.top + h1) / 2).attr("y", 15)
+    .attr("text-anchor", "middle").attr("fill", "#aaa").attr("font-size", "11px")
+    .text(dimLabels[selectedDim] || selectedDim);
+
+  g1.append("text").attr("x", margin.left + 10).attr("y", 15)
+    .text("── Observado   ╌╌ Predito").attr("fill","#aaa").attr("font-size","10px");
+
+  // Panel 2: Residuals
+  const g2 = svg.append("g").attr("transform", `translate(0, ${h1 + 30})`);
+  const rVals = resData.map(d => d.residual).filter(v => v != null);
+  const y2 = d3.scaleLinear()
+    .domain([d3.min(rVals) * 1.2, d3.max(rVals) * 1.2])
+    .range([h2, 0]);
+
+  g2.append("line")
+    .attr("x1", margin.left).attr("x2", w - margin.right)
+    .attr("y1", y2(0)).attr("y2", y2(0))
+    .attr("stroke", "#444");
+
+  resData.forEach(d => {
+    if (d.residual == null) return;
+    const isAnom = anomDates.has(d.date);
+    g2.append("line")
+      .attr("x1", x(parseDate(d.date)))
+      .attr("x2", x(parseDate(d.date)))
+      .attr("y1", y2(0))
+      .attr("y2", y2(d.residual))
+      .attr("stroke", isAnom ? "#f85149" : "#4fc3f7")
+      .attr("stroke-width", isAnom ? 2 : 0.5)
+      .attr("opacity", isAnom ? 1 : 0.2);
+  });
+
+  g2.append("g").attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y2).ticks(3)).attr("color", "#666");
+
+  g2.append("text").attr("x", margin.left + 10).attr("y", -5)
+    .text("Resíduos (vermelho = anomalia detectada)")
+    .attr("fill","#aaa").attr("font-size","10px");
+
+  svg.append("g")
+    .attr("transform", `translate(0, ${h1 + 30 + h2})`)
+    .call(d3.axisBottom(x).ticks(10)).attr("color", "#666");
+
+  return svg.node();
+}
+```
+
+:::
+
+:::{.text-panel}
+
+### Pipeline de detecção
+
+O sistema combina **machine learning** com análise estatística para detectar anomalias operacionais sem supervisão humana.
+
+#### 1. Modelagem preditiva
+
+Para cada porto e dimensão, um modelo **XGBoost** aprende o padrão normal de operação a partir de 15 features temporais (lags semanais, médias móveis, variáveis calendário). Um filtro **AR(1)** é aplicado sobre os resíduos para remover autocorrelação remanescente, gerando **inovações**.
+
+#### 2. Inovações como sinal
+
+O desvio entre o observado e o predito (resíduo), filtrado pelo AR(1), constitui a **inovação**. Valores extremos nessa série indicam comportamento anômalo.
+
+#### 3. Ensemble ≥ 2/3
+
+Três métodos independentes avaliam as inovações: **MAD** (desvio absoluto mediano com threshold adaptativo), **STL** (decomposição sazonal residual) e **Isolation Forest** (detecção multivariada). Uma semana só é marcada como anomalia se **ao menos 2 dos 3** concordam.
+
+#### 4. Walk-forward
+
+O modelo é re-estimado a cada semana em **janela expansível** (*expanding window*), acumulando todo o histórico disponível. Isso garante que o modelo se adapta progressivamente e que apenas desvios genuínos em relação ao padrão aprendido sejam detectados.
+
+:::
+
+:::
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 4 — CLASSIFICAÇÃO: SCORE A × B                 -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[4]{.tela-number}
+
+## Isolado, nacional ou global?
+:::{.subtitulo}
+Dois eixos de classificação: co-ocorrência entre portos (Score A) × índice global (Score B)
+:::
+
+:::{.grid-2-1}
+
+:::{#scatter-container}
+```{ojs}
+viewof selectedEvent = Inputs.select(
+  ["Todos", "Greve Caminhoneiros", "COVID", "Guerra Ucrânia",
+   "Enchentes RS", "Lockdowns China", "Ataques Houthi"],
+  {value: "Todos", label: "Destacar evento"}
+)
+```
+
+```{ojs}
+{
+  const data = anomalias;
+
+  const dimCounts = new Map();
+  data.forEach(d => {
+    const key = d.porto + "|" + d.date;
+    dimCounts.set(key, (dimCounts.get(key) || 0) + 1);
+  });
+
+  const w = 700, h = 420;
+  const margin = {top: 20, right: 20, bottom: 50, left: 60};
+
+  const container = d3.create("div").style("position", "relative");
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .attr("style", "max-width: 100%; display: block;");
+
+  const x = d3.scaleLinear()
+    .domain([0, d3.max(data, d => d.score_a) + 1])
+    .range([margin.left, w - margin.right]);
+
+  const y = d3.scaleLinear()
+    .domain([0, d3.max(data, d => d.score_b) + 0.3])
+    .range([h - margin.bottom, margin.top]);
+
+  const ta = 3, tb = 0.8;
+  svg.append("line")
+    .attr("x1", x(ta)).attr("x2", x(ta)).attr("y1", y(tb)).attr("y2", h - margin.bottom)
+    .attr("stroke", "#ff9800").attr("stroke-dasharray", "4,4").attr("opacity", 0.5);
+  svg.append("line")
+    .attr("x1", margin.left).attr("x2", w - margin.right).attr("y1", y(tb)).attr("y2", y(tb))
+    .attr("stroke", "#4fc3f7").attr("stroke-dasharray", "4,4").attr("opacity", 0.5);
+
+  const qStyle = (sel) => sel
+    .attr("font-size", "22px").attr("font-weight", "800")
+    .attr("opacity", 0.3).attr("text-anchor", "middle")
+    .attr("paint-order", "stroke").attr("stroke", "#1e2a38")
+    .attr("stroke-width", "4px").attr("stroke-linejoin", "round");
+
+  qStyle(svg.append("text")
+    .attr("x", (margin.left + x(ta)) / 2)
+    .attr("y", (y(tb) + h - margin.bottom) / 2 + 8)
+    .text("ISOLADO").attr("fill", "#4fc3f7"));
+  qStyle(svg.append("text")
+    .attr("x", (x(ta) + w - margin.right) / 2)
+    .attr("y", (y(tb) + h - margin.bottom) / 2 + 8)
+    .text("NACIONAL").attr("fill", "#ff9800"));
+  qStyle(svg.append("text")
+    .attr("x", (margin.left + w - margin.right) / 2)
+    .attr("y", (margin.top + y(tb)) / 2 + 8)
+    .text("GLOBAL").attr("fill", "#f85149"));
+
+  const colors = {global: "#f85149", nacional: "#ff9800", isolado: "#4fc3f7"};
+
+  const eventDates = {
+    "Greve Caminhoneiros": ["2018-05-21", "2018-06-10"],
+    "COVID": ["2020-03-01", "2020-06-30"],
+    "Guerra Ucrânia": ["2022-02-24", "2022-06-30"],
+    "Enchentes RS": ["2024-05-01", "2024-07-31"],
+    "Lockdowns China": ["2022-03-01", "2022-06-30"],
+    "Ataques Houthi": ["2023-12-01", "2024-03-31"],
+  };
+
+  const rScale = d3.scaleSqrt().domain([1, 4]).range([3, 9]);
+
+  const jitterSeed = (s) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0x7fffffff; return h; };
+  const xStep = (x.range()[1] - x.range()[0]) / (x.domain()[1] - x.domain()[0]);
+  const yStep = (y.range()[0] - y.range()[1]) / (y.domain()[1] - y.domain()[0]);
+  const jitterX = xStep * 0.35;
+  const jitterY = yStep * 0.08;
+
+  const tooltipFO = svg.append("foreignObject")
+    .attr("width", 260).attr("height", 130)
+    .style("pointer-events", "none").style("display", "none");
+  const tooltipDiv = tooltipFO.append("xhtml:div")
+    .style("background", "rgba(22,33,62,0.95)").style("border", "1px solid #4fc3f7")
+    .style("border-radius", "6px").style("padding", "8px 12px")
+    .style("color", "#eee").style("font-size", "12px").style("line-height", "1.5");
+
+  const dimLabelsT = {atracacoes: "Atracações", tonelagem_exp: "Tonelagem Exp.",
+    t1_mediano: "Espera p/ Atracar", tatracado_mediano: "Tempo no Berço"};
+
+  data.forEach((d, i) => {
+    const inEvent = selectedEvent !== "Todos" && eventDates[selectedEvent]
+      ? d.date >= eventDates[selectedEvent][0] && d.date <= eventDates[selectedEvent][1]
+      : false;
+    const opacity = selectedEvent === "Todos" ? 0.85 : (inEvent ? 0.9 : 0.12);
+    const nDims = dimCounts.get(d.porto + "|" + d.date) || 1;
+    const r = rScale(nDims);
+
+    const seed = jitterSeed(d.porto + d.date + d.dim + i);
+    const jx = ((seed % 1000) / 500 - 1) * jitterX;
+    const jy = (((seed >> 10) % 1000) / 500 - 1) * jitterY;
+    const cx = x(d.score_a) + jx;
+    const cy = y(d.score_b || 0) + jy;
+
+    svg.append("circle")
+      .attr("cx", cx).attr("cy", cy).attr("r", r)
+      .attr("fill", colors[d.classificacao] || "#666")
+      .attr("opacity", opacity).attr("stroke", "none")
+      .style("cursor", "pointer")
+      .on("mouseover", function(event) {
+        d3.select(this).attr("stroke", "#fff").attr("stroke-width", 1.5);
+        const co = d.portos_co ? d.portos_co.replace(/[\[\]']/g, "") : "\u2014";
+        tooltipDiv.html(
+          `<strong>${d.porto}</strong> \u2014 ${d.date}<br>`
+          + `Dim: ${dimLabelsT[d.dim] || d.dim}<br>`
+          + `<span style="color:${colors[d.classificacao]}">${d.classificacao}</span> | `
+          + `A=${d.score_a} B=${(d.score_b||0).toFixed(2)}<br>`
+          + `Co: ${co}`
+        );
+        const tx = cx + 15 > w - 280 ? cx - 275 : cx + 15;
+        const ty = cy - 70 < 0 ? cy + 10 : cy - 70;
+        tooltipFO.raise().attr("x", tx).attr("y", ty).style("display", null);
+      })
+      .on("mouseout", function() {
+        d3.select(this).attr("stroke", "none");
+        tooltipFO.style("display", "none");
+      });
+  });
+
+  // Size legend
+  const legG = svg.append("g").attr("transform", `translate(${w - 150}, ${margin.top + 5})`);
+  legG.append("text").attr("x", 0).attr("y", 0).text("Tamanho = Dimensões afetadas")
+    .attr("fill", "#aaa").attr("font-size", "9px");
+  [1, 2, 4].forEach((v, i) => {
+    legG.append("circle").attr("cx", i * 30 + 10).attr("cy", 18)
+      .attr("r", rScale(v)).attr("fill", "#4fc3f7").attr("opacity", 0.85);
+    legG.append("text").attr("x", i * 30 + 10).attr("y", 32)
+      .text(v).attr("fill", "#aaa").attr("font-size", "9px").attr("text-anchor", "middle");
+  });
+
+  svg.append("g").attr("transform", `translate(0,${h - margin.bottom})`)
+    .call(d3.axisBottom(x).ticks(12)).attr("color", "#666");
+  svg.append("g").attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).ticks(6)).attr("color", "#666");
+
+  svg.append("text").attr("x", w/2).attr("y", h - 5)
+    .text("Score A (co-ocorrência entre portos BR)").attr("fill","#aaa").attr("font-size","11px")
+    .attr("text-anchor","middle");
+  svg.append("text").attr("x", 15).attr("y", h/2)
+    .text("Score B (índice global próprio)").attr("fill","#aaa").attr("font-size","11px")
+    .attr("text-anchor","middle").attr("transform",`rotate(-90, 15, ${h/2})`);
+
+  return container.node();
+}
+```
+:::
+
+:::{.text-panel}
+
+### Cálculo dos Scores
+
+[PORTWATCH / FMI]{.source-tag}
+
+A classificação de cada anomalia em **global**, **nacional** ou **isolada** utiliza dois scores independentes, calibrados contra 10 eventos históricos conhecidos.
+
+#### Score A — Co-ocorrência
+
+Conta quantos **outros portos brasileiros** também apresentam anomalia na mesma semana. Um evento que afeta muitos portos simultaneamente tem Score A alto.
+
+- **Isolado:** Score A < 3 (poucos portos afetados)
+- **Nacional/Global:** Score A ≥ 3
+
+#### Score B — Índice de choque global
+
+Construímos um **índice global próprio** a partir dos dados diários de atividade portuária do PortWatch/FMI (~2.000 portos, 180 países). Selecionamos os **50 maiores portos não-brasileiros** por volume médio de chamadas, calculamos a média semanal de *portcalls* e aplicamos um z-score com janela móvel de 12 semanas. O Score B de cada anomalia é o **máximo |z| numa janela de ±2 semanas**.
+
+- **Nacional:** Score A ≥ 3 e Score B < 0,8
+- **Global:** Score B ≥ 0,8
+
+⚠ Os dados diários do PortWatch começam apenas em **2019**. Antes disso, a classificação usa somente o Score A.
+
+:::
+
+:::
+
+:::{.grid-4}
+
+:::{.metric-card}
+:::{.stat-big}
+1.609
+:::
+:::{.stat-label}
+anomalias detectadas
+:::
+:::
+
+:::{.metric-card}
+:::{.stat-big style="color: #f85149;"}
+636
+:::
+:::{.stat-label}
+global (40%)
+:::
+:::
+
+:::{.metric-card}
+:::{.stat-big style="color: #ff9800;"}
+912
+:::
+:::{.stat-label}
+nacional (57%)
+:::
+:::
+
+:::{.metric-card}
+:::{.stat-big style="color: #4fc3f7;"}
+61
+:::
+:::{.stat-label}
+isolado (4%)
+:::
+:::
+
+:::
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 5 — CADA EVENTO TEM UMA ASSINATURA             -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[5]{.tela-number}
+
+## Cada evento tem uma assinatura
+:::{.subtitulo}
+Fingerprint operacional — quais dimensões são mais afetadas?
+:::
+
+:::{.grid-2-1}
+
+::: {}
+
+```{ojs}
+viewof selectedRadarEvent = Inputs.select(
+  ["Greve Caminhoneiros", "COVID", "Enchentes RS", "Guerra Ucrânia",
+   "Lockdowns China", "Ataques Houthi"],
+  {value: "Greve Caminhoneiros", label: "Evento"}
+)
+```
+
+```{ojs}
+{
+  const fp = fingerprints;
+  const dims = ["atracacoes", "tonelagem_exp", "t1_mediano", "tatracado_mediano"];
+  const labels = ["Atracações", "Tonelagem Exp.", "Espera p/ Atracar", "Tempo no Berço"];
+
+  const eventDates = {
+    "Greve Caminhoneiros": ["2018-05-01", "2018-07-01"],
+    "COVID": ["2020-03-01", "2020-07-01"],
+    "Enchentes RS": ["2024-04-15", "2024-08-01"],
+    "Guerra Ucrânia": ["2022-02-20", "2022-07-01"],
+    "Lockdowns China": ["2022-03-01", "2022-07-01"],
+    "Ataques Houthi": ["2023-11-15", "2024-04-01"],
+  };
+
+  const [start, end] = eventDates[selectedRadarEvent] || ["2020-01-01","2020-01-01"];
+  const evFp = fp.filter(d => d.date >= start && d.date <= end);
+
+  const avgFp = dims.map(dim => {
+    const vals = evFp.map(d => d[dim]).filter(v => v != null && !isNaN(v));
+    return vals.length > 0 ? d3.mean(vals) : 0;
+  });
+  const anomCount = evFp.length;
+
+  const w = 600, h = 420, cx = w/2, cy = h/2 + 10, maxR = 140;
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  const n = dims.length;
+  const angleSlice = (2 * Math.PI) / n;
+
+  [0.25, 0.5, 0.75, 1.0].forEach(level => {
+    const r = maxR * level;
+    svg.append("circle")
+      .attr("cx", cx).attr("cy", cy).attr("r", r)
+      .attr("fill", "none").attr("stroke", "#333").attr("stroke-dasharray", "2,2");
+    svg.append("text")
+      .attr("x", cx + 4).attr("y", cy - r + 4)
+      .attr("fill", "#555").attr("font-size", "9px")
+      .text(level.toFixed(2));
+  });
+
+  dims.forEach((dim, i) => {
+    const angle = angleSlice * i - Math.PI / 2;
+    const x2 = cx + maxR * Math.cos(angle);
+    const y2 = cy + maxR * Math.sin(angle);
+    svg.append("line")
+      .attr("x1", cx).attr("y1", cy).attr("x2", x2).attr("y2", y2)
+      .attr("stroke", "#444");
+
+    const lx = cx + (maxR + 25) * Math.cos(angle);
+    const ly = cy + (maxR + 25) * Math.sin(angle);
+    svg.append("text")
+      .attr("x", lx).attr("y", ly)
+      .attr("text-anchor", "middle").attr("dominant-baseline", "middle")
+      .attr("fill", "#aaa").attr("font-size", "11px")
+      .text(labels[i]);
+  });
+
+  const maxVal = d3.max(avgFp) || 1;
+  const points = avgFp.map((v, i) => {
+    const angle = angleSlice * i - Math.PI / 2;
+    const r = (v / maxVal) * maxR;
+    return [cx + r * Math.cos(angle), cy + r * Math.sin(angle)];
+  });
+  points.push(points[0]);
+
+  svg.append("polygon")
+    .attr("points", points.map(p => p.join(",")).join(" "))
+    .attr("fill", "#4fc3f7").attr("fill-opacity", 0.25)
+    .attr("stroke", "#4fc3f7").attr("stroke-width", 2);
+
+  points.slice(0, -1).forEach(([px, py]) => {
+    svg.append("circle")
+      .attr("cx", px).attr("cy", py).attr("r", 5)
+      .attr("fill", "#4fc3f7");
+  });
+
+  svg.append("text")
+    .attr("x", cx).attr("y", 20)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#4fc3f7").attr("font-size", "14px").attr("font-weight", "600")
+    .text(selectedRadarEvent);
+
+  svg.append("text")
+    .attr("x", cx).attr("y", h - 10)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#888").attr("font-size", "11px")
+    .text(`${anomCount} anomalias no período`);
+
+  return svg.node();
+}
+```
+
+:::
+
+:::{.text-panel}
+
+### O que é um fingerprint?
+
+Cada evento disruptivo deixa uma "assinatura" operacional distinta — chamamos de **fingerprint**. Ele revela *quais dimensões* do porto são mais afetadas.
+
+#### Como é calculado
+
+Para cada semana de anomalia no período do evento, calcula-se o **resíduo normalizado (z-score)** em cada uma das 4 dimensões operacionais. O radar mostra a **média desses z-scores** entre todos os portos afetados.
+
+Quanto maior o eixo, mais aquela dimensão desviou do padrão esperado. Valores normalizados pelo máximo do evento para comparação relativa.
+
+#### Padrões típicos
+
+- **Greve dos Caminhoneiros:** impacto concentrado em *tonelagem* (falta de carga para embarque)
+- **COVID-19:** choque amplo — afeta as 4 dimensões simultaneamente
+- **Enchentes RS:** impacto localizado em *atracações* e *tempo no berço*
+- **Ataques Houthi:** aumenta *tempo de espera* por desvio de rotas
+
+O fingerprint permite **distinguir a natureza** de um evento mesmo antes de saber sua causa.
+
+:::
+
+:::
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 6 — QUEM É MAIS VULNERÁVEL                     -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[6]{.tela-number}
+
+## Quem é mais vulnerável?
+:::{.subtitulo}
+Anomalias por porto ao longo do tempo
+:::
+
+:::{.grid-2-1}
+
+::: {}
+
+```{ojs}
+viewof heatClassFilter = Inputs.select(
+  ["Todas", "global", "nacional", "isolado"],
+  {value: "Todas", label: "Classificação"}
+)
+```
+
+```{ojs}
+{
+  const data = anomalias;
+  const filtered = heatClassFilter === "Todas" ? data
+    : data.filter(d => d.classificacao === heatClassFilter);
+
+  const counts = d3.rollup(
+    filtered, v => v.length, d => d.porto, d => d.date.slice(0, 4)
+  );
+
+  const portos = [...new Set(data.map(d => d.porto))].sort();
+  const years = [...new Set(data.map(d => d.date.slice(0, 4)))].sort()
+    .filter(y => y !== "2015");
+
+  const cellW = 50, cellH = 26;
+  const margin = {top: 30, left: 160};
+  const w = margin.left + years.length * cellW + 20;
+  const h = margin.top + portos.length * cellH + 20;
+
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+
+  const maxCount = d3.max(filtered.length > 0 ?
+    [...counts.values()].flatMap(m => [...m.values()]) : [1]);
+  const color = d3.scaleSequential(d3.interpolateYlOrRd).domain([0, maxCount]);
+
+  years.forEach((yr, i) => {
+    svg.append("text")
+      .attr("x", margin.left + i * cellW + cellW/2).attr("y", margin.top - 8)
+      .attr("text-anchor", "middle").attr("fill", "#aaa").attr("font-size", "10px")
+      .text(yr);
+  });
+
+  portos.forEach((porto, j) => {
+    svg.append("text")
+      .attr("x", margin.left - 8).attr("y", margin.top + j * cellH + cellH/2 + 4)
+      .attr("text-anchor", "end").attr("fill", "#ccc").attr("font-size", "10px")
+      .text(porto);
+
+    years.forEach((yr, i) => {
+      const val = counts.get(porto)?.get(yr) || 0;
+      svg.append("rect")
+        .attr("x", margin.left + i * cellW).attr("y", margin.top + j * cellH)
+        .attr("width", cellW - 2).attr("height", cellH - 2)
+        .attr("rx", 3)
+        .attr("fill", val > 0 ? color(val) : "#1a2535");
+
+      if (val > 0) {
+        svg.append("text")
+          .attr("x", margin.left + i * cellW + cellW/2 - 1)
+          .attr("y", margin.top + j * cellH + cellH/2 + 4)
+          .attr("text-anchor", "middle")
+          .attr("fill", val > maxCount*0.6 ? "#fff" : "#ccc")
+          .attr("font-size", "9px")
+          .text(val);
+      }
+    });
+  });
+
+  return svg.node();
+}
+```
+
+:::
+
+:::{.text-panel}
+
+### Mapa de disrupções
+
+[ANTAQ + PORTWATCH]{.source-tag}
+
+O heatmap mostra **quantas anomalias** cada porto apresentou em cada ano, com cores mais intensas indicando maior incidência.
+
+#### Padrões observados
+
+- **2016** concentra o maior número de anomalias (247) — período de forte ajuste econômico e cambial no Brasil *(2015 excluído do heatmap por ser ano parcial — dados iniciam em jun/2015)*
+- **2020** registrou 117 anomalias em 17 dos 18 portos — a COVID-19 não foi o ano com mais detecções, mas foi o evento com **maior dispersão geográfica simultânea**
+- Portos como **Paranaguá**, **Pecém** e **São João da Barra** acumulam anomalias recorrentes ao longo da série
+- Alguns portos apresentam padrões **concentrados em anos específicos** — ex.: São João da Barra em 2018–2019, Barra do Riacho em 2021–2022
+
+#### Filtragem por classificação
+
+Use o seletor para isolar anomalias por tipo:
+
+- **Global:** afetam ≥50% dos portos na mesma semana
+- **Nacional:** padrão regional compartilhado
+- **Isolado:** evento pontual de um único porto
+
+⚠ Os dados diários do PortWatch/FMI começam apenas em **2019**. Antes disso, a classificação global/nacional/isolado usa somente o Score A (co-ocorrência entre portos brasileiros).
+
+:::
+
+:::
+
+:::
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 7B — QUANTO CUSTA UMA DISRUPÇÃO?              -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .secao-suspensa}
+[7B]{.tela-number}
+
+## Quanto custa uma disrupção?
+:::{.subtitulo}
+Concentração portuária por UF (HHI) — estados mais dependentes de um único porto
+:::
+
+:::{.grid-2-1}
+
+::: {}
+
+```{ojs}
+{
+  // Data sorted by HHI descending
+  const raw = comex_hhi.slice().filter(d => d.SG_UF_NCM !== "ND" && d.SG_UF_NCM !== "CB").sort((a, b) => b.hhi_portuario - a.hhi_portuario);
+
+  const w = 960, h = 520;
+  const margin = {top: 50, right: 20, bottom: 80, left: 60};
+
+  const container = d3.create("div").style("position", "relative");
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .style("max-width", "100%");
+
+  // Tooltip
+  const tooltip = container.append("div")
+    .style("position", "absolute")
+    .style("pointer-events", "none")
+    .style("background", "rgba(15,20,30,0.95)")
+    .style("border", "1px solid #4fc3f7")
+    .style("border-radius", "8px")
+    .style("padding", "10px 14px")
+    .style("font-size", "12px")
+    .style("color", "#ddd")
+    .style("line-height", "1.6")
+    .style("max-width", "320px")
+    .style("box-shadow", "0 4px 20px rgba(0,0,0,0.5)")
+    .style("opacity", 0)
+    .style("transition", "opacity 0.15s")
+    .style("z-index", 100);
+
+  // Scales
+  const xScale = d3.scaleBand()
+    .domain(raw.map(d => d.SG_UF_NCM))
+    .range([margin.left, w - margin.right])
+    .padding(0.18);
+
+  const yScale = d3.scaleLinear()
+    .domain([0, 1])
+    .range([h - margin.bottom, margin.top]);
+
+  // Bar color by HHI range
+  function barColor(hhi) {
+    if (hhi >= 0.50) return "#e74c3c";
+    if (hhi >= 0.35) return "#f39c12";
+    return "#2ecc71";
+  }
+
+  // Reference lines
+  [{val: 0.50, label: "Alta concentração"}, {val: 0.35, label: "Concentração moderada"}].forEach(ref => {
+    svg.append("line")
+      .attr("x1", margin.left).attr("x2", w - margin.right)
+      .attr("y1", yScale(ref.val)).attr("y2", yScale(ref.val))
+      .attr("stroke", "#888").attr("stroke-dasharray", "6,4").attr("stroke-width", 1);
+    svg.append("text")
+      .attr("x", w - margin.right - 4).attr("y", yScale(ref.val) - 5)
+      .attr("text-anchor", "end").attr("fill", "#999").attr("font-size", "11px")
+      .text(ref.label);
+  });
+
+  // FOB formatter
+  const fmtFob = v => {
+    if (v >= 1e9) return `US$ ${(v/1e9).toFixed(1)} bi`;
+    if (v >= 1e6) return `US$ ${(v/1e6).toFixed(0)} mi`;
+    return `US$ ${d3.format(",.0f")(v)}`;
+  };
+
+  // Bars
+  svg.selectAll("rect.bar")
+    .data(raw)
+    .join("rect")
+    .attr("class", "bar")
+    .attr("x", d => xScale(d.SG_UF_NCM))
+    .attr("y", d => yScale(d.hhi_portuario))
+    .attr("width", xScale.bandwidth())
+    .attr("height", d => yScale(0) - yScale(d.hhi_portuario))
+    .attr("rx", 3)
+    .attr("fill", d => barColor(d.hhi_portuario))
+    .attr("opacity", 0.85)
+    .style("cursor", "pointer")
+    .on("mouseenter", function(event, d) {
+      d3.select(this).attr("opacity", 1).attr("stroke", "#fff").attr("stroke-width", 1.5);
+      const fobRisco = d.fob_total * d.pct_principal;
+      tooltip.html(
+        `<div style="font-weight:700;color:#4fc3f7;font-size:14px">${d.SG_UF_NCM} — HHI: ${(d.hhi_portuario*100).toFixed(0)}%</div>`
+        + `<div style="margin-top:4px"><span style="color:#aaa">Porto principal:</span> <b>${d.porto_principal}</b> (${(d.pct_principal*100).toFixed(0)}%)</div>`
+        + `<div><span style="color:#aaa">FOB total:</span> ${fmtFob(d.fob_total)}</div>`
+        + `<div><span style="color:#aaa">Nº de portos:</span> ${d.n_portos}</div>`
+        + `<div style="margin-top:4px;color:#f85149;font-weight:600">⚠ FOB em risco: ${fmtFob(fobRisco)}</div>`
+      ).style("opacity", 1);
+    })
+    .on("mousemove", function(event) {
+      const rect = svg.node().getBoundingClientRect();
+      const px = event.clientX - rect.left;
+      const py = event.clientY - rect.top;
+      tooltip
+        .style("left", px > rect.width * 0.65 ? `${px-280}px` : `${px+16}px`)
+        .style("top", `${py-10}px`);
+    })
+    .on("mouseleave", function() {
+      d3.select(this).attr("opacity", 0.85).attr("stroke", "none");
+      tooltip.style("opacity", 0);
+    });
+
+  // HHI % label on top of each bar
+  svg.selectAll("text.val")
+    .data(raw)
+    .join("text")
+    .attr("class", "val")
+    .attr("x", d => xScale(d.SG_UF_NCM) + xScale.bandwidth() / 2)
+    .attr("y", d => yScale(d.hhi_portuario) - 4)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#ccc").attr("font-size", "10px")
+    .text(d => `${(d.hhi_portuario * 100).toFixed(0)}%`);
+
+  // X axis
+  svg.append("g")
+    .attr("transform", `translate(0,${h - margin.bottom})`)
+    .call(d3.axisBottom(xScale).tickSize(0))
+    .selectAll("text")
+    .attr("fill", "#bbb").attr("font-size", "11px")
+    .attr("transform", "rotate(-45)")
+    .attr("text-anchor", "end");
+  svg.select(".domain").attr("stroke", "#555");
+
+  // Y axis
+  svg.append("g")
+    .attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(yScale).ticks(5).tickFormat(d => `${(d*100).toFixed(0)}%`))
+    .attr("color", "#666");
+
+  // Y label
+  svg.append("text")
+    .attr("x", 14).attr("y", (margin.top + h - margin.bottom) / 2)
+    .attr("text-anchor", "middle").attr("fill", "#aaa").attr("font-size", "13px")
+    .attr("transform", `rotate(-90, 14, ${(margin.top + h - margin.bottom) / 2})`)
+    .text("HHI (Concentração Portuária)");
+
+  // Legend
+  const legItems = [
+    {color: "#e74c3c", label: "Alta (HHI ≥ 50%)"},
+    {color: "#f39c12", label: "Moderada (35–50%)"},
+    {color: "#2ecc71", label: "Diversificada (< 35%)"},
+  ];
+  const leg = svg.append("g").attr("transform", `translate(${margin.left + 10}, ${margin.top - 30})`);
+  legItems.forEach((item, i) => {
+    const g = leg.append("g").attr("transform", `translate(${i * 195}, 0)`);
+    g.append("rect").attr("width", 14).attr("height", 14).attr("rx", 3)
+      .attr("fill", item.color).attr("opacity", 0.85);
+    g.append("text").attr("x", 20).attr("y", 11)
+      .attr("fill", "#bbb").attr("font-size", "12px").text(item.label);
+  });
+
+  return container.node();
+}
+```
+
+:::
+
+:::{.text-panel}
+
+### Concentração portuária
+
+[COMEXSTAT / MDIC]{.source-tag}
+
+O **Índice Herfindahl-Hirschman (HHI)** mede quão concentrada é a exportação de cada UF em poucos portos. Quanto mais alto o HHI, mais dependente o estado é de um único terminal.
+
+#### Faixas de risco
+
+- 🔴 **Alta** (HHI ≥ 50%): estado depende de 1–2 portos para quase toda sua exportação marítima
+- 🟡 **Moderada** (35–50%): alguma diversificação, mas ainda vulnerável
+- 🟢 **Diversificada** (< 35%): carga distribuída por vários portos
+
+#### Casos críticos
+
+- **MA** — HHI = 92% (96% via São Luís). Uma disrupção naquele porto afeta quase toda a exportação do estado
+- **PA** — HHI = 85% (São Luís + Vila do Conde concentram o minério e a soja)
+- **ES** — HHI = 67% (Vitória domina com minério de ferro e celulose)
+
+#### O que significa na prática?
+
+Estados com alta concentração portuária **não têm alternativa logística viável** em caso de disrupção. Eventos como greves, enchentes ou congestionamento paralisam parcialmente a pauta exportadora estadual.
+
+[97,4%]{.highlight-number}
+[do FOB exportado mapeado]{.highlight-label}
+
+:::
+
+:::
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 8 — CADEIA: PRODUTO × UF × PORTO (Arc Map)    -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[8]{.tela-number}
+
+## Cadeia de exportação: produto, UF e porto
+:::{.subtitulo}
+Mapa interativo de fluxos UF → Porto — selecione uma UF para destacar suas rotas de exportação
+:::
+
+```{ojs}
+viewof selectedUF8 = Inputs.select(
+  ["Todos", ...new Set(comex_flows.map(d => d.uf))].sort((a,b) => a === "Todos" ? -1 : b === "Todos" ? 1 : a.localeCompare(b)),
+  {value: "MT", label: "UF"}
+)
+```
+
+::::{.grid-2}
+
+:::{#arcmap-chart}
+```{ojs}
+{
+  /* ── Arc Flow Map with UF state divisions ── */
+  const w = 650, h = 570;
+
+  // Load world for neighbor countries
+  const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json");
+  const countries = topojson.feature(world, world.objects.countries);
+  const brazil = countries.features.find(f => f.id === "076");
+  const saIds = new Set(["032","068","152","170","218","254","328","600","604","740","858","862"]);
+  const neighbors = countries.features.filter(f => saIds.has(f.id));
+
+  // Load UF state boundaries from local TopoJSON (simplemaps source)
+  const brTopo = await FileAttachment("data/br_states.topojson").json();
+  const ufGeo = topojson.feature(brTopo, brTopo.objects.br);
+  // Extract UF sigla from id (e.g. "BRRS" → "RS")
+  ufGeo.features.forEach(f => { f.properties.uf = f.properties.id.slice(2); });
+  const ufFeatures = ufGeo.features;
+
+  // Projection fitted to UF boundaries
+  const proj = d3.geoMercator()
+    .fitExtent([[15, 15], [w - 15, h - 30]], ufGeo);
+  const pathGen = d3.geoPath(proj);
+
+  // Build port coordinate lookup from portos_meta
+  const portoCoord = new Map(portos_meta.map(d => [d.porto, {lat: d.lat, lon: d.lon}]));
+
+  // Filter flows
+  const allFlows = comex_flows.filter(d => portoCoord.has(d.porto));
+  const isAll = selectedUF8 === "Todos";
+  const flows = isAll ? allFlows : allFlows.filter(d => d.uf === selectedUF8);
+
+  // FOB by UF for tooltips
+  const fobByUF = d3.rollup(allFlows, v => d3.sum(v, d => d.fob), d => d.uf);
+
+  // UFs that are active in current selection
+  const activeUFs = new Set(flows.map(d => d.uf));
+
+  // Color scale for portos
+  const allPortos = [...new Set(allFlows.map(d => d.porto))].sort();
+  const portoPal = ["#4fc3f7","#3fb950","#ff9800","#f85149","#b388ff",
+                    "#ffb74d","#4dd0e1","#e57373","#81c784","#ba68c8",
+                    "#90caf9","#a5d6a7","#ffcc80","#ef9a9a","#ce93d8",
+                    "#80deea","#fff59d"];
+  const portoColor = d3.scaleOrdinal().domain(allPortos).range(portoPal);
+
+  // Width scale for arcs (by FOB)
+  const maxFob = d3.max(flows, d => d.fob) || 1;
+  const strokeScale = d3.scaleSqrt().domain([0, maxFob]).range([0.8, isAll ? 6 : 10]);
+
+  // Container with tooltip
+  const container = d3.create("div").style("position", "relative");
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .style("max-width", "100%");
+
+  const tooltip = container.append("div")
+    .style("position", "absolute")
+    .style("pointer-events", "none")
+    .style("background", "rgba(15,20,30,0.95)")
+    .style("border", "1px solid #4fc3f7")
+    .style("border-radius", "8px")
+    .style("padding", "8px 12px")
+    .style("font-size", "12px")
+    .style("color", "#ddd")
+    .style("line-height", "1.5")
+    .style("max-width", "280px")
+    .style("box-shadow", "0 4px 20px rgba(0,0,0,0.5)")
+    .style("opacity", 0)
+    .style("transition", "opacity 0.15s")
+    .style("z-index", 100);
+
+  // Filters
+  const defs = svg.append("defs");
+  const glow = defs.append("filter").attr("id", "arc-glow");
+  glow.append("feGaussianBlur").attr("stdDeviation", "2").attr("result", "blur");
+  glow.append("feMerge").selectAll("feMergeNode")
+    .data(["blur", "SourceGraphic"]).join("feMergeNode").attr("in", d => d);
+
+  // Drop shadow for hovered UF
+  const shadow = defs.append("filter").attr("id", "uf-shadow")
+    .attr("x", "-10%").attr("y", "-10%").attr("width", "120%").attr("height", "120%");
+  shadow.append("feDropShadow")
+    .attr("dx", 0).attr("dy", 0).attr("stdDeviation", 4)
+    .attr("flood-color", "#4fc3f7").attr("flood-opacity", 0.6);
+
+  // Draw neighbor countries
+  svg.selectAll(".neighbor")
+    .data(neighbors).join("path")
+    .attr("d", pathGen)
+    .attr("fill", "#162230").attr("stroke", "#2a3a4a")
+    .attr("stroke-width", 0.5).attr("opacity", 0.5);
+
+  // FOB formatter
+  const fmtFob = v => {
+    if (v >= 1e9) return `US$ ${(v/1e9).toFixed(1)} bi`;
+    if (v >= 1e6) return `US$ ${(v/1e6).toFixed(0)} mi`;
+    return `US$ ${d3.format(",.0f")(v)}`;
+  };
+
+  // UF full names for tooltips
+  const UF_NAMES = {
+    AC:"Acre", AL:"Alagoas", AM:"Amazonas", AP:"Amapá", BA:"Bahia",
+    CE:"Ceará", DF:"Distrito Federal", ES:"Espírito Santo", GO:"Goiás",
+    MA:"Maranhão", MG:"Minas Gerais", MS:"Mato Grosso do Sul", MT:"Mato Grosso",
+    PA:"Pará", PB:"Paraíba", PE:"Pernambuco", PI:"Piauí", PR:"Paraná",
+    RJ:"Rio de Janeiro", RN:"Rio Grande do Norte", RO:"Rondônia", RR:"Roraima",
+    RS:"Rio Grande do Sul", SC:"Santa Catarina", SE:"Sergipe", SP:"São Paulo", TO:"Tocantins"
+  };
+
+  // ── Draw UF states ──
+  const stateGroup = svg.append("g").attr("class", "states");
+
+  stateGroup.selectAll(".uf-state")
+    .data(ufFeatures)
+    .join("path")
+    .attr("class", "uf-state")
+    .attr("d", pathGen)
+    .attr("fill", d => {
+      const uf = d.properties.uf;
+      if (!isAll && !activeUFs.has(uf)) return "#111e2e";
+      return "#1a3a4a";
+    })
+    .attr("stroke", "#5a8a9a")
+    .attr("stroke-width", 1.2)
+    .attr("opacity", d => {
+      const uf = d.properties.uf;
+      if (!isAll && !activeUFs.has(uf)) return 0.4;
+      return 0.85;
+    })
+    .style("cursor", "pointer")
+    .on("mouseenter", function(event, d) {
+      const uf = d.properties.uf;
+      d3.select(this)
+        .attr("stroke", "#4fc3f7")
+        .attr("stroke-width", 2.5)
+        .attr("opacity", 1)
+        .attr("filter", "url(#uf-shadow)")
+        .raise();
+
+      // Highlight arcs from this UF
+      svg.selectAll(".flow-arc").each(function(ad) {
+        if (ad && ad.uf === uf) {
+          d3.select(this).attr("opacity", 1).attr("stroke-width", strokeScale(ad.fob) + 2);
+        }
+      });
+
+      // Build UF tooltip
+      const ufFlows = allFlows.filter(f => f.uf === uf);
+      const ufFob = d3.sum(ufFlows, f => f.fob);
+      const nPortos = new Set(ufFlows.map(f => f.porto)).size;
+      const ufHHI = comex_hhi.find(h => h.SG_UF_NCM === uf);
+
+      let html = `<div style="font-weight:700;color:#4fc3f7;font-size:14px;margin-bottom:3px">${UF_NAMES[uf] || uf} (${uf})</div>`;
+      html += `<div><span style="color:#aaa">FOB total:</span> <b>${fmtFob(ufFob)}</b></div>`;
+      html += `<div><span style="color:#aaa">Portos:</span> ${nPortos}</div>`;
+      if (ufHHI) html += `<div><span style="color:#aaa">HHI:</span> ${(ufHHI.hhi_portuario * 100).toFixed(1)}%</div>`;
+
+      if (ufFlows.length > 0) {
+        html += `<div style="margin-top:4px;border-top:1px solid #333;padding-top:4px;font-size:11px">`;
+        ufFlows.sort((a,b) => b.fob - a.fob).slice(0,3).forEach(f => {
+          html += `<div style="color:#bbb">→ ${f.porto}: ${fmtFob(f.fob)}</div>`;
+        });
+        html += `</div>`;
+      }
+
+      tooltip.html(html).style("opacity", 1);
+    })
+    .on("mousemove", function(event) {
+      const rect = svg.node().getBoundingClientRect();
+      const px = event.clientX - rect.left;
+      const py = event.clientY - rect.top;
+      const flipX = px > rect.width * 0.6;
+      tooltip
+        .style("left", flipX ? `${px - 250}px` : `${px + 14}px`)
+        .style("top", `${py - 10}px`);
+    })
+    .on("mouseleave", function(event, d) {
+      const uf = d.properties.uf;
+      const fob = fobByUF.get(uf) || 0;
+      d3.select(this)
+        .attr("stroke", "#5a8a9a")
+        .attr("stroke-width", 1.2)
+        .attr("opacity", (!isAll && !activeUFs.has(uf)) ? 0.4 : 0.85)
+        .attr("filter", null);
+
+      // Reset arcs
+      svg.selectAll(".flow-arc").each(function(ad) {
+        if (ad && ad.uf === uf) {
+          d3.select(this).attr("opacity", isAll ? 0.4 : 0.6)
+            .attr("stroke-width", strokeScale(ad.fob));
+        }
+      });
+      tooltip.style("opacity", 0);
+    });
+
+  // ── UF sigla labels on states ──
+  stateGroup.selectAll(".uf-sigla")
+    .data(ufFeatures)
+    .join("text")
+    .attr("class", "uf-sigla")
+    .attr("x", d => pathGen.centroid(d)[0])
+    .attr("y", d => pathGen.centroid(d)[1] + 3)
+    .text(d => d.properties.uf)
+    .attr("text-anchor", "middle")
+    .attr("fill", d => {
+      const uf = d.properties.uf;
+      if (!isAll && !activeUFs.has(uf)) return "#445";
+      return "#cde";
+    })
+    .attr("font-size", "8px")
+    .attr("font-weight", "600")
+    .attr("paint-order", "stroke")
+    .attr("stroke", "rgba(10,15,25,0.7)")
+    .attr("stroke-width", 2)
+    .attr("pointer-events", "none");
+
+  // ── Draw flow arcs ──
+  const arcGroup = svg.append("g").attr("class", "arcs");
+
+  flows.sort((a,b) => a.fob - b.fob).forEach(d => {
+    const pc = portoCoord.get(d.porto);
+    if (!pc) return;
+    const [x1, y1] = proj([d.lon_uf, d.lat_uf]);
+    const [x2, y2] = proj([pc.lon, pc.lat]);
+
+    // Control point: midpoint shifted perpendicular for curvature
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    const dx = x2 - x1, dy = y2 - y1;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const curve = Math.min(dist * 0.3, 60);
+    const cx = mx - (dy / dist) * curve;
+    const cy = my + (dx / dist) * curve;
+
+    arcGroup.append("path")
+      .datum(d)
+      .attr("class", "flow-arc")
+      .attr("d", `M${x1},${y1} Q${cx},${cy} ${x2},${y2}`)
+      .attr("fill", "none")
+      .attr("stroke", portoColor(d.porto))
+      .attr("stroke-width", strokeScale(d.fob))
+      .attr("opacity", isAll ? 0.4 : 0.6)
+      .attr("stroke-linecap", "round")
+      .attr("filter", "url(#arc-glow)")
+      .style("cursor", "pointer")
+      .on("mouseenter", function(event) {
+        d3.select(this).attr("opacity", 1).attr("stroke-width", strokeScale(d.fob) + 2);
+        tooltip.html(
+          `<div style="font-weight:700;color:#4fc3f7;margin-bottom:2px">${d.uf} → ${d.porto}</div>`
+          + `<div><span style="color:#aaa">FOB total:</span> <b>${fmtFob(d.fob)}</b></div>`
+        ).style("opacity", 1);
+      })
+      .on("mousemove", function(event) {
+        const rect = svg.node().getBoundingClientRect();
+        const px = event.clientX - rect.left;
+        const py = event.clientY - rect.top;
+        const flipX = px > rect.width * 0.65;
+        tooltip
+          .style("left", flipX ? `${px - 240}px` : `${px + 14}px`)
+          .style("top", `${py - 8}px`);
+      })
+      .on("mouseleave", function() {
+        d3.select(this).attr("opacity", isAll ? 0.4 : 0.6)
+          .attr("stroke-width", strokeScale(d.fob));
+        tooltip.style("opacity", 0);
+      });
+  });
+
+  // ── Draw port dots (on top of arcs) ──
+  const portDots = [...new Map(flows.map(d => [d.porto, d])).values()]
+    .filter(d => portoCoord.has(d.porto));
+
+  const portGroup = svg.append("g").attr("class", "ports");
+
+  portGroup.selectAll(".port-dot")
+    .data(portDots).join("circle")
+    .attr("cx", d => proj([portoCoord.get(d.porto).lon, portoCoord.get(d.porto).lat])[0])
+    .attr("cy", d => proj([portoCoord.get(d.porto).lon, portoCoord.get(d.porto).lat])[1])
+    .attr("r", 7).attr("fill", d => portoColor(d.porto))
+    .attr("opacity", 0.9).attr("stroke", "#fff").attr("stroke-width", 1)
+    .attr("filter", "url(#arc-glow)");
+
+  portGroup.selectAll(".port-label")
+    .data(portDots).join("text")
+    .attr("x", d => proj([portoCoord.get(d.porto).lon, portoCoord.get(d.porto).lat])[0] + 10)
+    .attr("y", d => proj([portoCoord.get(d.porto).lon, portoCoord.get(d.porto).lat])[1] + 4)
+    .text(d => d.porto)
+    .attr("fill", d => portoColor(d.porto)).attr("font-size", "10px").attr("font-weight", "600")
+    .attr("paint-order", "stroke").attr("stroke", "#1e2a38").attr("stroke-width", 2.5)
+    .attr("pointer-events", "none");
+
+  // ── Porto color legend (bottom-left) ──
+  const legData = [...d3.rollup(flows, v => d3.sum(v, d => d.fob), d => d.porto)]
+    .sort((a,b) => b[1] - a[1]).slice(0, 8);
+  const legG = svg.append("g").attr("transform", `translate(12, ${h - 20 - legData.length * 18})`);
+  legG.append("rect")
+    .attr("x", -6).attr("y", -14)
+    .attr("width", 180).attr("height", legData.length * 18 + 18)
+    .attr("rx", 6).attr("fill", "rgba(15,20,30,0.8)");
+  legData.forEach(([porto, fob], i) => {
+    legG.append("rect").attr("x", 0).attr("y", i * 18)
+      .attr("width", 12).attr("height", 12).attr("rx", 2)
+      .attr("fill", portoColor(porto));
+    legG.append("text").attr("x", 16).attr("y", i * 18 + 10)
+      .attr("fill", "#bbb").attr("font-size", "11px")
+      .text(`${porto}: ${fmtFob(fob)}`);
+  });
+
+  return container.node();
+}
+```
+:::
+
+:::{.stats-col}
+
+```{ojs}
+{
+  /* ── Right panel: Top flows bar chart + port stats ── */
+  const ufData = comex_uf_prod.filter(d => d.SG_UF_NCM === selectedUF8 || selectedUF8 === "Todos")
+    .sort((a, b) => b.fob - a.fob);
+
+  const ufHHI = comex_hhi.find(d => d.SG_UF_NCM === selectedUF8);
+  const ufRank = comex_rank_uf.find(d => d.SG_UF_NCM === selectedUF8);
+  const isAll = selectedUF8 === "Todos";
+
+  const w = 340, h = 480;
+  const margin = {top: 44, right: 10, bottom: 20, left: 10};
+
+  const svg = d3.create("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .attr("style", "max-width: 100%;");
+
+  // Title
+  if (isAll) {
+    svg.append("text").attr("x", w/2).attr("y", 18)
+      .attr("text-anchor", "middle").attr("fill", "#4fc3f7")
+      .attr("font-size", "16px").attr("font-weight", "600")
+      .text("Top fluxos nacionais");
+    svg.append("text").attr("x", w/2).attr("y", 35)
+      .attr("text-anchor", "middle").attr("fill", "#888").attr("font-size", "13px")
+      .text("77 rotas UF→Porto mapeadas");
+  } else {
+    const hhiVal = ufHHI ? (ufHHI.hhi_portuario * 100).toFixed(0) + "%" : "—";
+    const nPortos = ufRank ? ufRank.n_portos : "—";
+    svg.append("text").attr("x", w/2).attr("y", 18)
+      .attr("text-anchor", "middle").attr("fill", "#4fc3f7")
+      .attr("font-size", "16px").attr("font-weight", "600")
+      .text(`Fluxos — ${selectedUF8}`);
+    svg.append("text").attr("x", w/2).attr("y", 35)
+      .attr("text-anchor", "middle").attr("fill", "#888").attr("font-size", "13px")
+      .text(`HHI: ${hhiVal} · ${nPortos} portos`);
+  }
+
+  const maxBars = Math.min(ufData.length, 10);
+  const barData = ufData.slice(0, maxBars);
+  if (barData.length === 0) {
+    svg.append("text").attr("x", w/2).attr("y", h/2)
+      .attr("text-anchor", "middle").attr("fill", "#666").attr("font-size", "12px")
+      .text("Sem dados para esta UF");
+    return svg.node();
+  }
+
+  const barH = Math.min(26, (h - margin.top - margin.bottom) / maxBars - 4);
+  const gap = 4;
+  const maxFob = d3.max(barData, d => d.fob) || 1;
+  const barMaxW = w - margin.left - margin.right - 10;
+  const xScale = d3.scaleLinear().domain([0, maxFob]).range([0, barMaxW]);
+
+  const portoPal = ["#4fc3f7","#3fb950","#ff9800","#f85149","#b388ff",
+                    "#ffb74d","#4dd0e1","#e57373","#81c784","#ba68c8"];
+  const portosInData = [...new Set(barData.map(d => d.porto))];
+  const portoCol = d3.scaleOrdinal().domain(portosInData).range(portoPal);
+
+  barData.forEach((d, i) => {
+    const yPos = margin.top + i * (barH + gap);
+    const barW = xScale(d.fob);
+    const pct = d.pct != null ? (d.pct * 100).toFixed(1) + "%" : "";
+
+    svg.append("rect")
+      .attr("x", margin.left).attr("y", yPos)
+      .attr("width", barW).attr("height", barH)
+      .attr("rx", 3).attr("fill", portoCol(d.porto)).attr("opacity", 0.8);
+
+    // Label: product → port
+    const label = isAll
+      ? `${d.SG_UF_NCM}: ${(d.cuci_nome||"").slice(0,20)} → ${d.porto}`
+      : `${(d.cuci_nome||"").slice(0,22)} → ${d.porto}`;
+    const maxChars = Math.max(10, Math.floor((w - margin.left - 10) / 6));
+    const display = label.length > maxChars ? label.slice(0,maxChars-1)+"…" : label;
+
+    svg.append("text")
+      .attr("x", margin.left + 4).attr("y", yPos + barH / 2 + 4)
+      .attr("fill", "#fff").attr("font-size", "11px").attr("font-weight", "500")
+      .text(display);
+
+    svg.append("title").text(`${d.cuci_nome} → ${d.porto}: US$ ${d3.format(",.0f")(d.fob)} (${pct})`);
+  });
+
+  // Vulnerability summary at bottom (only when UF selected)
+  if (!isAll) {
+    const ufVuln = comex_vuln.filter(d => d.SG_UF_NCM === selectedUF8)
+      .sort((a, b) => b.pct_porto - a.pct_porto).slice(0, 4);
+    const yStart = margin.top + maxBars * (barH + gap) + 12;
+
+    svg.append("text").attr("x", margin.left).attr("y", yStart)
+      .attr("fill", "#4fc3f7").attr("font-size", "12px").attr("font-weight", "600")
+      .text("Portos e anomalias:");
+
+    ufVuln.forEach((d, i) => {
+      const yp = yStart + 16 + i * 18;
+      const anomColor = d.n_anomalias > 100 ? "#f85149" : "#888";
+      svg.append("circle").attr("cx", margin.left + 5).attr("cy", yp - 3)
+        .attr("r", 4).attr("fill", portoPal[i % portoPal.length]);
+      svg.append("text").attr("x", margin.left + 14).attr("y", yp)
+        .attr("fill", "#ccc").attr("font-size", "11px")
+        .text(`${d.porto}: ${(d.pct_porto*100).toFixed(1)}%`);
+      svg.append("text").attr("x", w - 10).attr("y", yp)
+        .attr("text-anchor", "end").attr("fill", anomColor).attr("font-size", "11px")
+        .text(`${d.n_anomalias} anom.`);
+    });
+  }
+
+  return svg.node();
+}
+```
+
+:::
+
+::::
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 9 — VULNERABILIDADE DAS CADEIAS (CUCI)        -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .secao-suspensa}
+[9]{.tela-number}
+
+## Quais cadeias produtivas estão em risco?
+:::{.subtitulo}
+Vulnerabilidade cruzada: concentração da pauta exportadora × dependência portuária (CUCI, 3 dígitos)
+:::
+
+:::{.grid-2-1}
+
+::: {}
+
+```{ojs}
+{
+  const data = cuci_scatter;
+
+  const w = 640, h = 520;
+  const margin = {top: 32, right: 24, bottom: 60, left: 64};
+
+  const container = d3.create("div").style("position", "relative");
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .style("max-width", "100%");
+
+  // Tooltip
+  const tooltip = container.append("div")
+    .style("position", "absolute")
+    .style("pointer-events", "none")
+    .style("background", "rgba(15,20,30,0.95)")
+    .style("border", "1px solid #4fc3f7")
+    .style("border-radius", "8px")
+    .style("padding", "10px 14px")
+    .style("font-size", "12px")
+    .style("color", "#ddd")
+    .style("line-height", "1.6")
+    .style("max-width", "320px")
+    .style("box-shadow", "0 4px 20px rgba(0,0,0,0.5)")
+    .style("opacity", 0)
+    .style("transition", "opacity 0.15s")
+    .style("z-index", 100);
+
+  // Scales
+  const xMax = d3.max(data, d => d.hhi_pauta) * 1.08;
+  const yMax = d3.max(data, d => d.hhi_portuario) * 1.08;
+
+  const xScale = d3.scaleLinear().domain([0, xMax]).range([margin.left, w - margin.right]);
+  const yScale = d3.scaleLinear().domain([0, yMax]).range([h - margin.bottom, margin.top]);
+  const rScale = d3.scaleSqrt().domain([0, d3.max(data, d => d.VL_FOB)]).range([4, 32]);
+
+  // Quadrant thresholds
+  const qx = 0.20, qy = 0.20;
+
+  // Quadrant background fills (subtle)
+  svg.append("rect")
+    .attr("x", xScale(qx)).attr("y", margin.top)
+    .attr("width", xScale(xMax) - xScale(qx))
+    .attr("height", yScale(qy) - margin.top)
+    .attr("fill", "#f85149").attr("opacity", 0.04);
+  svg.append("rect")
+    .attr("x", margin.left).attr("y", yScale(yMax))
+    .attr("width", xScale(qx) - margin.left)
+    .attr("height", yScale(qy) - yScale(yMax))
+    .attr("fill", "#3fb950").attr("opacity", 0.04);
+
+  // Quadrant lines
+  svg.append("line")
+    .attr("x1", xScale(qx)).attr("x2", xScale(qx))
+    .attr("y1", margin.top).attr("y2", h - margin.bottom)
+    .attr("stroke", "#555").attr("stroke-dasharray", "5,4").attr("stroke-width", 1);
+  svg.append("line")
+    .attr("x1", margin.left).attr("x2", w - margin.right)
+    .attr("y1", yScale(qy)).attr("y2", yScale(qy))
+    .attr("stroke", "#555").attr("stroke-dasharray", "5,4").attr("stroke-width", 1);
+
+  // Quadrant labels
+  svg.append("text").attr("x", xScale(xMax) - 4).attr("y", margin.top + 14)
+    .attr("text-anchor", "end").attr("fill", "#f85149").attr("font-size", "12px").attr("font-weight", "700")
+    .text("VULNERABILIDADE MÁXIMA");
+  svg.append("text").attr("x", margin.left + 4).attr("y", h - margin.bottom - 6)
+    .attr("fill", "#3fb950").attr("font-size", "12px").attr("font-weight", "700")
+    .text("MENOR RISCO");
+  svg.append("text").attr("x", margin.left + 4).attr("y", margin.top + 14)
+    .attr("fill", "#888").attr("font-size", "11px")
+    .text("Porto diversificado, cadeia concentrada");
+  svg.append("text").attr("x", xScale(xMax) - 4).attr("y", h - margin.bottom - 6)
+    .attr("text-anchor", "end").attr("fill", "#888").attr("font-size", "11px")
+    .text("Cadeia diversificada, porto concentrado");
+
+  // Color by quadrant
+  function qColor(d) {
+    if (d.hhi_pauta >= qx && d.hhi_portuario >= qy) return "#f85149";
+    if (d.hhi_pauta <  qx && d.hhi_portuario <  qy) return "#3fb950";
+    return "#4fc3f7";
+  }
+
+  // FOB formatter
+  const fmtFob = v => {
+    if (v >= 1e9) return `US$ ${(v/1e9).toFixed(1)} bi`;
+    if (v >= 1e6) return `US$ ${(v/1e6).toFixed(0)} mi`;
+    return `US$ ${d3.format(",.0f")(v)}`;
+  };
+
+  // Draw bubbles (large behind, small in front)
+  const sorted = [...data].sort((a,b) => b.VL_FOB - a.VL_FOB);
+  svg.selectAll("circle")
+    .data(sorted)
+    .join("circle")
+    .attr("cx", d => xScale(d.hhi_pauta))
+    .attr("cy", d => yScale(d.hhi_portuario))
+    .attr("r", d => rScale(d.VL_FOB))
+    .attr("fill", d => qColor(d))
+    .attr("opacity", 0.55)
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 0.4)
+    .style("cursor", "pointer")
+    .on("mouseenter", function(event, d) {
+      d3.select(this).attr("opacity", 1).attr("stroke-width", 2);
+      const qLabel = (d.hhi_pauta >= qx && d.hhi_portuario >= qy) ? "⚠ Dupla concentração"
+        : (d.hhi_pauta < qx && d.hhi_portuario < qy) ? "✓ Diversificado"
+        : "△ Concentração parcial";
+      tooltip.html(
+        `<div style="font-weight:700;color:#4fc3f7;font-size:14px">${d.porto}</div>`
+        + `<div style="color:#ccc;font-size:11px">${d.CO_CUCI_GRUPO} — ${(d.NO_CUCI_GRUPO||"").slice(0,50)}</div>`
+        + `<div style="margin-top:6px"><span style="color:#aaa">FOB 2025:</span> <b>${fmtFob(d.VL_FOB)}</b></div>`
+        + `<div><span style="color:#aaa">HHI pauta do porto:</span> ${d.hhi_pauta.toFixed(3)}</div>`
+        + `<div><span style="color:#aaa">HHI portuário da cadeia:</span> ${d.hhi_portuario.toFixed(3)}</div>`
+        + `<div style="margin-top:4px;color:${qColor(d)};font-weight:600">${qLabel}</div>`
+      ).style("opacity", 1);
+    })
+    .on("mousemove", function(event) {
+      const rect = svg.node().getBoundingClientRect();
+      const px = event.clientX - rect.left;
+      const py = event.clientY - rect.top;
+      tooltip
+        .style("left", px > rect.width * 0.55 ? `${px-290}px` : `${px+16}px`)
+        .style("top", `${py-10}px`);
+    })
+    .on("mouseleave", function() {
+      d3.select(this).attr("opacity", 0.55).attr("stroke-width", 0.4);
+      tooltip.style("opacity", 0);
+    });
+
+  // Labels for top 10 by FOB
+  sorted.slice(0, 10).forEach(d => {
+    const yOff = rScale(d.VL_FOB) + 12;
+    svg.append("text")
+      .attr("x", xScale(d.hhi_pauta))
+      .attr("y", yScale(d.hhi_portuario) - yOff + 2)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#bbb").attr("font-size", "10px")
+      .text(`${d.porto.slice(0,12)}`);
+    svg.append("text")
+      .attr("x", xScale(d.hhi_pauta))
+      .attr("y", yScale(d.hhi_portuario) - yOff + 13)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#999").attr("font-size", "9px")
+      .text(`${d.CO_CUCI_GRUPO}`);
+  });
+
+  // Axes
+  svg.append("g")
+    .attr("transform", `translate(0,${h - margin.bottom})`)
+    .call(d3.axisBottom(xScale).ticks(6).tickFormat(d3.format(".2f")))
+    .attr("color", "#666");
+  svg.append("g")
+    .attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(yScale).ticks(6).tickFormat(d3.format(".2f")))
+    .attr("color", "#666");
+
+  // Axis labels
+  svg.append("text")
+    .attr("x", (margin.left + w - margin.right) / 2)
+    .attr("y", h - 8)
+    .attr("text-anchor", "middle").attr("fill", "#aaa").attr("font-size", "13px")
+    .text("HHI do porto (concentração da pauta exportadora)");
+  svg.append("text")
+    .attr("x", 14).attr("y", (margin.top + h - margin.bottom) / 2)
+    .attr("text-anchor", "middle").attr("fill", "#aaa").attr("font-size", "13px")
+    .attr("transform", `rotate(-90, 14, ${(margin.top + h - margin.bottom) / 2})`)
+    .text("HHI da cadeia (dependência portuária)");
+
+  // Size legend
+  const legSz = svg.append("g").attr("transform", `translate(${w - margin.right - 100}, ${h - margin.bottom - 60})`);
+  legSz.append("text").attr("x", 0).attr("y", -8).attr("fill", "#888").attr("font-size", "10px").text("FOB:");
+  [1e9, 50e9, 200e9].forEach((v, i) => {
+    const r = rScale(v);
+    const cx = i * 36 + 10;
+    legSz.append("circle").attr("cx", cx).attr("cy", 10).attr("r", r)
+      .attr("fill", "none").attr("stroke", "#666").attr("stroke-width", 0.5);
+    legSz.append("text").attr("x", cx).attr("y", 28 + r).attr("text-anchor", "middle")
+      .attr("fill", "#777").attr("font-size", "9px")
+      .text(v >= 1e9 ? `${(v/1e9).toFixed(0)}bi` : `${(v/1e6).toFixed(0)}mi`);
+  });
+
+  return container.node();
+}
+```
+
+:::
+
+:::{.text-panel}
+
+### Vulnerabilidade cruzada
+
+[COMEXSTAT + ANTAQ]{.source-tag}
+
+O diagrama de bolhas cruza dois eixos de concentração para cada par **porto × cadeia produtiva** (CUCI, 3 dígitos):
+
+- **Eixo X — HHI do porto:** quão dependente o porto é de poucas cadeias produtivas. Portos com HHI alto exportam majoritariamente um único produto
+- **Eixo Y — HHI da cadeia:** quão concentrada a cadeia está em poucos portos. Produtos com HHI alto dependem de um terminal específico
+- **Tamanho da bolha:** FOB 2025 do par
+
+#### Quadrantes
+
+- 🔴 **Dupla concentração** (canto sup. direito): porto e cadeia mutuamente dependentes — máxima fragilidade
+- 🟢 **Diversificado** (canto inf. esquerdo): múltiplos produtos e múltiplos portos
+- 🟦 **Parcial**: concentração em apenas um dos eixos
+
+[23]{.highlight-number}
+[pares com dupla concentração]{.highlight-label}
+
+:::
+
+:::
+
+:::
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 9A — FOB EXPOSTO (CADEIAS + UFs)              -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .secao-suspensa}
+[9A]{.tela-number}
+
+## Quanto FOB foi exposto a anomalias?
+:::{.subtitulo}
+Cruzamento temporal: meses anômalos × fluxos ComexStat — por cadeia produtiva (CUCI) e por UF de origem
+:::
+
+:::{.grid-2}
+
+```{ojs}
+{
+  /* ── FOB exposto a anomalias (cruzamento temporal) ── */
+  const all = [...cuci_rank_cad_fob]
+    .sort((a, b) => b.fob_exposto - a.fob_exposto)
+    .slice(0, 15);
+
+  const w = 620, h = 540;
+  const margin = {top: 52, right: 16, bottom: 46, left: 250};
+
+  const container = d3.create("div").style("position", "relative");
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .style("max-width", "100%");
+
+  // Header
+  svg.append("text")
+    .attr("x", w/2).attr("y", 16)
+    .attr("text-anchor", "middle").attr("fill", "#4fc3f7")
+    .attr("font-size", "15px").attr("font-weight", "600")
+    .text("Top 15 — FOB exposto a anomalias");
+  svg.append("text")
+    .attr("x", w/2).attr("y", 34)
+    .attr("text-anchor", "middle").attr("fill", "#888").attr("font-size", "11px")
+    .text("Cruzamento temporal: anomalias × ComexStat (CUCI 3 dig.) — cor = HHI portuário");
+
+  // Scales
+  const x = d3.scaleLinear()
+    .domain([0, d3.max(all, d => d.fob_exposto) / 1e9 * 1.08])
+    .range([margin.left, w - margin.right]);
+
+  const barH = Math.min(26, (h - margin.top - margin.bottom) / all.length - 3);
+  const gap = 3;
+
+  // HHI color: green (diversified) → yellow → red (concentrated)
+  const hhi2color = d3.scaleLinear()
+    .domain([0.15, 0.50, 0.95])
+    .range(["#3fb950", "#d29922", "#f85149"])
+    .clamp(true);
+
+  // Bars
+  all.forEach((d, i) => {
+    const yPos = margin.top + i * (barH + gap);
+    const barW = x(d.fob_exposto / 1e9) - margin.left;
+
+    // Product label (left of bar)
+    svg.append("text")
+      .attr("x", margin.left - 6).attr("y", yPos + barH / 2 + 4)
+      .attr("text-anchor", "end").attr("fill", "#ccc")
+      .attr("font-size", "11px")
+      .text((d.NO_CUCI_GRUPO || "").slice(0, 34));
+
+    // Bar
+    svg.append("rect")
+      .attr("x", margin.left).attr("y", yPos)
+      .attr("width", Math.max(2, barW)).attr("height", barH)
+      .attr("rx", 3).attr("fill", hhi2color(d.hhi_portuario)).attr("opacity", 0.80);
+
+    // Value label (right of bar)
+    const fobBi = (d.fob_exposto / 1e9).toFixed(1);
+    svg.append("text")
+      .attr("x", margin.left + Math.max(2, barW) + 5).attr("y", yPos + barH / 2 + 4)
+      .attr("fill", "#aaa").attr("font-size", "10px")
+      .text("US$ " + fobBi + " bi  " + d.porto_principal + " (" + (d.pct_principal * 100).toFixed(0) + "%)");
+  });
+
+  // X axis
+  svg.append("g")
+    .attr("transform", "translate(0," + (margin.top + all.length * (barH + gap) + 4) + ")")
+    .call(d3.axisBottom(x).ticks(5).tickFormat(d => "US$ " + d + " bi"))
+    .attr("color", "#555")
+    .selectAll("text").attr("fill", "#999").attr("font-size", "10px");
+
+  // HHI legend (color bar)
+  const legX = margin.left;
+  const legY = h - 16;
+  const legW = 120;
+  const defs = svg.append("defs");
+  const grad = defs.append("linearGradient").attr("id", "hhi-grad");
+  grad.append("stop").attr("offset", "0%").attr("stop-color", "#3fb950");
+  grad.append("stop").attr("offset", "50%").attr("stop-color", "#d29922");
+  grad.append("stop").attr("offset", "100%").attr("stop-color", "#f85149");
+  svg.append("rect").attr("x", legX).attr("y", legY).attr("width", legW).attr("height", 8)
+    .attr("rx", 3).attr("fill", "url(#hhi-grad)");
+  svg.append("text").attr("x", legX).attr("y", legY - 4)
+    .attr("fill", "#888").attr("font-size", "10px").text("HHI portuário:");
+  svg.append("text").attr("x", legX - 2).attr("y", legY + 18)
+    .attr("fill", "#3fb950").attr("font-size", "9px").text("Diversificado");
+  svg.append("text").attr("x", legX + legW + 2).attr("y", legY + 18)
+    .attr("text-anchor", "end").attr("fill", "#f85149").attr("font-size", "9px").text("Concentrado");
+
+  // Tooltip
+  const tooltip = container.append("div")
+    .style("position", "absolute").style("pointer-events", "none")
+    .style("background", "rgba(15,20,30,0.95)")
+    .style("border", "1px solid #4fc3f7").style("border-radius", "8px")
+    .style("padding", "10px 14px").style("font-size", "12px")
+    .style("color", "#ddd").style("line-height", "1.6")
+    .style("max-width", "320px")
+    .style("box-shadow", "0 4px 20px rgba(0,0,0,0.5)")
+    .style("opacity", 0).style("transition", "opacity 0.15s")
+    .style("z-index", 100);
+
+  const fmtFob = v => v >= 1e9 ? "US$ " + (v/1e9).toFixed(1) + " bi" : "US$ " + (v/1e6).toFixed(0) + " mi";
+
+  // Invisible hover rects
+  all.forEach((d, i) => {
+    const yPos = margin.top + i * (barH + gap);
+    svg.append("rect")
+      .attr("x", 0).attr("y", yPos).attr("width", w).attr("height", barH)
+      .attr("fill", "transparent").style("cursor", "pointer")
+      .on("mouseenter", function() {
+        tooltip.html(
+          '<div style="font-weight:700;color:#4fc3f7;font-size:14px">' + d.CO_CUCI_GRUPO + ' ' + (d.NO_CUCI_GRUPO || '') + '</div>'
+          + '<div><span style="color:#aaa">FOB exposto a anomalias:</span> <b>' + fmtFob(d.fob_exposto) + '</b></div>'
+          + '<div><span style="color:#aaa">Porto principal:</span> ' + d.porto_principal + ' (' + (d.pct_principal*100).toFixed(0) + '%)</div>'
+          + '<div><span style="color:#aaa">HHI portuário:</span> ' + d.hhi_portuario.toFixed(3) + '</div>'
+          + '<div><span style="color:#aaa">Portos na cadeia:</span> ' + d.n_portos + '</div>'
+        ).style("opacity", 1);
+      })
+      .on("mousemove", function(event) {
+        const rect = container.node().getBoundingClientRect();
+        const px = event.clientX - rect.left, py = event.clientY - rect.top;
+        tooltip
+          .style("left", (px > rect.width * 0.55 ? (px - 290) : (px + 16)) + "px")
+          .style("top", (py - 10) + "px");
+      })
+      .on("mouseleave", function() { tooltip.style("opacity", 0); });
+  });
+
+  return container.node();
+}
+```
+
+```{ojs}
+{
+  /* ── Treemap: FOB exposto por UF ── */
+  const raw = [...fob_exp_uf]
+    .filter(d => d.fob_exposto > 0)
+    .sort((a, b) => b.fob_exposto - a.fob_exposto);
+
+  const w = 620, h = 540;
+  const margin = {top: 48, right: 8, bottom: 16, left: 8};
+
+  const container = d3.create("div").style("position", "relative");
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .style("max-width", "100%");
+
+  // Header
+  svg.append("text")
+    .attr("x", w/2).attr("y", 16)
+    .attr("text-anchor", "middle").attr("fill", "#4fc3f7")
+    .attr("font-size", "15px").attr("font-weight", "600")
+    .text("FOB exposto a anomalias — por UF de origem");
+  svg.append("text")
+    .attr("x", w/2).attr("y", 34)
+    .attr("text-anchor", "middle").attr("fill", "#888").attr("font-size", "11px")
+    .text("Área ∝ FOB exposto · cor = % exposto do FOB total da UF");
+
+  // Build treemap data
+  const root = d3.hierarchy({ children: raw })
+    .sum(d => d.fob_exposto)
+    .sort((a, b) => b.value - a.value);
+
+  d3.treemap()
+    .size([w - margin.left - margin.right, h - margin.top - margin.bottom])
+    .padding(2)
+    .round(true)(root);
+
+  // Color: pct_exposto (low blue → high red)
+  const colorScale = d3.scaleLinear()
+    .domain([0.15, 0.35, 0.55])
+    .range(["#3fb950", "#d29922", "#f85149"])
+    .clamp(true);
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const fmtFob = v => v >= 1e9 ? "US$ " + (v/1e9).toFixed(1) + " bi" : "US$ " + (v/1e6).toFixed(0) + " mi";
+
+  // Tooltip
+  const tooltip = container.append("div")
+    .style("position", "absolute").style("pointer-events", "none")
+    .style("background", "rgba(15,20,30,0.95)")
+    .style("border", "1px solid #4fc3f7").style("border-radius", "8px")
+    .style("padding", "10px 14px").style("font-size", "12px")
+    .style("color", "#ddd").style("line-height", "1.6")
+    .style("max-width", "300px")
+    .style("box-shadow", "0 4px 20px rgba(0,0,0,0.5)")
+    .style("opacity", 0).style("transition", "opacity 0.15s")
+    .style("z-index", 100);
+
+  root.leaves().forEach(leaf => {
+    const d = leaf.data;
+    const lw = leaf.x1 - leaf.x0;
+    const lh = leaf.y1 - leaf.y0;
+
+    g.append("rect")
+      .attr("x", leaf.x0).attr("y", leaf.y0)
+      .attr("width", lw).attr("height", lh)
+      .attr("rx", 3)
+      .attr("fill", colorScale(d.pct_exposto))
+      .attr("opacity", 0.7)
+      .attr("stroke", "#222").attr("stroke-width", 1)
+      .style("cursor", "pointer")
+      .on("mouseenter", function() {
+        d3.select(this).attr("opacity", 1).attr("stroke", "#4fc3f7").attr("stroke-width", 2);
+        tooltip.html(
+          '<div style="font-weight:700;color:#4fc3f7;font-size:14px">' + d.SG_UF_NCM + '</div>'
+          + '<div><span style="color:#aaa">FOB exposto:</span> <b>' + fmtFob(d.fob_exposto) + '</b></div>'
+          + '<div><span style="color:#aaa">FOB total:</span> ' + fmtFob(d.fob_total) + '</div>'
+          + '<div><span style="color:#aaa">% exposto:</span> ' + (d.pct_exposto*100).toFixed(1) + '%</div>'
+          + '<div><span style="color:#aaa">HHI portuário UF:</span> ' + d.hhi_portuario_uf.toFixed(3) + '</div>'
+        ).style("opacity", 1);
+      })
+      .on("mousemove", function(event) {
+        const rect = container.node().getBoundingClientRect();
+        const px = event.clientX - rect.left, py = event.clientY - rect.top;
+        tooltip
+          .style("left", (px > rect.width * 0.55 ? (px - 290) : (px + 16)) + "px")
+          .style("top", (py - 10) + "px");
+      })
+      .on("mouseleave", function() {
+        d3.select(this).attr("opacity", 0.7).attr("stroke", "#222").attr("stroke-width", 1);
+        tooltip.style("opacity", 0);
+      });
+
+    // Label (only if cell is big enough)
+    if (lw > 40 && lh > 28) {
+      g.append("text")
+        .attr("x", leaf.x0 + lw/2).attr("y", leaf.y0 + lh/2 - 4)
+        .attr("text-anchor", "middle").attr("fill", "#fff")
+        .attr("font-size", lw > 70 ? "14px" : "11px").attr("font-weight", "700")
+        .style("pointer-events", "none")
+        .text(d.SG_UF_NCM);
+      g.append("text")
+        .attr("x", leaf.x0 + lw/2).attr("y", leaf.y0 + lh/2 + 12)
+        .attr("text-anchor", "middle").attr("fill", "#ddd")
+        .attr("font-size", "10px")
+        .style("pointer-events", "none")
+        .text(fmtFob(d.fob_exposto));
+    } else if (lw > 24 && lh > 16) {
+      g.append("text")
+        .attr("x", leaf.x0 + lw/2).attr("y", leaf.y0 + lh/2 + 4)
+        .attr("text-anchor", "middle").attr("fill", "#fff")
+        .attr("font-size", "10px").attr("font-weight", "600")
+        .style("pointer-events", "none")
+        .text(d.SG_UF_NCM);
+    }
+  });
+
+  // Color legend
+  const legX = 10, legY = h - margin.bottom - 10;
+  const legW = 120;
+  const defs = svg.append("defs");
+  const grad = defs.append("linearGradient").attr("id", "pct-grad-uf");
+  grad.append("stop").attr("offset", "0%").attr("stop-color", "#3fb950");
+  grad.append("stop").attr("offset", "50%").attr("stop-color", "#d29922");
+  grad.append("stop").attr("offset", "100%").attr("stop-color", "#f85149");
+  svg.append("rect").attr("x", legX).attr("y", legY).attr("width", legW).attr("height", 8)
+    .attr("rx", 3).attr("fill", "url(#pct-grad-uf)");
+  svg.append("text").attr("x", legX).attr("y", legY - 4)
+    .attr("fill", "#888").attr("font-size", "10px").text("% FOB exposto:");
+  svg.append("text").attr("x", legX - 2).attr("y", legY + 18)
+    .attr("fill", "#3fb950").attr("font-size", "9px").text("15%");
+  svg.append("text").attr("x", legX + legW + 2).attr("y", legY + 18)
+    .attr("text-anchor", "end").attr("fill", "#f85149").attr("font-size", "9px").text("≥55%");
+
+  return container.node();
+}
+```
+
+:::
+
+:::{.callout-box}
+**FOB exposto a anomalias:** Soja lidera com US$ 137 bi em FOB exportado durante meses anômalos — distribuída por 14 portos, mas 29% via Santos. **Minério de ferro** (US$ 82 bi) e **Petróleo bruto** (US$ 58 bi) figuram entre as cadeias mais vulneráveis. Cadeias concentradas (cor vermelha) + alto FOB exposto = risco máximo. No treemap de UFs, São Paulo lidera (US$ 180 bi) seguido de Minas Gerais e Mato Grosso — estados exportadores que concentram fluxos em poucos portos vulneráveis.
+
+⚠ **FOB exposto mede o valor em trânsito durante anomalias, não perda realizada.** É uma proxy de exposição ao risco — nem toda anomalia gera prejuízo comercial efetivo.
+:::
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 11 — RADAR - MONITORAMENTO AO VIVO             -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .secao-suspensa}
+[11]{.tela-number}
+
+## Radar — Monitoramento em Tempo Quase-Real
+:::{.subtitulo}
+Aplicando o pipeline de detecção ao PortWatch semanal
+:::
+
+<br>
+
+:::{.grid-2}
+
+:::{.event-band}
+**Alerta Origem (Portos BR)**
+
+Monitoramento semanal dos portos brasileiros mapeados no PortWatch. 
+Z-score rolling de 52 semanas sobre volume de exportação.
+
+- **|z| > 2.0** → Alerta (desvio significativo)
+- **|z| > 1.5** → Vigilância (observar)
+- **|z| ≤ 1.5** → Normal
+:::
+
+:::{.event-band .blue}
+**Alerta Destino (Parceiros Comerciais)**
+
+Monitoramento dos principais destinos das exportações brasileiras.
+Z-score rolling sobre portcalls nos portos de destino.
+
+- Identifica disrupções em mercados consumidores
+- Cruza com cadeias produtivas BR expostas
+:::
+
+:::
+
+<br>
+
+:::{.pipeline-bar}
+[NB1 Preparação]{.pipeline-step}
+[→]{.pipeline-arrow}
+[NB2 Detecção]{.pipeline-step}
+[→]{.pipeline-arrow}
+[NB3 Vulnerabilidade]{.pipeline-step}
+[→]{.pipeline-arrow}
+[**Radar**]{.pipeline-step .active}
+:::
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 12 — PAINEL 1: ALERTA ORIGEM                   -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[12]{.tela-number}
+
+## Alerta Origem — Portos Brasileiros
+
+```{ojs}
+//| output: false
+// Radar data is already structured JSON — no transpose needed
+radarOrigem = radar_origem
+radarDestino = radar_destino
+```
+
+```{ojs}
+//| echo: false
+html`<div class="subtitulo">Monitoramento semanal via PortWatch/FMI (volume de exportação estimado por atracações) · Semana: ${radarOrigem.summary.week_reference} · Dados até: ${radarOrigem.summary.portwatch_latest}</div>`
+```
+
+```{ojs}
+//| output: false
+
+// Sort ports by abs z-score descending
+radarOrigemSorted = {
+  const ports = [...radarOrigem.alerts];
+  ports.sort((a,b) => Math.abs(b.z_export) - Math.abs(a.z_export));
+  return ports;
+}
+
+// Status counts
+origemStats = {
+  const alert = radarOrigem.alerts.filter(p => p.status === "alert").length;
+  const watch = radarOrigem.alerts.filter(p => p.status === "watch").length;
+  const normal = radarOrigem.alerts.filter(p => p.status === "normal").length;
+  return {alert, watch, normal};
+}
+```
+
+```{ojs}
+//| output: false
+
+// Helper to create detailed sparkline SVG (with tooltip)
+function sparklineDetailed(timeline, zField="z_export", width=280, height=100) {
+  const values = timeline.map(d => d[zField] || d.zscore || 0);
+  const dates = timeline.map(d => d.week || d.date);
+  const xScale = d3.scaleLinear().domain([0, values.length - 1]).range([30, width - 10]);
+  const yScale = d3.scaleLinear().domain([-4, 4]).range([height - 20, 10]);
+  
+  const line = d3.line()
+    .x((d, i) => xScale(i))
+    .y(d => yScale(Math.max(-4, Math.min(4, d))))
+    .curve(d3.curveMonotoneX);
+  
+  // Container div for tooltip positioning
+  const container = d3.create("div")
+    .style("position", "relative")
+    .style("display", "inline-block");
+
+  const svg = container.append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .style("background", "rgba(255,255,255,0.02)")
+    .style("border-radius", "4px");
+  
+  // Tooltip div
+  const tooltip = container.append("div")
+    .style("position", "absolute")
+    .style("pointer-events", "none")
+    .style("background", "rgba(15,20,30,0.95)")
+    .style("border", "1px solid #4fc3f7")
+    .style("border-radius", "6px")
+    .style("padding", "4px 8px")
+    .style("font-size", "11px")
+    .style("color", "#ddd")
+    .style("line-height", "1.4")
+    .style("white-space", "nowrap")
+    .style("box-shadow", "0 2px 8px rgba(0,0,0,0.4)")
+    .style("opacity", 0)
+    .style("transition", "opacity 0.12s")
+    .style("z-index", 100);
+
+  // Y axis labels
+  [-2, 0, 2].forEach(v => {
+    svg.append("text")
+      .attr("x", 25).attr("y", yScale(v) + 4)
+      .attr("text-anchor", "end")
+      .attr("fill", "#666").attr("font-size", "10px")
+      .text(v > 0 ? `+${v}` : v);
+    svg.append("line")
+      .attr("x1", 30).attr("x2", width - 10)
+      .attr("y1", yScale(v)).attr("y2", yScale(v))
+      .attr("stroke", v === 0 ? "#555" : "#333")
+      .attr("stroke-dasharray", v === 0 ? "none" : "2,2");
+  });
+  
+  // Alert threshold zones
+  svg.append("rect")
+    .attr("x", 30).attr("width", width - 40)
+    .attr("y", yScale(4)).attr("height", yScale(2) - yScale(4))
+    .attr("fill", "rgba(239, 83, 80, 0.1)");
+  svg.append("rect")
+    .attr("x", 30).attr("width", width - 40)
+    .attr("y", yScale(-2)).attr("height", yScale(-4) - yScale(-2))
+    .attr("fill", "rgba(239, 83, 80, 0.1)");
+  
+  // Line
+  svg.append("path")
+    .datum(values)
+    .attr("fill", "none")
+    .attr("stroke", "#4fc3f7")
+    .attr("stroke-width", 2)
+    .attr("d", line(values));
+  
+  // Points with tooltip interaction
+  values.forEach((v, i) => {
+    const color = Math.abs(v) > 2 ? "#ef5350" : Math.abs(v) > 1.5 ? "#ffca28" : "#66bb6a";
+    const cx = xScale(i);
+    const cy = yScale(Math.max(-4, Math.min(4, v)));
+    svg.append("circle")
+      .attr("cx", cx)
+      .attr("cy", cy)
+      .attr("r", i === values.length - 1 ? 5 : 3)
+      .attr("fill", color)
+      .style("cursor", "crosshair")
+      .on("mouseenter", function() {
+        d3.select(this).attr("r", 6).attr("stroke", "#fff").attr("stroke-width", 1.5);
+        const sign = v >= 0 ? "+" : "";
+        tooltip.html(
+          `<span style="color:#aaa">${dates[i] || "–"}</span> &middot; `
+          + `<b style="color:${color}">${sign}${v.toFixed(2)}</b>`
+        ).style("opacity", 1)
+         .style("left", `${cx > width / 2 ? cx - 110 : cx + 12}px`)
+         .style("top", `${cy - 28}px`);
+      })
+      .on("mouseleave", function() {
+        d3.select(this)
+          .attr("r", i === values.length - 1 ? 5 : 3)
+          .attr("stroke", "none");
+        tooltip.style("opacity", 0);
+      });
+  });
+  
+  return container.node();
+}
+
+// Helper to create mini sparkline SVG
+function sparkline(timeline, zField="z_export", width=120, height=30) {
+  const values = timeline.map(d => d[zField] || d.zscore || 0);
+  const xScale = d3.scaleLinear().domain([0, values.length - 1]).range([2, width - 2]);
+  const yScale = d3.scaleLinear().domain([-4, 4]).range([height - 2, 2]);
+  
+  const line = d3.line()
+    .x((d, i) => xScale(i))
+    .y(d => yScale(Math.max(-4, Math.min(4, d))))
+    .curve(d3.curveMonotoneX);
+  
+  const svg = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .style("background", "rgba(255,255,255,0.03)");
+  
+  svg.append("line")
+    .attr("x1", 0).attr("x2", width)
+    .attr("y1", yScale(0)).attr("y2", yScale(0))
+    .attr("stroke", "#555").attr("stroke-dasharray", "2,2");
+  
+  svg.append("path")
+    .datum(values)
+    .attr("fill", "none")
+    .attr("stroke", "#4fc3f7")
+    .attr("stroke-width", 1.5)
+    .attr("d", line(values));
+  
+  const last = values[values.length - 1];
+  const color = Math.abs(last) > 2 ? "#ef5350" : Math.abs(last) > 1.5 ? "#ffca28" : "#66bb6a";
+  svg.append("circle")
+    .attr("cx", xScale(values.length - 1))
+    .attr("cy", yScale(Math.max(-4, Math.min(4, last))))
+    .attr("r", 3)
+    .attr("fill", color);
+  
+  return svg.node();
+}
+
+// Helper to format z-score (usando vírgula como separador decimal BR)
+function fmtZ(z) {
+  const sign = z >= 0 ? "+" : "";
+  return sign + z.toFixed(2).replace('.', ',') + "σ";
+}
+
+// Status badge - alert/watch get full fill; normal gets subtle border-only style
+function statusBadge(status) {
+  const labels = {alert: "ALERTA", watch: "VIGILÂNCIA", normal: "NORMAL"};
+  if (status === 'alert') {
+    return html`<span style="background:#ef5350; color:#fff; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">${labels.alert}</span>`;
+  } else if (status === 'watch') {
+    return html`<span style="background:#ffca28; color:#000; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">${labels.watch}</span>`;
+  } else {
+    // NORMAL: subtle border-only style to not compete with z-score
+    return html`<span style="background:transparent; color:#66bb6a; border:1px solid #66bb6a; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:500;">${labels.normal}</span>`;
+  }
+}
+
+// Extract short product name that differentiates similar products
+function shortProductName(nome) {
+  if (!nome) return '?';
+  const lower = nome.toLowerCase();
+  // Handle specific mineral types
+  if (lower.includes('ferro')) return 'Min.Ferro';
+  if (lower.includes('cobre')) return 'Min.Cobre';
+  if (lower.includes('alumín')) return 'Alumínio';
+  if (lower.includes('manganês')) return 'Min.Mn';
+  if (lower.includes('bauxita')) return 'Bauxita';
+  // Petroleum products
+  if (lower.includes('óleos brutos') || lower.includes('petróleo') && lower.includes('crus')) return 'Petróleo';
+  if (lower.includes('combustíveis') && lower.includes('petróleo')) return 'Comb.Petróleo';
+  // Agricultural products  
+  if (lower.includes('soja') && lower.includes('farelo')) return 'Far.Soja';
+  if (lower.includes('soja') && lower.includes('óleo')) return 'Óleo Soja';
+  if (lower.includes('soja')) return 'Soja';
+  if (lower.includes('milho')) return 'Milho';
+  if (lower.includes('café')) return 'Café';
+  if (lower.includes('açúcar')) return 'Açúcar';
+  if (lower.includes('algodão')) return 'Algodão';
+  if (lower.includes('celulose')) return 'Celulose';
+  if (lower.includes('carne')) return 'Carnes';
+  // Industrial products
+  if (lower.includes('semi-acabados') || lower.includes('lingotes')) return 'Aço/Semiac.';
+  // Default: first word
+  return nome.split(' ')[0];
+}
+
+// Format currency (usando vírgula como separador decimal BR)
+function fmtUSD(val) {
+  if (val >= 1e9) return "US$ " + (val / 1e9).toFixed(1).replace('.', ',') + " bi";
+  if (val >= 1e6) return "US$ " + (val / 1e6).toFixed(0) + " mi";
+  return "US$ " + val.toLocaleString('pt-BR');
+}
+```
+
+:::{.grid-radar}
+
+<div>
+
+```{ojs}
+//| echo: false
+viewof selectedOrigem = {
+  const container = html`<div class="radar-list" style="max-height: 450px; overflow-y: auto;"></div>`;
+  let selected = radarOrigemSorted[0];
+  
+  function render() {
+    container.innerHTML = radarOrigemSorted.map((p, i) => {
+      const isSelected = p.porto === selected.porto;
+      const statusColor = p.status === 'alert' ? '#ef5350' : p.status === 'watch' ? '#ffca28' : '#66bb6a';
+      const zColor = Math.abs(p.z_export) > 2 ? '#ef5350' : Math.abs(p.z_export) > 1.5 ? '#ffca28' : '#4fc3f7';
+      return `
+        <div class="radar-row" data-idx="${i}" style="
+          display: flex; justify-content: space-between; align-items: center;
+          padding: 0.6rem 1rem; margin: 2px 0; border-radius: 6px; cursor: pointer;
+          background: ${isSelected ? 'rgba(79, 195, 247, 0.2)' : 'rgba(255,255,255,0.03)'};
+          border-left: 3px solid ${isSelected ? '#4fc3f7' : 'transparent'};
+          transition: all 0.15s ease;
+        ">
+          <span style="font-weight: ${isSelected ? '600' : '400'}; color: #eee;">${p.porto}</span>
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <span style="color: ${zColor}; font-weight: bold; font-size: 0.95rem;">${fmtZ(p.z_export)}</span>
+            <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; background: ${statusColor}20; color: ${statusColor};">${p.status.toUpperCase()}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    container.querySelectorAll('.radar-row').forEach(row => {
+      row.onmouseenter = () => { if (row.dataset.idx != radarOrigemSorted.findIndex(p => p.porto === selected.porto)) row.style.background = 'rgba(79, 195, 247, 0.1)'; };
+      row.onmouseleave = () => { if (row.dataset.idx != radarOrigemSorted.findIndex(p => p.porto === selected.porto)) row.style.background = 'rgba(255,255,255,0.03)'; };
+      row.onclick = () => {
+        selected = radarOrigemSorted[row.dataset.idx];
+        render();
+        container.value = selected;
+        container.dispatchEvent(new CustomEvent("input"));
+      };
+    });
+  }
+  
+  render();
+  container.value = selected;
+  return container;
+}
+```
+
+</div>
+
+<div>
+
+```{ojs}
+//| echo: false
+// Mini radar chart for fingerprint
+function miniRadar(fingerprint, size = 90) {
+  if (!fingerprint) return html``;
+  
+  const dims = [
+    { key: 'atracacoes', label: 'Atracações', color: '#4fc3f7' },
+    { key: 'tonelagem_exp', label: 'Tonelagem', color: '#66bb6a' },
+    { key: 't1_mediano', label: 'T.Espera', color: '#ffca28' },
+    { key: 'tatracado_mediano', label: 'T.Atracado', color: '#ef5350' }
+  ];
+  
+  // Padding for labels - reduced to make radar bigger
+  const labelPadding = 28;
+  const cx = size / 2, cy = size / 2, radius = size / 2 - labelPadding;
+  const angleStep = (2 * Math.PI) / dims.length;
+  
+  // Helper to determine text-anchor based on angle
+  function getTextAnchor(angle) {
+    const cos = Math.cos(angle);
+    if (cos < -0.1) return 'end';      // Left side
+    if (cos > 0.1) return 'start';     // Right side
+    return 'middle';                    // Top/Bottom
+  }
+  
+  // Build polygon points - values are already 0-1 normalized, reaching full radius
+  const points = dims.map((d, i) => {
+    const val = fingerprint[d.key] || 0;
+    const angle = i * angleStep - Math.PI / 2;
+    const r = val * radius;  // val=1.0 -> touches outer circle
+    return [cx + r * Math.cos(angle), cy + r * Math.sin(angle)];
+  });
+  
+  const polygonPath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p[0]},${p[1]}`).join(' ') + 'Z';
+  
+  return html`
+    <svg width="${size}" height="${size}" style="display: block; overflow: visible;">
+      <!-- Grid circles: inner (0.5) and outer (1.0) -->
+      <circle cx="${cx}" cy="${cy}" r="${radius * 0.5}" fill="none" stroke="#444" stroke-width="0.5" stroke-dasharray="2,2"/>
+      <circle cx="${cx}" cy="${cy}" r="${radius}" fill="none" stroke="#666" stroke-width="1"/>
+      <!-- Axis lines to outer edge -->
+      ${dims.map((d, i) => {
+        const angle = i * angleStep - Math.PI / 2;
+        return `<line x1="${cx}" y1="${cy}" x2="${cx + radius * Math.cos(angle)}" y2="${cy + radius * Math.sin(angle)}" stroke="#555" stroke-width="0.5"/>`;
+      }).join('')}
+      <!-- Data polygon -->
+      <path d="${polygonPath}" fill="rgba(79, 195, 247, 0.3)" stroke="#4fc3f7" stroke-width="2"/>
+      <!-- Data points -->
+      ${points.map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#4fc3f7"/>`).join('')}
+      <!-- Labels -->
+      ${dims.map((d, i) => {
+        const angle = i * angleStep - Math.PI / 2;
+        const lx = cx + (radius + 8) * Math.cos(angle);
+        const ly = cy + (radius + 8) * Math.sin(angle);
+        const anchor = getTextAnchor(angle);
+        return `<text x="${lx}" y="${ly}" fill="#aaa" font-size="9" text-anchor="${anchor}" dominant-baseline="middle">${d.label}</text>`;
+      }).join('')}
+    </svg>
+  `;
+}
+
+// Stacked bar for anomaly distribution
+function stackedBar(pctIso, pctNac, pctGlob, width = 180) {
+  const total = pctIso + pctNac + pctGlob;
+  if (total === 0) return html`<div style="color:#666; font-size: 0.75rem;">Sem dados</div>`;
+  
+  const wIso = (pctIso / 100) * width;
+  const wNac = (pctNac / 100) * width;
+  const wGlob = (pctGlob / 100) * width;
+  
+  return html`
+    <div>
+      <div style="display: flex; height: 12px; border-radius: 3px; overflow: hidden; background: #333; width: ${width}px;">
+        ${wGlob > 0 ? html`<div style="width: ${wGlob}px; background: #ef5350;" title="Global ${pctGlob.toFixed(0)}%"></div>` : ''}
+        ${wNac > 0 ? html`<div style="width: ${wNac}px; background: #ffca28;" title="Nacional ${pctNac.toFixed(0)}%"></div>` : ''}
+        ${wIso > 0 ? html`<div style="width: ${wIso}px; background: #66bb6a;" title="Isolado ${pctIso.toFixed(0)}%"></div>` : ''}
+      </div>
+      <div style="display: flex; gap: 0.75rem; margin-top: 4px; font-size: 0.7rem; flex-wrap: wrap;">
+        <span><span style="color: #ef5350;">●</span> <span style="color: #888;">Global ${pctGlob.toFixed(0)}%</span></span>
+        <span><span style="color: #ffca28;">●</span> <span style="color: #888;">Nacional ${pctNac.toFixed(0)}%</span></span>
+        <span><span style="color: #66bb6a;">●</span> <span style="color: #888;">Isolado ${pctIso.toFixed(0)}%</span></span>
+      </div>
+    </div>
+  `;
+}
+```
+
+```{ojs}
+//| echo: false
+// Selected port detail card - redesigned
+{
+  const port = selectedOrigem || radarOrigemSorted[0];
+  if (!port) return html`<div style="color:#888;">Selecione um porto na tabela</div>`;
+  
+  const borderColor = port.status === 'alert' ? '#ef5350' : port.status === 'watch' ? '#ffca28' : '#66bb6a';
+  const zColor = Math.abs(port.z_export) > 2 ? '#ef5350' : Math.abs(port.z_export) > 1.5 ? '#ffca28' : '#4fc3f7';
+  
+  return html`
+    <div class="radar-card" style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 1.25rem; border-left: 4px solid ${borderColor};">
+      
+      <!-- PROTAGONISTA: Nome + Z-score + Status -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <strong style="font-size: 1.3rem; color: #fff;">${port.porto}</strong>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="text-align: right;">
+            <span style="font-size: 2rem; font-weight: bold; color: ${zColor};">${fmtZ(port.z_export)}</span>
+            <div style="font-size: 0.65rem; color: #666; margin-top: -4px;">vs. média 52 sem.</div>
+          </div>
+          ${statusBadge(port.status)}
+        </div>
+      </div>
+      
+      <!-- SÉRIE HISTÓRICA: Full width -->
+      <div style="margin: 0.75rem 0; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 0.5rem 0;">
+        <div style="color: #888; font-size: 0.7rem; margin-bottom: 4px;">Z-Score Exportações <span style="color: #666;">(vol. estimado via atracações)</span></div>
+        ${sparklineDetailed(port.timeline || [], "z_export", 400, 80)}
+      </div>
+      
+      <!-- CONTEXTO HISTÓRICO: Anomalias + Stacked Bar | Radar -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin: 0.75rem 0;">
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 1.5rem; font-weight: bold; color: #4fc3f7;">${port.n_anomalias || 0}</span>
+            <span style="color: #888; font-size: 0.85rem;">anomalias <span style="color: #666; font-size: 0.75rem;">(2016–2025)</span></span>
+          </div>
+          ${stackedBar(port.pct_isolado || 0, port.pct_nacional || 0, port.pct_global || 0, 200)}
+        </div>
+        <div style="text-align: center; padding-left: 0.5rem;">
+          <div style="color: #888; font-size: 0.7rem; margin-bottom: 2px;">Fingerprint</div>
+          ${miniRadar(port.fingerprint, 140)}
+        </div>
+      </div>
+      
+      <!-- IMPACTO: Cadeias expostas -->
+      ${port.top_chains && port.top_chains.length > 0 ? html`
+        <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #333;">
+          <div style="color: #4fc3f7; font-size: 0.8rem; margin-bottom: 0.5rem;">Cadeias Expostas (Exportações FOB 2025)</div>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            ${port.top_chains.slice(0, 4).map(c => html`
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; gap: 0.5rem;">
+                <div style="display: flex; flex-direction: column; min-width: 0; flex: 1;">
+                  <span style="color: #ccc; font-weight: 500;">${c.nome}</span>
+                  <span style="color: #666; font-size: 0.75rem;">${c.uf}</span>
+                </div>
+                <span style="color: #4fc3f7; font-weight: bold; white-space: nowrap; flex-shrink: 0;">${fmtUSD(c.fob || 0)}</span>
+              </div>
+            `)}
+          </div>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+```
+
+</div>
+
+:::
+
+```{ojs}
+//| echo: false
+html`<div style="display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin:1rem 0 0.5rem;">
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(239,83,80,0.12); border-radius:8px; min-width:100px;">
+    <div style="color:#ef5350; font-size:1.6rem; font-weight:bold;">${origemStats.alert}</div>
+    <div style="color:#888; font-size:0.75rem;">Em Alerta</div>
+  </div>
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(255,202,40,0.12); border-radius:8px; min-width:100px;">
+    <div style="color:#ffca28; font-size:1.6rem; font-weight:bold;">${origemStats.watch}</div>
+    <div style="color:#888; font-size:0.75rem;">Em Vigilância</div>
+  </div>
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(102,187,106,0.12); border-radius:8px; min-width:100px;">
+    <div style="color:#66bb6a; font-size:1.6rem; font-weight:bold;">${origemStats.normal}</div>
+    <div style="color:#888; font-size:0.75rem;">Normal</div>
+  </div>
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(79,195,247,0.12); border-radius:8px; min-width:100px;">
+    <div style="color:#4fc3f7; font-size:1.6rem; font-weight:bold;">${radarOrigem.alerts.length}</div>
+    <div style="color:#888; font-size:0.75rem;">Portos Monitorados</div>
+  </div>
+</div>`
+```
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 13 — PAINEL 2: ALERTA DESTINO                  -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[13]{.tela-number}
+
+## Alerta Destino — Parceiros Comerciais
+
+```{ojs}
+//| echo: false
+html`<div class="subtitulo">Monitoramento semanal via PortWatch/FMI (z-score de portcalls nos portos do país) · Semana: ${radarDestino.summary.week_reference} · Dados até: ${radarDestino.summary.portwatch_latest}</div>`
+```
+
+```{ojs}
+//| output: false
+
+// Sort destinations by abs z-score descending
+radarDestinoSorted = {
+  const dests = [...radarDestino.alerts];
+  dests.sort((a,b) => Math.abs(b.z_portcalls) - Math.abs(a.z_portcalls));
+  return dests;
+}
+
+// Destination stats
+destinoStats = {
+  const alert = radarDestino.alerts.filter(d => d.status === "alert").length;
+  const watch = radarDestino.alerts.filter(d => d.status === "watch").length;
+  const normal = radarDestino.alerts.filter(d => d.status === "normal").length;
+  const totalFob = radarDestino.alerts.reduce((s, d) => s + (d.fob_total || 0), 0);
+  const alertFob = radarDestino.alerts.filter(d => d.status === "alert").reduce((s, d) => s + (d.fob_total || 0), 0);
+  return {alert, watch, normal, totalFob, alertFob};
+}
+```
+
+:::{.grid-radar}
+
+<div>
+
+```{ojs}
+//| echo: false
+viewof selectedDestino = {
+  const container = html`<div class="radar-list" style="max-height: 450px; overflow-y: auto;"></div>`;
+  let selected = radarDestinoSorted[0];
+  
+  function render() {
+    container.innerHTML = radarDestinoSorted.map((d, i) => {
+      const isSelected = d.nome === selected.nome;
+      const statusColor = d.status === 'alert' ? '#ef5350' : d.status === 'watch' ? '#ffca28' : '#66bb6a';
+      const zColor = Math.abs(d.z_portcalls) > 2 ? '#ef5350' : Math.abs(d.z_portcalls) > 1.5 ? '#ffca28' : '#4fc3f7';
+      return `
+        <div class="radar-row" data-idx="${i}" style="
+          display: flex; justify-content: space-between; align-items: center;
+          padding: 0.6rem 1rem; margin: 2px 0; border-radius: 6px; cursor: pointer;
+          background: ${isSelected ? 'rgba(79, 195, 247, 0.2)' : 'rgba(255,255,255,0.03)'};
+          border-left: 3px solid ${isSelected ? '#4fc3f7' : 'transparent'};
+          transition: all 0.15s ease;
+        ">
+          <span style="font-weight: ${isSelected ? '600' : '400'}; color: #eee; flex: 1;">${d.nome}</span>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <span style="color: ${zColor}; font-weight: bold; font-size: 0.95rem;">${fmtZ(d.z_portcalls)}</span>
+            <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; background: ${statusColor}20; color: ${statusColor};">${d.status.toUpperCase()}</span>
+            <span style="color: #888; font-size: 0.85rem; min-width: 80px; text-align: right;">${fmtUSD(d.fob_total)}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    container.querySelectorAll('.radar-row').forEach(row => {
+      row.onmouseenter = () => { if (row.dataset.idx != radarDestinoSorted.findIndex(d => d.nome === selected.nome)) row.style.background = 'rgba(79, 195, 247, 0.1)'; };
+      row.onmouseleave = () => { if (row.dataset.idx != radarDestinoSorted.findIndex(d => d.nome === selected.nome)) row.style.background = 'rgba(255,255,255,0.03)'; };
+      row.onclick = () => {
+        selected = radarDestinoSorted[row.dataset.idx];
+        render();
+        container.value = selected;
+        container.dispatchEvent(new CustomEvent("input"));
+      };
+    });
+  }
+  
+  render();
+  container.value = selected;
+  return container;
+}
+```
+
+</div>
+
+<div>
+
+```{ojs}
+//| echo: false
+// Selected destination detail card
+{
+  const dest = selectedDestino || radarDestinoSorted[0];
+  if (!dest) return html`<div style="color:#888;">Selecione um país na tabela</div>`;
+  
+  const borderColor = dest.status === 'alert' ? '#ef5350' : dest.status === 'watch' ? '#ffca28' : '#66bb6a';
+  const zColor = Math.abs(dest.z_portcalls) > 2 ? '#ef5350' : Math.abs(dest.z_portcalls) > 1.5 ? '#ffca28' : '#4fc3f7';
+  
+  return html`
+    <div class="radar-card" style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 1.25rem; border-left: 4px solid ${borderColor};">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+        <strong style="font-size: 1.2rem;">${dest.nome}</strong>
+        ${statusBadge(dest.status)}
+      </div>
+      
+      <div style="display: flex; gap: 2rem; margin: 1rem 0; flex-wrap: wrap;">
+        <div>
+          <div style="color: #888; font-size: 0.8rem;">Z-Score Portcalls</div>
+          <div style="font-size: 2rem; font-weight: bold; color: ${zColor};">${fmtZ(dest.z_portcalls)}</div>
+        </div>
+        <div>
+          <div style="color: #888; font-size: 0.8rem;">Portos Monitorados</div>
+          <div style="font-size: 1.5rem; font-weight: bold; color: #4fc3f7;">${dest.n_ports || 0}</div>
+        </div>
+        <div>
+          <div style="color: #888; font-size: 0.8rem;">FOB Exportado</div>
+          <div style="font-size: 1.2rem; font-weight: bold; color: #aaa;">${fmtUSD(dest.fob_total || 0)}</div>
+        </div>
+      </div>
+      
+      <div style="margin: 1rem 0;">
+        <div style="color: #888; font-size: 0.8rem; margin-bottom: 0.5rem;">Z-Score Portcalls <span style="color: #666;">(atividade nos portos do país)</span></div>
+        ${sparklineDetailed(dest.timeline || [], "z_portcalls", 380, 130)}
+      </div>
+      
+      ${dest.exposed_chains && dest.exposed_chains.length > 0 ? html`
+        <div style="margin-top: 1rem;">
+          <div style="color: #ff8a80; font-size: 0.8rem; margin-bottom: 0.5rem;">Cadeias BR Expostas (Exportações FOB 2025)</div>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            ${dest.exposed_chains.slice(0, 4).map(c => html`
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; gap: 0.5rem;">
+                <div style="display: flex; flex-direction: column; min-width: 0; flex: 1;">
+                  <span style="color: #ccc; font-weight: 500;">${shortProductName(c.nome)}</span>
+                  <span style="color: #666; font-size: 0.75rem;">via ${c.porto_principal || 'N/D'}</span>
+                </div>
+                <span style="color: #ff8a80; font-weight: bold; white-space: nowrap; flex-shrink: 0;">${fmtUSD(c.fob_regional || 0)}</span>
+              </div>
+            `)}
+          </div>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+```
+
+</div>
+
+:::
+
+```{ojs}
+//| echo: false
+html`<div style="display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin:1rem 0 0.5rem;">
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(239,83,80,0.12); border-radius:8px; min-width:100px;">
+    <div style="color:#ef5350; font-size:1.6rem; font-weight:bold;">${destinoStats.alert}</div>
+    <div style="color:#888; font-size:0.75rem;">Em Alerta</div>
+  </div>
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(255,202,40,0.12); border-radius:8px; min-width:100px;">
+    <div style="color:#ffca28; font-size:1.6rem; font-weight:bold;">${destinoStats.watch}</div>
+    <div style="color:#888; font-size:0.75rem;">Em Vigilância</div>
+  </div>
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(102,187,106,0.12); border-radius:8px; min-width:100px;">
+    <div style="color:#66bb6a; font-size:1.6rem; font-weight:bold;">${destinoStats.normal}</div>
+    <div style="color:#888; font-size:0.75rem;">Normal</div>
+  </div>
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(79,195,247,0.12); border-radius:8px; min-width:100px;">
+    <div style="color:#4fc3f7; font-size:1.6rem; font-weight:bold;">${radarDestino.alerts.length}</div>
+    <div style="color:#888; font-size:0.75rem;">Países Monitorados</div>
+  </div>
+  <div style="text-align:center; padding:0.6rem 1.2rem; background:rgba(255,138,128,0.12); border-radius:8px; min-width:120px;">
+    <div style="color:#ff8a80; font-size:1.6rem; font-weight:bold;">${fmtUSD(destinoStats.alertFob)}</div>
+    <div style="color:#888; font-size:0.75rem;">FOB em Alerta</div>
+  </div>
+</div>`
+```
+
+:::
+
+
+<!-- TELA 10 — O QUE AINDA NÃO SABEMOS                  -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela}
+[10]{.tela-number}
+
+## O que ainda não sabemos
+
+:::{.grid-2}
+
+:::{.event-band}
+**Limitações atuais**
+
+- Eventos difusos (COVID) × janela Score A de ±4 semanas
+- Walk-forward absorve eventos históricos no treino (Paranaguá, near-miss)
+- Dimensões não observáveis (guerras comerciais, preço de commodities)
+- Porto Alegre e Barra do Riacho sem URF dedicada no ComexStat
+- Classificação sensível a limiares ($t_a$, $t_b$)
+:::
+
+:::{.event-band .blue}
+**Métricas do sistema**
+
+- **Recall** (detecção): 71% — 96/135 evento-portos
+- **Precision** (classificação): 90% — 86/96 corretas
+- **Taxa de alertas:** 4,0%
+- **Distribuição:** 40% global | 57% nacional | 4% isolado
+- **Cobertura ComexStat:** 97,4% do FOB exportado (16 de 18 portos)
+:::
+
+:::
+
+<br>
+
+:::{.pipeline-bar}
+[NB1 Preparação]{.pipeline-step}
+[→]{.pipeline-arrow}
+[NB2 Modelagem]{.pipeline-step}
+[→]{.pipeline-arrow}
+[NB3 ComexStat]{.pipeline-step}
+[→]{.pipeline-arrow}
+[Dashboard]{.pipeline-step .active}
+[→]{.pipeline-arrow}
+[TCC]{.pipeline-step}
+:::
+
+<br>
+
+<span style="color:#888; font-size:0.85rem;">
+18 portos · 4 dimensões · 2014–2026 · 1.609 anomalias · XGBoost + AR(1) · Ensemble ≥2/3 · ComexStat ≥ US$ 2.640 bi mapeados
+</span>
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- TELA 15 — RESULTADOS E VALIDAÇÃO                    -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .tela-methodology}
+[15]{.tela-number}
+
+## Resultados e Validação
+:::{.subtitulo}
+Performance do modelo, impacto econômico das anomalias e limitações conhecidas
+:::
+
+<div style="max-width:860px; margin:1.5rem auto 0;">
+
+<!-- ── Tabela de resultados ── -->
+<div class="results-table-wrapper">
+
+<h3 style="color:#4fc3f7; font-size:1.05rem; margin-bottom:0.5rem;">Redução de MAE vs. modelo naïve (lag-52 semanal)</h3>
+
+<table class="results-table">
+<thead>
+<tr>
+<th>Dimensão</th>
+<th>MAE Naïve</th>
+<th>MAE XGBoost</th>
+<th>Redução</th>
+<th>Anomalias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atracações/sem</td>
+<td>4,12</td>
+<td>1,32</td>
+<td class="highlight-green">↓ 68%</td>
+<td>419</td>
+</tr>
+<tr>
+<td>Tonelagem exp.</td>
+<td>182.450</td>
+<td>58.384</td>
+<td class="highlight-green">↓ 68%</td>
+<td>470</td>
+</tr>
+<tr>
+<td>Espera p/ atracar (h)</td>
+<td>8,74</td>
+<td>2,10</td>
+<td class="highlight-green">↓ 76%</td>
+<td>310</td>
+</tr>
+<tr>
+<td>Tempo no berço (h)</td>
+<td>3,21</td>
+<td>0,83</td>
+<td class="highlight-green">↓ 74%</td>
+<td>389</td>
+</tr>
+</tbody>
+</table>
+
+<div style="color:#999; font-size:0.82rem; margin-top:0.5rem; line-height:1.5;">
+O modelo XGBoost + AR(1) reduz o erro médio absoluto em **68–76%** em relação ao baseline naïve (lag-52: valor da mesma semana no ano anterior), demonstrando capacidade de capturar a variabilidade operacional semanal dos portos.<br>
+<em>Nota: anomalias contadas por dimensão — uma mesma semana-porto pode ter anomalia em mais de uma dimensão, por isso a soma excede o total de 1.609 eventos únicos.</em>
+</div>
+
+</div>
+
+<!-- ── Validação e Vulnerabilidade ── -->
+<div style="margin-top:1.5rem;">
+:::{.grid-2}
+
+:::{.method-card .compact}
+#### Vulnerabilidade Cruzada (CUCI × Porto)
+
+| Indicador | Valor |
+|-----------|-------|
+| **Cadeias mapeadas** | 300 grupos CUCI (3 dígitos) |
+| **Cobertura FOB** | 100% das exportações marítimas |
+| **Porto mais vulnerável** | São João da Barra (score = 0,581) |
+| **Pares críticos** | 23 com dupla concentração |
+
+<div style="color:#999; font-size:0.82rem; margin-top:0.5rem; line-height:1.5;">
+A análise descritiva de vulnerabilidade cruza dois eixos: <b>concentração da pauta exportadora</b> (HHI do porto — quão dependente o porto é de poucos produtos) e <b>dependência portuária da cadeia</b> (HHI da cadeia — quão concentrada a exportação do produto é em poucos portos). Pares no quadrante superior-direito (HHI > 0,20 em ambos os eixos) representam <b>pontos de fragilidade dupla</b>.<br><br>
+<b style="color:#bbb;">Insight principal:</b> Petróleo bruto (CUCI 333) depende de 3 portos com HHI = 0,43; níquel (CUCI 683) está 99% concentrado em Santos. Disrupções nesses pontos afetam simultaneamente o porto e toda a cadeia.
+</div>
+:::
+
+:::{.method-card .compact}
+#### Ljung-Box (autocorrelação residual)
+
+- **0 de 18** portos com *p* > 0,05 — resultado esperado com N ≈ 490
+- |ACF(1)| mediana = 0,03 após filtro AR(1)
+- **96%** dos pares porto×dimensão com |ACF(1)| < 0,15
+
+<div style="color:#999; font-size:0.82rem; margin-top:0.5rem; line-height:1.5;">
+O teste de Ljung-Box rejeita ruído branco em todos os portos (p < 0.05), resultado esperado com N ≈ 490: mesmo autocorrelações de magnitude negligível (|ACF(1)| mediana = 0.03) produzem rejeição. A métrica relevante é a magnitude: 96% dos pares porto×dimensão apresentam |ACF(1)| < 0.15 após o filtro AR(1), indicando que a dependência serial residual é insuficiente para comprometer a detecção de anomalias.
+</div>
+:::
+
+:::
+</div>
+
+</div>
+
+<div style="text-align:center; color:#555; font-size:0.75rem; margin-top:1.5rem;">
+Dados: ANTAQ (Estatístico Aquaviário, 2010–2025) + ComexStat/MDIC (2014–2025) · Processamento: Python 3.12, XGBoost, pandas · Visualização: Quarto + D3.js v7
+</div>
+
+<div style="max-width:900px; margin:2rem auto 0;">
+<h3 style="color:#4fc3f7; font-size:1.05rem; margin-bottom:0.8rem;">Eventos usados para calibração</h3>
+<div style="overflow-x:auto;">
+<table class="method-table" style="width:100%; border-collapse:collapse; font-size:0.82rem; color:#ccc;">
+<thead>
+<tr style="border-bottom:1px solid #444;">
+<th style="padding:6px 10px; text-align:left; color:#aaa;">#</th>
+<th style="padding:6px 10px; text-align:left; color:#aaa;">Evento</th>
+<th style="padding:6px 10px; text-align:left; color:#aaa;">Período</th>
+<th style="padding:6px 10px; text-align:left; color:#aaa;">Classificação esperada</th>
+<th style="padding:6px 10px; text-align:left; color:#aaa;">Portos testados</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">1</td>
+<td style="padding:5px 10px;">Greve dos Caminhoneiros</td>
+<td style="padding:5px 10px;">2018-05-21 → 2018-06-10</td>
+<td style="padding:5px 10px;"><span style="color:#ff9800;">Nacional</span></td>
+<td style="padding:5px 10px;">4 (Santos, Paranaguá, Rio Grande, Itaguaí)</td>
+</tr>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">2</td>
+<td style="padding:5px 10px;">COVID-19</td>
+<td style="padding:5px 10px;">2020-03-01 → 2020-06-30</td>
+<td style="padding:5px 10px;"><span style="color:#f85149;">Global</span></td>
+<td style="padding:5px 10px;">18 (todos)</td>
+</tr>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">3</td>
+<td style="padding:5px 10px;">COVID recuperação</td>
+<td style="padding:5px 10px;">2020-09-01 → 2021-06-30</td>
+<td style="padding:5px 10px;"><span style="color:#f85149;">Global</span></td>
+<td style="padding:5px 10px;">18 (todos)</td>
+</tr>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">4</td>
+<td style="padding:5px 10px;">Bloqueio Canal de Suez</td>
+<td style="padding:5px 10px;">2021-03-20 → 2021-04-15</td>
+<td style="padding:5px 10px;"><span style="color:#f85149;">Global</span></td>
+<td style="padding:5px 10px;">18 (todos)</td>
+</tr>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">5</td>
+<td style="padding:5px 10px;">Guerra Ucrânia</td>
+<td style="padding:5px 10px;">2022-02-24 → 2022-12-31</td>
+<td style="padding:5px 10px;"><span style="color:#f85149;">Global</span></td>
+<td style="padding:5px 10px;">18 (todos)</td>
+</tr>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">6</td>
+<td style="padding:5px 10px;">Lockdowns China</td>
+<td style="padding:5px 10px;">2022-03-01 → 2022-06-30</td>
+<td style="padding:5px 10px;"><span style="color:#f85149;">Global</span></td>
+<td style="padding:5px 10px;">18 (todos)</td>
+</tr>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">7</td>
+<td style="padding:5px 10px;">Ataques Houthi</td>
+<td style="padding:5px 10px;">2023-11-15 → 2024-06-30</td>
+<td style="padding:5px 10px;"><span style="color:#f85149;">Global</span></td>
+<td style="padding:5px 10px;">18 (todos)</td>
+</tr>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">8</td>
+<td style="padding:5px 10px;">Enchentes RS</td>
+<td style="padding:5px 10px;">2024-04-25 → 2024-06-30</td>
+<td style="padding:5px 10px;"><span style="color:#4fc3f7;">Isolado</span></td>
+<td style="padding:5px 10px;">2 (Rio Grande, Porto Alegre)</td>
+</tr>
+<tr style="border-bottom:1px solid #333;">
+<td style="padding:5px 10px;">9</td>
+<td style="padding:5px 10px;">Greve Receita Federal</td>
+<td style="padding:5px 10px;">2024-12-01 → 2025-01-15</td>
+<td style="padding:5px 10px;"><span style="color:#ff9800;">Nacional</span></td>
+<td style="padding:5px 10px;">3 (Santos, Paranaguá, Itaguaí)</td>
+</tr>
+<tr>
+<td style="padding:5px 10px;">10</td>
+<td style="padding:5px 10px;">Tarifação EUA</td>
+<td style="padding:5px 10px;">2025-02-01 → 2025-06-30</td>
+<td style="padding:5px 10px;"><span style="color:#f85149;">Global</span></td>
+<td style="padding:5px 10px;">18 (todos)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="color:#666; font-size:0.78rem; margin-top:0.5rem;">
+10 eventos · 135 pares porto×evento · Recall calculado como fração de pares com ≥1 anomalia detectada na janela do evento.
+</div>
+</div>
+
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- APÊNDICE — DETALHAMENTO METODOLÓGICO                -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .tela-methodology}
+[A1]{.tela-number}
+
+## Apêndice: Modelagem — XGBoost + AR(1)
+:::{.subtitulo}
+Detecção de anomalias via aprendizado do comportamento esperado de cada porto
+:::
+
+<div style="max-width:860px; margin:1.5rem auto 0;">
+
+:::{.method-card}
+<div class="method-icon" style="font-size:2.5rem;">🌲</div>
+
+### Abordagem
+
+Para cada porto e cada dimensão, o modelo aprende a prever o valor esperado da semana seguinte com base em 15 features temporais (lags semanais, médias móveis, variáveis calendário). **Anomalias são semanas em que a realidade desvia significativamente da previsão.**
+
+O pipeline combina **um modelo preditivo** com **um filtro de autocorrelação**:
+
+1. **Modelo (XGBoost):** Gradient boosting para cada dimensão — aprende o padrão operacional normal
+2. **Filtro AR(1):** Remove autocorrelação residual via $\hat{e}_t = r_t - \hat{\rho} \cdot r_{t-1}$, gerando **inovações**
+3. **Inovação** ($\hat{e}_t$): série de resíduos filtrada, usada como sinal de anomalia
+4. **Anomalia** detectada se |inovação| > limiar adaptativo (ensemble MAD + STL + Isolation Forest)
+
+<div style="margin-top:1rem; padding:12px 16px; background:rgba(79,195,247,0.08); border-left:3px solid #4fc3f7; border-radius:0 6px 6px 0;">
+
+**Dimensões monitoradas:**
+
+| Dimensão | O que mede | Exemplo de anomalia |
+|----------|-----------|-------------------|
+| Atracações/semana | Volume operacional | Queda abrupta por greve ou clima |
+| Tonelagem exportada | Throughput de carga | Desvio de rota por congestionamento |
+| Espera p/ atracar (h) | Tempo na fila antes de atracar (T1) | Congestionamento portuário |
+| Tempo no berço (h) | Tempo atracado: espera + operação + saída (T2+T3+T4) | Operação prolongada / paralisação |
+
+</div>
+
+<div class="method-detail" style="margin-top:1rem;">
+<span class="detail-label">Validação:</span> walk-forward (treino expansivo, sem data leakage)<br>
+<span class="detail-label">Hiperparâmetros:</span> max_depth=3, n_estimators=200, learning_rate=0.05<br>
+<span class="detail-label">Ensemble:</span> anomalia confirmada se ≥2 de 3 métodos de detecção concordam (MAD, STL, Isolation Forest)
+</div>
+:::
+
+</div>
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- APÊNDICE A2 — SCORES DE CLASSIFICAÇÃO               -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .tela-methodology}
+[A2]{.tela-number}
+
+## Apêndice: Scores — Como medir a gravidade?
+:::{.subtitulo}
+Dois eixos quantificam a natureza de cada anomalia: amplitude espacial e choque externo
+:::
+
+<div style="max-width:860px; margin:1.5rem auto 0;">
+
+:::{.grid-2}
+
+:::{.method-card}
+<div class="method-icon" style="font-size:1.6rem;">🌐</div>
+
+### Score A — Amplitude espacial
+
+$$S_A = |\{p \in P : \exists\, \text{anomalia}_p \text{ em } [t-4, t+4]\text{ sem}\}|$$
+
+Conta quantos portos tiveram anomalia na **mesma dimensão** dentro de uma janela de ±4 semanas ao redor do evento.
+
+<div style="margin-top:0.8rem; color:#999; font-size:0.85rem; line-height:1.6;">
+<b style="color:#bbb">Interpretação:</b> Score A alto → muitos portos afetados simultaneamente → evento sistêmico (e.g., COVID afetou 14 dos 18 portos).<br>
+<b style="color:#bbb">Score A baixo</b> (1–3) → evento localizado em poucos portos.<br>
+<b style="color:#bbb">Estatísticas:</b> média 5,82 · range 1–17 · mediana 5
+</div>
+:::
+
+:::{.method-card}
+<div class="method-icon" style="font-size:1.6rem;">📡</div>
+
+### Score B — Índice de choque global
+
+$$S_B = \max_{|w| \leq 2}\; |z_{GI}(t+w)|$$
+
+Índice construído a partir dos **dados diários de atividade portuária** do PortWatch/FMI (~2.000 portos, 180 países). Selecionamos os 50 maiores portos não-brasileiros, calculamos a média semanal de *portcalls*, aplicamos z-score com janela móvel de 12 semanas e tomamos o máximo |z| em ±2 semanas em torno de cada anomalia.
+
+<div style="margin-top:0.8rem; color:#999; font-size:0.85rem; line-height:1.6;">
+<b style="color:#bbb">Interpretação:</b> Score B alto → choque externo severo no comércio global (pandemia, guerra, bloqueio de canal).<br>
+<b style="color:#bbb">Score B baixo</b> (< 0,8) → sem evidência de disrupção global.<br>
+<b style="color:#bbb">Estatísticas:</b> média 0,62 · max 3,03 · 35% das anomalias com B ≥ 0,8
+</div>
+:::
+
+:::
+
+<div style="margin-top:0.8rem;">
+:::{.method-card}
+<div class="method-icon" style="font-size:1.6rem;">⚖️</div>
+
+### Vulnerabilidade composta
+
+$$V = 0{,}2 \cdot N_{total} + 0{,}4 \cdot N_{global} + 0{,}2 \cdot N_{nac} + 0{,}2 \cdot D_{afet}$$
+
+Combina, para cada porto: total de anomalias ($N_{total}$), anomalias globais ($N_{global}$), anomalias nacionais ($N_{nac}$) e número de dimensões afetadas ($D_{afet}$, máx. 4).
+
+<div style="margin-top:0.8rem; color:#999; font-size:0.85rem; line-height:1.6;">
+<b style="color:#bbb">Por que peso 0,4 para globais?</b> Anomalias globais afetam múltiplos portos simultaneamente e são as mais difíceis de mitigar por redirecionamento de rotas — representam o risco sistêmico mais relevante para a cadeia logística brasileira.
+</div>
+:::
+</div>
+
+</div>
+:::
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- APÊNDICE A3 — CLASSIFICAÇÃO                         -->
+<!-- ════════════════════════════════════════════════════ -->
+
+:::{.tela .tela-methodology}
+[A3]{.tela-number}
+
+## Apêndice: Classificação — Global, Nacional ou Isolado?
+:::{.subtitulo}
+Os dois scores combinados determinam a natureza de cada evento anômalo
+:::
+
+<div style="max-width:860px; margin:1.5rem auto 0;">
+
+:::{.method-card}
+<div class="method-icon" style="font-size:1.6rem;">🏷️</div>
+
+### Regra de classificação
+
+Os limiares ótimos ($t_a$=3, $t_b$=0,8) foram encontrados por **grid search** maximizando o recall contra 10 eventos históricos conhecidos (expandidos em 135 pares porto×evento).
+
+<div style="margin:1.2rem 0; overflow-x:auto;">
+
+| Tipo | Condição | Interpretação |
+|------|----------|---------------|
+| **Global** | Score B ≥ 0,8 | Choque externo detectado — mesmo que poucos portos BR sejam afetados (e.g., bloqueio do Canal de Suez) |
+| **Nacional** | Score A ≥ 3 **e** Score B < 0,8 | Co-ocorrência em ≥3 portos sem trigger global — evento de escala nacional (e.g., greve de caminhoneiros) |
+| **Isolado** | Score A < 3 **e** Score B < 0,8 | Poucos portos afetados e sem choque externo — evento local (e.g., dragagem, acidente) |
+
+</div>
+
+<div style="padding:12px 16px; background:rgba(79,195,247,0.08); border-left:3px solid #4fc3f7; border-radius:0 6px 6px 0; margin-top:1rem;">
+
+**Resultados da classificação:**
+
+- **1.609** anomalias detectadas no período 2015–2026
+- **40% globais** (636) · **57% nacionais** (912) · **4% isoladas** (61)
+- Recall da classificação: **64%** (86/135 pares porto×evento) contra eventos conhecidos
+- Score B ≥ 0,8 automaticamente classifica como global — **captura choques mesmo com poucos portos BR afetados**
+
+</div>
+
+<div style="margin-top:1rem; color:#999; font-size:0.85rem; line-height:1.6;">
+<b style="color:#bbb">Nota:</b> A regra de promoção (Score B alto → global mesmo com poucos portos) foi introduzida no Patch 3 para não perder eventos como o bloqueio do Canal de Suez, que afetou o comércio global mas impactou poucos portos brasileiros diretamente.
+</div>
+:::
+
+</div>
+:::

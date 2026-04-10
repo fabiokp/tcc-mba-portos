@@ -1,0 +1,5642 @@
+{
+  "summary": {
+    "week_reference": "2026-03-23",
+    "portwatch_latest": "2026-04-03",
+    "br_ports_total": 18,
+    "br_ports_alert": 1,
+    "br_ports_watch": 1,
+    "destinations_total": 19,
+    "destinations_alert": 2,
+    "destinations_watch": 4
+  },
+  "alerts": [
+    {
+      "porto": "Suape",
+      "portid_pw": "port1002",
+      "week": "2026-03-23",
+      "export_vol": 192957.0,
+      "z_export": 2.06,
+      "z_portcalls": 0.79,
+      "status": "alert",
+      "direction": "positive",
+      "n_anomalias": 88,
+      "pct_global": 47.7,
+      "pct_nacional": 52.3,
+      "pct_isolado": 0.0,
+      "fingerprint": {
+        "atracacoes": 1.0,
+        "tonelagem_exp": 0.4,
+        "t1_mediano": 0.753,
+        "tatracado_mediano": 0.667
+      },
+      "hhi_pauta": 0.2003,
+      "fob_total": 20004631066,
+      "top_chains": [
+        {
+          "uf": "PE",
+          "cuci": "334c",
+          "nome": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+          "fob": 4178933801,
+          "pct": 0.3859795857538752
+        },
+        {
+          "uf": "PE",
+          "cuci": "781",
+          "nome": "Veículos automóveis de passageiros",
+          "fob": 3360183341,
+          "pct": 0.3103571953463094
+        },
+        {
+          "uf": "PE",
+          "cuci": "782",
+          "nome": "Veículos automóveis para transporte de mercadorias e usos especiais",
+          "fob": 1685617117,
+          "pct": 0.15568894544431702
+        },
+        {
+          "uf": "PE",
+          "cuci": "574",
+          "nome": "Poliacetais, outros poliéteres e resinas epóxidas; policarbonatos, resinas alquídicas e outros poliésteres; em formas primárias",
+          "fob": 912102388,
+          "pct": 0.08424467068636399
+        },
+        {
+          "uf": "RN",
+          "cuci": "334c",
+          "nome": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+          "fob": 689989318,
+          "pct": 0.06372960276913438
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 48245.0,
+          "z_export": -0.65
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 44075.0,
+          "z_export": -0.75
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 50465.0,
+          "z_export": -0.55
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 56272.0,
+          "z_export": -0.38
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 95587.0,
+          "z_export": 0.75
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 22572.0,
+          "z_export": -1.36
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 219513.0,
+          "z_export": 4.27
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 100486.0,
+          "z_export": 0.64
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 84341.0,
+          "z_export": 0.25
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 147950.0,
+          "z_export": 1.76
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 33205.0,
+          "z_export": -0.99
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 93676.0,
+          "z_export": 0.44
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 120911.0,
+          "z_export": 1.07
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 142508.0,
+          "z_export": 1.55
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 72609.0,
+          "z_export": -0.12
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 130433.0,
+          "z_export": 1.23
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 56270.0,
+          "z_export": -0.52
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 154260.0,
+          "z_export": 1.77
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 37861.0,
+          "z_export": -0.96
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 172607.0,
+          "z_export": 2.14
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 46448.0,
+          "z_export": -0.76
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 138074.0,
+          "z_export": 1.28
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 135487.0,
+          "z_export": 1.19
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 231280.0,
+          "z_export": 3.27
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 59974.0,
+          "z_export": -0.52
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 32693.0,
+          "z_export": -1.09
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 102587.0,
+          "z_export": 0.34
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 69469.0,
+          "z_export": -0.32
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 54112.0,
+          "z_export": -0.62
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 88244.0,
+          "z_export": 0.07
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 66581.0,
+          "z_export": -0.37
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 129994.0,
+          "z_export": 0.91
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 102570.0,
+          "z_export": 0.34
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 148325.0,
+          "z_export": 1.25
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 143262.0,
+          "z_export": 1.1
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 123040.0,
+          "z_export": 0.68
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 96835.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 113550.0,
+          "z_export": 0.46
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 131226.0,
+          "z_export": 0.79
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 162401.0,
+          "z_export": 1.37
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 50679.0,
+          "z_export": -0.84
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 40529.0,
+          "z_export": -1.04
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 56372.0,
+          "z_export": -0.74
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 91236.0,
+          "z_export": -0.05
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 141907.0,
+          "z_export": 0.96
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 95040.0,
+          "z_export": -0.02
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 80556.0,
+          "z_export": -0.29
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 96805.0,
+          "z_export": 0.04
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 80469.0,
+          "z_export": -0.31
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 57024.0,
+          "z_export": -0.79
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 72418.0,
+          "z_export": -0.48
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 192957.0,
+          "z_export": 2.06
+        }
+      ]
+    },
+    {
+      "porto": "Salvador",
+      "portid_pw": "port62",
+      "week": "2026-03-23",
+      "export_vol": 279105.0,
+      "z_export": 1.93,
+      "z_portcalls": 1.98,
+      "status": "watch",
+      "direction": "positive",
+      "n_anomalias": 68,
+      "pct_global": 25.0,
+      "pct_nacional": 73.5,
+      "pct_isolado": 1.5,
+      "fingerprint": {
+        "atracacoes": 0.641,
+        "tonelagem_exp": 0.706,
+        "t1_mediano": 0.95,
+        "tatracado_mediano": 0.469
+      },
+      "hhi_pauta": 0.1365,
+      "fob_total": 55048250672,
+      "top_chains": [
+        {
+          "uf": "BA",
+          "cuci": "334c",
+          "nome": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+          "fob": 13078802505,
+          "pct": 0.4358714197852854
+        },
+        {
+          "uf": "BA",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 12331752225,
+          "pct": 0.41097480818264726
+        },
+        {
+          "uf": "BA",
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob": 3806992967,
+          "pct": 0.12687395722999228
+        },
+        {
+          "uf": "PI",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 432033171,
+          "pct": 0.014398176864137071
+        },
+        {
+          "uf": "SE",
+          "cuci": "059",
+          "nome": "Sucos de frutas ou de vegetais",
+          "fob": 356521646,
+          "pct": 0.011881637937938026
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 245819.0,
+          "z_export": 2.14
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 87993.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 186956.0,
+          "z_export": 1.01
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 157324.0,
+          "z_export": 0.48
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 188396.0,
+          "z_export": 1.0
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 155226.0,
+          "z_export": 0.41
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 93250.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 206733.0,
+          "z_export": 1.31
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 280389.0,
+          "z_export": 2.53
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 203796.0,
+          "z_export": 1.08
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 95863.0,
+          "z_export": -0.68
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 83840.0,
+          "z_export": -0.87
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 170909.0,
+          "z_export": 0.56
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 234878.0,
+          "z_export": 1.6
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 151670.0,
+          "z_export": 0.2
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 102647.0,
+          "z_export": -0.6
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 150504.0,
+          "z_export": 0.19
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 201958.0,
+          "z_export": 1.04
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 175107.0,
+          "z_export": 0.58
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 204337.0,
+          "z_export": 1.05
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 196485.0,
+          "z_export": 0.9
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 151961.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 180530.0,
+          "z_export": 0.62
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 227586.0,
+          "z_export": 1.41
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 121507.0,
+          "z_export": -0.46
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 219740.0,
+          "z_export": 1.29
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 133754.0,
+          "z_export": -0.24
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 247338.0,
+          "z_export": 1.74
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 126797.0,
+          "z_export": -0.37
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 153190.0,
+          "z_export": 0.07
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 101882.0,
+          "z_export": -0.79
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 134013.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 10560.0,
+          "z_export": -2.35
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 172044.0,
+          "z_export": 0.46
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 77432.0,
+          "z_export": -1.14
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 36435.0,
+          "z_export": -1.8
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 43501.0,
+          "z_export": -1.65
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 6077.0,
+          "z_export": -2.18
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 121633.0,
+          "z_export": -0.32
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 16352.0,
+          "z_export": -1.96
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 56932.0,
+          "z_export": -1.32
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 39060.0,
+          "z_export": -1.59
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 90152.0,
+          "z_export": -0.77
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 211480.0,
+          "z_export": 1.06
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 146130.0,
+          "z_export": 0.06
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 233891.0,
+          "z_export": 1.37
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 189969.0,
+          "z_export": 0.66
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 173523.0,
+          "z_export": 0.44
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 203742.0,
+          "z_export": 0.87
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 54591.0,
+          "z_export": -1.38
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 240309.0,
+          "z_export": 1.43
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 279105.0,
+          "z_export": 1.93
+        }
+      ]
+    },
+    {
+      "porto": "São Luís",
+      "portid_pw": "port506",
+      "week": "2026-03-23",
+      "export_vol": 2418503.0,
+      "z_export": -1.27,
+      "z_portcalls": -1.24,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 82,
+      "pct_global": 43.9,
+      "pct_nacional": 53.7,
+      "pct_isolado": 2.4,
+      "fingerprint": {
+        "atracacoes": 0.561,
+        "tonelagem_exp": 0.943,
+        "t1_mediano": 0.625,
+        "tatracado_mediano": 0.458
+      },
+      "hhi_pauta": 0.3604,
+      "fob_total": 242250844858,
+      "top_chains": [
+        {
+          "uf": "PA",
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob": 131394760653,
+          "pct": 0.6642008701983587
+        },
+        {
+          "uf": "PA",
+          "cuci": "283b",
+          "nome": "Minérios de cobre e seus concentrados",
+          "fob": 25763191031,
+          "pct": 0.1302330002873372
+        },
+        {
+          "uf": "MA",
+          "cuci": "285c",
+          "nome": "Alumina (óxido de alumínio), exceto corindo artificial",
+          "fob": 14616539711,
+          "pct": 0.07388664774064876
+        },
+        {
+          "uf": "MA",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 14115250891,
+          "pct": 0.07135263140080389
+        },
+        {
+          "uf": "TO",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 11934088649,
+          "pct": 0.06032685037285142
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 2993471.0,
+          "z_export": -0.19
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 3305459.0,
+          "z_export": 0.15
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 3758571.0,
+          "z_export": 0.63
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 3300426.0,
+          "z_export": 0.12
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 3223478.0,
+          "z_export": 0.03
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 3734964.0,
+          "z_export": 0.61
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 3184173.0,
+          "z_export": -0.03
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 3713221.0,
+          "z_export": 0.58
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 4075636.0,
+          "z_export": 0.99
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 3773874.0,
+          "z_export": 0.62
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 4078734.0,
+          "z_export": 0.96
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 3399608.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 3871863.0,
+          "z_export": 0.7
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 3531784.0,
+          "z_export": 0.28
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 3741245.0,
+          "z_export": 0.53
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 3929256.0,
+          "z_export": 0.75
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 4502222.0,
+          "z_export": 1.45
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 4150736.0,
+          "z_export": 0.97
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 4112856.0,
+          "z_export": 0.9
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 4649642.0,
+          "z_export": 1.54
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 4330345.0,
+          "z_export": 1.11
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 4225352.0,
+          "z_export": 0.96
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 3177411.0,
+          "z_export": -0.32
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 3431524.0,
+          "z_export": -0.01
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 4502657.0,
+          "z_export": 1.33
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 3372709.0,
+          "z_export": -0.15
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 3451104.0,
+          "z_export": -0.05
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 4008021.0,
+          "z_export": 0.71
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 3536390.0,
+          "z_export": 0.09
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 4261996.0,
+          "z_export": 1.03
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 3449979.0,
+          "z_export": -0.03
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 4151493.0,
+          "z_export": 0.89
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 3695956.0,
+          "z_export": 0.31
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 2632435.0,
+          "z_export": -1.11
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 2938454.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 3921123.0,
+          "z_export": 0.64
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 3051039.0,
+          "z_export": -0.54
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 2903180.0,
+          "z_export": -0.72
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 3782879.0,
+          "z_export": 0.45
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 2152360.0,
+          "z_export": -1.73
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 2478939.0,
+          "z_export": -1.22
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 1473455.0,
+          "z_export": -2.53
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 1289970.0,
+          "z_export": -2.72
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 2588335.0,
+          "z_export": -0.95
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 3261703.0,
+          "z_export": -0.13
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 2601970.0,
+          "z_export": -0.99
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 3112034.0,
+          "z_export": -0.39
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 2779289.0,
+          "z_export": -0.84
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 2712650.0,
+          "z_export": -0.9
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 2058890.0,
+          "z_export": -1.75
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 2038412.0,
+          "z_export": -1.87
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 2418503.0,
+          "z_export": -1.27
+        }
+      ]
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "portid_pw": "port1161",
+      "week": "2026-03-23",
+      "export_vol": 234000.0,
+      "z_export": 1.13,
+      "z_portcalls": 0.64,
+      "status": "normal",
+      "direction": "positive",
+      "n_anomalias": 85,
+      "pct_global": 23.5,
+      "pct_nacional": 76.5,
+      "pct_isolado": 0.0,
+      "fingerprint": {
+        "atracacoes": 0.445,
+        "tonelagem_exp": 0.934,
+        "t1_mediano": 0.753,
+        "tatracado_mediano": 0.508
+      },
+      "hhi_pauta": 0.1115,
+      "fob_total": 91362327507,
+      "top_chains": [
+        {
+          "uf": "PR",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 10363172165,
+          "pct": 0.36484607556796966
+        },
+        {
+          "uf": "MS",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 6351154646,
+          "pct": 0.22359889530199442
+        },
+        {
+          "uf": "SC",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 5701153629,
+          "pct": 0.20071494467454296
+        },
+        {
+          "uf": "SC",
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob": 4634985683,
+          "pct": 0.16317941165423797
+        },
+        {
+          "uf": "RO",
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob": 1353764754,
+          "pct": 0.04766067280125495
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 150399.0,
+          "z_export": 0.62
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 160796.0,
+          "z_export": 0.79
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 184345.0,
+          "z_export": 1.19
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 53656.0,
+          "z_export": -1.16
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 157242.0,
+          "z_export": 0.7
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 65492.0,
+          "z_export": -0.94
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 198084.0,
+          "z_export": 1.44
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 106845.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 258710.0,
+          "z_export": 2.48
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 257404.0,
+          "z_export": 2.24
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 137546.0,
+          "z_export": 0.18
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 119414.0,
+          "z_export": -0.11
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 30756.0,
+          "z_export": -1.56
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 152882.0,
+          "z_export": 0.46
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 63337.0,
+          "z_export": -0.99
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 125443.0,
+          "z_export": 0.03
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 150770.0,
+          "z_export": 0.45
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 146760.0,
+          "z_export": 0.38
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 185655.0,
+          "z_export": 1.02
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 200551.0,
+          "z_export": 1.25
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 171420.0,
+          "z_export": 0.73
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 138295.0,
+          "z_export": 0.17
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 184860.0,
+          "z_export": 0.95
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 191368.0,
+          "z_export": 1.04
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 183084.0,
+          "z_export": 0.86
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 122990.0,
+          "z_export": -0.17
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 107829.0,
+          "z_export": -0.41
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 149885.0,
+          "z_export": 0.32
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 132659.0,
+          "z_export": 0.02
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 207280.0,
+          "z_export": 1.28
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 168282.0,
+          "z_export": 0.62
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 186961.0,
+          "z_export": 0.93
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 310522.0,
+          "z_export": 3.14
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 365879.0,
+          "z_export": 3.76
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 170055.0,
+          "z_export": 0.39
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 263780.0,
+          "z_export": 1.78
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 18798.0,
+          "z_export": -1.89
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 18798.0,
+          "z_export": -1.89
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 0.0,
+          "z_export": -2.06
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 11916.0,
+          "z_export": -1.84
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 0.0,
+          "z_export": -1.94
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 0.0,
+          "z_export": -1.86
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 0.0,
+          "z_export": -1.79
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 102202.0,
+          "z_export": -0.43
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 42853.0,
+          "z_export": -1.19
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 144725.0,
+          "z_export": 0.1
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 217520.0,
+          "z_export": 1.0
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 171523.0,
+          "z_export": 0.4
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 165814.0,
+          "z_export": 0.33
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 121678.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 262377.0,
+          "z_export": 1.53
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 234000.0,
+          "z_export": 1.13
+        }
+      ]
+    },
+    {
+      "porto": "São João da Barra",
+      "portid_pw": "port166",
+      "week": "2026-03-23",
+      "export_vol": 1282201.0,
+      "z_export": 0.98,
+      "z_portcalls": 1.6,
+      "status": "normal",
+      "direction": "positive",
+      "n_anomalias": 105,
+      "pct_global": 21.0,
+      "pct_nacional": 72.4,
+      "pct_isolado": 6.7,
+      "fingerprint": {
+        "atracacoes": 0.354,
+        "tonelagem_exp": 1.0,
+        "t1_mediano": 0.842,
+        "tatracado_mediano": 0.474
+      },
+      "hhi_pauta": 0.6437,
+      "fob_total": 93723212692,
+      "top_chains": [
+        {
+          "uf": "RJ",
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob": 63413365853,
+          "pct": 0.7593059350928517
+        },
+        {
+          "uf": "MG",
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob": 16933941063,
+          "pct": 0.20276548611936135
+        },
+        {
+          "uf": "ND",
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob": 3167601795,
+          "pct": 0.03792857878778697
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 1395515.0,
+          "z_export": 1.49
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 681553.0,
+          "z_export": -0.38
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 1294963.0,
+          "z_export": 1.19
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 541606.0,
+          "z_export": -0.77
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 949862.0,
+          "z_export": 0.29
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 345110.0,
+          "z_export": -1.28
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 1595258.0,
+          "z_export": 1.98
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 482631.0,
+          "z_export": -0.9
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 579962.0,
+          "z_export": -0.63
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 840539.0,
+          "z_export": 0.03
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 1410083.0,
+          "z_export": 1.47
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 1139412.0,
+          "z_export": 0.74
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 842314.0,
+          "z_export": -0.02
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 843621.0,
+          "z_export": -0.02
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 1152673.0,
+          "z_export": 0.78
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 1288119.0,
+          "z_export": 1.11
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 1029378.0,
+          "z_export": 0.42
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 638416.0,
+          "z_export": -0.6
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 1600347.0,
+          "z_export": 1.93
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 886229.0,
+          "z_export": 0.01
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 29436.0,
+          "z_export": -2.2
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 928391.0,
+          "z_export": 0.16
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 700615.0,
+          "z_export": -0.41
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 1342522.0,
+          "z_export": 1.22
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 604356.0,
+          "z_export": -0.7
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 1432145.0,
+          "z_export": 1.54
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 1005533.0,
+          "z_export": 0.36
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 642655.0,
+          "z_export": -0.64
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 551556.0,
+          "z_export": -0.87
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 1090824.0,
+          "z_export": 0.59
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 975319.0,
+          "z_export": 0.26
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 595490.0,
+          "z_export": -0.78
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 1150580.0,
+          "z_export": 0.72
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 580181.0,
+          "z_export": -0.82
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 881191.0,
+          "z_export": 0.01
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 1315877.0,
+          "z_export": 1.16
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 571309.0,
+          "z_export": -0.9
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 1004624.0,
+          "z_export": 0.32
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 749225.0,
+          "z_export": -0.38
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 1346035.0,
+          "z_export": 1.26
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 1206611.0,
+          "z_export": 0.84
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 1368039.0,
+          "z_export": 1.25
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 628870.0,
+          "z_export": -0.79
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 1284692.0,
+          "z_export": 0.98
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 979240.0,
+          "z_export": 0.12
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 1310118.0,
+          "z_export": 1.09
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 777501.0,
+          "z_export": -0.45
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 998372.0,
+          "z_export": 0.17
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 1122868.0,
+          "z_export": 0.5
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 581496.0,
+          "z_export": -1.06
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 1137947.0,
+          "z_export": 0.59
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 1282201.0,
+          "z_export": 0.98
+        }
+      ]
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "portid_pw": "port1103",
+      "week": "2026-03-23",
+      "export_vol": 191361.0,
+      "z_export": -0.95,
+      "z_portcalls": 0.78,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 71,
+      "pct_global": 26.8,
+      "pct_nacional": 71.8,
+      "pct_isolado": 1.4,
+      "fingerprint": {
+        "atracacoes": 0.401,
+        "tonelagem_exp": 0.77,
+        "t1_mediano": 0.776,
+        "tatracado_mediano": 0.854
+      },
+      "hhi_pauta": 0.0832,
+      "fob_total": 81656444713,
+      "top_chains": [
+        {
+          "uf": "RJ",
+          "cuci": "334c",
+          "nome": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+          "fob": 11595634962,
+          "pct": 0.9953867022272773
+        },
+        {
+          "uf": "MN",
+          "cuci": "343",
+          "nome": "Gás natural, liquefeito ou não",
+          "fob": 51622259,
+          "pct": 0.0044313321621388575
+        },
+        {
+          "uf": "CB",
+          "cuci": "931",
+          "nome": "Operações especiais e commodities não classificadas de acordo com o tipo",
+          "fob": 2119786,
+          "pct": 0.0001819656105838313
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 207158.0,
+          "z_export": -0.37
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 295046.0,
+          "z_export": 0.53
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 245009.0,
+          "z_export": 0.0
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 173493.0,
+          "z_export": -0.75
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 254334.0,
+          "z_export": 0.12
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 196244.0,
+          "z_export": -0.5
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 359883.0,
+          "z_export": 1.28
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 175069.0,
+          "z_export": -0.75
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 197751.0,
+          "z_export": -0.49
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 413898.0,
+          "z_export": 1.88
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 211631.0,
+          "z_export": -0.37
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 311517.0,
+          "z_export": 0.71
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 450874.0,
+          "z_export": 2.2
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 210670.0,
+          "z_export": -0.43
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 225800.0,
+          "z_export": -0.26
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 289326.0,
+          "z_export": 0.41
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 278908.0,
+          "z_export": 0.29
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 330131.0,
+          "z_export": 0.84
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 287846.0,
+          "z_export": 0.37
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 291521.0,
+          "z_export": 0.41
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 172401.0,
+          "z_export": -0.91
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 280070.0,
+          "z_export": 0.29
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 360164.0,
+          "z_export": 1.18
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 406398.0,
+          "z_export": 1.67
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 172469.0,
+          "z_export": -1.03
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 312125.0,
+          "z_export": 0.57
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 463926.0,
+          "z_export": 2.26
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 311260.0,
+          "z_export": 0.48
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 376962.0,
+          "z_export": 1.17
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 272284.0,
+          "z_export": -0.01
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 312653.0,
+          "z_export": 0.42
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 195475.0,
+          "z_export": -0.88
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 102914.0,
+          "z_export": -1.86
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 241069.0,
+          "z_export": -0.32
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 260070.0,
+          "z_export": -0.13
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 366100.0,
+          "z_export": 1.01
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 297380.0,
+          "z_export": 0.24
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 213652.0,
+          "z_export": -0.72
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 408752.0,
+          "z_export": 1.47
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 184101.0,
+          "z_export": -1.02
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 236537.0,
+          "z_export": -0.44
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 179392.0,
+          "z_export": -1.1
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 328750.0,
+          "z_export": 0.6
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 234818.0,
+          "z_export": -0.45
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 223890.0,
+          "z_export": -0.62
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 406804.0,
+          "z_export": 1.6
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 457243.0,
+          "z_export": 2.15
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 110376.0,
+          "z_export": -2.0
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 379539.0,
+          "z_export": 1.19
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 134863.0,
+          "z_export": -1.61
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 279090.0,
+          "z_export": 0.04
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 191361.0,
+          "z_export": -0.95
+        }
+      ]
+    },
+    {
+      "porto": "Manaus",
+      "portid_pw": "port693",
+      "week": "2026-03-23",
+      "export_vol": 267.0,
+      "z_export": -0.79,
+      "z_portcalls": -0.91,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 77,
+      "pct_global": 68.8,
+      "pct_nacional": 31.2,
+      "pct_isolado": 0.0,
+      "fingerprint": {
+        "atracacoes": 0.597,
+        "tonelagem_exp": 0.752,
+        "t1_mediano": 0.869,
+        "tatracado_mediano": 0.518
+      },
+      "hhi_pauta": 0.382,
+      "fob_total": 26190740125,
+      "top_chains": [
+        {
+          "uf": "RO",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 5060471457,
+          "pct": 0.6665159468989265
+        },
+        {
+          "uf": "AM",
+          "cuci": "785",
+          "nome": "Motocicletas, bicicletas motorizadas ou não e veículos para inválidos",
+          "fob": 823507185,
+          "pct": 0.10846433496410578
+        },
+        {
+          "uf": "RR",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 646089776,
+          "pct": 0.08509664415489959
+        },
+        {
+          "uf": "AM",
+          "cuci": "098",
+          "nome": "Outros produtos comestíveis e preparações",
+          "fob": 610169536,
+          "pct": 0.08036558046253962
+        },
+        {
+          "uf": "AM",
+          "cuci": "671",
+          "nome": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+          "fob": 452185724,
+          "pct": 0.059557493519528534
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 48344.0,
+          "z_export": 3.2
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 267.0,
+          "z_export": -0.63
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 6081.0,
+          "z_export": -0.21
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 10939.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 1873.0,
+          "z_export": -0.52
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 49753.0,
+          "z_export": 2.99
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 3712.0,
+          "z_export": -0.41
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 42838.0,
+          "z_export": 2.21
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 14101.0,
+          "z_export": 0.22
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 10122.0,
+          "z_export": -0.04
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 48782.0,
+          "z_export": 2.48
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 534.0,
+          "z_export": -0.69
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 157.0,
+          "z_export": -0.7
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 90229.0,
+          "z_export": 4.92
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 7059.0,
+          "z_export": -0.3
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 3782.0,
+          "z_export": -0.46
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 27504.0,
+          "z_export": 0.76
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 47027.0,
+          "z_export": 1.75
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 915.0,
+          "z_export": -0.64
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 3445.0,
+          "z_export": -0.51
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 36942.0,
+          "z_export": 1.21
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 48501.0,
+          "z_export": 1.77
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 1182.0,
+          "z_export": -0.66
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 43389.0,
+          "z_export": 1.47
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 49431.0,
+          "z_export": 1.7
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 157.0,
+          "z_export": -0.76
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 4869.0,
+          "z_export": -0.53
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 40162.0,
+          "z_export": 1.17
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 267.0,
+          "z_export": -0.8
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 3321.0,
+          "z_export": -0.65
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 12560.0,
+          "z_export": -0.21
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 2202.0,
+          "z_export": -0.72
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 53620.0,
+          "z_export": 1.77
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 5278.0,
+          "z_export": -0.61
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 4141.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 1817.0,
+          "z_export": -0.78
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 5103.0,
+          "z_export": -0.62
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 54102.0,
+          "z_export": 1.71
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 3445.0,
+          "z_export": -0.72
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 915.0,
+          "z_export": -0.84
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 8356.0,
+          "z_export": -0.46
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 267.0,
+          "z_export": -0.83
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 6020.0,
+          "z_export": -0.53
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 51609.0,
+          "z_export": 1.59
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 3445.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 3869.0,
+          "z_export": -0.64
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 652.0,
+          "z_export": -0.79
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 8468.0,
+          "z_export": -0.42
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 25914.0,
+          "z_export": 0.36
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 7498.0,
+          "z_export": -0.46
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 2055.0,
+          "z_export": -0.72
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 267.0,
+          "z_export": -0.79
+        }
+      ]
+    },
+    {
+      "porto": "Santos",
+      "portid_pw": "port1160",
+      "week": "2026-03-23",
+      "export_vol": 2433777.0,
+      "z_export": 0.69,
+      "z_portcalls": 1.24,
+      "status": "normal",
+      "direction": "positive",
+      "n_anomalias": 107,
+      "pct_global": 39.3,
+      "pct_nacional": 60.7,
+      "pct_isolado": 0.0,
+      "fingerprint": {
+        "atracacoes": 0.373,
+        "tonelagem_exp": 0.577,
+        "t1_mediano": 0.884,
+        "tatracado_mediano": 0.992
+      },
+      "hhi_pauta": 0.05,
+      "fob_total": 889672447233,
+      "top_chains": [
+        {
+          "uf": "SP",
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob": 71635653593,
+          "pct": 0.315924358716138
+        },
+        {
+          "uf": "MG",
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob": 52906403093,
+          "pct": 0.2333254550045287
+        },
+        {
+          "uf": "MT",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 49473019694,
+          "pct": 0.2181837009456015
+        },
+        {
+          "uf": "RJ",
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob": 28007685569,
+          "pct": 0.12351824348223976
+        },
+        {
+          "uf": "GO",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 24726621619,
+          "pct": 0.10904824185149205
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 1985105.0,
+          "z_export": 0.29
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 2755849.0,
+          "z_export": 2.19
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 2086815.0,
+          "z_export": 0.44
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 2117402.0,
+          "z_export": 0.5
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 2588960.0,
+          "z_export": 1.62
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 2395410.0,
+          "z_export": 1.09
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 2412649.0,
+          "z_export": 1.09
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 2166778.0,
+          "z_export": 0.49
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 2554109.0,
+          "z_export": 1.39
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 2529714.0,
+          "z_export": 1.28
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 2156890.0,
+          "z_export": 0.38
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 2542653.0,
+          "z_export": 1.27
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 2285101.0,
+          "z_export": 0.64
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 1336056.0,
+          "z_export": -1.59
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 2866002.0,
+          "z_export": 1.99
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 2577537.0,
+          "z_export": 1.24
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 2313004.0,
+          "z_export": 0.62
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 2417402.0,
+          "z_export": 0.84
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 2099351.0,
+          "z_export": 0.12
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 2660794.0,
+          "z_export": 1.38
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 2435968.0,
+          "z_export": 0.84
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 1821309.0,
+          "z_export": -0.55
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 2205654.0,
+          "z_export": 0.32
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 2574657.0,
+          "z_export": 1.16
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 2244930.0,
+          "z_export": 0.36
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 2079972.0,
+          "z_export": -0.06
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 2731303.0,
+          "z_export": 1.55
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 2355371.0,
+          "z_export": 0.59
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 2311051.0,
+          "z_export": 0.47
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 2517486.0,
+          "z_export": 0.96
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 1969549.0,
+          "z_export": -0.36
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 2126541.0,
+          "z_export": 0.01
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 2066188.0,
+          "z_export": -0.14
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 2313180.0,
+          "z_export": 0.45
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 2403559.0,
+          "z_export": 0.65
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 1750738.0,
+          "z_export": -0.94
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 1925754.0,
+          "z_export": -0.51
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 2259102.0,
+          "z_export": 0.27
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 1855549.0,
+          "z_export": -0.76
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 1892088.0,
+          "z_export": -0.7
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 1204078.0,
+          "z_export": -2.55
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 1492067.0,
+          "z_export": -1.75
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 1734029.0,
+          "z_export": -1.14
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 1890083.0,
+          "z_export": -0.81
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 1553810.0,
+          "z_export": -1.83
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 2059244.0,
+          "z_export": -0.37
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 2144680.0,
+          "z_export": -0.14
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 1935454.0,
+          "z_export": -0.72
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 2266339.0,
+          "z_export": 0.22
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 1960318.0,
+          "z_export": -0.63
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 2558241.0,
+          "z_export": 1.03
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 2433777.0,
+          "z_export": 0.69
+        }
+      ]
+    },
+    {
+      "porto": "Itajaí",
+      "portid_pw": "port505",
+      "week": "2026-03-23",
+      "export_vol": 187594.0,
+      "z_export": 0.69,
+      "z_portcalls": -0.93,
+      "status": "normal",
+      "direction": "positive",
+      "n_anomalias": 73,
+      "pct_global": 57.5,
+      "pct_nacional": 37.0,
+      "pct_isolado": 5.5,
+      "fingerprint": {
+        "atracacoes": 0.29,
+        "tonelagem_exp": 0.973,
+        "t1_mediano": 0.95,
+        "tatracado_mediano": 0.479
+      },
+      "hhi_pauta": 0.1133,
+      "fob_total": 85265446559,
+      "top_chains": [
+        {
+          "uf": "SC",
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob": 14037835711,
+          "pct": 0.5494894468653988
+        },
+        {
+          "uf": "SC",
+          "cuci": "012c2",
+          "nome": "Carne suína fresca, refrigerada ou congelada",
+          "fob": 7095703408,
+          "pct": 0.2777503755602148
+        },
+        {
+          "uf": "SC",
+          "cuci": "713",
+          "nome": "Motores de pistão, e suas partes",
+          "fob": 3358833854,
+          "pct": 0.13147637531482118
+        },
+        {
+          "uf": "RO",
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob": 1054679461,
+          "pct": 0.041283802259565204
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 113425.0,
+          "z_export": -0.32
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 136091.0,
+          "z_export": 0.02
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 152657.0,
+          "z_export": 0.27
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 137725.0,
+          "z_export": 0.04
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 121074.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 39364.0,
+          "z_export": -1.48
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 158863.0,
+          "z_export": 0.41
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 68056.0,
+          "z_export": -1.0
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 152635.0,
+          "z_export": 0.33
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 88955.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 158972.0,
+          "z_export": 0.45
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 48929.0,
+          "z_export": -1.31
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 143875.0,
+          "z_export": 0.23
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 107628.0,
+          "z_export": -0.35
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 102184.0,
+          "z_export": -0.44
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 176816.0,
+          "z_export": 0.79
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 135189.0,
+          "z_export": 0.09
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 143134.0,
+          "z_export": 0.22
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 152379.0,
+          "z_export": 0.37
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 160483.0,
+          "z_export": 0.51
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 119443.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 201310.0,
+          "z_export": 1.21
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 70549.0,
+          "z_export": -1.06
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 154059.0,
+          "z_export": 0.39
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 190616.0,
+          "z_export": 1.02
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 168989.0,
+          "z_export": 0.62
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 191054.0,
+          "z_export": 1.0
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 316291.0,
+          "z_export": 3.18
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 72902.0,
+          "z_export": -1.09
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 195558.0,
+          "z_export": 0.91
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 151622.0,
+          "z_export": 0.26
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 84203.0,
+          "z_export": -0.91
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 199109.0,
+          "z_export": 1.08
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 145485.0,
+          "z_export": 0.16
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 255494.0,
+          "z_export": 2.11
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 107957.0,
+          "z_export": -0.55
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 137823.0,
+          "z_export": -0.0
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 173329.0,
+          "z_export": 0.63
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 194265.0,
+          "z_export": 1.02
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 89964.0,
+          "z_export": -1.01
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 60502.0,
+          "z_export": -1.59
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 281612.0,
+          "z_export": 2.67
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 225458.0,
+          "z_export": 1.47
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 171747.0,
+          "z_export": 0.48
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 117375.0,
+          "z_export": -0.5
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 140684.0,
+          "z_export": -0.09
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 255074.0,
+          "z_export": 1.95
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 126754.0,
+          "z_export": -0.37
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 144890.0,
+          "z_export": -0.03
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 154050.0,
+          "z_export": 0.13
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 148319.0,
+          "z_export": 0.02
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 187594.0,
+          "z_export": 0.69
+        }
+      ]
+    },
+    {
+      "porto": "Barra do Riacho",
+      "portid_pw": "port1012",
+      "week": "2026-03-23",
+      "export_vol": 51897.0,
+      "z_export": -0.63,
+      "z_portcalls": 0.0,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 87,
+      "pct_global": 62.1,
+      "pct_nacional": 34.5,
+      "pct_isolado": 3.4,
+      "fingerprint": {
+        "atracacoes": 0.84,
+        "tonelagem_exp": 0.378,
+        "t1_mediano": 0.915,
+        "tatracado_mediano": 0.799
+      },
+      "hhi_pauta": null,
+      "fob_total": 0,
+      "top_chains": [],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 115796.0,
+          "z_export": 1.54
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 28003.0,
+          "z_export": -1.13
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 205627.0,
+          "z_export": 4.11
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 93904.0,
+          "z_export": 0.58
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 25585.0,
+          "z_export": -1.08
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 59714.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 24206.0,
+          "z_export": -1.09
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 102371.0,
+          "z_export": 0.85
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 72691.0,
+          "z_export": 0.11
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 40571.0,
+          "z_export": -0.69
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 88613.0,
+          "z_export": 0.52
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 98458.0,
+          "z_export": 0.76
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 123606.0,
+          "z_export": 1.39
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 30003.0,
+          "z_export": -1.01
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 74073.0,
+          "z_export": 0.12
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 80157.0,
+          "z_export": 0.27
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 94923.0,
+          "z_export": 0.65
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 57358.0,
+          "z_export": -0.33
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 72511.0,
+          "z_export": 0.07
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 74262.0,
+          "z_export": 0.11
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 110764.0,
+          "z_export": 1.08
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 22371.0,
+          "z_export": -1.29
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 24274.0,
+          "z_export": -1.21
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 97764.0,
+          "z_export": 0.76
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 131112.0,
+          "z_export": 1.63
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 48477.0,
+          "z_export": -0.61
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 2254.0,
+          "z_export": -1.88
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 83559.0,
+          "z_export": 0.41
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 74589.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 125948.0,
+          "z_export": 1.55
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 124960.0,
+          "z_export": 1.48
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 46969.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 87937.0,
+          "z_export": 0.44
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 78857.0,
+          "z_export": 0.17
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 106897.0,
+          "z_export": 0.92
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 76928.0,
+          "z_export": 0.09
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 65857.0,
+          "z_export": -0.24
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 80267.0,
+          "z_export": 0.15
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 143089.0,
+          "z_export": 1.87
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 64950.0,
+          "z_export": -0.28
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 52841.0,
+          "z_export": -0.58
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 81025.0,
+          "z_export": 0.17
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 105527.0,
+          "z_export": 0.82
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 17574.0,
+          "z_export": -1.57
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 61173.0,
+          "z_export": -0.37
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 68576.0,
+          "z_export": -0.18
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 56185.0,
+          "z_export": -0.52
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 58168.0,
+          "z_export": -0.44
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 59958.0,
+          "z_export": -0.39
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 56422.0,
+          "z_export": -0.48
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 65805.0,
+          "z_export": -0.26
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 51897.0,
+          "z_export": -0.63
+        }
+      ]
+    },
+    {
+      "porto": "Rio Grande",
+      "portid_pw": "port1104",
+      "week": "2026-03-23",
+      "export_vol": 348299.0,
+      "z_export": -0.6,
+      "z_portcalls": 0.87,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 80,
+      "pct_global": 35.0,
+      "pct_nacional": 62.5,
+      "pct_isolado": 2.5,
+      "fingerprint": {
+        "atracacoes": 0.575,
+        "tonelagem_exp": 0.466,
+        "t1_mediano": 0.934,
+        "tatracado_mediano": 0.966
+      },
+      "hhi_pauta": 0.1321,
+      "fob_total": 168654548197,
+      "top_chains": [
+        {
+          "uf": "RS",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 49599161263,
+          "pct": 0.5117314522564451
+        },
+        {
+          "uf": "RS",
+          "cuci": "121c",
+          "nome": "Tabaco, descaulificado ou desnervado",
+          "fob": 19232781387,
+          "pct": 0.1984311609205011
+        },
+        {
+          "uf": "RS",
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob": 13674344231,
+          "pct": 0.14108287022998992
+        },
+        {
+          "uf": "RS",
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob": 8895109538,
+          "pct": 0.09177387693562733
+        },
+        {
+          "uf": "RS",
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob": 5522802874,
+          "pct": 0.056980639657436556
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 336701.0,
+          "z_export": -0.92
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 277178.0,
+          "z_export": -1.37
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 372014.0,
+          "z_export": -0.56
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 500589.0,
+          "z_export": 0.49
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 178830.0,
+          "z_export": -2.14
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 404891.0,
+          "z_export": -0.23
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 324271.0,
+          "z_export": -0.86
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 588583.0,
+          "z_export": 1.25
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 468487.0,
+          "z_export": 0.27
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 368060.0,
+          "z_export": -0.53
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 413357.0,
+          "z_export": -0.16
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 411967.0,
+          "z_export": -0.17
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 339057.0,
+          "z_export": -0.77
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 361445.0,
+          "z_export": -0.57
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 522111.0,
+          "z_export": 0.78
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 373522.0,
+          "z_export": -0.48
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 337508.0,
+          "z_export": -0.78
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 557959.0,
+          "z_export": 1.11
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 621180.0,
+          "z_export": 1.62
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 568719.0,
+          "z_export": 1.12
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 288227.0,
+          "z_export": -1.24
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 662884.0,
+          "z_export": 1.89
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 455956.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 520072.0,
+          "z_export": 0.66
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 586194.0,
+          "z_export": 1.19
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 659349.0,
+          "z_export": 1.8
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 578478.0,
+          "z_export": 1.07
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 534437.0,
+          "z_export": 0.73
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 432741.0,
+          "z_export": -0.12
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 424006.0,
+          "z_export": -0.16
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 329412.0,
+          "z_export": -0.95
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 291531.0,
+          "z_export": -1.25
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 529840.0,
+          "z_export": 0.86
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 419612.0,
+          "z_export": -0.11
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 667522.0,
+          "z_export": 2.04
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 418653.0,
+          "z_export": -0.14
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 310093.0,
+          "z_export": -1.04
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 515339.0,
+          "z_export": 0.66
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 169701.0,
+          "z_export": -2.24
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 237882.0,
+          "z_export": -1.56
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 392907.0,
+          "z_export": -0.28
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 202834.0,
+          "z_export": -1.81
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 284555.0,
+          "z_export": -1.08
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 267985.0,
+          "z_export": -1.17
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 474882.0,
+          "z_export": 0.48
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 474147.0,
+          "z_export": 0.47
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 435688.0,
+          "z_export": 0.17
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 428754.0,
+          "z_export": 0.09
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 549339.0,
+          "z_export": 1.05
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 473601.0,
+          "z_export": 0.43
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 420338.0,
+          "z_export": -0.01
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 348299.0,
+          "z_export": -0.6
+        }
+      ]
+    },
+    {
+      "porto": "Vila do Conde",
+      "portid_pw": "port2046",
+      "week": "2026-03-23",
+      "export_vol": 478940.0,
+      "z_export": 0.56,
+      "z_portcalls": -0.15,
+      "status": "normal",
+      "direction": "positive",
+      "n_anomalias": 105,
+      "pct_global": 55.2,
+      "pct_nacional": 41.9,
+      "pct_isolado": 2.9,
+      "fingerprint": {
+        "atracacoes": 0.79,
+        "tonelagem_exp": 0.776,
+        "t1_mediano": 0.749,
+        "tatracado_mediano": 0.375
+      },
+      "hhi_pauta": 0.1989,
+      "fob_total": 88058371059,
+      "top_chains": [
+        {
+          "uf": "MT",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 24225318159,
+          "pct": 0.45355442279796954
+        },
+        {
+          "uf": "PA",
+          "cuci": "285c",
+          "nome": "Alumina (óxido de alumínio), exceto corindo artificial",
+          "fob": 17250814783,
+          "pct": 0.32297546270992794
+        },
+        {
+          "uf": "PA",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 6688104569,
+          "pct": 0.12521690685322562
+        },
+        {
+          "uf": "PA",
+          "cuci": "684",
+          "nome": "Alumínio",
+          "fob": 5112315705,
+          "pct": 0.0957144663084988
+        },
+        {
+          "uf": "AP",
+          "cuci": "058",
+          "nome": "Frutas, preservados e preparações (exceto sucos de frutas)",
+          "fob": 135599640,
+          "pct": 0.0025387413303781022
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 435287.0,
+          "z_export": 0.86
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 282843.0,
+          "z_export": -0.32
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 662809.0,
+          "z_export": 2.61
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 457629.0,
+          "z_export": 0.87
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 404228.0,
+          "z_export": 0.47
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 431011.0,
+          "z_export": 0.65
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 341699.0,
+          "z_export": -0.01
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 523237.0,
+          "z_export": 1.33
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 353427.0,
+          "z_export": 0.04
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 378432.0,
+          "z_export": 0.22
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 310724.0,
+          "z_export": -0.29
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 503486.0,
+          "z_export": 1.18
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 667902.0,
+          "z_export": 2.39
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 394464.0,
+          "z_export": 0.25
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 410166.0,
+          "z_export": 0.36
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 563218.0,
+          "z_export": 1.48
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 251778.0,
+          "z_export": -0.82
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 431583.0,
+          "z_export": 0.5
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 424352.0,
+          "z_export": 0.44
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 643129.0,
+          "z_export": 2.05
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 607856.0,
+          "z_export": 1.69
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 424999.0,
+          "z_export": 0.34
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 581495.0,
+          "z_export": 1.45
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 350905.0,
+          "z_export": -0.21
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 620914.0,
+          "z_export": 1.68
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 493672.0,
+          "z_export": 0.73
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 440641.0,
+          "z_export": 0.36
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 293551.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 355844.0,
+          "z_export": -0.23
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 340533.0,
+          "z_export": -0.34
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 288994.0,
+          "z_export": -0.71
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 415910.0,
+          "z_export": 0.16
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 301491.0,
+          "z_export": -0.69
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 403531.0,
+          "z_export": 0.05
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 314647.0,
+          "z_export": -0.64
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 401902.0,
+          "z_export": 0.02
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 309469.0,
+          "z_export": -0.71
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 307723.0,
+          "z_export": -0.75
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 300219.0,
+          "z_export": -0.8
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 281478.0,
+          "z_export": -0.94
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 201741.0,
+          "z_export": -1.66
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 325572.0,
+          "z_export": -0.64
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 316692.0,
+          "z_export": -0.79
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 325885.0,
+          "z_export": -0.73
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 542075.0,
+          "z_export": 1.1
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 360908.0,
+          "z_export": -0.44
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 410558.0,
+          "z_export": -0.01
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 371882.0,
+          "z_export": -0.32
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 415320.0,
+          "z_export": 0.04
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 674164.0,
+          "z_export": 2.27
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 456651.0,
+          "z_export": 0.33
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 478940.0,
+          "z_export": 0.56
+        }
+      ]
+    },
+    {
+      "porto": "Itaguaí",
+      "portid_pw": "port2045",
+      "week": "2026-03-23",
+      "export_vol": 1600685.0,
+      "z_export": 0.54,
+      "z_portcalls": 0.84,
+      "status": "normal",
+      "direction": "positive",
+      "n_anomalias": 61,
+      "pct_global": 32.8,
+      "pct_nacional": 63.9,
+      "pct_isolado": 3.3,
+      "fingerprint": {
+        "atracacoes": 0.616,
+        "tonelagem_exp": 0.571,
+        "t1_mediano": 1.0,
+        "tatracado_mediano": 0.628
+      },
+      "hhi_pauta": 0.3485,
+      "fob_total": 235989587920,
+      "top_chains": [
+        {
+          "uf": "RJ",
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob": 113568631068,
+          "pct": 0.5638790282641006
+        },
+        {
+          "uf": "MG",
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob": 64219911851,
+          "pct": 0.31885795531043903
+        },
+        {
+          "uf": "RJ",
+          "cuci": "672",
+          "nome": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+          "fob": 23614816976,
+          "pct": 0.11724980678061077
+        },
+        {
+          "uf": "CB",
+          "cuci": "931",
+          "nome": "Operações especiais e commodities não classificadas de acordo com o tipo",
+          "fob": 2660502,
+          "pct": 1.3209644849522228e-05
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 774745.0,
+          "z_export": -1.56
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 1296013.0,
+          "z_export": 0.36
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 1405240.0,
+          "z_export": 0.75
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 1205640.0,
+          "z_export": 0.01
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 994656.0,
+          "z_export": -0.76
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 1128685.0,
+          "z_export": -0.25
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 1423825.0,
+          "z_export": 0.86
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 1773777.0,
+          "z_export": 2.15
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 1983424.0,
+          "z_export": 2.74
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 1457453.0,
+          "z_export": 0.73
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 1223404.0,
+          "z_export": -0.06
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 2151420.0,
+          "z_export": 3.07
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 1510846.0,
+          "z_export": 0.76
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 1029251.0,
+          "z_export": -0.74
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 1326168.0,
+          "z_export": 0.19
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 1733099.0,
+          "z_export": 1.47
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 1304680.0,
+          "z_export": 0.09
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 935187.0,
+          "z_export": -1.07
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 1461227.0,
+          "z_export": 0.6
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 1888575.0,
+          "z_export": 1.94
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 1635032.0,
+          "z_export": 1.07
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 1950521.0,
+          "z_export": 2.02
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 679357.0,
+          "z_export": -1.87
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 2076437.0,
+          "z_export": 2.28
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 1485671.0,
+          "z_export": 0.47
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 1704647.0,
+          "z_export": 1.08
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 1284016.0,
+          "z_export": -0.12
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 1422149.0,
+          "z_export": 0.26
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 1523728.0,
+          "z_export": 0.55
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 2309995.0,
+          "z_export": 2.79
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 1391562.0,
+          "z_export": 0.11
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 1606140.0,
+          "z_export": 0.66
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 1402993.0,
+          "z_export": 0.08
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 1141442.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 1595007.0,
+          "z_export": 0.61
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 1168269.0,
+          "z_export": -0.58
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 1863462.0,
+          "z_export": 1.34
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 1069324.0,
+          "z_export": -0.89
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 2373165.0,
+          "z_export": 2.68
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 1173811.0,
+          "z_export": -0.61
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 963404.0,
+          "z_export": -1.2
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 1026335.0,
+          "z_export": -1.0
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 1384224.0,
+          "z_export": -0.06
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 994784.0,
+          "z_export": -1.08
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 977773.0,
+          "z_export": -1.09
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 838299.0,
+          "z_export": -1.46
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 1252509.0,
+          "z_export": -0.38
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 791528.0,
+          "z_export": -1.55
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 1342123.0,
+          "z_export": -0.11
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 986456.0,
+          "z_export": -0.99
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 1491954.0,
+          "z_export": 0.29
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 1600685.0,
+          "z_export": 0.54
+        }
+      ]
+    },
+    {
+      "porto": "Vitória",
+      "portid_pw": "port1368",
+      "week": "2026-03-23",
+      "export_vol": 9694.0,
+      "z_export": -0.42,
+      "z_portcalls": -1.06,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 94,
+      "pct_global": 30.9,
+      "pct_nacional": 66.0,
+      "pct_isolado": 3.2,
+      "fingerprint": {
+        "atracacoes": 0.715,
+        "tonelagem_exp": 0.415,
+        "t1_mediano": 0.645,
+        "tatracado_mediano": 1.0
+      },
+      "hhi_pauta": 0.2256,
+      "fob_total": 193521593759,
+      "top_chains": [
+        {
+          "uf": "MG",
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob": 46803086144,
+          "pct": 0.39738222774967363
+        },
+        {
+          "uf": "ES",
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob": 33720218401,
+          "pct": 0.28630196451506285
+        },
+        {
+          "uf": "ES",
+          "cuci": "672",
+          "nome": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+          "fob": 15076684504,
+          "pct": 0.12800879106230809
+        },
+        {
+          "uf": "BA",
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob": 11802109316,
+          "pct": 0.10020596671141722
+        },
+        {
+          "uf": "ES",
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob": 10376410274,
+          "pct": 0.08810104996153822
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 3831.0,
+          "z_export": -0.82
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 3000.0,
+          "z_export": -0.84
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 59636.0,
+          "z_export": 2.12
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 27158.0,
+          "z_export": 0.35
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 7276.0,
+          "z_export": -0.65
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 1308.0,
+          "z_export": -0.94
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 6599.0,
+          "z_export": -0.65
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 508.0,
+          "z_export": -0.95
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 53699.0,
+          "z_export": 1.8
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 6989.0,
+          "z_export": -0.62
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 0.0,
+          "z_export": -0.96
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 15943.0,
+          "z_export": -0.14
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 0.0,
+          "z_export": -0.95
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 48406.0,
+          "z_export": 1.54
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 8228.0,
+          "z_export": -0.53
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 2279.0,
+          "z_export": -0.83
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 33441.0,
+          "z_export": 0.77
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 0.0,
+          "z_export": -0.95
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 40153.0,
+          "z_export": 1.12
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 51.0,
+          "z_export": -0.95
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 18418.0,
+          "z_export": 0.01
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 8977.0,
+          "z_export": -0.48
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 3045.0,
+          "z_export": -0.78
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 22865.0,
+          "z_export": 0.27
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 22738.0,
+          "z_export": 0.24
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 8567.0,
+          "z_export": -0.49
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 36643.0,
+          "z_export": 1.05
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 51.0,
+          "z_export": -0.95
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 15097.0,
+          "z_export": -0.14
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 890.0,
+          "z_export": -0.9
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 9220.0,
+          "z_export": -0.41
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 32124.0,
+          "z_export": 0.84
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 26106.0,
+          "z_export": 0.49
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 48.0,
+          "z_export": -0.95
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 1800.0,
+          "z_export": -0.82
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 41243.0,
+          "z_export": 1.35
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 7402.0,
+          "z_export": -0.49
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 6510.0,
+          "z_export": -0.55
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 9446.0,
+          "z_export": -0.34
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 36472.0,
+          "z_export": 1.33
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 15633.0,
+          "z_export": 0.01
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 28394.0,
+          "z_export": 0.78
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 6906.0,
+          "z_export": -0.58
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 48.0,
+          "z_export": -0.99
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 16234.0,
+          "z_export": 0.02
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 13827.0,
+          "z_export": -0.15
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 60071.0,
+          "z_export": 2.71
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 13364.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 4362.0,
+          "z_export": -0.73
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 22636.0,
+          "z_export": 0.36
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 19042.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 9694.0,
+          "z_export": -0.42
+        }
+      ]
+    },
+    {
+      "porto": "Imbituba",
+      "portid_pw": "port492",
+      "week": "2026-03-23",
+      "export_vol": 44937.0,
+      "z_export": -0.23,
+      "z_portcalls": 1.08,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 118,
+      "pct_global": 51.7,
+      "pct_nacional": 39.8,
+      "pct_isolado": 8.5,
+      "fingerprint": {
+        "atracacoes": 0.519,
+        "tonelagem_exp": 0.94,
+        "t1_mediano": 0.903,
+        "tatracado_mediano": 0.331
+      },
+      "hhi_pauta": 0.1269,
+      "fob_total": 8112678425,
+      "top_chains": [],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 23218.0,
+          "z_export": -0.82
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 31808.0,
+          "z_export": -0.57
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 85160.0,
+          "z_export": 0.89
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 78103.0,
+          "z_export": 0.67
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 69120.0,
+          "z_export": 0.41
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 20082.0,
+          "z_export": -0.96
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 36026.0,
+          "z_export": -0.49
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 38092.0,
+          "z_export": -0.42
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 44789.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 43100.0,
+          "z_export": -0.27
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 72404.0,
+          "z_export": 0.59
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 32722.0,
+          "z_export": -0.59
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 112461.0,
+          "z_export": 1.79
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 36294.0,
+          "z_export": -0.5
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 16560.0,
+          "z_export": -1.07
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 63954.0,
+          "z_export": 0.34
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 35215.0,
+          "z_export": -0.51
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 65679.0,
+          "z_export": 0.4
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 82164.0,
+          "z_export": 0.89
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 24160.0,
+          "z_export": -0.87
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 34220.0,
+          "z_export": -0.55
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 92191.0,
+          "z_export": 1.21
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 50346.0,
+          "z_export": -0.08
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 49011.0,
+          "z_export": -0.12
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 101407.0,
+          "z_export": 1.47
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 66308.0,
+          "z_export": 0.36
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 82232.0,
+          "z_export": 0.94
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 48072.0,
+          "z_export": -0.16
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 43001.0,
+          "z_export": -0.33
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 81442.0,
+          "z_export": 1.04
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 18997.0,
+          "z_export": -1.12
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 51508.0,
+          "z_export": 0.03
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 2228.0,
+          "z_export": -1.65
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 42995.0,
+          "z_export": -0.21
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 53511.0,
+          "z_export": 0.12
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 14190.0,
+          "z_export": -1.27
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 4280.0,
+          "z_export": -1.59
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 43806.0,
+          "z_export": -0.16
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 84762.0,
+          "z_export": 1.26
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 60682.0,
+          "z_export": 0.35
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 73979.0,
+          "z_export": 0.82
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 41294.0,
+          "z_export": -0.38
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 57616.0,
+          "z_export": 0.2
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 102846.0,
+          "z_export": 1.85
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 61545.0,
+          "z_export": 0.28
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 66176.0,
+          "z_export": 0.42
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 4446.0,
+          "z_export": -1.9
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 48258.0,
+          "z_export": -0.23
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 75365.0,
+          "z_export": 0.77
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 5989.0,
+          "z_export": -1.76
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 3701.0,
+          "z_export": -1.77
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 44937.0,
+          "z_export": -0.23
+        }
+      ]
+    },
+    {
+      "porto": "Porto Alegre",
+      "portid_pw": "port997",
+      "week": "2026-03-23",
+      "export_vol": 0.0,
+      "z_export": -0.21,
+      "z_portcalls": -0.02,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 47,
+      "pct_global": 57.4,
+      "pct_nacional": 38.3,
+      "pct_isolado": 4.3,
+      "fingerprint": {
+        "atracacoes": 1.0,
+        "tonelagem_exp": 0.743,
+        "t1_mediano": 0.0,
+        "tatracado_mediano": 0.721
+      },
+      "hhi_pauta": null,
+      "fob_total": 0,
+      "top_chains": [],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 0.0,
+          "z_export": -0.44
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 426.0,
+          "z_export": 3.76
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 0.0,
+          "z_export": -0.46
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 38.0,
+          "z_export": -0.14
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 76.0,
+          "z_export": 0.19
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 0.0,
+          "z_export": -0.47
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 0.0,
+          "z_export": -0.46
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 4694.0,
+          "z_export": 40.89
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 0.0,
+          "z_export": -0.23
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 38.0,
+          "z_export": -0.18
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 38.0,
+          "z_export": -0.17
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 0.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 10052.0,
+          "z_export": 13.49
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 0.0,
+          "z_export": -0.23
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 0.0,
+          "z_export": -0.23
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 0.0,
+          "z_export": -0.23
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 0.0,
+          "z_export": -0.23
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 38.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 0.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 0.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 0.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 0.0,
+          "z_export": -0.22
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 0.0,
+          "z_export": -0.21
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 0.0,
+          "z_export": -0.21
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 76.0,
+          "z_export": -0.16
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 0.0,
+          "z_export": -0.21
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 0.0,
+          "z_export": -0.21
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 38.0,
+          "z_export": -0.18
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 38.0,
+          "z_export": -0.18
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 38.0,
+          "z_export": -0.18
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 426.0,
+          "z_export": 0.08
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 0.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 776.0,
+          "z_export": 0.31
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 0.0,
+          "z_export": -0.21
+        }
+      ]
+    },
+    {
+      "porto": "Pecém",
+      "portid_pw": "port1010",
+      "week": "2026-03-23",
+      "export_vol": 85366.0,
+      "z_export": 0.2,
+      "z_portcalls": -0.89,
+      "status": "normal",
+      "direction": "positive",
+      "n_anomalias": 109,
+      "pct_global": 25.7,
+      "pct_nacional": 72.5,
+      "pct_isolado": 1.8,
+      "fingerprint": {
+        "atracacoes": 0.84,
+        "tonelagem_exp": 0.678,
+        "t1_mediano": 0.541,
+        "tatracado_mediano": 0.659
+      },
+      "hhi_pauta": 0.2492,
+      "fob_total": 22078883018,
+      "top_chains": [
+        {
+          "uf": "CE",
+          "cuci": "672",
+          "nome": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+          "fob": 10012250845,
+          "pct": 0.6899228001544582
+        },
+        {
+          "uf": "CE",
+          "cuci": "851",
+          "nome": "Calçados",
+          "fob": 1244317617,
+          "pct": 0.08574326671318656
+        },
+        {
+          "uf": "CE",
+          "cuci": "057",
+          "nome": "Frutas e nozes não oleaginosas, frescas ou secas",
+          "fob": 1190799441,
+          "pct": 0.08205544362358447
+        },
+        {
+          "uf": "RN",
+          "cuci": "057",
+          "nome": "Frutas e nozes não oleaginosas, frescas ou secas",
+          "fob": 1162902479,
+          "pct": 0.08013312361414782
+        },
+        {
+          "uf": "PE",
+          "cuci": "057",
+          "nome": "Frutas e nozes não oleaginosas, frescas ou secas",
+          "fob": 901861762,
+          "pct": 0.062145365894623016
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 54373.0,
+          "z_export": -0.46
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 153588.0,
+          "z_export": 1.45
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 45730.0,
+          "z_export": -0.65
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 112263.0,
+          "z_export": 0.63
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 96760.0,
+          "z_export": 0.32
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 83383.0,
+          "z_export": 0.05
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 121673.0,
+          "z_export": 0.81
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 104824.0,
+          "z_export": 0.45
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 56743.0,
+          "z_export": -0.52
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 81186.0,
+          "z_export": -0.01
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 73424.0,
+          "z_export": -0.17
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 69953.0,
+          "z_export": -0.24
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 84782.0,
+          "z_export": 0.07
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 15769.0,
+          "z_export": -1.4
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 11087.0,
+          "z_export": -1.45
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 37996.0,
+          "z_export": -0.84
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 117598.0,
+          "z_export": 0.84
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 29547.0,
+          "z_export": -1.03
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 129128.0,
+          "z_export": 1.09
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 17183.0,
+          "z_export": -1.28
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 130924.0,
+          "z_export": 1.12
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 13290.0,
+          "z_export": -1.35
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 83511.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 62951.0,
+          "z_export": -0.29
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 164219.0,
+          "z_export": 1.82
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 76121.0,
+          "z_export": -0.05
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 46397.0,
+          "z_export": -0.7
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 112380.0,
+          "z_export": 0.71
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 77422.0,
+          "z_export": -0.03
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 63129.0,
+          "z_export": -0.35
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 88537.0,
+          "z_export": 0.21
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 157394.0,
+          "z_export": 1.71
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 36272.0,
+          "z_export": -0.91
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 87347.0,
+          "z_export": 0.17
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 75599.0,
+          "z_export": -0.08
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 135938.0,
+          "z_export": 1.29
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 36464.0,
+          "z_export": -0.93
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 97504.0,
+          "z_export": 0.42
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 81539.0,
+          "z_export": 0.1
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 127497.0,
+          "z_export": 1.11
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 35687.0,
+          "z_export": -0.99
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 41168.0,
+          "z_export": -0.83
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 94953.0,
+          "z_export": 0.41
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 102902.0,
+          "z_export": 0.57
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 65504.0,
+          "z_export": -0.32
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 53544.0,
+          "z_export": -0.6
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 34882.0,
+          "z_export": -1.07
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 85595.0,
+          "z_export": 0.23
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 64368.0,
+          "z_export": -0.34
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 39590.0,
+          "z_export": -0.98
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 93446.0,
+          "z_export": 0.43
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 85366.0,
+          "z_export": 0.2
+        }
+      ]
+    },
+    {
+      "porto": "Paranaguá",
+      "portid_pw": "port885",
+      "week": "2026-03-23",
+      "export_vol": 744377.0,
+      "z_export": -0.12,
+      "z_portcalls": -0.24,
+      "status": "normal",
+      "direction": "negative",
+      "n_anomalias": 131,
+      "pct_global": 35.9,
+      "pct_nacional": 61.8,
+      "pct_isolado": 2.3,
+      "fingerprint": {
+        "atracacoes": 0.583,
+        "tonelagem_exp": 0.499,
+        "t1_mediano": 0.938,
+        "tatracado_mediano": 0.82
+      },
+      "hhi_pauta": 0.1125,
+      "fob_total": 246943751317,
+      "top_chains": [
+        {
+          "uf": "PR",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 37503709059,
+          "pct": 0.36722228914065785
+        },
+        {
+          "uf": "PR",
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob": 26697433414,
+          "pct": 0.2614112806028359
+        },
+        {
+          "uf": "PR",
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob": 16504288288,
+          "pct": 0.16160381673775476
+        },
+        {
+          "uf": "PR",
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob": 11191994551,
+          "pct": 0.10958782376970523
+        },
+        {
+          "uf": "MS",
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob": 10230659415,
+          "pct": 0.10017478974904619
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-31",
+          "export_vol": 861625.0,
+          "z_export": 0.75
+        },
+        {
+          "week": "2025-04-07",
+          "export_vol": 668219.0,
+          "z_export": -0.07
+        },
+        {
+          "week": "2025-04-14",
+          "export_vol": 781760.0,
+          "z_export": 0.41
+        },
+        {
+          "week": "2025-04-21",
+          "export_vol": 720507.0,
+          "z_export": 0.14
+        },
+        {
+          "week": "2025-04-28",
+          "export_vol": 703946.0,
+          "z_export": 0.07
+        },
+        {
+          "week": "2025-05-05",
+          "export_vol": 597955.0,
+          "z_export": -0.4
+        },
+        {
+          "week": "2025-05-12",
+          "export_vol": 728952.0,
+          "z_export": 0.19
+        },
+        {
+          "week": "2025-05-19",
+          "export_vol": 378466.0,
+          "z_export": -1.39
+        },
+        {
+          "week": "2025-05-26",
+          "export_vol": 888463.0,
+          "z_export": 0.93
+        },
+        {
+          "week": "2025-06-02",
+          "export_vol": 891354.0,
+          "z_export": 0.92
+        },
+        {
+          "week": "2025-06-09",
+          "export_vol": 457583.0,
+          "z_export": -1.04
+        },
+        {
+          "week": "2025-06-16",
+          "export_vol": 1064141.0,
+          "z_export": 1.7
+        },
+        {
+          "week": "2025-06-23",
+          "export_vol": 717098.0,
+          "z_export": 0.1
+        },
+        {
+          "week": "2025-06-30",
+          "export_vol": 785125.0,
+          "z_export": 0.4
+        },
+        {
+          "week": "2025-07-07",
+          "export_vol": 1102040.0,
+          "z_export": 1.81
+        },
+        {
+          "week": "2025-07-14",
+          "export_vol": 1069627.0,
+          "z_export": 1.59
+        },
+        {
+          "week": "2025-07-21",
+          "export_vol": 1102869.0,
+          "z_export": 1.67
+        },
+        {
+          "week": "2025-07-28",
+          "export_vol": 1090624.0,
+          "z_export": 1.55
+        },
+        {
+          "week": "2025-08-04",
+          "export_vol": 756638.0,
+          "z_export": 0.11
+        },
+        {
+          "week": "2025-08-11",
+          "export_vol": 998701.0,
+          "z_export": 1.12
+        },
+        {
+          "week": "2025-08-18",
+          "export_vol": 1064944.0,
+          "z_export": 1.38
+        },
+        {
+          "week": "2025-08-25",
+          "export_vol": 766795.0,
+          "z_export": 0.1
+        },
+        {
+          "week": "2025-09-01",
+          "export_vol": 694068.0,
+          "z_export": -0.2
+        },
+        {
+          "week": "2025-09-08",
+          "export_vol": 1023433.0,
+          "z_export": 1.19
+        },
+        {
+          "week": "2025-09-15",
+          "export_vol": 814024.0,
+          "z_export": 0.25
+        },
+        {
+          "week": "2025-09-22",
+          "export_vol": 690313.0,
+          "z_export": -0.3
+        },
+        {
+          "week": "2025-09-29",
+          "export_vol": 692004.0,
+          "z_export": -0.28
+        },
+        {
+          "week": "2025-10-06",
+          "export_vol": 563044.0,
+          "z_export": -0.86
+        },
+        {
+          "week": "2025-10-13",
+          "export_vol": 986217.0,
+          "z_export": 0.99
+        },
+        {
+          "week": "2025-10-20",
+          "export_vol": 970194.0,
+          "z_export": 0.88
+        },
+        {
+          "week": "2025-10-27",
+          "export_vol": 428001.0,
+          "z_export": -1.51
+        },
+        {
+          "week": "2025-11-03",
+          "export_vol": 933067.0,
+          "z_export": 0.71
+        },
+        {
+          "week": "2025-11-10",
+          "export_vol": 823969.0,
+          "z_export": 0.21
+        },
+        {
+          "week": "2025-11-17",
+          "export_vol": 853493.0,
+          "z_export": 0.31
+        },
+        {
+          "week": "2025-11-24",
+          "export_vol": 832864.0,
+          "z_export": 0.21
+        },
+        {
+          "week": "2025-12-01",
+          "export_vol": 977262.0,
+          "z_export": 0.83
+        },
+        {
+          "week": "2025-12-08",
+          "export_vol": 567068.0,
+          "z_export": -1.13
+        },
+        {
+          "week": "2025-12-15",
+          "export_vol": 703699.0,
+          "z_export": -0.48
+        },
+        {
+          "week": "2025-12-22",
+          "export_vol": 655571.0,
+          "z_export": -0.73
+        },
+        {
+          "week": "2025-12-29",
+          "export_vol": 529277.0,
+          "z_export": -1.4
+        },
+        {
+          "week": "2026-01-05",
+          "export_vol": 439644.0,
+          "z_export": -1.89
+        },
+        {
+          "week": "2026-01-12",
+          "export_vol": 557345.0,
+          "z_export": -1.26
+        },
+        {
+          "week": "2026-01-19",
+          "export_vol": 694037.0,
+          "z_export": -0.57
+        },
+        {
+          "week": "2026-01-26",
+          "export_vol": 836878.0,
+          "z_export": 0.13
+        },
+        {
+          "week": "2026-02-02",
+          "export_vol": 964272.0,
+          "z_export": 0.75
+        },
+        {
+          "week": "2026-02-09",
+          "export_vol": 705912.0,
+          "z_export": -0.52
+        },
+        {
+          "week": "2026-02-16",
+          "export_vol": 470705.0,
+          "z_export": -1.65
+        },
+        {
+          "week": "2026-02-23",
+          "export_vol": 605243.0,
+          "z_export": -0.94
+        },
+        {
+          "week": "2026-03-02",
+          "export_vol": 609889.0,
+          "z_export": -0.9
+        },
+        {
+          "week": "2026-03-09",
+          "export_vol": 537256.0,
+          "z_export": -1.25
+        },
+        {
+          "week": "2026-03-16",
+          "export_vol": 642809.0,
+          "z_export": -0.67
+        },
+        {
+          "week": "2026-03-23",
+          "export_vol": 744377.0,
+          "z_export": -0.12
+        }
+      ]
+    }
+  ]
+}

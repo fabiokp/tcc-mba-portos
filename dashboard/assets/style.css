@@ -1,0 +1,588 @@
+/* ── Snap scroll (DISABLED for debug) ── */
+html {
+  /* scroll-snap-type: y mandatory; */
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.tela {
+  /* scroll-snap-align: start; */
+  min-height: 100vh;
+  /* max-height: 100vh; */
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 5vw;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* ── Tela number watermark ── */
+.tela-number {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(79, 195, 247, 0.07);
+  pointer-events: none;
+  line-height: 1;
+  z-index: 0;
+}
+
+/* ── Tipografia ── */
+.tela h2 {
+  font-size: 2rem;
+  color: #4fc3f7;
+  margin-bottom: 0.3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.tela .subtitulo {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 1rem;
+}
+
+.stat-big {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #4fc3f7;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #999;
+}
+
+/* ── Metric cards ── */
+.metric-card {
+  background: #1a2a3e;
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  text-align: center;
+}
+
+.metric-card .stat-big {
+  font-size: 2.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.metric-card .stat-label {
+  font-size: 0.85rem;
+}
+
+/* ── Layout grids ── */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Radar layout: table wider than detail card */
+.grid-radar {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 2rem;
+  align-items: start;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Hide checkbox column in Inputs.table for radar */
+.grid-radar table th:first-child,
+.grid-radar table td:first-child {
+  display: none !important;
+}
+
+/* Radar table row styling */
+.grid-radar table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.grid-radar table tbody tr:hover {
+  background-color: rgba(79, 195, 247, 0.15) !important;
+}
+
+.grid-radar table tbody tr[aria-selected="true"],
+.grid-radar table tbody tr.selected {
+  background-color: rgba(79, 195, 247, 0.25) !important;
+  border-left: 3px solid #4fc3f7;
+}
+
+/* Make table fill height */
+.grid-radar > div:first-child {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ── Highlight band (evento) ── */
+.event-band {
+  background: rgba(255, 0, 0, 0.08);
+  border-left: 3px solid #ff5252;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1rem 0;
+}
+
+.event-band.blue {
+  background: rgba(79, 195, 247, 0.08);
+  border-left-color: #4fc3f7;
+}
+
+/* ── Callout box ── */
+.callout-box {
+  background: rgba(79, 195, 247, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.25);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #d8dee9;
+  line-height: 1.6;
+}
+
+.callout-box strong {
+  color: #4fc3f7;
+}
+
+/* ── Text panel (right side) ── */
+.text-panel {
+  background: rgba(26, 42, 62, 0.6);
+  border: 1px solid rgba(79, 195, 247, 0.12);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  font-size: 0.88rem;
+  color: #c8d0dc;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.text-panel h3 {
+  color: #4fc3f7;
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.text-panel h4 {
+  color: #8bb8cc;
+  font-size: 0.9rem;
+  margin: 0.8rem 0 0.3rem 0;
+  font-weight: 600;
+}
+
+.text-panel p {
+  margin: 0.4rem 0;
+}
+
+.text-panel ul, .text-panel ol {
+  padding-left: 1.2rem;
+  margin: 0.3rem 0;
+}
+
+.text-panel li {
+  margin-bottom: 0.25rem;
+}
+
+.text-panel strong {
+  color: #4fc3f7;
+}
+
+.text-panel .source-tag {
+  display: inline-block;
+  background: rgba(79, 195, 247, 0.12);
+  border: 1px solid rgba(79, 195, 247, 0.25);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  color: #4fc3f7;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.text-panel .highlight-number {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #4fc3f7;
+  line-height: 1.2;
+}
+
+.text-panel .highlight-label {
+  font-size: 0.78rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Pipeline bar ── */
+.pipeline-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 0.8rem;
+  font-size: 0.8rem;
+  flex-wrap: nowrap;
+}
+
+.pipeline-step {
+  background: #1a2a3e;
+  color: #8aa;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  white-space: nowrap;
+}
+
+.pipeline-step:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.pipeline-step:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.pipeline-step.active {
+  background: rgba(79, 195, 247, 0.2);
+  color: #4fc3f7;
+  border-color: #4fc3f7;
+  font-weight: 600;
+}
+
+.pipeline-arrow {
+  color: #4fc3f7;
+  font-size: 1rem;
+  padding: 0 0.2rem;
+}
+
+/* ── Filtro/selector styling ── */
+.cell-output-display:has(form),
+.cell-output-display:has(.observablehq--inspect) {
+  margin-bottom: 0.8rem;
+  flex-shrink: 0;
+}
+
+.ojs-input select, .ojs-input input {
+  background: #1e1e3e;
+  color: #eee;
+  border: 1px solid #4fc3f7;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.ojs-input label {
+  color: #8aa;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.ojs-input {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1.2rem;
+}
+
+/* ── Viz containers ── */
+.viz-container {
+  background: #16213e;
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Tooltip ── */
+.tooltip {
+  position: absolute;
+  background: rgba(22, 33, 62, 0.95);
+  border: 1px solid #4fc3f7;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #eee;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ── Title slide ── */
+.tela h1 {
+  font-size: 2.8rem;
+  color: #4fc3f7;
+  margin-bottom: 0.5rem;
+}
+
+.tela h4 {
+  color: #aaa;
+  font-weight: 400;
+}
+
+/* ── SVG responsive ── */
+svg {
+  max-width: 100%;
+  max-height: 60vh;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ── Legend items ── */
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1.2rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+/* ── Selector inline row ── */
+.selector-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ── Stats row for tela 1 ── */
+.stats-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ══════════════════════════════════════════ */
+/* ── Tela 11 — Methodology section        ── */
+/* ══════════════════════════════════════════ */
+
+.tela-methodology {
+  justify-content: flex-start;
+  padding-top: 1.5rem;
+}
+
+.method-grid {
+  margin-top: 0.5rem;
+}
+
+.method-card {
+  background: rgba(26, 42, 62, 0.85);
+  border: 1px solid rgba(79, 195, 247, 0.18);
+  border-radius: 12px;
+  padding: 0.8rem 1.1rem;
+  font-size: 0.85rem;
+  color: #d0d8e8;
+  line-height: 1.5;
+}
+
+.method-card.compact {
+  padding: 0.7rem 1rem;
+  font-size: 0.82rem;
+}
+
+.method-card h3 {
+  color: #4fc3f7;
+  font-size: 1.05rem;
+  margin: 0 0 0.3rem 0;
+  border-bottom: 1px solid rgba(79, 195, 247, 0.15);
+  padding-bottom: 0.3rem;
+}
+
+.method-card h4 {
+  color: #4fc3f7;
+  font-size: 0.95rem;
+  margin: 0 0 0.4rem 0;
+}
+
+.method-icon {
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 0.2rem 0 0.5rem 0;
+  opacity: 0.8;
+}
+
+.method-card ol {
+  padding-left: 1.2rem;
+  margin: 0.3rem 0;
+}
+
+.method-card ol li {
+  margin-bottom: 0.15rem;
+}
+
+.method-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.4rem 0;
+  font-size: 0.8rem;
+}
+
+.method-card table th {
+  text-align: left;
+  color: #8aa;
+  border-bottom: 1px solid #333;
+  padding: 0.2rem 0.4rem;
+  font-weight: 600;
+}
+
+.method-card table td {
+  padding: 0.2rem 0.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.method-detail {
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.78rem;
+  color: #999;
+}
+
+.detail-label {
+  color: #4fc3f7;
+  font-weight: 600;
+}
+
+/* ── Results table ── */
+.results-table-wrapper {
+  margin: 0.8rem 0;
+}
+
+.results-table {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.results-table thead th {
+  background: rgba(79, 195, 247, 0.1);
+  color: #4fc3f7;
+  padding: 0.5rem 0.8rem;
+  text-align: left;
+  border-bottom: 2px solid rgba(79, 195, 247, 0.3);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.results-table tbody td {
+  padding: 0.45rem 0.8rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: #ccc;
+}
+
+.results-table tbody tr:hover {
+  background: rgba(79, 195, 247, 0.05);
+}
+
+.highlight-green {
+  color: #3fb950;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ── Pipeline bar large variant ── */
+.pipeline-lg .pipeline-step {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.82rem;
+}
+
+.pipeline-lg .pipeline-arrow {
+  font-size: 1.1rem;
+}
+
+/* ── KaTeX in method cards ── */
+.method-card .katex {
+  font-size: 0.9em;
+}
+
+.method-card .katex-display {
+  margin: 0.3em 0;
+}
+
+/* ── Uniform methodology text ── */
+.tela-methodology .method-card li {
+  font-size: 0.85rem;
+}
+
+.tela-methodology .method-detail {
+  font-size: 0.78rem;
+}
+/* ── Radar Section ── */
+.radar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.radar-grid > div {
+  min-width: 0;
+}
+
+.radar-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.radar-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 900px) {
+  .radar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Seções suspensas (ocultas sem apagar código) ── */
+.secao-suspensa {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .radar-grid {
+    grid-template-columns: 1fr;
+  }
+}

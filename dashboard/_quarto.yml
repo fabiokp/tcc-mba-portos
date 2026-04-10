@@ -1,0 +1,18 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Vulnerabilidade Portuária — TCC"
+
+execute:
+  timeout: 300
+
+format:
+  html:
+    theme:
+      - darkly
+      - assets/theme-override.scss
+    css: assets/style.css
+    toc: false
+    page-layout: full

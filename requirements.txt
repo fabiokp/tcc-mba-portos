@@ -1,0 +1,27 @@
+﻿# Core data & ML
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.5
+scipy>=1.14
+xgboost>=2.1
+lightgbm>=4.5
+statsmodels>=0.14
+
+# Visualization
+matplotlib>=3.9
+seaborn>=0.13
+plotnine>=0.14
+squarify>=0.4
+
+# Geospatial
+geopandas>=1.0
+
+# Data I/O
+pyarrow>=17.0
+openpyxl>=3.1
+requests>=2.32
+
+# Notebooks
+jupyter>=1.0
+ipykernel>=6.29
+nbformat>=5.10

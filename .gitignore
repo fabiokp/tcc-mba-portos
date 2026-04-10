@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Data (raw/processed too large for git)
+data/raw/
+data/processed/
+data/output/
+
+# Dashboard build artifacts
+dashboard/_site/
+dashboard/.quarto/
+dashboard/figure-html/
+dashboard/_shots/
+dashboard/data/_ojs_*.json
+dashboard/data/_old/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/

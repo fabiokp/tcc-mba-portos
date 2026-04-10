@@ -1,0 +1,71 @@
+/*-- scss:defaults --*/
+
+// Lighter dark theme - not so oppressively dark
+$body-bg: #1e2a38;
+$body-color: #d8dee9;
+$card-bg: #253347;
+$navbar-bg: #1a2535;
+$pre-bg: #253347;
+
+// Subtle separator
+$hr-color: rgba(79, 195, 247, 0.15);
+$border-color: rgba(79, 195, 247, 0.1);
+
+/*-- scss:rules --*/
+
+body {
+  background: $body-bg;
+}
+
+// Full-width: reset ALL Quarto column constraints
+.quarto-container,
+.quarto-container.page-columns,
+.quarto-container.page-columns.page-rows-contents,
+.quarto-container.page-columns.page-rows-contents.page-layout-full {
+  max-width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-x: hidden !important;
+}
+
+main.content,
+main.content.column-page {
+  max-width: 100vw !important;
+  width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  grid-column: screen-start / screen-end !important;
+}
+
+// Quarto wraps each ::: section in <section class="level1">, etc.
+section.level1,
+section.level2 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+// Hide auto-generated title block
+#title-block-header,
+header#title-block-header,
+.quarto-title-block {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+section.tela {
+  background: $body-bg;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
+  padding: 1.5rem 5vw !important;
+}
+
+section.tela:nth-child(odd) {
+  background: darken($body-bg, 2%);
+}
+
+section.tela:nth-child(even) {
+  background: $body-bg;
+}
