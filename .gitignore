@@ -17,6 +17,17 @@ dashboard/_shots/
 dashboard/data/_ojs_*.json
 dashboard/data/_old/
 
+# Article build artifacts
+artigo/artigo_tcc.html
+artigo/artigo_tcc.pdf
+artigo/artigo_tcc.tex
+artigo/artigo_tcc_files/
+artigo/artigo_tcc_ex.qmd
+
+# Local scratch and release bundles
+_scratch/
+dist/
+
 # OS
 .DS_Store
 Thumbs.db

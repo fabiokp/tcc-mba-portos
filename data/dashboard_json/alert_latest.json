@@ -1,0 +1,165 @@
+{
+  "timestamp": "2026-03-11T10:28:30.550977",
+  "week_reference": "2026-03-02",
+  "data_source": "ComexStat/MDIC (FOB 2025 por cadeia × região de destino)",
+  "indices": {
+    "Global": {
+      "z_rapid": -0.791,
+      "z_confirmed": -0.653,
+      "level": "normal",
+      "direction": "negative",
+      "interpretation": ""
+    },
+    "Asia": {
+      "z_rapid": -0.728,
+      "z_confirmed": -0.64,
+      "level": "normal",
+      "direction": "negative",
+      "interpretation": ""
+    },
+    "Europe": {
+      "z_rapid": 0.731,
+      "z_confirmed": 1.192,
+      "level": "watch",
+      "direction": "positive",
+      "interpretation": "Pico de atividade — possível congestionamento, desvio de rotas ou recuperação pós-crise"
+    },
+    "Americas": {
+      "z_rapid": 0.925,
+      "z_confirmed": 1.081,
+      "level": "watch",
+      "direction": "positive",
+      "interpretation": "Pico de atividade — possível congestionamento, desvio de rotas ou recuperação pós-crise"
+    }
+  },
+  "active_alerts": 2,
+  "chains_at_risk": [
+    {
+      "CO_CUCI_GRUPO": "071a",
+      "fob_regional": 493174893,
+      "hhi_portuario": 0.683410354096388,
+      "porto_principal": "Santos",
+      "regiao_alerta": "Europe"
+    },
+    {
+      "CO_CUCI_GRUPO": "283b",
+      "fob_regional": 270238224,
+      "hhi_portuario": 0.653931171155376,
+      "porto_principal": "São Luís",
+      "regiao_alerta": "Europe"
+    },
+    {
+      "CO_CUCI_GRUPO": "059",
+      "fob_regional": 183873120,
+      "hhi_portuario": 0.8353852410425636,
+      "porto_principal": "Santos",
+      "regiao_alerta": "Europe"
+    },
+    {
+      "CO_CUCI_GRUPO": "011",
+      "fob_regional": 90950297,
+      "hhi_portuario": 0.4572716217435409,
+      "porto_principal": "Santos",
+      "regiao_alerta": "Europe"
+    },
+    {
+      "CO_CUCI_GRUPO": "285c",
+      "fob_regional": 80897804,
+      "hhi_portuario": 0.4984568691532797,
+      "porto_principal": "Vila do Conde",
+      "regiao_alerta": "Europe"
+    },
+    {
+      "CO_CUCI_GRUPO": "071a",
+      "fob_regional": 238552355,
+      "hhi_portuario": 0.683410354096388,
+      "porto_principal": "Santos",
+      "regiao_alerta": "Americas"
+    },
+    {
+      "CO_CUCI_GRUPO": "011",
+      "fob_regional": 193241519,
+      "hhi_portuario": 0.4572716217435409,
+      "porto_principal": "Santos",
+      "regiao_alerta": "Americas"
+    },
+    {
+      "CO_CUCI_GRUPO": "285c",
+      "fob_regional": 169351577,
+      "hhi_portuario": 0.4984568691532797,
+      "porto_principal": "Vila do Conde",
+      "regiao_alerta": "Americas"
+    },
+    {
+      "CO_CUCI_GRUPO": "723",
+      "fob_regional": 116564214,
+      "hhi_portuario": 0.8179457758737618,
+      "porto_principal": "Santos",
+      "regiao_alerta": "Americas"
+    },
+    {
+      "CO_CUCI_GRUPO": "684",
+      "fob_regional": 95803571,
+      "hhi_portuario": 0.444273186883139,
+      "porto_principal": "Vila do Conde",
+      "regiao_alerta": "Americas"
+    }
+  ],
+  "has_destination_data": true,
+  "port_exposure": {
+    "Europe": [
+      {
+        "porto": "Santos",
+        "fob_regional": 1408669631,
+        "pct_regiao": 0.1949616995850617
+      },
+      {
+        "porto": "São Luís",
+        "fob_regional": 429640666,
+        "pct_regiao": 0.2925337830308592
+      },
+      {
+        "porto": "Vitória",
+        "fob_regional": 307319158,
+        "pct_regiao": 0.225145631332626
+      },
+      {
+        "porto": "São João da Barra",
+        "fob_regional": 297013109,
+        "pct_regiao": 0.2005533636197951
+      },
+      {
+        "porto": "Paranaguá",
+        "fob_regional": 286286447,
+        "pct_regiao": 0.1664944401850492
+      }
+    ],
+    "Americas": [
+      {
+        "porto": "Santos",
+        "fob_regional": 1498300946,
+        "pct_regiao": 0.2073667895535584
+      },
+      {
+        "porto": "Rio de Janeiro",
+        "fob_regional": 383332097,
+        "pct_regiao": 0.6887316671922694
+      },
+      {
+        "porto": "São João da Barra",
+        "fob_regional": 348804737,
+        "pct_regiao": 0.2355248341980353
+      },
+      {
+        "porto": "Vitória",
+        "fob_regional": 295042298,
+        "pct_regiao": 0.2161514592365204
+      },
+      {
+        "porto": "Itaguaí",
+        "fob_regional": 218010007,
+        "pct_regiao": 0.1168656906665177
+      }
+    ]
+  }
+}

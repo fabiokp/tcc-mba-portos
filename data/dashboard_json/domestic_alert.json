@@ -1,0 +1,2637 @@
+{
+  "week_reference": "2026-03-02",
+  "domestic_alerts": [
+    {
+      "porto": "Suape",
+      "portid": "port1002",
+      "z_rapid": -0.801,
+      "z_confirmed": -0.853,
+      "mean_portcalls": 3.8,
+      "level": "normal",
+      "direction": "negative"
+    },
+    {
+      "porto": "Pecém",
+      "portid": "port1010",
+      "z_rapid": -2.768,
+      "z_confirmed": -1.693,
+      "mean_portcalls": 1.8,
+      "level": "warning",
+      "direction": "negative"
+    },
+    {
+      "porto": "Barra do Riacho",
+      "portid": "port1012",
+      "z_rapid": -0.908,
+      "z_confirmed": -0.455,
+      "mean_portcalls": 0.6,
+      "level": "normal",
+      "direction": "negative"
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "portid": "port1103",
+      "z_rapid": 0.74,
+      "z_confirmed": 0.561,
+      "mean_portcalls": 6.6,
+      "level": "normal",
+      "direction": "positive"
+    },
+    {
+      "porto": "Rio Grande",
+      "portid": "port1104",
+      "z_rapid": -0.57,
+      "z_confirmed": -0.06,
+      "mean_portcalls": 4.8,
+      "level": "normal",
+      "direction": "negative"
+    },
+    {
+      "porto": "Santos",
+      "portid": "port1160",
+      "z_rapid": 2.557,
+      "z_confirmed": 2.571,
+      "mean_portcalls": 16.6,
+      "level": "critical",
+      "direction": "positive"
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "portid": "port1161",
+      "z_rapid": 1.201,
+      "z_confirmed": 2.127,
+      "mean_portcalls": 1.4,
+      "level": "critical",
+      "direction": "positive"
+    },
+    {
+      "porto": "Vitória",
+      "portid": "port1368",
+      "z_rapid": null,
+      "z_confirmed": -2.42,
+      "mean_portcalls": 0.6,
+      "level": "critical",
+      "direction": "positive"
+    },
+    {
+      "porto": "São João da Barra",
+      "portid": "port166",
+      "z_rapid": 2.413,
+      "z_confirmed": 1.795,
+      "mean_portcalls": 2.8,
+      "level": "warning",
+      "direction": "positive"
+    },
+    {
+      "porto": "Itaguaí",
+      "portid": "port2045",
+      "z_rapid": 2.899,
+      "z_confirmed": 1.936,
+      "mean_portcalls": 3.2,
+      "level": "warning",
+      "direction": "positive"
+    },
+    {
+      "porto": "Vila do Conde",
+      "portid": "port2046",
+      "z_rapid": -0.37,
+      "z_confirmed": -0.843,
+      "mean_portcalls": 2.6,
+      "level": "normal",
+      "direction": "negative"
+    },
+    {
+      "porto": "Imbituba",
+      "portid": "port492",
+      "z_rapid": 0.992,
+      "z_confirmed": 0.885,
+      "mean_portcalls": 1.2,
+      "level": "normal",
+      "direction": "positive"
+    },
+    {
+      "porto": "Itajaí",
+      "portid": "port505",
+      "z_rapid": -2.35,
+      "z_confirmed": -1.354,
+      "mean_portcalls": 2.0,
+      "level": "watch",
+      "direction": "negative"
+    },
+    {
+      "porto": "São Luís",
+      "portid": "port506",
+      "z_rapid": 0.509,
+      "z_confirmed": 0.29,
+      "mean_portcalls": 4.6,
+      "level": "normal",
+      "direction": "positive"
+    },
+    {
+      "porto": "Salvador",
+      "portid": "port62",
+      "z_rapid": 2.518,
+      "z_confirmed": 2.8,
+      "mean_portcalls": 2.6,
+      "level": "critical",
+      "direction": "positive"
+    },
+    {
+      "porto": "Manaus",
+      "portid": "port693",
+      "z_rapid": 0.699,
+      "z_confirmed": 0.745,
+      "mean_portcalls": 1.4,
+      "level": "normal",
+      "direction": "positive"
+    },
+    {
+      "porto": "Paranaguá",
+      "portid": "port885",
+      "z_rapid": 5.098,
+      "z_confirmed": 1.746,
+      "mean_portcalls": 6.2,
+      "level": "warning",
+      "direction": "positive"
+    },
+    {
+      "porto": "Porto Alegre",
+      "portid": "port997",
+      "z_rapid": 1.367,
+      "z_confirmed": 2.367,
+      "mean_portcalls": 0.4,
+      "level": "critical",
+      "direction": "positive"
+    }
+  ],
+  "active_domestic_alerts": 10,
+  "fingerprints": {
+    "Barra do Riacho": {
+      "atracacoes": 0.99,
+      "tonelagem_exp": 0.601,
+      "t1_mediano": 0.772,
+      "tatracado_mediano": 1.0
+    },
+    "Imbituba": {
+      "atracacoes": 0.411,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.51,
+      "tatracado_mediano": 0.278
+    },
+    "Itaguaí": {
+      "atracacoes": 0.803,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.933,
+      "tatracado_mediano": 0.867
+    },
+    "Itajaí": {
+      "atracacoes": 0.222,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.519,
+      "tatracado_mediano": 0.389
+    },
+    "Manaus": {
+      "atracacoes": 0.591,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.615,
+      "tatracado_mediano": 0.542
+    },
+    "Paranaguá": {
+      "atracacoes": 0.672,
+      "tonelagem_exp": 0.773,
+      "t1_mediano": 0.773,
+      "tatracado_mediano": 1.0
+    },
+    "Pecém": {
+      "atracacoes": 0.924,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.425,
+      "tatracado_mediano": 0.766
+    },
+    "Porto Alegre": {
+      "atracacoes": 1.0,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.0,
+      "tatracado_mediano": 0.765
+    },
+    "Rio Grande": {
+      "atracacoes": 0.562,
+      "tonelagem_exp": 0.613,
+      "t1_mediano": 0.654,
+      "tatracado_mediano": 1.0
+    },
+    "Rio de Janeiro": {
+      "atracacoes": 0.388,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.535,
+      "tatracado_mediano": 0.875
+    },
+    "Salvador": {
+      "atracacoes": 0.675,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.714,
+      "tatracado_mediano": 0.524
+    },
+    "Santos": {
+      "atracacoes": 0.356,
+      "tonelagem_exp": 0.738,
+      "t1_mediano": 0.602,
+      "tatracado_mediano": 1.0
+    },
+    "Suape": {
+      "atracacoes": 1.0,
+      "tonelagem_exp": 0.538,
+      "t1_mediano": 0.538,
+      "tatracado_mediano": 0.707
+    },
+    "São Francisco do Sul": {
+      "atracacoes": 0.354,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.429,
+      "tatracado_mediano": 0.429
+    },
+    "São João da Barra": {
+      "atracacoes": 0.263,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.447,
+      "tatracado_mediano": 0.373
+    },
+    "São Luís": {
+      "atracacoes": 0.441,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.353,
+      "tatracado_mediano": 0.382
+    },
+    "Vila do Conde": {
+      "atracacoes": 0.758,
+      "tonelagem_exp": 1.0,
+      "t1_mediano": 0.514,
+      "tatracado_mediano": 0.381
+    },
+    "Vitória": {
+      "atracacoes": 0.676,
+      "tonelagem_exp": 0.527,
+      "t1_mediano": 0.434,
+      "tatracado_mediano": 1.0
+    }
+  },
+  "port_chains": {
+    "Pecém": [
+      {
+        "CO_CUCI_GRUPO": "672",
+        "NO_CUCI_GRUPO": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+        "fob": 10019028530.0,
+        "porto": "Pecém",
+        "hhi_portuario": 0.3568299361123871
+      },
+      {
+        "CO_CUCI_GRUPO": "057",
+        "NO_CUCI_GRUPO": "Frutas e nozes não oleaginosas, frescas ou secas",
+        "fob": 4136730908.0,
+        "porto": "Pecém",
+        "hhi_portuario": 0.3794246011451703
+      },
+      {
+        "CO_CUCI_GRUPO": "851",
+        "NO_CUCI_GRUPO": "Calçados",
+        "fob": 1256633123.0,
+        "porto": "Pecém",
+        "hhi_portuario": 0.2406965563898392
+      },
+      {
+        "CO_CUCI_GRUPO": "716",
+        "NO_CUCI_GRUPO": "Geradores elétricos giratórios e suas partes",
+        "fob": 807298583.0,
+        "porto": "Pecém",
+        "hhi_portuario": 0.2289051779053956
+      },
+      {
+        "CO_CUCI_GRUPO": "431",
+        "NO_CUCI_GRUPO": "Outras gorduras e óleos animais ou vegetais, processados, ceras, misturas ou preparações não alimentícias",
+        "fob": 673265565.0,
+        "porto": "Pecém",
+        "hhi_portuario": 0.4162111145319994
+      }
+    ],
+    "Santos": [
+      {
+        "CO_CUCI_GRUPO": "222a1",
+        "NO_CUCI_GRUPO": "Soja",
+        "fob": 111672001395.0,
+        "porto": "Santos",
+        "hhi_portuario": 0.1633583978541859
+      },
+      {
+        "CO_CUCI_GRUPO": "061c",
+        "NO_CUCI_GRUPO": "Açúcares e melaços",
+        "fob": 94002912774.0,
+        "porto": "Santos",
+        "hhi_portuario": 0.6575639514965886
+      },
+      {
+        "CO_CUCI_GRUPO": "071a",
+        "NO_CUCI_GRUPO": "Café não torrado",
+        "fob": 67229766165.0,
+        "porto": "Santos",
+        "hhi_portuario": 0.683410354096388
+      },
+      {
+        "CO_CUCI_GRUPO": "011",
+        "NO_CUCI_GRUPO": "Carne bovina fresca, refrigerada ou congelada",
+        "fob": 58957159523.0,
+        "porto": "Santos",
+        "hhi_portuario": 0.4572716217435409
+      },
+      {
+        "CO_CUCI_GRUPO": "333",
+        "NO_CUCI_GRUPO": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+        "fob": 48408249554.0,
+        "porto": "Santos",
+        "hhi_portuario": 0.3415353132214364
+      }
+    ],
+    "São Francisco do Sul": [
+      {
+        "CO_CUCI_GRUPO": "222a1",
+        "NO_CUCI_GRUPO": "Soja",
+        "fob": 25652869335.0,
+        "porto": "São Francisco do Sul",
+        "hhi_portuario": 0.1633583978541859
+      },
+      {
+        "CO_CUCI_GRUPO": "012c1",
+        "NO_CUCI_GRUPO": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+        "fob": 10784156225.0,
+        "porto": "São Francisco do Sul",
+        "hhi_portuario": 0.2775636099637902
+      },
+      {
+        "CO_CUCI_GRUPO": "011",
+        "NO_CUCI_GRUPO": "Carne bovina fresca, refrigerada ou congelada",
+        "fob": 7809287575.0,
+        "porto": "São Francisco do Sul",
+        "hhi_portuario": 0.4572716217435409
+      },
+      {
+        "CO_CUCI_GRUPO": "044",
+        "NO_CUCI_GRUPO": "Milho não moído, exceto milho doce",
+        "fob": 4516375146.0,
+        "porto": "São Francisco do Sul",
+        "hhi_portuario": 0.2658386689761561
+      },
+      {
+        "CO_CUCI_GRUPO": "012c2",
+        "NO_CUCI_GRUPO": "Carne suína fresca, refrigerada ou congelada",
+        "fob": 3871687474.0,
+        "porto": "São Francisco do Sul",
+        "hhi_portuario": 0.3320944808246521
+      }
+    ],
+    "Vitória": [
+      {
+        "CO_CUCI_GRUPO": "281b",
+        "NO_CUCI_GRUPO": "Minério de ferro e seus concentrados",
+        "fob": 80560805404.0,
+        "porto": "Vitória",
+        "hhi_portuario": 0.3236813594811213
+      },
+      {
+        "CO_CUCI_GRUPO": "251c",
+        "NO_CUCI_GRUPO": "Celulose",
+        "fob": 30898677923.0,
+        "porto": "Vitória",
+        "hhi_portuario": 0.2586905342454164
+      },
+      {
+        "CO_CUCI_GRUPO": "222a1",
+        "NO_CUCI_GRUPO": "Soja",
+        "fob": 20063593305.0,
+        "porto": "Vitória",
+        "hhi_portuario": 0.1633583978541859
+      },
+      {
+        "CO_CUCI_GRUPO": "672",
+        "NO_CUCI_GRUPO": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+        "fob": 19442191333.0,
+        "porto": "Vitória",
+        "hhi_portuario": 0.3568299361123871
+      },
+      {
+        "CO_CUCI_GRUPO": "333",
+        "NO_CUCI_GRUPO": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+        "fob": 11048868196.0,
+        "porto": "Vitória",
+        "hhi_portuario": 0.3415353132214364
+      }
+    ],
+    "São João da Barra": [
+      {
+        "CO_CUCI_GRUPO": "333",
+        "NO_CUCI_GRUPO": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+        "fob": 73025827827.0,
+        "porto": "São João da Barra",
+        "hhi_portuario": 0.3415353132214364
+      },
+      {
+        "CO_CUCI_GRUPO": "281b",
+        "NO_CUCI_GRUPO": "Minério de ferro e seus concentrados",
+        "fob": 17817174316.0,
+        "porto": "São João da Barra",
+        "hhi_portuario": 0.3236813594811213
+      },
+      {
+        "CO_CUCI_GRUPO": "283b",
+        "NO_CUCI_GRUPO": "Minérios de cobre e seus concentrados",
+        "fob": 2018957034.0,
+        "porto": "São João da Barra",
+        "hhi_portuario": 0.653931171155376
+      },
+      {
+        "CO_CUCI_GRUPO": "671",
+        "NO_CUCI_GRUPO": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+        "fob": 241877104.0,
+        "porto": "São João da Barra",
+        "hhi_portuario": 0.2734124046065912
+      },
+      {
+        "CO_CUCI_GRUPO": "335",
+        "NO_CUCI_GRUPO": "Produtos residuais de petróleo e materiais relacionados",
+        "fob": 142512689.0,
+        "porto": "São João da Barra",
+        "hhi_portuario": 0.3338610937182873
+      }
+    ],
+    "Itaguaí": [
+      {
+        "CO_CUCI_GRUPO": "333",
+        "NO_CUCI_GRUPO": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+        "fob": 117893711889.0,
+        "porto": "Itaguaí",
+        "hhi_portuario": 0.3415353132214364
+      },
+      {
+        "CO_CUCI_GRUPO": "281b",
+        "NO_CUCI_GRUPO": "Minério de ferro e seus concentrados",
+        "fob": 69941224842.0,
+        "porto": "Itaguaí",
+        "hhi_portuario": 0.3236813594811213
+      },
+      {
+        "CO_CUCI_GRUPO": "672",
+        "NO_CUCI_GRUPO": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+        "fob": 23816216890.0,
+        "porto": "Itaguaí",
+        "hhi_portuario": 0.3568299361123871
+      },
+      {
+        "CO_CUCI_GRUPO": "334c",
+        "NO_CUCI_GRUPO": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+        "fob": 4443213322.0,
+        "porto": "Itaguaí",
+        "hhi_portuario": 0.1847268748867744
+      },
+      {
+        "CO_CUCI_GRUPO": "671",
+        "NO_CUCI_GRUPO": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+        "fob": 3448470033.0,
+        "porto": "Itaguaí",
+        "hhi_portuario": 0.2734124046065912
+      }
+    ],
+    "Itajaí": [
+      {
+        "CO_CUCI_GRUPO": "012c1",
+        "NO_CUCI_GRUPO": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+        "fob": 24372276961.0,
+        "porto": "Itajaí",
+        "hhi_portuario": 0.2775636099637902
+      },
+      {
+        "CO_CUCI_GRUPO": "012c2",
+        "NO_CUCI_GRUPO": "Carne suína fresca, refrigerada ou congelada",
+        "fob": 10517504775.0,
+        "porto": "Itajaí",
+        "hhi_portuario": 0.3320944808246521
+      },
+      {
+        "CO_CUCI_GRUPO": "248",
+        "NO_CUCI_GRUPO": "Madeira, parcialmente trabalhada e dormentes de madeira",
+        "fob": 5533506939.0,
+        "porto": "Itajaí",
+        "hhi_portuario": 0.2382801592224836
+      },
+      {
+        "CO_CUCI_GRUPO": "121c",
+        "NO_CUCI_GRUPO": "Tabaco, descaulificado ou desnervado",
+        "fob": 3966180210.0,
+        "porto": "Itajaí",
+        "hhi_portuario": 0.6969084771870064
+      },
+      {
+        "CO_CUCI_GRUPO": "634",
+        "NO_CUCI_GRUPO": "Folheados, contraplacados, aglomerados, e outras madeiras, trabalhados",
+        "fob": 3822047026.0,
+        "porto": "Itajaí",
+        "hhi_portuario": 0.2628061048925872
+      }
+    ],
+    "Salvador": [
+      {
+        "CO_CUCI_GRUPO": "334c",
+        "NO_CUCI_GRUPO": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+        "fob": 14112274278.0,
+        "porto": "Salvador",
+        "hhi_portuario": 0.1847268748867744
+      },
+      {
+        "CO_CUCI_GRUPO": "222a1",
+        "NO_CUCI_GRUPO": "Soja",
+        "fob": 13197538881.0,
+        "porto": "Salvador",
+        "hhi_portuario": 0.1633583978541859
+      },
+      {
+        "CO_CUCI_GRUPO": "081c",
+        "NO_CUCI_GRUPO": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+        "fob": 4285567459.0,
+        "porto": "Salvador",
+        "hhi_portuario": 0.2923886531966958
+      },
+      {
+        "CO_CUCI_GRUPO": "682",
+        "NO_CUCI_GRUPO": "Cobre",
+        "fob": 1893335204.0,
+        "porto": "Salvador",
+        "hhi_portuario": 0.4536621977464591
+      },
+      {
+        "CO_CUCI_GRUPO": "251c",
+        "NO_CUCI_GRUPO": "Celulose",
+        "fob": 1766531542.0,
+        "porto": "Salvador",
+        "hhi_portuario": 0.2586905342454164
+      }
+    ],
+    "Paranaguá": [
+      {
+        "CO_CUCI_GRUPO": "222a1",
+        "NO_CUCI_GRUPO": "Soja",
+        "fob": 60829618632.0,
+        "porto": "Paranaguá",
+        "hhi_portuario": 0.1633583978541859
+      },
+      {
+        "CO_CUCI_GRUPO": "012c1",
+        "NO_CUCI_GRUPO": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+        "fob": 35152985194.0,
+        "porto": "Paranaguá",
+        "hhi_portuario": 0.2775636099637902
+      },
+      {
+        "CO_CUCI_GRUPO": "081c",
+        "NO_CUCI_GRUPO": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+        "fob": 26785616356.0,
+        "porto": "Paranaguá",
+        "hhi_portuario": 0.2923886531966958
+      },
+      {
+        "CO_CUCI_GRUPO": "061c",
+        "NO_CUCI_GRUPO": "Açúcares e melaços",
+        "fob": 23650729926.0,
+        "porto": "Paranaguá",
+        "hhi_portuario": 0.6575639514965886
+      },
+      {
+        "CO_CUCI_GRUPO": "011",
+        "NO_CUCI_GRUPO": "Carne bovina fresca, refrigerada ou congelada",
+        "fob": 16221365643.0,
+        "porto": "Paranaguá",
+        "hhi_portuario": 0.4572716217435409
+      }
+    ]
+  },
+  "dim_labels": {
+    "atracacoes": "Atracações",
+    "tonelagem_exp": "Tonelagem exp.",
+    "t1_mediano": "Espera (T1)",
+    "tatracado_mediano": "Tempo no berço"
+  },
+  "timeline": [
+    {
+      "porto": "Suape",
+      "week": "2025-11-17",
+      "mean_portcalls": 4.714285714285714,
+      "z_rapid": 1.0954451150103328,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Suape",
+      "week": "2025-11-24",
+      "mean_portcalls": 4.571428571428571,
+      "z_rapid": 0.4714045207910318,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Suape",
+      "week": "2025-12-01",
+      "mean_portcalls": 4.428571428571429,
+      "z_rapid": -0.7071067811865559,
+      "z_confirmed": 0.42356288809319814
+    },
+    {
+      "porto": "Suape",
+      "week": "2025-12-08",
+      "mean_portcalls": 4.714285714285714,
+      "z_rapid": 1.1618950038622429,
+      "z_confirmed": 0.8135876962364365
+    },
+    {
+      "porto": "Suape",
+      "week": "2025-12-15",
+      "mean_portcalls": 3.5714285714285716,
+      "z_rapid": -7.572378034073173,
+      "z_confirmed": -1.0062673424577782
+    },
+    {
+      "porto": "Suape",
+      "week": "2025-12-22",
+      "mean_portcalls": 4.285714285714286,
+      "z_rapid": -0.06956083436402496,
+      "z_confirmed": 0.1946160973783531
+    },
+    {
+      "porto": "Suape",
+      "week": "2025-12-29",
+      "mean_portcalls": 4.285714285714286,
+      "z_rapid": 0.07345531603115839,
+      "z_confirmed": 0.18538484772523758
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-01-05",
+      "mean_portcalls": 4.0,
+      "z_rapid": -0.4522670168666447,
+      "z_confirmed": -0.3103457689650306
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-01-12",
+      "mean_portcalls": 4.428571428571429,
+      "z_rapid": 1.1638202661666772,
+      "z_confirmed": 0.4668093148992977
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-01-19",
+      "mean_portcalls": 4.0,
+      "z_rapid": -1.390758974918275,
+      "z_confirmed": -0.6700593942604893
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-01-26",
+      "mean_portcalls": 3.7142857142857144,
+      "z_rapid": -2.166666666666635,
+      "z_confirmed": -1.7872207685681605
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-02-02",
+      "mean_portcalls": 4.428571428571429,
+      "z_rapid": 1.3339459376998122,
+      "z_confirmed": 0.4877389397581476
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-02-09",
+      "mean_portcalls": 3.4285714285714284,
+      "z_rapid": -2.041241452319304,
+      "z_confirmed": -2.2541230866779256
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-02-16",
+      "mean_portcalls": 4.428571428571429,
+      "z_rapid": 1.2558275374183703,
+      "z_confirmed": 0.6666857620241109
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-02-23",
+      "mean_portcalls": 4.857142857142857,
+      "z_rapid": 1.6858544608470396,
+      "z_confirmed": 1.7882042440964725
+    },
+    {
+      "porto": "Suape",
+      "week": "2026-03-02",
+      "mean_portcalls": 3.8,
+      "z_rapid": -0.8013876853447541,
+      "z_confirmed": -0.8526636465322347
+    },
+    {
+      "porto": "Pecém",
+      "week": "2025-11-17",
+      "mean_portcalls": 2.142857142857143,
+      "z_rapid": -2.370539628033835,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Pecém",
+      "week": "2025-11-24",
+      "mean_portcalls": 2.0,
+      "z_rapid": -1.9364916731037043,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Pecém",
+      "week": "2025-12-01",
+      "mean_portcalls": 2.857142857142857,
+      "z_rapid": 2.488545186018758,
+      "z_confirmed": 2.6640282306128227
+    },
+    {
+      "porto": "Pecém",
+      "week": "2025-12-08",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": -0.09505863757867249,
+      "z_confirmed": -0.3476071218187018
+    },
+    {
+      "porto": "Pecém",
+      "week": "2025-12-15",
+      "mean_portcalls": 1.8571428571428572,
+      "z_rapid": -1.2357622885227304,
+      "z_confirmed": -1.9540168418367878
+    },
+    {
+      "porto": "Pecém",
+      "week": "2025-12-22",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": 0.08075728530872453,
+      "z_confirmed": -0.09523809523809634
+    },
+    {
+      "porto": "Pecém",
+      "week": "2025-12-29",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": -0.08703882797784857,
+      "z_confirmed": -0.09086737992230767
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-01-05",
+      "mean_portcalls": 1.7142857142857142,
+      "z_rapid": -2.1666666666666705,
+      "z_confirmed": -2.214654622991933
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-01-12",
+      "mean_portcalls": 2.5714285714285716,
+      "z_rapid": 1.8190171877725028,
+      "z_confirmed": 1.0116399091964676
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-01-19",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": 0.19867985355975593,
+      "z_confirmed": 0.03729606493025409
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-01-26",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": 0.19867985355975593,
+      "z_confirmed": 0.07545582668381719
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-02-02",
+      "mean_portcalls": 2.142857142857143,
+      "z_rapid": -0.19867985355975715,
+      "z_confirmed": -0.3169489249146719
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-02-09",
+      "mean_portcalls": 2.0,
+      "z_rapid": -1.7881186820378037,
+      "z_confirmed": -0.7508276712644504
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-02-16",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": 0.7833494518006437,
+      "z_confirmed": 0.23221018200641252
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-02-23",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": 0.7833494518006437,
+      "z_confirmed": 0.15847446245733673
+    },
+    {
+      "porto": "Pecém",
+      "week": "2026-03-02",
+      "mean_portcalls": 1.8,
+      "z_rapid": -2.7678347296956045,
+      "z_confirmed": -1.6931691307800145
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2025-11-17",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": 0.13206763594884352,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2025-11-24",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": -0.8660254037844387,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2025-12-01",
+      "mean_portcalls": 0.7142857142857143,
+      "z_rapid": 0.1666666666666671,
+      "z_confirmed": -0.30429030972509213
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2025-12-08",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": 0.7833494518006401,
+      "z_confirmed": 0.37796447300922664
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2025-12-15",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": -1.3055824196677341,
+      "z_confirmed": -1.0606601717798214
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2025-12-22",
+      "mean_portcalls": 1.0,
+      "z_rapid": 2.3500483554019214,
+      "z_confirmed": 1.1785113019775795
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2025-12-29",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": -1.1618950038622253,
+      "z_confirmed": -1.0462287486943735
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-01-05",
+      "mean_portcalls": 0.42857142857142855,
+      "z_rapid": -1.5,
+      "z_confirmed": -1.6490080882093598
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-01-12",
+      "mean_portcalls": 0.42857142857142855,
+      "z_rapid": -0.8660254037844384,
+      "z_confirmed": -1.4184162865339502
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-01-19",
+      "mean_portcalls": 1.0,
+      "z_rapid": 1.4527439954372792,
+      "z_confirmed": 1.418416286533951
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-01-26",
+      "mean_portcalls": 0.42857142857142855,
+      "z_rapid": -0.6603381797442176,
+      "z_confirmed": -1.2001983962979577
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-02-02",
+      "mean_portcalls": 0.7142857142857143,
+      "z_rapid": 0.5000000000000001,
+      "z_confirmed": 0.10910894511799682
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-02-09",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": 0.7833494518006403,
+      "z_confirmed": 0.8418805655186122
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-02-16",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": 1.61023512036508,
+      "z_confirmed": 2.1888894703483914
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-02-23",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": -0.7205766921228924,
+      "z_confirmed": -0.6262540162162669
+    },
+    {
+      "porto": "Barra do Riacho",
+      "week": "2026-03-02",
+      "mean_portcalls": 0.6,
+      "z_rapid": -0.9075870678421366,
+      "z_confirmed": -0.455037167195617
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2025-11-17",
+      "mean_portcalls": 6.428571428571429,
+      "z_rapid": 0.2182706815978448,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2025-11-24",
+      "mean_portcalls": 5.571428571428571,
+      "z_rapid": -1.13277330276196,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2025-12-01",
+      "mean_portcalls": 5.571428571428571,
+      "z_rapid": -0.7118684968143753,
+      "z_confirmed": -1.0887220266592659
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2025-12-08",
+      "mean_portcalls": 8.428571428571429,
+      "z_rapid": 5.387994785156911,
+      "z_confirmed": 4.0479342440941934
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2025-12-15",
+      "mean_portcalls": 6.714285714285714,
+      "z_rapid": 0.15899968200095407,
+      "z_confirmed": 0.32502662892393314
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2025-12-22",
+      "mean_portcalls": 5.285714285714286,
+      "z_rapid": -0.9522165814091075,
+      "z_confirmed": -1.2444743447234436
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2025-12-29",
+      "mean_portcalls": 4.285714285714286,
+      "z_rapid": -1.5525898096589632,
+      "z_confirmed": -2.159187819311182
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-01-05",
+      "mean_portcalls": 4.285714285714286,
+      "z_rapid": -1.0510688244987796,
+      "z_confirmed": -1.7060124379961303
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-01-12",
+      "mean_portcalls": 5.142857142857143,
+      "z_rapid": 7.731397796676748e-16,
+      "z_confirmed": -0.7194067630418599
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-01-19",
+      "mean_portcalls": 7.0,
+      "z_rapid": 4.172276924754879,
+      "z_confirmed": 0.9793508387677491
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-01-26",
+      "mean_portcalls": 6.0,
+      "z_rapid": 0.6418674080138392,
+      "z_confirmed": 0.11109410994643139
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-02-02",
+      "mean_portcalls": 5.571428571428571,
+      "z_rapid": -0.03071475584169821,
+      "z_confirmed": -0.2948596619025486
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-02-09",
+      "mean_portcalls": 6.0,
+      "z_rapid": 0.08980265101338714,
+      "z_confirmed": 0.12225241173045595
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-02-16",
+      "mean_portcalls": 7.142857142857143,
+      "z_rapid": 1.649915822768612,
+      "z_confirmed": 1.1431321568744908
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-02-23",
+      "mean_portcalls": 5.0,
+      "z_rapid": -1.7489965020104934,
+      "z_confirmed": -0.7853437389688279
+    },
+    {
+      "porto": "Rio de Janeiro",
+      "week": "2026-03-02",
+      "mean_portcalls": 6.6,
+      "z_rapid": 0.7400580723248831,
+      "z_confirmed": 0.5607096220290743
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2025-11-17",
+      "mean_portcalls": 5.857142857142857,
+      "z_rapid": 9.272199534658773,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2025-11-24",
+      "mean_portcalls": 5.428571428571429,
+      "z_rapid": 0.5466081666101237,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2025-12-01",
+      "mean_portcalls": 5.142857142857143,
+      "z_rapid": -0.3162277660168371,
+      "z_confirmed": -0.03504998186163898
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2025-12-08",
+      "mean_portcalls": 4.714285714285714,
+      "z_rapid": -1.700840128541524,
+      "z_confirmed": -1.18464548968527
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2025-12-15",
+      "mean_portcalls": 6.857142857142857,
+      "z_rapid": 3.267486891823025,
+      "z_confirmed": 4.647066643054721
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2025-12-22",
+      "mean_portcalls": 4.714285714285714,
+      "z_rapid": -0.8846153846153859,
+      "z_confirmed": -0.8490668188369785
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2025-12-29",
+      "mean_portcalls": 3.0,
+      "z_rapid": -2.310462138646217,
+      "z_confirmed": -3.3353222495852584
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-01-05",
+      "mean_portcalls": 4.142857142857143,
+      "z_rapid": -0.42960485006382754,
+      "z_confirmed": -0.9607541608303047
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-01-12",
+      "mean_portcalls": 4.857142857142857,
+      "z_rapid": 0.11037769642208663,
+      "z_confirmed": -0.11118777296186119
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-01-19",
+      "mean_portcalls": 4.571428571428571,
+      "z_rapid": 0.4653892050443772,
+      "z_confirmed": -0.42699972731055486
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-01-26",
+      "mean_portcalls": 4.714285714285714,
+      "z_rapid": 0.6998542122237663,
+      "z_confirmed": -0.23120493840339296
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-02-02",
+      "mean_portcalls": 5.428571428571429,
+      "z_rapid": 2.7774602993176556,
+      "z_confirmed": 0.5511832286494959
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-02-09",
+      "mean_portcalls": 5.142857142857143,
+      "z_rapid": 0.6654104630507026,
+      "z_confirmed": 0.2025478734167336
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-02-16",
+      "mean_portcalls": 4.285714285714286,
+      "z_rapid": -1.724898468106083,
+      "z_confirmed": -0.6748660060148975
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-02-23",
+      "mean_portcalls": 5.857142857142857,
+      "z_rapid": 1.9285714285714244,
+      "z_confirmed": 1.1795112236446552
+    },
+    {
+      "porto": "Rio Grande",
+      "week": "2026-03-02",
+      "mean_portcalls": 4.8,
+      "z_rapid": -0.5704093226506693,
+      "z_confirmed": -0.06042724784530376
+    },
+    {
+      "porto": "Santos",
+      "week": "2025-11-17",
+      "mean_portcalls": 15.0,
+      "z_rapid": -1.559334418525072,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Santos",
+      "week": "2025-11-24",
+      "mean_portcalls": 15.857142857142858,
+      "z_rapid": 0.3166502481905616,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Santos",
+      "week": "2025-12-01",
+      "mean_portcalls": 14.0,
+      "z_rapid": -3.2142857142857055,
+      "z_confirmed": -2.4384379865809325
+    },
+    {
+      "porto": "Santos",
+      "week": "2025-12-08",
+      "mean_portcalls": 14.285714285714286,
+      "z_rapid": -0.9997714546879058,
+      "z_confirmed": -1.342039708175325
+    },
+    {
+      "porto": "Santos",
+      "week": "2025-12-15",
+      "mean_portcalls": 15.428571428571429,
+      "z_rapid": 0.7755547359889233,
+      "z_confirmed": -0.09379438488896517
+    },
+    {
+      "porto": "Santos",
+      "week": "2025-12-22",
+      "mean_portcalls": 14.285714285714286,
+      "z_rapid": -0.6812728985602104,
+      "z_confirmed": -1.1948941863386457
+    },
+    {
+      "porto": "Santos",
+      "week": "2025-12-29",
+      "mean_portcalls": 13.0,
+      "z_rapid": -2.367684988208903,
+      "z_confirmed": -2.2835721452462585
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-01-05",
+      "mean_portcalls": 12.857142857142858,
+      "z_rapid": -1.403640713959951,
+      "z_confirmed": -1.8870967272044425
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-01-12",
+      "mean_portcalls": 13.285714285714286,
+      "z_rapid": -0.5023228928764821,
+      "z_confirmed": -1.2581119139156225
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-01-19",
+      "mean_portcalls": 12.714285714285714,
+      "z_rapid": -0.9979487157886634,
+      "z_confirmed": -1.6125118767094988
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-01-26",
+      "mean_portcalls": 15.428571428571429,
+      "z_rapid": 10.100565755016154,
+      "z_confirmed": 0.8822141955287591
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-02-02",
+      "mean_portcalls": 13.142857142857142,
+      "z_rapid": -0.3396831102433782,
+      "z_confirmed": -0.9998427549325946
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-02-09",
+      "mean_portcalls": 13.142857142857142,
+      "z_rapid": -0.4115274458765499,
+      "z_confirmed": -0.8621635098322845
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-02-16",
+      "mean_portcalls": 15.142857142857142,
+      "z_rapid": 1.2475565343491657,
+      "z_confirmed": 1.0704360482220963
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-02-23",
+      "mean_portcalls": 14.571428571428571,
+      "z_rapid": 0.2874006244647543,
+      "z_confirmed": 0.6679668968451192
+    },
+    {
+      "porto": "Santos",
+      "week": "2026-03-02",
+      "mean_portcalls": 16.6,
+      "z_rapid": 2.556879265618024,
+      "z_confirmed": 2.5706427317149965
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2025-11-17",
+      "mean_portcalls": 1.0,
+      "z_rapid": -0.19738550848793074,
+      "z_confirmed": null
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2025-11-24",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": -1.02469507659596,
+      "z_confirmed": null
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2025-12-01",
+      "mean_portcalls": 1.2857142857142858,
+      "z_rapid": 0.7319250547113998,
+      "z_confirmed": 1.1395442734177281
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2025-12-08",
+      "mean_portcalls": 0.42857142857142855,
+      "z_rapid": -2.7386127875258297,
+      "z_confirmed": -2.5974521388475305
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2025-12-15",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": -0.8999999999999995,
+      "z_confirmed": -1.287229221492349
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2025-12-22",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": -0.5669467095138406,
+      "z_confirmed": -1.111817583191924
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2025-12-29",
+      "mean_portcalls": 0.42857142857142855,
+      "z_rapid": -0.7385489458759963,
+      "z_confirmed": -1.434455594200786
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-01-05",
+      "mean_portcalls": 0.42857142857142855,
+      "z_rapid": -0.8660254037844239,
+      "z_confirmed": -1.2507416546849366
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-01-12",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": 0.8660254037844233,
+      "z_confirmed": -0.7106014309138684
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-01-19",
+      "mean_portcalls": 0.42857142857142855,
+      "z_rapid": -0.8660254037844239,
+      "z_confirmed": -1.0473929365192027
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-01-26",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": 5.499999999999866,
+      "z_confirmed": 0.2593805842035473
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-02-02",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": 4.242640687119275,
+      "z_confirmed": 1.978201853176771
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-02-09",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": 0.7268155677785232,
+      "z_confirmed": 1.159635569103624
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-02-16",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": -0.2511655074836763,
+      "z_confirmed": 0.29677987097333014
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-02-23",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": -0.7833494518006404,
+      "z_confirmed": 0.29677987097333014
+    },
+    {
+      "porto": "São Francisco do Sul",
+      "week": "2026-03-02",
+      "mean_portcalls": 1.4,
+      "z_rapid": 1.201135826094315,
+      "z_confirmed": 2.127372625027003
+    },
+    {
+      "porto": "Vitória",
+      "week": "2025-11-17",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -0.16047843674938925,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Vitória",
+      "week": "2025-11-24",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -0.8660254037844383,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Vitória",
+      "week": "2025-12-01",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": -1.7320508075688779,
+      "z_confirmed": -0.7259089494732283
+    },
+    {
+      "porto": "Vitória",
+      "week": "2025-12-08",
+      "mean_portcalls": 1.7142857142857142,
+      "z_rapid": 0.5960395606792704,
+      "z_confirmed": 0.5821817364274586
+    },
+    {
+      "porto": "Vitória",
+      "week": "2025-12-15",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": 7.348469228349555,
+      "z_confirmed": 3.7923259749569285
+    },
+    {
+      "porto": "Vitória",
+      "week": "2025-12-22",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": -0.804084401128346,
+      "z_confirmed": -0.7543998340320548
+    },
+    {
+      "porto": "Vitória",
+      "week": "2025-12-29",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -0.37832495422898893,
+      "z_confirmed": -0.27244596551190053
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-01-05",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": -0.804084401128346,
+      "z_confirmed": -0.7071534965290612
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-01-12",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -0.2970442628930022,
+      "z_confirmed": -0.20631627542085854
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-01-19",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": -0.8660254037844272,
+      "z_confirmed": -0.8462540004829129
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-01-26",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": 0.8660254037844272,
+      "z_confirmed": -0.2886751345948135
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-02-02",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": -4.330127018922139,
+      "z_confirmed": -1.7297604450937716
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-02-09",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": -1.4142135623730914,
+      "z_confirmed": -1.4071247279470296
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-02-16",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": -0.8333333333333295,
+      "z_confirmed": -1.1950362287323482
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-02-23",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": -0.4999999999999983,
+      "z_confirmed": -1.0284416890093036
+    },
+    {
+      "porto": "Vitória",
+      "week": "2026-03-02",
+      "mean_portcalls": 0.6,
+      "z_rapid": null,
+      "z_confirmed": -2.419834185285582
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2025-11-17",
+      "mean_portcalls": 1.8571428571428572,
+      "z_rapid": 0.15844431990595387,
+      "z_confirmed": null
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2025-11-24",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -0.5477225575051666,
+      "z_confirmed": null
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2025-12-01",
+      "mean_portcalls": 2.142857142857143,
+      "z_rapid": 1.8333333333333326,
+      "z_confirmed": 1.250925583244189
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2025-12-08",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": -1.9030051422496403,
+      "z_confirmed": -1.2970279192089817
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2025-12-15",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": 2.1421911798080617,
+      "z_confirmed": 2.072370638782494
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2025-12-22",
+      "mean_portcalls": 2.0,
+      "z_rapid": 0.22699497253739392,
+      "z_confirmed": 0.4155143398035315
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2025-12-29",
+      "mean_portcalls": 2.7142857142857144,
+      "z_rapid": 1.6984155512168955,
+      "z_confirmed": 2.4389478890695697
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-01-05",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -1.0215078369104986,
+      "z_confirmed": -0.8802066222431073
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-01-12",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": 0.2142857142857145,
+      "z_confirmed": 0.9098344236372591
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-01-19",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -1.1881770515720094,
+      "z_confirmed": -0.8227006783783961
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-01-26",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": 0.696630546019236,
+      "z_confirmed": 1.230465336293641
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-02-02",
+      "mean_portcalls": 2.142857142857143,
+      "z_rapid": 0.3904344047215157,
+      "z_confirmed": 0.34578203740406216
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-02-09",
+      "mean_portcalls": 1.8571428571428572,
+      "z_rapid": -0.6654104630507023,
+      "z_confirmed": -0.37274483832677335
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-02-16",
+      "mean_portcalls": 1.7142857142857142,
+      "z_rapid": -0.7745966692414848,
+      "z_confirmed": -0.7168169967822571
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-02-23",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": 1.2402159462046696,
+      "z_confirmed": 1.0036372382274916
+    },
+    {
+      "porto": "São João da Barra",
+      "week": "2026-03-02",
+      "mean_portcalls": 2.8,
+      "z_rapid": 2.4127837498890847,
+      "z_confirmed": 1.795285950257643
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2025-11-17",
+      "mean_portcalls": 2.857142857142857,
+      "z_rapid": -0.3695652173913045,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2025-11-24",
+      "mean_portcalls": 2.857142857142857,
+      "z_rapid": -0.12126781251816765,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2025-12-01",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": -1.5764815627361675,
+      "z_confirmed": -1.9438487221966343
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2025-12-08",
+      "mean_portcalls": 3.0,
+      "z_rapid": 1.500000000000002,
+      "z_confirmed": 0.43852126582724543
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2025-12-15",
+      "mean_portcalls": 2.142857142857143,
+      "z_rapid": -2.5980762113533156,
+      "z_confirmed": -2.564027543447228
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2025-12-22",
+      "mean_portcalls": 2.7142857142857144,
+      "z_rapid": 0.27235238970096237,
+      "z_confirmed": -0.2346185661017317
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2025-12-29",
+      "mean_portcalls": 2.857142857142857,
+      "z_rapid": 0.7745966692414841,
+      "z_confirmed": 0.19019743080600865
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-01-05",
+      "mean_portcalls": 1.8571428571428572,
+      "z_rapid": -2.186348664309447,
+      "z_confirmed": -2.863382858872311
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-01-12",
+      "mean_portcalls": 2.7142857142857144,
+      "z_rapid": 0.6809849176121802,
+      "z_confirmed": -0.01149197565652667
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-01-19",
+      "mean_portcalls": 2.7142857142857144,
+      "z_rapid": 0.3904344047215157,
+      "z_confirmed": 0.09255797206695032
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-01-26",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": -0.23426064283290923,
+      "z_confirmed": -0.623231962511588
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-02-02",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": 0.0,
+      "z_confirmed": -0.5009302333623542
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-02-09",
+      "mean_portcalls": 2.5714285714285716,
+      "z_rapid": 2.692147760936986e-15,
+      "z_confirmed": -0.03541172077265161
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-02-16",
+      "mean_portcalls": 2.0,
+      "z_rapid": -3.916747259003197,
+      "z_confirmed": -1.7218417165996815
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-02-23",
+      "mean_portcalls": 1.8571428571428572,
+      "z_rapid": -2.020725942163692,
+      "z_confirmed": -1.8180794599109995
+    },
+    {
+      "porto": "Itaguaí",
+      "week": "2026-03-02",
+      "mean_portcalls": 3.2,
+      "z_rapid": 2.8985797739379837,
+      "z_confirmed": 1.9364882131489958
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2025-11-17",
+      "mean_portcalls": 3.0,
+      "z_rapid": 0.09261141509471131,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2025-11-24",
+      "mean_portcalls": 2.7142857142857144,
+      "z_rapid": -1.1618950038622262,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2025-12-01",
+      "mean_portcalls": 3.2857142857142856,
+      "z_rapid": 1.9364916731037072,
+      "z_confirmed": 1.6531244698511078
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2025-12-08",
+      "mean_portcalls": 2.857142857142857,
+      "z_rapid": -0.4391550328268402,
+      "z_confirmed": -0.5614899250748764
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2025-12-15",
+      "mean_portcalls": 3.0,
+      "z_rapid": 0.14638501094227946,
+      "z_confirmed": 0.1297186304156923
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2025-12-22",
+      "mean_portcalls": 3.2857142857142856,
+      "z_rapid": 1.317465098480519,
+      "z_confirmed": 1.5084065153627257
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2025-12-29",
+      "mean_portcalls": 3.0,
+      "z_rapid": -0.4999999999999974,
+      "z_confirmed": -0.026221131676022164
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-01-05",
+      "mean_portcalls": 2.857142857142857,
+      "z_rapid": -0.9933992677987805,
+      "z_confirmed": -0.7160894433721875
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-01-12",
+      "mean_portcalls": 3.4285714285714284,
+      "z_rapid": 2.185478389157319,
+      "z_confirmed": 2.1601149671317588
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-01-19",
+      "mean_portcalls": 2.7142857142857144,
+      "z_rapid": -1.6431676725154953,
+      "z_confirmed": -1.2849345027170875
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-01-26",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": -1.851640199545104,
+      "z_confirmed": -2.5184716253254993
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-02-02",
+      "mean_portcalls": 3.142857142857143,
+      "z_rapid": 0.6793662204867573,
+      "z_confirmed": 0.6770032003863292
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-02-09",
+      "mean_portcalls": 2.5714285714285716,
+      "z_rapid": -0.8040844011283454,
+      "z_confirmed": -1.4220635116067257
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-02-16",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": -0.9258200997725529,
+      "z_confirmed": -1.665534257957457
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-02-23",
+      "mean_portcalls": 2.7142857142857144,
+      "z_rapid": 0.21004201260420205,
+      "z_confirmed": -0.6019992531350788
+    },
+    {
+      "porto": "Vila do Conde",
+      "week": "2026-03-02",
+      "mean_portcalls": 2.6,
+      "z_rapid": -0.37032803990902086,
+      "z_confirmed": -0.8428910674237453
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2025-11-17",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": 0.41910685704342504,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2025-11-24",
+      "mean_portcalls": 1.0,
+      "z_rapid": 0.6063390625908326,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2025-12-01",
+      "mean_portcalls": 0.7142857142857143,
+      "z_rapid": -0.4629100498862756,
+      "z_confirmed": -0.21982600255746432
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2025-12-08",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": -0.7319250547113999,
+      "z_confirmed": -0.7194481453189082
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2025-12-15",
+      "mean_portcalls": 0.7142857142857143,
+      "z_rapid": -0.3872983346207414,
+      "z_confirmed": -0.12042741561180835
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2025-12-22",
+      "mean_portcalls": 1.0,
+      "z_rapid": 1.3907589749182954,
+      "z_confirmed": 1.0289915108550534
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2025-12-29",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": 0.5960395606792692,
+      "z_confirmed": 0.35536067443600344
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-01-05",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": 3.485685011586675,
+      "z_confirmed": 2.7397763338611
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-01-12",
+      "mean_portcalls": 1.0,
+      "z_rapid": 0.0,
+      "z_confirmed": 0.5734696670429377
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-01-19",
+      "mean_portcalls": 1.0,
+      "z_rapid": -0.28867513459481303,
+      "z_confirmed": 0.45033583011126926
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-01-26",
+      "mean_portcalls": 1.2857142857142858,
+      "z_rapid": 0.86602540378444,
+      "z_confirmed": 1.474732721989714
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-02-02",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": -0.16666666666666746,
+      "z_confirmed": 0.8462540004829128
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-02-09",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": 0.26111648393354686,
+      "z_confirmed": 0.7300313256526109
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-02-16",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": -2.449489742783194,
+      "z_confirmed": -0.5299072444906879
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-02-23",
+      "mean_portcalls": 0.5714285714285714,
+      "z_rapid": -2.980197803396356,
+      "z_confirmed": -1.6195484845256645
+    },
+    {
+      "porto": "Imbituba",
+      "week": "2026-03-02",
+      "mean_portcalls": 1.2,
+      "z_rapid": 0.9922426389474778,
+      "z_confirmed": 0.8848396331938282
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2025-11-17",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": -0.2142857142857144,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2025-11-24",
+      "mean_portcalls": 3.0,
+      "z_rapid": 0.944911182523068,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2025-12-01",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -2.717464881947029,
+      "z_confirmed": -2.341664503150346
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2025-12-08",
+      "mean_portcalls": 2.857142857142857,
+      "z_rapid": 0.45075188022356966,
+      "z_confirmed": 0.7342230982143523
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2025-12-15",
+      "mean_portcalls": 3.0,
+      "z_rapid": 0.8333333333333333,
+      "z_confirmed": 0.9354143466934853
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2025-12-22",
+      "mean_portcalls": 2.7142857142857144,
+      "z_rapid": 0.15443960018728065,
+      "z_confirmed": 0.30116930096841765
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2025-12-29",
+      "mean_portcalls": 1.7142857142857142,
+      "z_rapid": -1.2572498919612813,
+      "z_confirmed": -1.7162326606420668
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-01-05",
+      "mean_portcalls": 2.857142857142857,
+      "z_rapid": 0.48989794855663543,
+      "z_confirmed": 0.6737702989519911
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-01-12",
+      "mean_portcalls": 2.5714285714285716,
+      "z_rapid": 7.614543750858904e-16,
+      "z_confirmed": 0.09067097501414133
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-01-19",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": -0.34780417182012674,
+      "z_confirmed": -0.5730254871776862
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-01-26",
+      "mean_portcalls": 3.0,
+      "z_rapid": 1.3174650984805198,
+      "z_confirmed": 0.9234458801564833
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-02-02",
+      "mean_portcalls": 2.142857142857143,
+      "z_rapid": -1.6912035630063664,
+      "z_confirmed": -0.8823986916243658
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-02-09",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": -0.18898223650461413,
+      "z_confirmed": -0.16781215551988474
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-02-16",
+      "mean_portcalls": 2.2857142857142856,
+      "z_rapid": -0.4752931878933591,
+      "z_confirmed": -0.455490136411116
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-02-23",
+      "mean_portcalls": 2.4285714285714284,
+      "z_rapid": -0.09505863757867135,
+      "z_confirmed": -0.050114025233603324
+    },
+    {
+      "porto": "Itajaí",
+      "week": "2026-03-02",
+      "mean_portcalls": 2.0,
+      "z_rapid": -2.3500483554019156,
+      "z_confirmed": -1.35400640077266
+    },
+    {
+      "porto": "São Luís",
+      "week": "2025-11-17",
+      "mean_portcalls": 4.714285714285714,
+      "z_rapid": -3.9523952954415575,
+      "z_confirmed": null
+    },
+    {
+      "porto": "São Luís",
+      "week": "2025-11-24",
+      "mean_portcalls": 5.571428571428571,
+      "z_rapid": 0.48245064067700555,
+      "z_confirmed": null
+    },
+    {
+      "porto": "São Luís",
+      "week": "2025-12-01",
+      "mean_portcalls": 5.714285714285714,
+      "z_rapid": 0.9574271077563381,
+      "z_confirmed": 0.4972451580988471
+    },
+    {
+      "porto": "São Luís",
+      "week": "2025-12-08",
+      "mean_portcalls": 5.0,
+      "z_rapid": -0.8040844011283466,
+      "z_confirmed": -1.3210854557565004
+    },
+    {
+      "porto": "São Luís",
+      "week": "2025-12-15",
+      "mean_portcalls": 5.142857142857143,
+      "z_rapid": -0.2269949725373922,
+      "z_confirmed": -0.771743633141289
+    },
+    {
+      "porto": "São Luís",
+      "week": "2025-12-22",
+      "mean_portcalls": 5.571428571428571,
+      "z_rapid": 0.6301260378126037,
+      "z_confirmed": 0.3535533905932725
+    },
+    {
+      "porto": "São Luís",
+      "week": "2025-12-29",
+      "mean_portcalls": 4.571428571428571,
+      "z_rapid": -2.3104621386462143,
+      "z_confirmed": -2.2715836876335778
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-01-05",
+      "mean_portcalls": 4.142857142857143,
+      "z_rapid": -2.2516660498395327,
+      "z_confirmed": -2.719672427857838
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-01-12",
+      "mean_portcalls": 4.0,
+      "z_rapid": -1.3645764784420238,
+      "z_confirmed": -2.276163185365188
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-01-19",
+      "mean_portcalls": 3.4285714285714284,
+      "z_rapid": -1.6107745325136562,
+      "z_confirmed": -2.731527102204464
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-01-26",
+      "mean_portcalls": 3.857142857142857,
+      "z_rapid": -0.3783249542289861,
+      "z_confirmed": -1.412093300967291
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-02-02",
+      "mean_portcalls": 4.571428571428571,
+      "z_rapid": 2.31455024943134,
+      "z_confirmed": -0.24850429767895837
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-02-09",
+      "mean_portcalls": 4.857142857142857,
+      "z_rapid": 1.8916247711449314,
+      "z_confirmed": 0.22579577190274364
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-02-16",
+      "mean_portcalls": 4.285714285714286,
+      "z_rapid": 0.16398911634277474,
+      "z_confirmed": -0.5632918693320276
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-02-23",
+      "mean_portcalls": 3.4285714285714284,
+      "z_rapid": -2.2604895673530727,
+      "z_confirmed": -1.6808659157667736
+    },
+    {
+      "porto": "São Luís",
+      "week": "2026-03-02",
+      "mean_portcalls": 4.6,
+      "z_rapid": 0.5092010548749011,
+      "z_confirmed": 0.29037611033574434
+    },
+    {
+      "porto": "Salvador",
+      "week": "2025-11-17",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": -0.07345531603115896,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Salvador",
+      "week": "2025-11-24",
+      "mean_portcalls": 2.0,
+      "z_rapid": 1.212435565298214,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Salvador",
+      "week": "2025-12-01",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": -1.0552897060221726,
+      "z_confirmed": -1.275281963340463
+    },
+    {
+      "porto": "Salvador",
+      "week": "2025-12-08",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": 4.915166856007381e-16,
+      "z_confirmed": -0.3850487608895114
+    },
+    {
+      "porto": "Salvador",
+      "week": "2025-12-15",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": -1.0999999999999996,
+      "z_confirmed": -1.0801234497346435
+    },
+    {
+      "porto": "Salvador",
+      "week": "2025-12-22",
+      "mean_portcalls": 2.142857142857143,
+      "z_rapid": 1.7677669529663684,
+      "z_confirmed": 1.5565792842320492
+    },
+    {
+      "porto": "Salvador",
+      "week": "2025-12-29",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": 0.2269949725373934,
+      "z_confirmed": -0.03377401975848322
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-01-05",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": 5.279736140958783e-16,
+      "z_confirmed": -0.03236262901893416
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-01-12",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": -1.1315047637120363,
+      "z_confirmed": -1.1511514214963003
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-01-19",
+      "mean_portcalls": 1.8571428571428572,
+      "z_rapid": 0.6092717958449431,
+      "z_confirmed": 0.9139088163848431
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-01-26",
+      "mean_portcalls": 1.8571428571428572,
+      "z_rapid": 1.0914103126634989,
+      "z_confirmed": 0.7951810643935556
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-02-02",
+      "mean_portcalls": 1.2857142857142858,
+      "z_rapid": -0.9522165814091075,
+      "z_confirmed": -0.6646828406755539
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-02-09",
+      "mean_portcalls": 2.0,
+      "z_rapid": 1.2357622885227315,
+      "z_confirmed": 1.2692252833340951
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-02-16",
+      "mean_portcalls": 1.7142857142857142,
+      "z_rapid": -0.11274690420042464,
+      "z_confirmed": 0.32201758381113227
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-02-23",
+      "mean_portcalls": 2.0,
+      "z_rapid": 0.9258200997725521,
+      "z_confirmed": 1.2247448713915892
+    },
+    {
+      "porto": "Salvador",
+      "week": "2026-03-02",
+      "mean_portcalls": 2.6,
+      "z_rapid": 2.518083848615197,
+      "z_confirmed": 2.799631495025105
+    },
+    {
+      "porto": "Manaus",
+      "week": "2025-11-17",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": 0.07889275245573225,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Manaus",
+      "week": "2025-11-24",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": -2.8722813232690148,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Manaus",
+      "week": "2025-12-01",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": -1.3907589749182963,
+      "z_confirmed": -0.7287828881031495
+    },
+    {
+      "porto": "Manaus",
+      "week": "2025-12-08",
+      "mean_portcalls": 1.1428571428571428,
+      "z_rapid": 0.8660254037844379,
+      "z_confirmed": 0.3418008202003159
+    },
+    {
+      "porto": "Manaus",
+      "week": "2025-12-15",
+      "mean_portcalls": 1.2857142857142858,
+      "z_rapid": 1.7320508075688774,
+      "z_confirmed": 0.8541906659587629
+    },
+    {
+      "porto": "Manaus",
+      "week": "2025-12-22",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": -0.8333333333333337,
+      "z_confirmed": -0.8614608259820669
+    },
+    {
+      "porto": "Manaus",
+      "week": "2025-12-29",
+      "mean_portcalls": 1.2857142857142858,
+      "z_rapid": 1.1666666666666663,
+      "z_confirmed": 0.8790448048202956
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-01-05",
+      "mean_portcalls": 0.7142857142857143,
+      "z_rapid": -2.121320343559642,
+      "z_confirmed": -1.4480019181431405
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-01-12",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": 1.8190171877724965,
+      "z_confirmed": 1.9802848188094484
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-01-19",
+      "mean_portcalls": 1.2857142857142858,
+      "z_rapid": 0.4539206495016019,
+      "z_confirmed": 0.5913535506115765
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-01-26",
+      "mean_portcalls": 1.4285714285714286,
+      "z_rapid": 0.5960395606792696,
+      "z_confirmed": 1.238478252872566
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-02-02",
+      "mean_portcalls": 0.8571428571428571,
+      "z_rapid": -1.0456450133653887,
+      "z_confirmed": -1.0462408972358654
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-02-09",
+      "mean_portcalls": 1.5714285714285714,
+      "z_rapid": 0.9258200997725521,
+      "z_confirmed": 1.699013232065283
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-02-16",
+      "mean_portcalls": 1.0,
+      "z_rapid": -0.9258200997725514,
+      "z_confirmed": -0.4690415759823433
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-02-23",
+      "mean_portcalls": 1.2857142857142858,
+      "z_rapid": 0.2100420126042014,
+      "z_confirmed": 0.4438581587932051
+    },
+    {
+      "porto": "Manaus",
+      "week": "2026-03-02",
+      "mean_portcalls": 1.4,
+      "z_rapid": 0.6990308060426306,
+      "z_confirmed": 0.7447035204249625
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2025-11-17",
+      "mean_portcalls": 5.428571428571429,
+      "z_rapid": -0.44585155686107203,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2025-11-24",
+      "mean_portcalls": 6.0,
+      "z_rapid": 0.3000000000000006,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2025-12-01",
+      "mean_portcalls": 5.857142857142857,
+      "z_rapid": -0.4635863249727656,
+      "z_confirmed": 0.005401224920660244
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2025-12-08",
+      "mean_portcalls": 5.571428571428571,
+      "z_rapid": -0.9000000000000026,
+      "z_confirmed": -0.3499323561341057
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2025-12-15",
+      "mean_portcalls": 6.428571428571429,
+      "z_rapid": 2.738612787525832,
+      "z_confirmed": 0.8123983632913179
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2025-12-22",
+      "mean_portcalls": 5.857142857142857,
+      "z_rapid": -0.30000000000000193,
+      "z_confirmed": -0.0390285696125493
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2025-12-29",
+      "mean_portcalls": 4.857142857142857,
+      "z_rapid": -2.9801978033963543,
+      "z_confirmed": -1.4859908549625034
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-01-05",
+      "mean_portcalls": 5.571428571428571,
+      "z_rapid": -0.1639891163427766,
+      "z_confirmed": -0.30127659741471247
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-01-12",
+      "mean_portcalls": 5.0,
+      "z_rapid": -1.0385977368375807,
+      "z_confirmed": -1.112601484074566
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-01-19",
+      "mean_portcalls": 5.428571428571429,
+      "z_rapid": 0.2269949725373943,
+      "z_confirmed": -0.3251006117349712
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-01-26",
+      "mean_portcalls": 5.142857142857143,
+      "z_rapid": -0.210042012604198,
+      "z_confirmed": -1.0932121395021577
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-02-02",
+      "mean_portcalls": 5.0,
+      "z_rapid": -1.0954451150103306,
+      "z_confirmed": -1.2670256740579233
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-02-09",
+      "mean_portcalls": 4.857142857142857,
+      "z_rapid": -1.4142135623731034,
+      "z_confirmed": -1.3939796138203695
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-02-16",
+      "mean_portcalls": 5.0,
+      "z_rapid": -0.43915503282684304,
+      "z_confirmed": -0.9167420101646494
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-02-23",
+      "mean_portcalls": 4.428571428571429,
+      "z_rapid": -4.8989794855664845,
+      "z_confirmed": -1.9342948582466528
+    },
+    {
+      "porto": "Paranaguá",
+      "week": "2026-03-02",
+      "mean_portcalls": 6.2,
+      "z_rapid": 5.097810747625425,
+      "z_confirmed": 1.7455950475267814
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2025-11-17",
+      "mean_portcalls": 0.14285714285714285,
+      "z_rapid": 0.5619514869490162,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2025-11-24",
+      "mean_portcalls": 0.14285714285714285,
+      "z_rapid": 0.8660254037844386,
+      "z_confirmed": null
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2025-12-01",
+      "mean_portcalls": 0.0,
+      "z_rapid": -1.4999999999999998,
+      "z_confirmed": -1.2455047375590553
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2025-12-08",
+      "mean_portcalls": 0.14285714285714285,
+      "z_rapid": 0.8660254037844386,
+      "z_confirmed": 0.6141922686399942
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2025-12-15",
+      "mean_portcalls": 0.0,
+      "z_rapid": -1.4999999999999998,
+      "z_confirmed": -1.1737545671976226
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2025-12-22",
+      "mean_portcalls": 0.14285714285714285,
+      "z_rapid": 0.8660254037844386,
+      "z_confirmed": 0.6859943405700353
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2025-12-29",
+      "mean_portcalls": 0.0,
+      "z_rapid": -0.8660254037844386,
+      "z_confirmed": -1.1345267021929573
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-01-05",
+      "mean_portcalls": 0.14285714285714285,
+      "z_rapid": 0.8660254037844386,
+      "z_confirmed": 0.735083187915682
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-01-12",
+      "mean_portcalls": 0.14285714285714285,
+      "z_rapid": 0.8660254037844386,
+      "z_confirmed": 0.68983696689128
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-01-19",
+      "mean_portcalls": 0.14285714285714285,
+      "z_rapid": 0.4999999999999999,
+      "z_confirmed": 0.809173593712687
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-01-26",
+      "mean_portcalls": 0.14285714285714285,
+      "z_rapid": 0.4999999999999999,
+      "z_confirmed": 0.67700320038633
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-02-02",
+      "mean_portcalls": 0.0,
+      "z_rapid": null,
+      "z_confirmed": -1.35400640077266
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-02-09",
+      "mean_portcalls": 0.0,
+      "z_rapid": -1.5,
+      "z_confirmed": -1.35400640077266
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-02-16",
+      "mean_portcalls": 0.42857142857142855,
+      "z_rapid": 4.330127018922194,
+      "z_confirmed": 4.693206843533585
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-02-23",
+      "mean_portcalls": 0.0,
+      "z_rapid": -0.7071067811865476,
+      "z_confirmed": -0.8660254037844386
+    },
+    {
+      "porto": "Porto Alegre",
+      "week": "2026-03-02",
+      "mean_portcalls": 0.4,
+      "z_rapid": 1.366666666666667,
+      "z_confirmed": 2.3671361036774656
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+% ============================================================
+% PÁGINA 1 — CAPA
+% ============================================================
+\pagenumbering{gobble}
+\thispagestyle{coverpage}
+\setlength{\parindent}{0pt}
+
+\vspace*{2cm}
+
+\begin{center}
+\textbf{\MakeUppercase{%
+Monitoramento e Diagnóstico de Eventos Disruptivos nos Portos
+Brasileiros: Detecção de Anomalias Operacionais e Análise de
+Exposição Comercial}}
+\end{center}
+
+\vspace{2cm}
+
+\hfill
+\begin{minipage}{0.55\textwidth}
+{\setstretch{1.0}%
+Trabalho de Conclusão de Curso apresentado como parte dos requisitos
+para obtenção do grau de Especialista em Ciência de Dados e
+Inteligência Artificial.
+
+\vspace{1cm}
+
+\textbf{Aluno:} Fábio Kouri Paim\\
+\textbf{Orientador:} Prof. Alex Lopes Pereira
+\par}
+\end{minipage}
+
+\vfill
+
+\begin{center}
+Brasília -- DF\\
+Abril/2026
+\end{center}
+
+\newpage
+
+% ============================================================
+% PÁGINA 2 — FOLHA DE ROSTO / RESUMO
+% ============================================================
+\thispagestyle{coverpage}
+
+\begin{center}
+\textbf{Monitoramento e Diagnóstico de Eventos Disruptivos nos Portos Brasileiros:
+Detecção de Anomalias Operacionais e Análise de Exposição Comercial}
+
+\vspace{0.8cm}
+
+Fábio Kouri Paim\\
+\textit{Escola Nacional de Administração Pública (ENAP)}\\
+\textit{MBA em Ciência de Dados}
+\end{center}
+
+\vspace{1cm}
+
+{\setstretch{1.0}%
+\noindent\textbf{Resumo.}
+Este artigo propõe um sistema integrado de detecção e classificação de anomalias operacionais em portos brasileiros, articulando três bases públicas: o Anuário Estatístico Aquaviário (ANTAQ), o PortWatch/FMI e o ComexStat/MDIC. Esse cruzamento liga a atividade portuária no nível da atracação individual aos fluxos de exportação detalhados por produto, unidade da federação de origem e país de destino, conectando a operação física à cadeia produtiva exportadora. A partir de séries temporais semanais de 18 portos, modelos XGBoost com correção AR(1) aprendem o padrão operacional normal de cada porto, e um ensemble de três métodos estatísticos identifica desvios significativos. Um sistema de classificação dual categoriza cada anomalia quanto à sua abrangência (isolada, nacional ou global), distinguindo choques domésticos de choques no comércio marítimo global. Validado contra eventos históricos conhecidos, o sistema identifica 1.609 anomalias no período 2015--2026. A integração com dados de exportação por cadeia produtiva mapeia pares porto-cadeia de fragilidade estrutural e estados com dependência elevada de um único porto. Os resultados sugerem que a articulação de dados públicos já disponíveis pode oferecer a gestores públicos uma base analítica reprodutível para avaliar a exposição de cadeias exportadoras a disrupções. Como entrega prática, o trabalho disponibiliza um painel interativo de monitoramento com atualização semanal.
+\par}
+
+\vspace{0.5cm}
+
+\begin{flushright}
+\textbf{Palavras-chave:} detecção de anomalias; portos brasileiros; machine learning;\\
+cadeia de suprimentos; vulnerabilidade comercial.
+\end{flushright}
+
+\newpage
+\setlength{\parindent}{1.25cm}
+\pagenumbering{arabic}
+\setcounter{page}{1}

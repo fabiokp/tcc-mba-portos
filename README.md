@@ -44,7 +44,15 @@ métricas de concentração (HHI) para identificar vulnerabilidades na logístic
 │   └── config.py                 ← Parâmetros, caminhos, constantes do modelo
 │
 ├── scripts/
-│   └── prepare_radar_v1.py       ← Painel de alerta: z-scores PortWatch (origem + destino)
+│   ├── prepare_radar_v1.py       ← Painel de alerta: z-scores PortWatch (origem + destino)
+│   └── build_artigo.ps1          ← Render do artigo final (HTML/PDF)
+│
+├── artigo/                       ← Manuscrito final (Quarto)
+│   ├── artigo_tcc.qmd                Fonte principal do artigo
+│   ├── references.bib                Referências bibliográficas
+│   ├── abnt.csl                      Estilo de citação ABNT
+│   ├── before-body.tex               Bloco LaTeX customizado
+│   └── logo_enap.png                 Logo da instituição
 │
 ├── dashboard/                    ← Dashboard interativo (Quarto + OJS/D3)
 │   ├── index.qmd                     Código-fonte (≈150 KB, 12 abas, 40+ gráficos)
@@ -87,6 +95,28 @@ quarto render                    # Renderiza HTML
 quarto publish netlify           # Publica no Netlify
 ```
 
+### Artigo Final (Quarto)
+
+Pré-requisitos para render do manuscrito:
+
+- Quarto CLI (`quarto --version`)
+- Motor PDF para Pandoc/LaTeX (TinyTeX, TeX Live ou MiKTeX)
+
+Render manual:
+
+```bash
+quarto render artigo/artigo_tcc.qmd --to html
+quarto render artigo/artigo_tcc.qmd --to pdf
+```
+
+Render via script (Windows PowerShell):
+
+```powershell
+./scripts/build_artigo.ps1 -Target all
+./scripts/build_artigo.ps1 -Target html
+./scripts/build_artigo.ps1 -Target pdf
+```
+
 ## Fontes de Dados
 
 Os dados brutos **não estão incluídos** neste repositório. Para reproduzir as análises,
@@ -114,6 +144,8 @@ data/
 
 - **Python 3.12** (recomendado via conda)
 - Dependências: ver `requirements.txt`
+- **Quarto CLI** para geração do artigo e dashboard
+- **LaTeX** (TinyTeX/TeX Live/MiKTeX) para saída PDF do artigo
 
 ```bash
 conda create -n port_analysis python=3.12

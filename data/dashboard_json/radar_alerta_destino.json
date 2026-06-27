@@ -1,0 +1,6626 @@
+{
+  "summary": {
+    "week_reference": "2026-03-09",
+    "portwatch_latest": "2026-03-13",
+    "br_ports_total": 18,
+    "br_ports_alert": 2,
+    "br_ports_watch": 5,
+    "destinations_total": 19,
+    "destinations_alert": 18,
+    "destinations_watch": 1
+  },
+  "alerts": [
+    {
+      "iso3": "CHN",
+      "nome": "China",
+      "nome_en": "China",
+      "week": "2026-03-09",
+      "portcalls": 1265,
+      "n_ports": 5,
+      "z_portcalls": -5.24,
+      "z_import": -1.75,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 99940244710,
+      "pct_export": 32.54,
+      "exposed_chains": [
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 34317388792,
+          "hhi_portuario": 0.163,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 20045592344,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 19581090895,
+          "hhi_portuario": 0.324,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 8842559363,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 4919951867,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob_regional": 1899449510,
+          "hhi_portuario": 0.658,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "671",
+          "nome": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+          "fob_regional": 1646090564,
+          "hhi_portuario": 0.273,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "263a",
+          "nome": "Algodão em bruto",
+          "fob_regional": 830284240,
+          "hhi_portuario": 0.917,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "283b",
+          "nome": "Minérios de cobre e seus concentrados",
+          "fob_regional": 703931370,
+          "hhi_portuario": 0.654,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 599967083,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Paranaguá"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 2006,
+          "z_portcalls": 1.01
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 1877,
+          "z_portcalls": 0.11
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 2045,
+          "z_portcalls": 1.26
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 1626,
+          "z_portcalls": -1.64
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 2015,
+          "z_portcalls": 1.03
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 2062,
+          "z_portcalls": 1.31
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 2032,
+          "z_portcalls": 1.07
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 1957,
+          "z_portcalls": 0.54
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 1999,
+          "z_portcalls": 0.81
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 1926,
+          "z_portcalls": 0.31
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 1970,
+          "z_portcalls": 0.6
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 1900,
+          "z_portcalls": 0.12
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 1955,
+          "z_portcalls": 0.49
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 2032,
+          "z_portcalls": 1.02
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 2009,
+          "z_portcalls": 0.84
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 2011,
+          "z_portcalls": 0.84
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 1958,
+          "z_portcalls": 0.45
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 1932,
+          "z_portcalls": 0.26
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 1911,
+          "z_portcalls": 0.11
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 1683,
+          "z_portcalls": -1.54
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 1989,
+          "z_portcalls": 0.69
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 2033,
+          "z_portcalls": 1.0
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 2000,
+          "z_portcalls": 0.74
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 1926,
+          "z_portcalls": 0.16
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 1955,
+          "z_portcalls": 0.37
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 2017,
+          "z_portcalls": 0.82
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 1915,
+          "z_portcalls": -0.01
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 1932,
+          "z_portcalls": 0.08
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 1875,
+          "z_portcalls": -0.38
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 1870,
+          "z_portcalls": -0.43
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 1817,
+          "z_portcalls": -0.87
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 1617,
+          "z_portcalls": -2.59
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 2012,
+          "z_portcalls": 0.81
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 1994,
+          "z_portcalls": 0.63
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 1847,
+          "z_portcalls": -0.58
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 1878,
+          "z_portcalls": -0.31
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 1889,
+          "z_portcalls": -0.2
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 1937,
+          "z_portcalls": 0.19
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 1811,
+          "z_portcalls": -0.85
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 1949,
+          "z_portcalls": 0.32
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 1888,
+          "z_portcalls": -0.18
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 1762,
+          "z_portcalls": -1.24
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 1872,
+          "z_portcalls": -0.28
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 1782,
+          "z_portcalls": -1.02
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 1865,
+          "z_portcalls": -0.3
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 1793,
+          "z_portcalls": -0.88
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 1810,
+          "z_portcalls": -0.77
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 1762,
+          "z_portcalls": -1.29
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 1615,
+          "z_portcalls": -2.6
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 1673,
+          "z_portcalls": -1.91
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 1659,
+          "z_portcalls": -2.07
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 1265,
+          "z_portcalls": -5.24
+        }
+      ]
+    },
+    {
+      "iso3": "USA",
+      "nome": "Estados Unidos",
+      "nome_en": "United States",
+      "week": "2026-03-09",
+      "portcalls": 318,
+      "n_ports": 5,
+      "z_portcalls": -5.13,
+      "z_import": -2.99,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 37682246914,
+      "pct_export": 12.27,
+      "exposed_chains": [
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 4583276791,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "672",
+          "nome": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+          "fob_regional": 3362826358,
+          "hhi_portuario": 0.357,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 1899602074,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "671",
+          "nome": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+          "fob_regional": 1742220716,
+          "hhi_portuario": 0.273,
+          "porto_principal": "Rio de Janeiro"
+        },
+        {
+          "cuci": "059",
+          "nome": "Sucos de frutas ou de vegetais",
+          "fob_regional": 1580950651,
+          "hhi_portuario": 0.835,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "723",
+          "nome": "Instalações e equipamentos de engenharia civil e contrutores, e suas partes",
+          "fob_regional": 1377742749,
+          "hhi_portuario": 0.818,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 1315822380,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 1207845544,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "334c",
+          "nome": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+          "fob_regional": 1135032464,
+          "hhi_portuario": 0.185,
+          "porto_principal": "Rio de Janeiro"
+        },
+        {
+          "cuci": "661",
+          "nome": "Cal, cimento e materiais de construção fabricada (exceto materiais de vidro e barro)",
+          "fob_regional": 793601433,
+          "hhi_portuario": 0.401,
+          "porto_principal": "Rio de Janeiro"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 455,
+          "z_portcalls": 0.25
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 471,
+          "z_portcalls": 0.78
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 457,
+          "z_portcalls": 0.29
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 444,
+          "z_portcalls": -0.15
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 469,
+          "z_portcalls": 0.71
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 457,
+          "z_portcalls": 0.28
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 441,
+          "z_portcalls": -0.29
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 436,
+          "z_portcalls": -0.46
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 464,
+          "z_portcalls": 0.55
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 458,
+          "z_portcalls": 0.33
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 451,
+          "z_portcalls": 0.06
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 427,
+          "z_portcalls": -0.83
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 432,
+          "z_portcalls": -0.63
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 454,
+          "z_portcalls": 0.21
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 430,
+          "z_portcalls": -0.71
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 431,
+          "z_portcalls": -0.66
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 442,
+          "z_portcalls": -0.22
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 435,
+          "z_portcalls": -0.49
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 458,
+          "z_portcalls": 0.42
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 433,
+          "z_portcalls": -0.58
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 431,
+          "z_portcalls": -0.65
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 468,
+          "z_portcalls": 0.85
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 433,
+          "z_portcalls": -0.58
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 467,
+          "z_portcalls": 0.8
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 424,
+          "z_portcalls": -1.03
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 428,
+          "z_portcalls": -0.83
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 444,
+          "z_portcalls": -0.19
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 440,
+          "z_portcalls": -0.33
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 440,
+          "z_portcalls": -0.32
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 411,
+          "z_portcalls": -1.81
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 432,
+          "z_portcalls": -0.75
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 402,
+          "z_portcalls": -2.21
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 391,
+          "z_portcalls": -2.61
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 396,
+          "z_portcalls": -2.18
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 418,
+          "z_portcalls": -1.09
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 442,
+          "z_portcalls": -0.03
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 441,
+          "z_portcalls": -0.03
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 403,
+          "z_portcalls": -1.73
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 431,
+          "z_portcalls": -0.42
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 418,
+          "z_portcalls": -0.97
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 405,
+          "z_portcalls": -1.51
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 424,
+          "z_portcalls": -0.64
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 458,
+          "z_portcalls": 0.81
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 432,
+          "z_portcalls": -0.31
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 388,
+          "z_portcalls": -2.17
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 419,
+          "z_portcalls": -0.87
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 396,
+          "z_portcalls": -1.87
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 427,
+          "z_portcalls": -0.44
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 405,
+          "z_portcalls": -1.39
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 462,
+          "z_portcalls": 1.18
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 453,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 318,
+          "z_portcalls": -5.13
+        }
+      ]
+    },
+    {
+      "iso3": "NLD",
+      "nome": "Países Baixos (Holanda)",
+      "nome_en": "Netherlands",
+      "week": "2026-03-09",
+      "portcalls": 729,
+      "n_ports": 5,
+      "z_portcalls": -4.41,
+      "z_import": -3.29,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 11726736048,
+      "pct_export": 3.82,
+      "exposed_chains": [
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 3151020616,
+          "hhi_portuario": 0.342,
+          "porto_principal": "São João da Barra"
+        },
+        {
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob_regional": 756102350,
+          "hhi_portuario": 0.292,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "671",
+          "nome": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+          "fob_regional": 754837747,
+          "hhi_portuario": 0.273,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 719621509,
+          "hhi_portuario": 0.324,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 659545497,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "059",
+          "nome": "Sucos de frutas ou de vegetais",
+          "fob_regional": 641985749,
+          "hhi_portuario": 0.835,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 576186897,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "057",
+          "nome": "Frutas e nozes não oleaginosas, frescas ou secas",
+          "fob_regional": 467924695,
+          "hhi_portuario": 0.379,
+          "porto_principal": "Pecém"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 339387886,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 327532592,
+          "hhi_portuario": 0.163,
+          "porto_principal": "Manaus"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 1002,
+          "z_portcalls": 0.84
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 970,
+          "z_portcalls": 0.3
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 1044,
+          "z_portcalls": 1.5
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 1017,
+          "z_portcalls": 1.0
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 1006,
+          "z_portcalls": 0.79
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 960,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 1019,
+          "z_portcalls": 1.0
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 1003,
+          "z_portcalls": 0.71
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 1022,
+          "z_portcalls": 1.01
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 998,
+          "z_portcalls": 0.59
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 959,
+          "z_portcalls": -0.07
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 982,
+          "z_portcalls": 0.32
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 975,
+          "z_portcalls": 0.2
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 974,
+          "z_portcalls": 0.18
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 977,
+          "z_portcalls": 0.23
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 947,
+          "z_portcalls": -0.3
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 963,
+          "z_portcalls": -0.02
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 1000,
+          "z_portcalls": 0.65
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 950,
+          "z_portcalls": -0.26
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 938,
+          "z_portcalls": -0.48
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 963,
+          "z_portcalls": -0.01
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 975,
+          "z_portcalls": 0.21
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 979,
+          "z_portcalls": 0.28
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 972,
+          "z_portcalls": 0.1
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 966,
+          "z_portcalls": -0.03
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 956,
+          "z_portcalls": -0.24
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 912,
+          "z_portcalls": -1.13
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 961,
+          "z_portcalls": -0.11
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 883,
+          "z_portcalls": -1.69
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 915,
+          "z_portcalls": -0.98
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 983,
+          "z_portcalls": 0.37
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 873,
+          "z_portcalls": -1.79
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 984,
+          "z_portcalls": 0.41
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 1003,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 985,
+          "z_portcalls": 0.4
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 932,
+          "z_portcalls": -0.61
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 951,
+          "z_portcalls": -0.24
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 960,
+          "z_portcalls": -0.05
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 954,
+          "z_portcalls": -0.16
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 905,
+          "z_portcalls": -1.09
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 784,
+          "z_portcalls": -3.33
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 773,
+          "z_portcalls": -3.76
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 929,
+          "z_portcalls": -0.62
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 948,
+          "z_portcalls": -0.27
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 934,
+          "z_portcalls": -0.54
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 877,
+          "z_portcalls": -1.64
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 938,
+          "z_portcalls": -0.44
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 916,
+          "z_portcalls": -0.83
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 974,
+          "z_portcalls": 0.3
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 1016,
+          "z_portcalls": 1.09
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 945,
+          "z_portcalls": -0.26
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 729,
+          "z_portcalls": -4.41
+        }
+      ]
+    },
+    {
+      "iso3": "ESP",
+      "nome": "Espanha",
+      "nome_en": "Spain",
+      "week": "2026-03-09",
+      "portcalls": 306,
+      "n_ports": 5,
+      "z_portcalls": -3.84,
+      "z_import": -2.29,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 8783248496,
+      "pct_export": 2.86,
+      "exposed_chains": [
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 3202142746,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Angra dos Reis"
+        },
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 1489849707,
+          "hhi_portuario": 0.163,
+          "porto_principal": "Vila do Conde"
+        },
+        {
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob_regional": 622473779,
+          "hhi_portuario": 0.292,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "283b",
+          "nome": "Minérios de cobre e seus concentrados",
+          "fob_regional": 604460335,
+          "hhi_portuario": 0.654,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 476694991,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "044",
+          "nome": "Milho não moído, exceto milho doce",
+          "fob_regional": 229729888,
+          "hhi_portuario": 0.266,
+          "porto_principal": "Vila do Conde"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 141360373,
+          "hhi_portuario": 0.259,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 126911467,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob_regional": 116740729,
+          "hhi_portuario": 0.658,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "057",
+          "nome": "Frutas e nozes não oleaginosas, frescas ou secas",
+          "fob_regional": 86841390,
+          "hhi_portuario": 0.379,
+          "porto_principal": "Pecém"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 424,
+          "z_portcalls": 0.71
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 451,
+          "z_portcalls": 1.79
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 437,
+          "z_portcalls": 1.12
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 440,
+          "z_portcalls": 1.2
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 417,
+          "z_portcalls": 0.26
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 443,
+          "z_portcalls": 1.29
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 389,
+          "z_portcalls": -0.87
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 444,
+          "z_portcalls": 1.31
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 438,
+          "z_portcalls": 1.03
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 442,
+          "z_portcalls": 1.16
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 458,
+          "z_portcalls": 1.75
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 404,
+          "z_portcalls": -0.38
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 423,
+          "z_portcalls": 0.35
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 427,
+          "z_portcalls": 0.5
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 426,
+          "z_portcalls": 0.45
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 406,
+          "z_portcalls": -0.34
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 408,
+          "z_portcalls": -0.26
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 395,
+          "z_portcalls": -0.78
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 453,
+          "z_portcalls": 1.58
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 432,
+          "z_portcalls": 0.69
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 397,
+          "z_portcalls": -0.72
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 392,
+          "z_portcalls": -0.91
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 420,
+          "z_portcalls": 0.23
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 402,
+          "z_portcalls": -0.57
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 382,
+          "z_portcalls": -1.39
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 432,
+          "z_portcalls": 0.75
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 403,
+          "z_portcalls": -0.47
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 458,
+          "z_portcalls": 1.85
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 429,
+          "z_portcalls": 0.61
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 441,
+          "z_portcalls": 1.1
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 446,
+          "z_portcalls": 1.26
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 407,
+          "z_portcalls": -0.34
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 444,
+          "z_portcalls": 1.15
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 436,
+          "z_portcalls": 0.8
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 441,
+          "z_portcalls": 0.99
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 447,
+          "z_portcalls": 1.19
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 463,
+          "z_portcalls": 1.77
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 395,
+          "z_portcalls": -0.9
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 402,
+          "z_portcalls": -0.62
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 404,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 372,
+          "z_portcalls": -1.81
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 386,
+          "z_portcalls": -1.24
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 374,
+          "z_portcalls": -1.79
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 385,
+          "z_portcalls": -1.31
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 339,
+          "z_portcalls": -3.08
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 347,
+          "z_portcalls": -2.52
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 398,
+          "z_portcalls": -0.69
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 377,
+          "z_portcalls": -1.43
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 455,
+          "z_portcalls": 1.36
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 445,
+          "z_portcalls": 0.96
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 415,
+          "z_portcalls": -0.11
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 306,
+          "z_portcalls": -3.84
+        }
+      ]
+    },
+    {
+      "iso3": "MEX",
+      "nome": "México",
+      "nome_en": "Mexico",
+      "week": "2026-03-09",
+      "portcalls": 95,
+      "n_ports": 5,
+      "z_portcalls": -4.45,
+      "z_import": -2.41,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 7728866863,
+      "pct_export": 2.52,
+      "exposed_chains": [
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 664025557,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 644012588,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "781",
+          "nome": "Veículos automóveis de passageiros",
+          "fob_regional": 562108153,
+          "hhi_portuario": 0.339,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "782",
+          "nome": "Veículos automóveis para transporte de mercadorias e usos especiais",
+          "fob_regional": 485012961,
+          "hhi_portuario": 0.486,
+          "porto_principal": "Suape"
+        },
+        {
+          "cuci": "713",
+          "nome": "Motores de pistão, e suas partes",
+          "fob_regional": 329018305,
+          "hhi_portuario": 0.335,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "784",
+          "nome": "Partes e acessórios dos veículos automotivos",
+          "fob_regional": 251042052,
+          "hhi_portuario": 0.52,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 246891101,
+          "hhi_portuario": 0.163,
+          "porto_principal": "Vila do Conde"
+        },
+        {
+          "cuci": "672",
+          "nome": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+          "fob_regional": 245431953,
+          "hhi_portuario": 0.357,
+          "porto_principal": "Pecém"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 234417750,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "012c2",
+          "nome": "Carne suína fresca, refrigerada ou congelada",
+          "fob_regional": 187055375,
+          "hhi_portuario": 0.332,
+          "porto_principal": "São Francisco do Sul"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 149,
+          "z_portcalls": -0.09
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 164,
+          "z_portcalls": 0.78
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 131,
+          "z_portcalls": -1.16
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 138,
+          "z_portcalls": -0.72
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 150,
+          "z_portcalls": 0.0
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 135,
+          "z_portcalls": -0.89
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 137,
+          "z_portcalls": -0.75
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 132,
+          "z_portcalls": -1.03
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 143,
+          "z_portcalls": -0.34
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 131,
+          "z_portcalls": -1.07
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 148,
+          "z_portcalls": -0.01
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 152,
+          "z_portcalls": 0.24
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 163,
+          "z_portcalls": 0.92
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 152,
+          "z_portcalls": 0.21
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 164,
+          "z_portcalls": 0.97
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 141,
+          "z_portcalls": -0.5
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 155,
+          "z_portcalls": 0.39
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 151,
+          "z_portcalls": 0.13
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 144,
+          "z_portcalls": -0.32
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 174,
+          "z_portcalls": 1.64
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 150,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 159,
+          "z_portcalls": 0.62
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 167,
+          "z_portcalls": 1.14
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 142,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 158,
+          "z_portcalls": 0.55
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 161,
+          "z_portcalls": 0.73
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 169,
+          "z_portcalls": 1.31
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 168,
+          "z_portcalls": 1.21
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 145,
+          "z_portcalls": -0.36
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 137,
+          "z_portcalls": -0.88
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 158,
+          "z_portcalls": 0.59
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 165,
+          "z_portcalls": 1.05
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 144,
+          "z_portcalls": -0.39
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 148,
+          "z_portcalls": -0.06
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 137,
+          "z_portcalls": -0.85
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 144,
+          "z_portcalls": -0.3
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 158,
+          "z_portcalls": 0.75
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 157,
+          "z_portcalls": 0.68
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 147,
+          "z_portcalls": -0.04
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 155,
+          "z_portcalls": 0.57
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 138,
+          "z_portcalls": -0.72
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 128,
+          "z_portcalls": -1.49
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 153,
+          "z_portcalls": 0.41
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 127,
+          "z_portcalls": -1.63
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 162,
+          "z_portcalls": 1.08
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 148,
+          "z_portcalls": -0.07
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 152,
+          "z_portcalls": 0.28
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 129,
+          "z_portcalls": -1.61
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 136,
+          "z_portcalls": -1.02
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 151,
+          "z_portcalls": 0.18
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 172,
+          "z_portcalls": 1.97
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 95,
+          "z_portcalls": -4.45
+        }
+      ]
+    },
+    {
+      "iso3": "SGP",
+      "nome": "Singapura",
+      "nome_en": "Singapore",
+      "week": "2026-03-09",
+      "portcalls": 746,
+      "n_ports": 3,
+      "z_portcalls": -9.17,
+      "z_import": -5.49,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 7353096562,
+      "pct_export": 2.39,
+      "exposed_chains": [
+        {
+          "cuci": "334c",
+          "nome": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+          "fob_regional": 3374978596,
+          "hhi_portuario": 0.185,
+          "porto_principal": "Salvador"
+        },
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 1223139466,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Angra dos Reis"
+        },
+        {
+          "cuci": "743",
+          "nome": "Bombas, centrífugas, compressores de ar, ventiladores, exaustores, aparelhos de filtrar ou depurar e suas partes",
+          "fob_regional": 640371033,
+          "hhi_portuario": 0.221,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "728",
+          "nome": "Outras máquinas e equipamentos especializados para determinadas indústrias e suas partes",
+          "fob_regional": 426707258,
+          "hhi_portuario": 0.304,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 282337664,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Itajaí"
+        },
+        {
+          "cuci": "012c2",
+          "nome": "Carne suína fresca, refrigerada ou congelada",
+          "fob_regional": 211901217,
+          "hhi_portuario": 0.332,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "747",
+          "nome": "Torneiras, válvulas e dispositivos semelhantes para canalizações, caldeiras, reservatórios, cubas e outros recipientes",
+          "fob_regional": 195694026,
+          "hhi_portuario": 0.3,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "671",
+          "nome": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+          "fob_regional": 193835356,
+          "hhi_portuario": 0.273,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 122389455,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "699",
+          "nome": "Obras de ferro ou aço e outros artigos de metais comuns",
+          "fob_regional": 85075546,
+          "hhi_portuario": 0.393,
+          "porto_principal": "Itaguaí"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 970,
+          "z_portcalls": 0.49
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 984,
+          "z_portcalls": 0.82
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 966,
+          "z_portcalls": 0.35
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 934,
+          "z_portcalls": -0.46
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 1031,
+          "z_portcalls": 2.03
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 962,
+          "z_portcalls": 0.2
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 1001,
+          "z_portcalls": 1.16
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 1016,
+          "z_portcalls": 1.5
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 1003,
+          "z_portcalls": 1.12
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 1012,
+          "z_portcalls": 1.31
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 961,
+          "z_portcalls": 0.03
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 1048,
+          "z_portcalls": 2.16
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 1025,
+          "z_portcalls": 1.48
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 967,
+          "z_portcalls": 0.09
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 1013,
+          "z_portcalls": 1.16
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 1009,
+          "z_portcalls": 1.04
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 1008,
+          "z_portcalls": 0.99
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 999,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 999,
+          "z_portcalls": 0.75
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 960,
+          "z_portcalls": -0.18
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 1008,
+          "z_portcalls": 0.96
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 1061,
+          "z_portcalls": 2.2
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 990,
+          "z_portcalls": 0.46
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 980,
+          "z_portcalls": 0.17
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 1001,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 952,
+          "z_portcalls": -0.68
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 997,
+          "z_portcalls": 0.61
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 1003,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 1016,
+          "z_portcalls": 1.16
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 1045,
+          "z_portcalls": 2.04
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 1027,
+          "z_portcalls": 1.37
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 1004,
+          "z_portcalls": 0.62
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 996,
+          "z_portcalls": 0.34
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 1035,
+          "z_portcalls": 1.54
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 1033,
+          "z_portcalls": 1.43
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 1023,
+          "z_portcalls": 1.07
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 989,
+          "z_portcalls": 0.02
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 976,
+          "z_portcalls": -0.4
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 994,
+          "z_portcalls": 0.14
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 975,
+          "z_portcalls": -0.44
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 966,
+          "z_portcalls": -0.75
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 998,
+          "z_portcalls": 0.24
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 974,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 1021,
+          "z_portcalls": 0.94
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 1013,
+          "z_portcalls": 0.66
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 1024,
+          "z_portcalls": 1.0
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 1017,
+          "z_portcalls": 0.75
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 988,
+          "z_portcalls": -0.28
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 983,
+          "z_portcalls": -0.5
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 966,
+          "z_portcalls": -1.18
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 1018,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 746,
+          "z_portcalls": -9.17
+        }
+      ]
+    },
+    {
+      "iso3": "CAN",
+      "nome": "Canadá",
+      "nome_en": "Canada",
+      "week": "2026-03-09",
+      "portcalls": 73,
+      "n_ports": 5,
+      "z_portcalls": -3.9,
+      "z_import": 2.05,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 7251870870,
+      "pct_export": 2.36,
+      "exposed_chains": [
+        {
+          "cuci": "285c",
+          "nome": "Alumina (óxido de alumínio), exceto corindo artificial",
+          "fob_regional": 1505181398,
+          "hhi_portuario": 0.498,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 336832221,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob_regional": 322679827,
+          "hhi_portuario": 0.658,
+          "porto_principal": "São Sebastião"
+        },
+        {
+          "cuci": "723",
+          "nome": "Instalações e equipamentos de engenharia civil e contrutores, e suas partes",
+          "fob_regional": 127217436,
+          "hhi_portuario": 0.818,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 61550094,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "283b",
+          "nome": "Minérios de cobre e seus concentrados",
+          "fob_regional": 53097411,
+          "hhi_portuario": 0.654,
+          "porto_principal": "São João da Barra"
+        },
+        {
+          "cuci": "335",
+          "nome": "Produtos residuais de petróleo e materiais relacionados",
+          "fob_regional": 51316197,
+          "hhi_portuario": 0.334,
+          "porto_principal": "Imbituba"
+        },
+        {
+          "cuci": "716",
+          "nome": "Geradores elétricos giratórios e suas partes",
+          "fob_regional": 42839871,
+          "hhi_portuario": 0.229,
+          "porto_principal": "São Francisco do Sul"
+        },
+        {
+          "cuci": "072c",
+          "nome": "Cacau em pó, manteiga ou pasta de cacau",
+          "fob_regional": 40987974,
+          "hhi_portuario": 0.616,
+          "porto_principal": "Salvador"
+        },
+        {
+          "cuci": "012c2",
+          "nome": "Carne suína fresca, refrigerada ou congelada",
+          "fob_regional": 40901308,
+          "hhi_portuario": 0.332,
+          "porto_principal": "Itajaí"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 112,
+          "z_portcalls": -0.29
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 115,
+          "z_portcalls": -0.08
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 119,
+          "z_portcalls": 0.19
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 125,
+          "z_portcalls": 0.6
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 129,
+          "z_portcalls": 0.87
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 127,
+          "z_portcalls": 0.71
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 133,
+          "z_portcalls": 1.12
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 128,
+          "z_portcalls": 0.73
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 127,
+          "z_portcalls": 0.65
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 108,
+          "z_portcalls": -0.72
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 117,
+          "z_portcalls": -0.06
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 131,
+          "z_portcalls": 0.96
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 138,
+          "z_portcalls": 1.45
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 113,
+          "z_portcalls": -0.4
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 119,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 116,
+          "z_portcalls": -0.18
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 123,
+          "z_portcalls": 0.34
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 115,
+          "z_portcalls": -0.26
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 109,
+          "z_portcalls": -0.71
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 115,
+          "z_portcalls": -0.25
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 122,
+          "z_portcalls": 0.29
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 111,
+          "z_portcalls": -0.56
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 94,
+          "z_portcalls": -1.88
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 105,
+          "z_portcalls": -1.05
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 111,
+          "z_portcalls": -0.57
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 122,
+          "z_portcalls": 0.29
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 114,
+          "z_portcalls": -0.35
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 132,
+          "z_portcalls": 1.09
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 129,
+          "z_portcalls": 0.82
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 128,
+          "z_portcalls": 0.73
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 128,
+          "z_portcalls": 0.74
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 118,
+          "z_portcalls": -0.05
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 111,
+          "z_portcalls": -0.59
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 118,
+          "z_portcalls": 0.01
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 144,
+          "z_portcalls": 2.13
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 136,
+          "z_portcalls": 1.38
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 139,
+          "z_portcalls": 1.63
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 127,
+          "z_portcalls": 0.67
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 121,
+          "z_portcalls": 0.2
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 119,
+          "z_portcalls": 0.05
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 109,
+          "z_portcalls": -0.74
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 111,
+          "z_portcalls": -0.57
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 116,
+          "z_portcalls": -0.18
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 107,
+          "z_portcalls": -0.99
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 105,
+          "z_portcalls": -1.14
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 84,
+          "z_portcalls": -2.98
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 111,
+          "z_portcalls": -0.56
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 105,
+          "z_portcalls": -1.05
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 106,
+          "z_portcalls": -0.97
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 107,
+          "z_portcalls": -0.95
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 110,
+          "z_portcalls": -0.66
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 73,
+          "z_portcalls": -3.9
+        }
+      ]
+    },
+    {
+      "iso3": "CHL",
+      "nome": "Chile",
+      "nome_en": "Chile",
+      "week": "2026-03-09",
+      "portcalls": 50,
+      "n_ports": 5,
+      "z_portcalls": -3.12,
+      "z_import": -1.8,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 7176227117,
+      "pct_export": 2.34,
+      "exposed_chains": [
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 1826739918,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Angra dos Reis"
+        },
+        {
+          "cuci": "781",
+          "nome": "Veículos automóveis de passageiros",
+          "fob_regional": 136074722,
+          "hhi_portuario": 0.339,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob_regional": 135145635,
+          "hhi_portuario": 0.292,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "782",
+          "nome": "Veículos automóveis para transporte de mercadorias e usos especiais",
+          "fob_regional": 133330893,
+          "hhi_portuario": 0.486,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "723",
+          "nome": "Instalações e equipamentos de engenharia civil e contrutores, e suas partes",
+          "fob_regional": 124419541,
+          "hhi_portuario": 0.818,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "772",
+          "nome": "Aparelhos elétricos para ligação, proteção ou conexão de circuitos",
+          "fob_regional": 83155702,
+          "hhi_portuario": 0.424,
+          "porto_principal": "Itajaí"
+        },
+        {
+          "cuci": "641",
+          "nome": "Papel e cartão",
+          "fob_regional": 72772015,
+          "hhi_portuario": 0.455,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "571",
+          "nome": "Polímeros de etileno, em formas primárias",
+          "fob_regional": 69700698,
+          "hhi_portuario": 0.438,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 54522170,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "684",
+          "nome": "Alumínio",
+          "fob_regional": 42794703,
+          "hhi_portuario": 0.444,
+          "porto_principal": "Santos"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 66,
+          "z_portcalls": -0.97
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 79,
+          "z_portcalls": 0.44
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 92,
+          "z_portcalls": 1.83
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 64,
+          "z_portcalls": -1.19
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 92,
+          "z_portcalls": 1.74
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 75,
+          "z_portcalls": -0.06
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 72,
+          "z_portcalls": -0.37
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 80,
+          "z_portcalls": 0.46
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 82,
+          "z_portcalls": 0.66
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 80,
+          "z_portcalls": 0.44
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 73,
+          "z_portcalls": -0.31
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 85,
+          "z_portcalls": 0.98
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 66,
+          "z_portcalls": -1.08
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 85,
+          "z_portcalls": 0.99
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 79,
+          "z_portcalls": 0.32
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 81,
+          "z_portcalls": 0.53
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 72,
+          "z_portcalls": -0.46
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 83,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 84,
+          "z_portcalls": 0.86
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 63,
+          "z_portcalls": -1.49
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 99,
+          "z_portcalls": 2.51
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 86,
+          "z_portcalls": 0.98
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 72,
+          "z_portcalls": -0.5
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 84,
+          "z_portcalls": 0.75
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 89,
+          "z_portcalls": 1.29
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 66,
+          "z_portcalls": -1.19
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 84,
+          "z_portcalls": 0.75
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 73,
+          "z_portcalls": -0.45
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 60,
+          "z_portcalls": -1.83
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 89,
+          "z_portcalls": 1.26
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 76,
+          "z_portcalls": -0.1
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 97,
+          "z_portcalls": 2.03
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 72,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 79,
+          "z_portcalls": 0.14
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 69,
+          "z_portcalls": -0.87
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 96,
+          "z_portcalls": 1.83
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 76,
+          "z_portcalls": -0.19
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 78,
+          "z_portcalls": 0.02
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 70,
+          "z_portcalls": -0.75
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 83,
+          "z_portcalls": 0.54
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 82,
+          "z_portcalls": 0.43
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 83,
+          "z_portcalls": 0.5
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 86,
+          "z_portcalls": 0.82
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 61,
+          "z_portcalls": -1.99
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 82,
+          "z_portcalls": 0.36
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 88,
+          "z_portcalls": 1.01
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 75,
+          "z_portcalls": -0.4
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 70,
+          "z_portcalls": -0.92
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 84,
+          "z_portcalls": 0.6
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 75,
+          "z_portcalls": -0.38
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 91,
+          "z_portcalls": 1.33
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 50,
+          "z_portcalls": -3.12
+        }
+      ]
+    },
+    {
+      "iso3": "IND",
+      "nome": "Índia",
+      "nome_en": "India",
+      "week": "2026-03-09",
+      "portcalls": 115,
+      "n_ports": 5,
+      "z_portcalls": -2.26,
+      "z_import": -2.46,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 6865880767,
+      "pct_export": 2.24,
+      "exposed_chains": [
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 1941219422,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob_regional": 1055314481,
+          "hhi_portuario": 0.658,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "421",
+          "nome": "Gorduras e óleos vegetais, \"soft\", bruto, refinado ou fracionado",
+          "fob_regional": 965397092,
+          "hhi_portuario": 0.415,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 441922136,
+          "hhi_portuario": 0.324,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "263a",
+          "nome": "Algodão em bruto",
+          "fob_regional": 413333247,
+          "hhi_portuario": 0.917,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "054a",
+          "nome": "Produtos hortícolas, frescos ou refrigerados",
+          "fob_regional": 256286957,
+          "hhi_portuario": 0.604,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "283b",
+          "nome": "Minérios de cobre e seus concentrados",
+          "fob_regional": 222342101,
+          "hhi_portuario": 0.654,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "282",
+          "nome": "Resíduos e sucata de metais ferrosos",
+          "fob_regional": 189145428,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "222a2",
+          "nome": "Sementes oleaginosas de girassol, gergelim, canola, algodão e outras",
+          "fob_regional": 120679228,
+          "hhi_portuario": 0.431,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "288",
+          "nome": "Resíduos de metais de base não ferrosos e de sucata",
+          "fob_regional": 92203694,
+          "hhi_portuario": 0.326,
+          "porto_principal": "Rio de Janeiro"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 301,
+          "z_portcalls": -1.04
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 309,
+          "z_portcalls": -0.65
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 324,
+          "z_portcalls": 0.03
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 291,
+          "z_portcalls": -1.47
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 338,
+          "z_portcalls": 0.7
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 313,
+          "z_portcalls": -0.44
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 315,
+          "z_portcalls": -0.34
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 283,
+          "z_portcalls": -1.82
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 303,
+          "z_portcalls": -0.82
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 256,
+          "z_portcalls": -2.92
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 268,
+          "z_portcalls": -2.12
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 256,
+          "z_portcalls": -2.46
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 282,
+          "z_portcalls": -1.29
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 241,
+          "z_portcalls": -2.78
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 235,
+          "z_portcalls": -2.74
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 268,
+          "z_portcalls": -1.43
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 270,
+          "z_portcalls": -1.32
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 250,
+          "z_portcalls": -1.92
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 218,
+          "z_portcalls": -2.82
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 245,
+          "z_portcalls": -1.81
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 220,
+          "z_portcalls": -2.44
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 212,
+          "z_portcalls": -2.5
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 207,
+          "z_portcalls": -2.47
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 193,
+          "z_portcalls": -2.63
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 203,
+          "z_portcalls": -2.23
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 200,
+          "z_portcalls": -2.16
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 204,
+          "z_portcalls": -1.94
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 200,
+          "z_portcalls": -1.92
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 181,
+          "z_portcalls": -2.2
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 195,
+          "z_portcalls": -1.79
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 200,
+          "z_portcalls": -1.61
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 228,
+          "z_portcalls": -1.01
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 194,
+          "z_portcalls": -1.62
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 190,
+          "z_portcalls": -1.62
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 211,
+          "z_portcalls": -1.16
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 215,
+          "z_portcalls": -1.05
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 226,
+          "z_portcalls": -0.8
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 259,
+          "z_portcalls": -0.16
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 114,
+          "z_portcalls": -2.85
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 181,
+          "z_portcalls": -1.44
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 185,
+          "z_portcalls": -1.31
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 203,
+          "z_portcalls": -0.95
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 178,
+          "z_portcalls": -1.36
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 172,
+          "z_portcalls": -1.41
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 193,
+          "z_portcalls": -0.99
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 173,
+          "z_portcalls": -1.31
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 188,
+          "z_portcalls": -1.0
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 182,
+          "z_portcalls": -1.07
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 196,
+          "z_portcalls": -0.78
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 183,
+          "z_portcalls": -0.99
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 161,
+          "z_portcalls": -1.39
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 115,
+          "z_portcalls": -2.26
+        }
+      ]
+    },
+    {
+      "iso3": "JPN",
+      "nome": "Japão",
+      "nome_en": "Japan",
+      "week": "2026-03-09",
+      "portcalls": 1015,
+      "n_ports": 5,
+      "z_portcalls": -2.3,
+      "z_import": -1.88,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 5488854671,
+      "pct_export": 1.79,
+      "exposed_chains": [
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 1013336721,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 955635563,
+          "hhi_portuario": 0.324,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 840050075,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "684",
+          "nome": "Alumínio",
+          "fob_regional": 435738773,
+          "hhi_portuario": 0.444,
+          "porto_principal": "Vila do Conde"
+        },
+        {
+          "cuci": "012c2",
+          "nome": "Carne suína fresca, refrigerada ou congelada",
+          "fob_regional": 388512925,
+          "hhi_portuario": 0.332,
+          "porto_principal": "Itajaí"
+        },
+        {
+          "cuci": "671",
+          "nome": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+          "fob_regional": 293601832,
+          "hhi_portuario": 0.273,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 257372293,
+          "hhi_portuario": 0.163,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob_regional": 159056699,
+          "hhi_portuario": 0.292,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 123316543,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "059",
+          "nome": "Sucos de frutas ou de vegetais",
+          "fob_regional": 98633352,
+          "hhi_portuario": 0.835,
+          "porto_principal": "Santos"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 1353,
+          "z_portcalls": 0.65
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 1360,
+          "z_portcalls": 0.68
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 1267,
+          "z_portcalls": 0.1
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 1299,
+          "z_portcalls": 0.3
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 1252,
+          "z_portcalls": 0.0
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 1328,
+          "z_portcalls": 0.48
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 1116,
+          "z_portcalls": -0.88
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 1157,
+          "z_portcalls": -0.6
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 1306,
+          "z_portcalls": 0.38
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 1290,
+          "z_portcalls": 0.27
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 1283,
+          "z_portcalls": 0.22
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 1272,
+          "z_portcalls": 0.14
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 1280,
+          "z_portcalls": 0.19
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 1312,
+          "z_portcalls": 0.41
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 1333,
+          "z_portcalls": 0.55
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 1328,
+          "z_portcalls": 0.51
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 1285,
+          "z_portcalls": 0.2
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 1142,
+          "z_portcalls": -0.82
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 1362,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 1151,
+          "z_portcalls": -0.76
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 1276,
+          "z_portcalls": 0.15
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 1146,
+          "z_portcalls": -0.8
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 1291,
+          "z_portcalls": 0.27
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 1297,
+          "z_portcalls": 0.3
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 1210,
+          "z_portcalls": -0.47
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 1273,
+          "z_portcalls": 0.1
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 1270,
+          "z_portcalls": 0.09
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 1194,
+          "z_portcalls": -0.57
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 1301,
+          "z_portcalls": 0.37
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 1092,
+          "z_portcalls": -1.44
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 1291,
+          "z_portcalls": 0.31
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 1173,
+          "z_portcalls": -0.69
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 1260,
+          "z_portcalls": 0.07
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 1250,
+          "z_portcalls": -0.03
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 1239,
+          "z_portcalls": -0.11
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 1277,
+          "z_portcalls": 0.23
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 1371,
+          "z_portcalls": 1.04
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 1262,
+          "z_portcalls": 0.08
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 1300,
+          "z_portcalls": 0.41
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 1352,
+          "z_portcalls": 0.85
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 1240,
+          "z_portcalls": -0.11
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 686,
+          "z_portcalls": -4.81
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 1212,
+          "z_portcalls": -0.4
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 1315,
+          "z_portcalls": 0.58
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 1313,
+          "z_portcalls": 0.56
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 1385,
+          "z_portcalls": 1.25
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 1251,
+          "z_portcalls": -0.06
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 1255,
+          "z_portcalls": -0.04
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 1264,
+          "z_portcalls": 0.05
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 1258,
+          "z_portcalls": 0.0
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 1182,
+          "z_portcalls": -0.71
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 1015,
+          "z_portcalls": -2.3
+        }
+      ]
+    },
+    {
+      "iso3": "KOR",
+      "nome": "Coreia do Sul",
+      "nome_en": "South Korea",
+      "week": "2026-03-09",
+      "portcalls": 675,
+      "n_ports": 5,
+      "z_portcalls": -5.11,
+      "z_import": -2.05,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 5467051548,
+      "pct_export": 1.78,
+      "exposed_chains": [
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 1783865831,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 718730814,
+          "hhi_portuario": 0.324,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob_regional": 504228264,
+          "hhi_portuario": 0.292,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "512",
+          "nome": "Álcoois, fenóis, fenóis-álcoois, e seus derivados halogenados, sulfonados, nitrados ou nitrosados",
+          "fob_regional": 401653235,
+          "hhi_portuario": 0.673,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 378564167,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 357197966,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "671",
+          "nome": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+          "fob_regional": 252562733,
+          "hhi_portuario": 0.273,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 231762414,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 161380670,
+          "hhi_portuario": 0.163,
+          "porto_principal": "São Francisco do Sul"
+        },
+        {
+          "cuci": "044",
+          "nome": "Milho não moído, exceto milho doce",
+          "fob_regional": 136392029,
+          "hhi_portuario": 0.266,
+          "porto_principal": "Santos"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 1065,
+          "z_portcalls": 0.6
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 979,
+          "z_portcalls": -0.37
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 1015,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 918,
+          "z_portcalls": -1.06
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 1002,
+          "z_portcalls": -0.07
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 1047,
+          "z_portcalls": 0.45
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 996,
+          "z_portcalls": -0.16
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 987,
+          "z_portcalls": -0.26
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 1055,
+          "z_portcalls": 0.56
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 1032,
+          "z_portcalls": 0.27
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 1123,
+          "z_portcalls": 1.38
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 1085,
+          "z_portcalls": 0.87
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 1010,
+          "z_portcalls": -0.06
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 1044,
+          "z_portcalls": 0.36
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 1115,
+          "z_portcalls": 1.24
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 1059,
+          "z_portcalls": 0.51
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 999,
+          "z_portcalls": -0.24
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 940,
+          "z_portcalls": -0.98
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 966,
+          "z_portcalls": -0.64
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 1050,
+          "z_portcalls": 0.44
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 962,
+          "z_portcalls": -0.69
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 1023,
+          "z_portcalls": 0.1
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 1033,
+          "z_portcalls": 0.23
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 1054,
+          "z_portcalls": 0.48
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 1013,
+          "z_portcalls": -0.05
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 976,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 967,
+          "z_portcalls": -0.63
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 1005,
+          "z_portcalls": -0.11
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 910,
+          "z_portcalls": -1.55
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 854,
+          "z_portcalls": -2.36
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 929,
+          "z_portcalls": -1.11
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 909,
+          "z_portcalls": -1.42
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 992,
+          "z_portcalls": -0.06
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 955,
+          "z_portcalls": -0.64
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 931,
+          "z_portcalls": -1.0
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 975,
+          "z_portcalls": -0.27
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 948,
+          "z_portcalls": -0.68
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 1089,
+          "z_portcalls": 1.58
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 898,
+          "z_portcalls": -1.46
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 939,
+          "z_portcalls": -0.77
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 985,
+          "z_portcalls": -0.03
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 961,
+          "z_portcalls": -0.39
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 895,
+          "z_portcalls": -1.4
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 991,
+          "z_portcalls": 0.11
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 924,
+          "z_portcalls": -0.93
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 1017,
+          "z_portcalls": 0.52
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 912,
+          "z_portcalls": -1.23
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 1016,
+          "z_portcalls": 0.48
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 872,
+          "z_portcalls": -1.93
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 953,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 990,
+          "z_portcalls": 0.08
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 675,
+          "z_portcalls": -5.11
+        }
+      ]
+    },
+    {
+      "iso3": "ITA",
+      "nome": "Itália",
+      "nome_en": "Italy",
+      "week": "2026-03-09",
+      "portcalls": 170,
+      "n_ports": 5,
+      "z_portcalls": -3.46,
+      "z_import": -3.31,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 5361690529,
+      "pct_export": 1.75,
+      "exposed_chains": [
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 1340315595,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 802000543,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 671204642,
+          "hhi_portuario": 0.342,
+          "porto_principal": "São João da Barra"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 336301211,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob_regional": 193721022,
+          "hhi_portuario": 0.292,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 186564962,
+          "hhi_portuario": 0.163,
+          "porto_principal": "Manaus"
+        },
+        {
+          "cuci": "671",
+          "nome": "Ferro-gusa, spiegel, ferro-esponja, grânulos e pó de ferro ou aço e ferro-ligas",
+          "fob_regional": 137395631,
+          "hhi_portuario": 0.273,
+          "porto_principal": "Vila do Conde"
+        },
+        {
+          "cuci": "611",
+          "nome": "Couro",
+          "fob_regional": 121362286,
+          "hhi_portuario": 0.263,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 110780624,
+          "hhi_portuario": 0.324,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "278b",
+          "nome": "Outros minerais em bruto",
+          "fob_regional": 90733437,
+          "hhi_portuario": 0.211,
+          "porto_principal": "Pecém"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 260,
+          "z_portcalls": 1.34
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 248,
+          "z_portcalls": 0.72
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 241,
+          "z_portcalls": 0.37
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 238,
+          "z_portcalls": 0.22
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 215,
+          "z_portcalls": -0.89
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 233,
+          "z_portcalls": 0.0
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 240,
+          "z_portcalls": 0.35
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 225,
+          "z_portcalls": -0.4
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 243,
+          "z_portcalls": 0.51
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 264,
+          "z_portcalls": 1.57
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 254,
+          "z_portcalls": 1.01
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 235,
+          "z_portcalls": 0.03
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 248,
+          "z_portcalls": 0.69
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 232,
+          "z_portcalls": -0.14
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 240,
+          "z_portcalls": 0.27
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 230,
+          "z_portcalls": -0.25
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 230,
+          "z_portcalls": -0.25
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 247,
+          "z_portcalls": 0.66
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 246,
+          "z_portcalls": 0.6
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 229,
+          "z_portcalls": -0.33
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 230,
+          "z_portcalls": -0.27
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 200,
+          "z_portcalls": -1.92
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 236,
+          "z_portcalls": 0.1
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 229,
+          "z_portcalls": -0.38
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 223,
+          "z_portcalls": -0.73
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 220,
+          "z_portcalls": -0.91
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 232,
+          "z_portcalls": -0.2
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 245,
+          "z_portcalls": 0.57
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 234,
+          "z_portcalls": -0.08
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 231,
+          "z_portcalls": -0.27
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 253,
+          "z_portcalls": 1.1
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 243,
+          "z_portcalls": 0.46
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 254,
+          "z_portcalls": 1.15
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 252,
+          "z_portcalls": 1.0
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 263,
+          "z_portcalls": 1.67
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 233,
+          "z_portcalls": -0.19
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 250,
+          "z_portcalls": 0.81
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 263,
+          "z_portcalls": 1.58
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 241,
+          "z_portcalls": 0.26
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 234,
+          "z_portcalls": -0.17
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 180,
+          "z_portcalls": -3.37
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 187,
+          "z_portcalls": -3.05
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 186,
+          "z_portcalls": -3.1
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 229,
+          "z_portcalls": -0.38
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 211,
+          "z_portcalls": -1.4
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 231,
+          "z_portcalls": -0.25
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 218,
+          "z_portcalls": -0.96
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 206,
+          "z_portcalls": -1.59
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 235,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 232,
+          "z_portcalls": -0.11
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 247,
+          "z_portcalls": 0.71
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 170,
+          "z_portcalls": -3.46
+        }
+      ]
+    },
+    {
+      "iso3": "TUR",
+      "nome": "Turquia",
+      "nome_en": "Turkey",
+      "week": "2026-03-09",
+      "portcalls": 274,
+      "n_ports": 5,
+      "z_portcalls": -3.93,
+      "z_import": -1.99,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 4145459591,
+      "pct_export": 1.35,
+      "exposed_chains": [
+        {
+          "cuci": "263a",
+          "nome": "Algodão em bruto",
+          "fob_regional": 690167386,
+          "hhi_portuario": 0.917,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 589065331,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 429322051,
+          "hhi_portuario": 0.163,
+          "porto_principal": "Manaus"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 371490131,
+          "hhi_portuario": 0.324,
+          "porto_principal": "São Luís"
+        },
+        {
+          "cuci": "001",
+          "nome": "Animais vivos, não incluído pescados ou crustáceos",
+          "fob_regional": 334922142,
+          "hhi_portuario": 0.627,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 213051181,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 121077229,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "121c",
+          "nome": "Tabaco, descaulificado ou desnervado",
+          "fob_regional": 117398594,
+          "hhi_portuario": 0.697,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 81066931,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "044",
+          "nome": "Milho não moído, exceto milho doce",
+          "fob_regional": 72182559,
+          "hhi_portuario": 0.266,
+          "porto_principal": "Vila do Conde"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 460,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 441,
+          "z_portcalls": 0.12
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 351,
+          "z_portcalls": -2.9
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 466,
+          "z_portcalls": 0.94
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 484,
+          "z_portcalls": 1.46
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 422,
+          "z_portcalls": -0.46
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 464,
+          "z_portcalls": 0.82
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 476,
+          "z_portcalls": 1.17
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 448,
+          "z_portcalls": 0.29
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 494,
+          "z_portcalls": 1.69
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 418,
+          "z_portcalls": -0.66
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 420,
+          "z_portcalls": -0.59
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 504,
+          "z_portcalls": 1.97
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 464,
+          "z_portcalls": 0.69
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 464,
+          "z_portcalls": 0.68
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 436,
+          "z_portcalls": -0.17
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 444,
+          "z_portcalls": 0.07
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 482,
+          "z_portcalls": 1.23
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 470,
+          "z_portcalls": 0.83
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 436,
+          "z_portcalls": -0.21
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 433,
+          "z_portcalls": -0.3
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 421,
+          "z_portcalls": -0.67
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 484,
+          "z_portcalls": 1.3
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 476,
+          "z_portcalls": 1.06
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 469,
+          "z_portcalls": 0.78
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 453,
+          "z_portcalls": 0.21
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 445,
+          "z_portcalls": -0.08
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 453,
+          "z_portcalls": 0.17
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 436,
+          "z_portcalls": -0.45
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 467,
+          "z_portcalls": 0.65
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 455,
+          "z_portcalls": 0.22
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 445,
+          "z_portcalls": -0.13
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 459,
+          "z_portcalls": 0.4
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 449,
+          "z_portcalls": 0.05
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 472,
+          "z_portcalls": 0.87
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 452,
+          "z_portcalls": 0.12
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 447,
+          "z_portcalls": -0.08
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 441,
+          "z_portcalls": -0.31
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 430,
+          "z_portcalls": -0.69
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 409,
+          "z_portcalls": -1.47
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 420,
+          "z_portcalls": -1.02
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 260,
+          "z_portcalls": -6.98
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 413,
+          "z_portcalls": -0.86
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 412,
+          "z_portcalls": -0.86
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 404,
+          "z_portcalls": -1.06
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 391,
+          "z_portcalls": -1.37
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 394,
+          "z_portcalls": -1.24
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 388,
+          "z_portcalls": -1.37
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 379,
+          "z_portcalls": -1.54
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 362,
+          "z_portcalls": -1.92
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 415,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 274,
+          "z_portcalls": -3.93
+        }
+      ]
+    },
+    {
+      "iso3": "IDN",
+      "nome": "Indonésia",
+      "nome_en": "Indonesia",
+      "week": "2026-03-09",
+      "portcalls": 389,
+      "n_ports": 5,
+      "z_portcalls": -4.37,
+      "z_import": -2.87,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 4131531563,
+      "pct_export": 1.35,
+      "exposed_chains": [
+        {
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob_regional": 1321975839,
+          "hhi_portuario": 0.292,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob_regional": 780598012,
+          "hhi_portuario": 0.658,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 743823076,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "263a",
+          "nome": "Algodão em bruto",
+          "fob_regional": 292567169,
+          "hhi_portuario": 0.917,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "121c",
+          "nome": "Tabaco, descaulificado ou desnervado",
+          "fob_regional": 257191362,
+          "hhi_portuario": 0.697,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 130407374,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 93651496,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "044",
+          "nome": "Milho não moído, exceto milho doce",
+          "fob_regional": 54551360,
+          "hhi_portuario": 0.266,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "041",
+          "nome": "Trigo e centeio, não moídos",
+          "fob_regional": 50732408,
+          "hhi_portuario": 0.89,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "071c",
+          "nome": "Café torrado, extratos, essências e concentrados de café",
+          "fob_regional": 49514903,
+          "hhi_portuario": 0.632,
+          "porto_principal": "Santos"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 534,
+          "z_portcalls": -0.5
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 468,
+          "z_portcalls": -2.97
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 364,
+          "z_portcalls": -6.08
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 517,
+          "z_portcalls": -0.52
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 564,
+          "z_portcalls": 0.6
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 547,
+          "z_portcalls": 0.19
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 551,
+          "z_portcalls": 0.28
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 546,
+          "z_portcalls": 0.15
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 565,
+          "z_portcalls": 0.62
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 526,
+          "z_portcalls": -0.36
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 546,
+          "z_portcalls": 0.15
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 530,
+          "z_portcalls": -0.26
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 552,
+          "z_portcalls": 0.31
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 562,
+          "z_portcalls": 0.57
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 545,
+          "z_portcalls": 0.11
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 554,
+          "z_portcalls": 0.35
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 566,
+          "z_portcalls": 0.67
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 563,
+          "z_portcalls": 0.58
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 566,
+          "z_portcalls": 0.65
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 548,
+          "z_portcalls": 0.15
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 566,
+          "z_portcalls": 0.64
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 565,
+          "z_portcalls": 0.61
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 579,
+          "z_portcalls": 0.99
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 577,
+          "z_portcalls": 0.92
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 573,
+          "z_portcalls": 0.78
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 550,
+          "z_portcalls": 0.06
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 558,
+          "z_portcalls": 0.31
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 577,
+          "z_portcalls": 0.87
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 572,
+          "z_portcalls": 0.7
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 588,
+          "z_portcalls": 1.15
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 538,
+          "z_portcalls": -0.36
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 597,
+          "z_portcalls": 1.38
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 557,
+          "z_portcalls": 0.2
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 553,
+          "z_portcalls": 0.09
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 552,
+          "z_portcalls": 0.07
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 562,
+          "z_portcalls": 0.38
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 570,
+          "z_portcalls": 0.62
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 582,
+          "z_portcalls": 0.95
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 547,
+          "z_portcalls": -0.08
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 568,
+          "z_portcalls": 0.55
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 536,
+          "z_portcalls": -0.41
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 514,
+          "z_portcalls": -1.04
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 520,
+          "z_portcalls": -0.86
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 513,
+          "z_portcalls": -1.04
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 527,
+          "z_portcalls": -0.63
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 515,
+          "z_portcalls": -0.96
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 512,
+          "z_portcalls": -1.03
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 517,
+          "z_portcalls": -0.89
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 532,
+          "z_portcalls": -0.43
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 505,
+          "z_portcalls": -1.18
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 515,
+          "z_portcalls": -0.86
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 389,
+          "z_portcalls": -4.37
+        }
+      ]
+    },
+    {
+      "iso3": "GBR",
+      "nome": "Reino Unido",
+      "nome_en": "United Kingdom",
+      "week": "2026-03-09",
+      "portcalls": 174,
+      "n_ports": 5,
+      "z_portcalls": -4.15,
+      "z_import": -3.05,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 4026752113,
+      "pct_export": 1.31,
+      "exposed_chains": [
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 349491681,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 260415597,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "017",
+          "nome": "Despojos comestíveis de carnes, preparados ou preservados",
+          "fob_regional": 247511506,
+          "hhi_portuario": 0.27,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "016",
+          "nome": "Outras carnes comestíveis salgadas, em salmoras, secas ou defumadas",
+          "fob_regional": 181826772,
+          "hhi_portuario": 0.265,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "057",
+          "nome": "Frutas e nozes não oleaginosas, frescas ou secas",
+          "fob_regional": 152823036,
+          "hhi_portuario": 0.379,
+          "porto_principal": "Pecém"
+        },
+        {
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob_regional": 126565700,
+          "hhi_portuario": 0.658,
+          "porto_principal": "Imbituba"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 110433983,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "672",
+          "nome": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+          "fob_regional": 105020276,
+          "hhi_portuario": 0.357,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 95504202,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 89578189,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Paranaguá"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 275,
+          "z_portcalls": 0.33
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 279,
+          "z_portcalls": 0.48
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 290,
+          "z_portcalls": 0.88
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 296,
+          "z_portcalls": 1.09
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 263,
+          "z_portcalls": -0.2
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 262,
+          "z_portcalls": -0.23
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 269,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 281,
+          "z_portcalls": 0.52
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 274,
+          "z_portcalls": 0.23
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 285,
+          "z_portcalls": 0.67
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 264,
+          "z_portcalls": -0.2
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 290,
+          "z_portcalls": 0.88
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 278,
+          "z_portcalls": 0.36
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 293,
+          "z_portcalls": 0.99
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 279,
+          "z_portcalls": 0.38
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 294,
+          "z_portcalls": 1.01
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 280,
+          "z_portcalls": 0.39
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 270,
+          "z_portcalls": -0.04
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 254,
+          "z_portcalls": -0.73
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 282,
+          "z_portcalls": 0.5
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 267,
+          "z_portcalls": -0.16
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 269,
+          "z_portcalls": -0.07
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 265,
+          "z_portcalls": -0.25
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 261,
+          "z_portcalls": -0.48
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 264,
+          "z_portcalls": -0.31
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 257,
+          "z_portcalls": -0.65
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 246,
+          "z_portcalls": -1.14
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 277,
+          "z_portcalls": 0.32
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 231,
+          "z_portcalls": -1.8
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 281,
+          "z_portcalls": 0.55
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 269,
+          "z_portcalls": -0.01
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 229,
+          "z_portcalls": -1.82
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 271,
+          "z_portcalls": 0.14
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 276,
+          "z_portcalls": 0.37
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 252,
+          "z_portcalls": -0.7
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 255,
+          "z_portcalls": -0.54
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 261,
+          "z_portcalls": -0.32
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 254,
+          "z_portcalls": -0.62
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 276,
+          "z_portcalls": 0.39
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 275,
+          "z_portcalls": 0.37
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 193,
+          "z_portcalls": -3.67
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 188,
+          "z_portcalls": -3.99
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 234,
+          "z_portcalls": -1.6
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 272,
+          "z_portcalls": 0.23
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 227,
+          "z_portcalls": -1.86
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 260,
+          "z_portcalls": -0.28
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 253,
+          "z_portcalls": -0.58
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 265,
+          "z_portcalls": -0.02
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 268,
+          "z_portcalls": 0.12
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 289,
+          "z_portcalls": 1.1
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 282,
+          "z_portcalls": 0.76
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 174,
+          "z_portcalls": -4.15
+        }
+      ]
+    },
+    {
+      "iso3": "ARE",
+      "nome": "Emirados Árabes Unidos",
+      "nome_en": "United Arab Emirates",
+      "week": "2026-03-09",
+      "portcalls": 14,
+      "n_ports": 5,
+      "z_portcalls": -7.13,
+      "z_import": -6.18,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 3764678589,
+      "pct_export": 1.23,
+      "exposed_chains": [
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 935874355,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob_regional": 727042472,
+          "hhi_portuario": 0.658,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 254571070,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 165085588,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "723",
+          "nome": "Instalações e equipamentos de engenharia civil e contrutores, e suas partes",
+          "fob_regional": 114193935,
+          "hhi_portuario": 0.818,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 107795082,
+          "hhi_portuario": 0.324,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "121c",
+          "nome": "Tabaco, descaulificado ou desnervado",
+          "fob_regional": 106909950,
+          "hhi_portuario": 0.697,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 78754451,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "075",
+          "nome": "Especiarias",
+          "fob_regional": 66869881,
+          "hhi_portuario": 0.29,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "679",
+          "nome": "Tubos e perfis ocos, e acessórios para tubos, de ferro ou aço",
+          "fob_regional": 51404399,
+          "hhi_portuario": 0.742,
+          "porto_principal": "Rio de Janeiro"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 385,
+          "z_portcalls": -0.03
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 337,
+          "z_portcalls": -2.33
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 385,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 408,
+          "z_portcalls": 1.09
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 349,
+          "z_portcalls": -1.63
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 420,
+          "z_portcalls": 1.61
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 410,
+          "z_portcalls": 1.1
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 387,
+          "z_portcalls": 0.06
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 387,
+          "z_portcalls": 0.06
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 390,
+          "z_portcalls": 0.2
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 369,
+          "z_portcalls": -0.75
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 357,
+          "z_portcalls": -1.29
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 400,
+          "z_portcalls": 0.69
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 349,
+          "z_portcalls": -1.63
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 386,
+          "z_portcalls": 0.08
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 353,
+          "z_portcalls": -1.41
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 373,
+          "z_portcalls": -0.47
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 378,
+          "z_portcalls": -0.24
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 387,
+          "z_portcalls": 0.17
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 359,
+          "z_portcalls": -1.11
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 392,
+          "z_portcalls": 0.42
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 399,
+          "z_portcalls": 0.74
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 391,
+          "z_portcalls": 0.36
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 387,
+          "z_portcalls": 0.13
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 395,
+          "z_portcalls": 0.52
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 414,
+          "z_portcalls": 1.45
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 408,
+          "z_portcalls": 1.12
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 394,
+          "z_portcalls": 0.4
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 393,
+          "z_portcalls": 0.37
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 395,
+          "z_portcalls": 0.45
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 403,
+          "z_portcalls": 0.84
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 420,
+          "z_portcalls": 1.65
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 370,
+          "z_portcalls": -0.8
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 387,
+          "z_portcalls": 0.03
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 406,
+          "z_portcalls": 0.93
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 365,
+          "z_portcalls": -1.05
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 385,
+          "z_portcalls": -0.07
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 388,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 375,
+          "z_portcalls": -0.58
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 320,
+          "z_portcalls": -3.25
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 381,
+          "z_portcalls": -0.19
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 362,
+          "z_portcalls": -1.03
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 383,
+          "z_portcalls": -0.11
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 360,
+          "z_portcalls": -1.15
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 361,
+          "z_portcalls": -1.08
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 394,
+          "z_portcalls": 0.44
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 382,
+          "z_portcalls": -0.1
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 372,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 396,
+          "z_portcalls": 0.58
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 355,
+          "z_portcalls": -1.29
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 50,
+          "z_portcalls": -15.37
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 14,
+          "z_portcalls": -7.13
+        }
+      ]
+    },
+    {
+      "iso3": "VNM",
+      "nome": "Vietnã",
+      "nome_en": "Vietnam",
+      "week": "2026-03-09",
+      "portcalls": 382,
+      "n_ports": 5,
+      "z_portcalls": -3.76,
+      "z_import": -1.94,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 3761049204,
+      "pct_export": 1.22,
+      "exposed_chains": [
+        {
+          "cuci": "044",
+          "nome": "Milho não moído, exceto milho doce",
+          "fob_regional": 876409792,
+          "hhi_portuario": 0.266,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "263a",
+          "nome": "Algodão em bruto",
+          "fob_regional": 692946821,
+          "hhi_portuario": 0.917,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "222a1",
+          "nome": "Soja",
+          "fob_regional": 496820170,
+          "hhi_portuario": 0.163,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "081c",
+          "nome": "Farelos de soja e outros alimentos para animais (excluídos cereais não moídos), farinhas de carnes e outros animais",
+          "fob_regional": 332607367,
+          "hhi_portuario": 0.292,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "041",
+          "nome": "Trigo e centeio, não moídos",
+          "fob_regional": 213537933,
+          "hhi_portuario": 0.89,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "121c",
+          "nome": "Tabaco, descaulificado ou desnervado",
+          "fob_regional": 146699504,
+          "hhi_portuario": 0.697,
+          "porto_principal": "Rio Grande"
+        },
+        {
+          "cuci": "012c2",
+          "nome": "Carne suína fresca, refrigerada ou congelada",
+          "fob_regional": 145031290,
+          "hhi_portuario": 0.332,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "075",
+          "nome": "Especiarias",
+          "fob_regional": 124574933,
+          "hhi_portuario": 0.29,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "611",
+          "nome": "Couro",
+          "fob_regional": 109908051,
+          "hhi_portuario": 0.263,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "071a",
+          "nome": "Café não torrado",
+          "fob_regional": 93208433,
+          "hhi_portuario": 0.683,
+          "porto_principal": "Santos"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 598,
+          "z_portcalls": 0.98
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 594,
+          "z_portcalls": 0.86
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 605,
+          "z_portcalls": 1.09
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 611,
+          "z_portcalls": 1.19
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 631,
+          "z_portcalls": 1.6
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 609,
+          "z_portcalls": 1.03
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 569,
+          "z_portcalls": 0.12
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 585,
+          "z_portcalls": 0.48
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 623,
+          "z_portcalls": 1.33
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 600,
+          "z_portcalls": 0.77
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 558,
+          "z_portcalls": -0.19
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 600,
+          "z_portcalls": 0.77
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 566,
+          "z_portcalls": -0.02
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 602,
+          "z_portcalls": 0.81
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 567,
+          "z_portcalls": -0.02
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 571,
+          "z_portcalls": 0.07
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 525,
+          "z_portcalls": -1.02
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 563,
+          "z_portcalls": -0.09
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 542,
+          "z_portcalls": -0.6
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 568,
+          "z_portcalls": 0.04
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 539,
+          "z_portcalls": -0.67
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 574,
+          "z_portcalls": 0.2
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 551,
+          "z_portcalls": -0.37
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 491,
+          "z_portcalls": -1.92
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 492,
+          "z_portcalls": -1.8
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 538,
+          "z_portcalls": -0.73
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 487,
+          "z_portcalls": -2.01
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 447,
+          "z_portcalls": -2.95
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 511,
+          "z_portcalls": -1.19
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 567,
+          "z_portcalls": 0.14
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 570,
+          "z_portcalls": 0.21
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 466,
+          "z_portcalls": -2.2
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 514,
+          "z_portcalls": -1.0
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 510,
+          "z_portcalls": -1.06
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 536,
+          "z_portcalls": -0.49
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 516,
+          "z_portcalls": -0.91
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 501,
+          "z_portcalls": -1.21
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 574,
+          "z_portcalls": 0.4
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 560,
+          "z_portcalls": 0.1
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 520,
+          "z_portcalls": -0.79
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 553,
+          "z_portcalls": -0.05
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 564,
+          "z_portcalls": 0.2
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 515,
+          "z_portcalls": -0.87
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 557,
+          "z_portcalls": 0.07
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 529,
+          "z_portcalls": -0.53
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 568,
+          "z_portcalls": 0.33
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 543,
+          "z_portcalls": -0.3
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 533,
+          "z_portcalls": -0.56
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 432,
+          "z_portcalls": -2.97
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 480,
+          "z_portcalls": -1.63
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 521,
+          "z_portcalls": -0.64
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 382,
+          "z_portcalls": -3.76
+        }
+      ]
+    },
+    {
+      "iso3": "EGY",
+      "nome": "Egito",
+      "nome_en": "Egypt",
+      "week": "2026-03-09",
+      "portcalls": 150,
+      "n_ports": 5,
+      "z_portcalls": -2.1,
+      "z_import": -1.06,
+      "status": "alert",
+      "direction": "negative",
+      "fob_total": 3726019472,
+      "pct_export": 1.21,
+      "exposed_chains": [
+        {
+          "cuci": "044",
+          "nome": "Milho não moído, exceto milho doce",
+          "fob_regional": 1392094503,
+          "hhi_portuario": 0.266,
+          "porto_principal": "Vila do Conde"
+        },
+        {
+          "cuci": "061c",
+          "nome": "Açúcares e melaços",
+          "fob_regional": 584377745,
+          "hhi_portuario": 0.658,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "281b",
+          "nome": "Minério de ferro e seus concentrados",
+          "fob_regional": 399311503,
+          "hhi_portuario": 0.324,
+          "porto_principal": "Vitória"
+        },
+        {
+          "cuci": "011",
+          "nome": "Carne bovina fresca, refrigerada ou congelada",
+          "fob_regional": 325513168,
+          "hhi_portuario": 0.457,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "263a",
+          "nome": "Algodão em bruto",
+          "fob_regional": 151251451,
+          "hhi_portuario": 0.917,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "001",
+          "nome": "Animais vivos, não incluído pescados ou crustáceos",
+          "fob_regional": 130629107,
+          "hhi_portuario": 0.627,
+          "porto_principal": "Vila do Conde"
+        },
+        {
+          "cuci": "251c",
+          "nome": "Celulose",
+          "fob_regional": 77140068,
+          "hhi_portuario": 0.259,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "012c1",
+          "nome": "Carnes de aves e suas miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 72731568,
+          "hhi_portuario": 0.278,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "641",
+          "nome": "Papel e cartão",
+          "fob_regional": 60651542,
+          "hhi_portuario": 0.455,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "012c3",
+          "nome": "Outras carnes e miudezas comestíveis, frescas, refrigeradas ou congeladas",
+          "fob_regional": 49091107,
+          "hhi_portuario": 0.333,
+          "porto_principal": "Santos"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 152,
+          "z_portcalls": -2.2
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 203,
+          "z_portcalls": 1.04
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 189,
+          "z_portcalls": 0.17
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 170,
+          "z_portcalls": -0.99
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 219,
+          "z_portcalls": 2.02
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 158,
+          "z_portcalls": -1.67
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 192,
+          "z_portcalls": 0.35
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 213,
+          "z_portcalls": 1.55
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 212,
+          "z_portcalls": 1.43
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 189,
+          "z_portcalls": 0.09
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 186,
+          "z_portcalls": -0.08
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 194,
+          "z_portcalls": 0.38
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 197,
+          "z_portcalls": 0.55
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 225,
+          "z_portcalls": 2.17
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 220,
+          "z_portcalls": 1.76
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 187,
+          "z_portcalls": -0.13
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 207,
+          "z_portcalls": 0.98
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 209,
+          "z_portcalls": 1.07
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 195,
+          "z_portcalls": 0.27
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 191,
+          "z_portcalls": 0.05
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 215,
+          "z_portcalls": 1.4
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 190,
+          "z_portcalls": -0.04
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 229,
+          "z_portcalls": 2.17
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 204,
+          "z_portcalls": 0.67
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 194,
+          "z_portcalls": 0.11
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 219,
+          "z_portcalls": 1.5
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 173,
+          "z_portcalls": -1.04
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 230,
+          "z_portcalls": 2.03
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 202,
+          "z_portcalls": 0.47
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 193,
+          "z_portcalls": -0.01
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 224,
+          "z_portcalls": 1.62
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 217,
+          "z_portcalls": 1.19
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 217,
+          "z_portcalls": 1.14
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 205,
+          "z_portcalls": 0.5
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 184,
+          "z_portcalls": -0.59
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 230,
+          "z_portcalls": 1.74
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 173,
+          "z_portcalls": -1.15
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 179,
+          "z_portcalls": -0.82
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 160,
+          "z_portcalls": -1.74
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 183,
+          "z_portcalls": -0.6
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 179,
+          "z_portcalls": -0.78
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 193,
+          "z_portcalls": -0.12
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 167,
+          "z_portcalls": -1.38
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 171,
+          "z_portcalls": -1.16
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 188,
+          "z_portcalls": -0.33
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 167,
+          "z_portcalls": -1.32
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 192,
+          "z_portcalls": -0.11
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 176,
+          "z_portcalls": -0.94
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 165,
+          "z_portcalls": -1.46
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 171,
+          "z_portcalls": -1.18
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 166,
+          "z_portcalls": -1.38
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 150,
+          "z_portcalls": -2.1
+        }
+      ]
+    },
+    {
+      "iso3": "URY",
+      "nome": "Uruguai",
+      "nome_en": "Uruguay",
+      "week": "2026-03-09",
+      "portcalls": 24,
+      "n_ports": 4,
+      "z_portcalls": -1.99,
+      "z_import": -0.05,
+      "status": "watch",
+      "direction": "negative",
+      "fob_total": 3536539767,
+      "pct_export": 1.15,
+      "exposed_chains": [
+        {
+          "cuci": "333",
+          "nome": "Óleos brutos de petróleo ou de minerais betuminosos, crus",
+          "fob_regional": 451943593,
+          "hhi_portuario": 0.342,
+          "porto_principal": "Angra dos Reis"
+        },
+        {
+          "cuci": "782",
+          "nome": "Veículos automóveis para transporte de mercadorias e usos especiais",
+          "fob_regional": 168438350,
+          "hhi_portuario": 0.486,
+          "porto_principal": "Rio de Janeiro"
+        },
+        {
+          "cuci": "672",
+          "nome": "Produtos semi-acabados, lingotes e outras formas primárias de ferro ou aço",
+          "fob_regional": 89351724,
+          "hhi_portuario": 0.357,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "781",
+          "nome": "Veículos automóveis de passageiros",
+          "fob_regional": 76677545,
+          "hhi_portuario": 0.339,
+          "porto_principal": "Paranaguá"
+        },
+        {
+          "cuci": "334c",
+          "nome": "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)",
+          "fob_regional": 31188085,
+          "hhi_portuario": 0.185,
+          "porto_principal": "Suape"
+        },
+        {
+          "cuci": "791",
+          "nome": "Veículos ferroviários e equipamentos associados",
+          "fob_regional": 12533625,
+          "hhi_portuario": 0.631,
+          "porto_principal": "Itaguaí"
+        },
+        {
+          "cuci": "598",
+          "nome": "Outros produtos diversos das indústrias químicas",
+          "fob_regional": 9884030,
+          "hhi_portuario": 0.335,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "512",
+          "nome": "Álcoois, fenóis, fenóis-álcoois, e seus derivados halogenados, sulfonados, nitrados ou nitrosados",
+          "fob_regional": 6371503,
+          "hhi_portuario": 0.673,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "737",
+          "nome": "Máquinas para metalurgia (exceto máquinas-ferramentas) e suas partes",
+          "fob_regional": 5783530,
+          "hhi_portuario": 0.934,
+          "porto_principal": "Santos"
+        },
+        {
+          "cuci": "778",
+          "nome": "Máquinas e aparelhos elétricos",
+          "fob_regional": 4436224,
+          "hhi_portuario": 0.527,
+          "porto_principal": "Suape"
+        }
+      ],
+      "timeline": [
+        {
+          "week": "2025-03-17",
+          "portcalls": 30,
+          "z_portcalls": -0.29
+        },
+        {
+          "week": "2025-03-24",
+          "portcalls": 29,
+          "z_portcalls": -0.49
+        },
+        {
+          "week": "2025-03-31",
+          "portcalls": 28,
+          "z_portcalls": -0.69
+        },
+        {
+          "week": "2025-04-07",
+          "portcalls": 31,
+          "z_portcalls": -0.04
+        },
+        {
+          "week": "2025-04-14",
+          "portcalls": 37,
+          "z_portcalls": 1.24
+        },
+        {
+          "week": "2025-04-21",
+          "portcalls": 36,
+          "z_portcalls": 0.98
+        },
+        {
+          "week": "2025-04-28",
+          "portcalls": 42,
+          "z_portcalls": 2.23
+        },
+        {
+          "week": "2025-05-05",
+          "portcalls": 37,
+          "z_portcalls": 1.05
+        },
+        {
+          "week": "2025-05-12",
+          "portcalls": 40,
+          "z_portcalls": 1.63
+        },
+        {
+          "week": "2025-05-19",
+          "portcalls": 39,
+          "z_portcalls": 1.36
+        },
+        {
+          "week": "2025-05-26",
+          "portcalls": 29,
+          "z_portcalls": -0.64
+        },
+        {
+          "week": "2025-06-02",
+          "portcalls": 49,
+          "z_portcalls": 3.3
+        },
+        {
+          "week": "2025-06-09",
+          "portcalls": 39,
+          "z_portcalls": 1.13
+        },
+        {
+          "week": "2025-06-16",
+          "portcalls": 44,
+          "z_portcalls": 1.98
+        },
+        {
+          "week": "2025-06-23",
+          "portcalls": 42,
+          "z_portcalls": 1.53
+        },
+        {
+          "week": "2025-06-30",
+          "portcalls": 37,
+          "z_portcalls": 0.64
+        },
+        {
+          "week": "2025-07-07",
+          "portcalls": 31,
+          "z_portcalls": -0.39
+        },
+        {
+          "week": "2025-07-14",
+          "portcalls": 43,
+          "z_portcalls": 1.67
+        },
+        {
+          "week": "2025-07-21",
+          "portcalls": 39,
+          "z_portcalls": 0.93
+        },
+        {
+          "week": "2025-07-28",
+          "portcalls": 40,
+          "z_portcalls": 1.08
+        },
+        {
+          "week": "2025-08-04",
+          "portcalls": 40,
+          "z_portcalls": 1.06
+        },
+        {
+          "week": "2025-08-11",
+          "portcalls": 42,
+          "z_portcalls": 1.37
+        },
+        {
+          "week": "2025-08-18",
+          "portcalls": 41,
+          "z_portcalls": 1.17
+        },
+        {
+          "week": "2025-08-25",
+          "portcalls": 35,
+          "z_portcalls": 0.11
+        },
+        {
+          "week": "2025-09-01",
+          "portcalls": 41,
+          "z_portcalls": 1.19
+        },
+        {
+          "week": "2025-09-08",
+          "portcalls": 40,
+          "z_portcalls": 1.05
+        },
+        {
+          "week": "2025-09-15",
+          "portcalls": 35,
+          "z_portcalls": 0.13
+        },
+        {
+          "week": "2025-09-22",
+          "portcalls": 40,
+          "z_portcalls": 1.0
+        },
+        {
+          "week": "2025-09-29",
+          "portcalls": 47,
+          "z_portcalls": 2.22
+        },
+        {
+          "week": "2025-10-06",
+          "portcalls": 40,
+          "z_portcalls": 0.88
+        },
+        {
+          "week": "2025-10-13",
+          "portcalls": 36,
+          "z_portcalls": 0.17
+        },
+        {
+          "week": "2025-10-20",
+          "portcalls": 35,
+          "z_portcalls": -0.01
+        },
+        {
+          "week": "2025-10-27",
+          "portcalls": 34,
+          "z_portcalls": -0.19
+        },
+        {
+          "week": "2025-11-03",
+          "portcalls": 35,
+          "z_portcalls": -0.04
+        },
+        {
+          "week": "2025-11-10",
+          "portcalls": 37,
+          "z_portcalls": 0.29
+        },
+        {
+          "week": "2025-11-17",
+          "portcalls": 38,
+          "z_portcalls": 0.44
+        },
+        {
+          "week": "2025-11-24",
+          "portcalls": 25,
+          "z_portcalls": -1.94
+        },
+        {
+          "week": "2025-12-01",
+          "portcalls": 36,
+          "z_portcalls": 0.09
+        },
+        {
+          "week": "2025-12-08",
+          "portcalls": 31,
+          "z_portcalls": -0.8
+        },
+        {
+          "week": "2025-12-15",
+          "portcalls": 30,
+          "z_portcalls": -1.0
+        },
+        {
+          "week": "2025-12-22",
+          "portcalls": 35,
+          "z_portcalls": -0.09
+        },
+        {
+          "week": "2025-12-29",
+          "portcalls": 23,
+          "z_portcalls": -2.21
+        },
+        {
+          "week": "2026-01-05",
+          "portcalls": 33,
+          "z_portcalls": -0.45
+        },
+        {
+          "week": "2026-01-12",
+          "portcalls": 42,
+          "z_portcalls": 1.15
+        },
+        {
+          "week": "2026-01-19",
+          "portcalls": 24,
+          "z_portcalls": -2.12
+        },
+        {
+          "week": "2026-01-26",
+          "portcalls": 26,
+          "z_portcalls": -1.67
+        },
+        {
+          "week": "2026-02-02",
+          "portcalls": 38,
+          "z_portcalls": 0.41
+        },
+        {
+          "week": "2026-02-09",
+          "portcalls": 32,
+          "z_portcalls": -0.64
+        },
+        {
+          "week": "2026-02-16",
+          "portcalls": 25,
+          "z_portcalls": -1.89
+        },
+        {
+          "week": "2026-02-23",
+          "portcalls": 32,
+          "z_portcalls": -0.65
+        },
+        {
+          "week": "2026-03-02",
+          "portcalls": 32,
+          "z_portcalls": -0.63
+        },
+        {
+          "week": "2026-03-09",
+          "portcalls": 24,
+          "z_portcalls": -1.99
+        }
+      ]
+    }
+  ]
+}

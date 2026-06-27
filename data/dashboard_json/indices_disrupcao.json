@@ -1,0 +1,450 @@
+[
+  {
+    "week": "2025-11-17",
+    "mean_portcalls": 7.78,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Americas"
+  },
+  {
+    "week": "2025-11-24",
+    "mean_portcalls": 8.042857142857143,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Americas"
+  },
+  {
+    "week": "2025-12-01",
+    "mean_portcalls": 7.735714285714286,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Americas"
+  },
+  {
+    "week": "2025-12-08",
+    "mean_portcalls": 7.514285714285714,
+    "z_rapid": -2.039242604991812,
+    "z_confirmed": NaN,
+    "region": "Americas"
+  },
+  {
+    "week": "2025-12-15",
+    "mean_portcalls": 7.728571428571429,
+    "z_rapid": -0.18279174201416598,
+    "z_confirmed": NaN,
+    "region": "Americas"
+  },
+  {
+    "week": "2025-12-22",
+    "mean_portcalls": 7.214285714285714,
+    "z_rapid": -2.4880682632234556,
+    "z_confirmed": NaN,
+    "region": "Americas"
+  },
+  {
+    "week": "2025-12-29",
+    "mean_portcalls": 7.242857142857143,
+    "z_rapid": -1.2454244711356963,
+    "z_confirmed": -1.5253135315537922,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-01-05",
+    "mean_portcalls": 7.95,
+    "z_rapid": 2.15710472049778,
+    "z_confirmed": 1.1318227306553685,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-01-12",
+    "mean_portcalls": 7.771428571428571,
+    "z_rapid": 0.6521384061081424,
+    "z_confirmed": 0.39534171416321934,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-01-19",
+    "mean_portcalls": 7.507142857142857,
+    "z_rapid": -0.100708903671168,
+    "z_confirmed": -0.546968530386809,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-01-26",
+    "mean_portcalls": 7.335714285714285,
+    "z_rapid": -0.9125379409561036,
+    "z_confirmed": -1.1354331756407667,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-02-02",
+    "mean_portcalls": 7.2214285714285715,
+    "z_rapid": -1.5370753189720519,
+    "z_confirmed": -1.434508059504419,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-02-09",
+    "mean_portcalls": 7.557142857142857,
+    "z_rapid": 0.4106918029911029,
+    "z_confirmed": -0.103390540866045,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-02-16",
+    "mean_portcalls": 7.485714285714286,
+    "z_rapid": 0.5184185008201059,
+    "z_confirmed": -0.2928042892955772,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-02-23",
+    "mean_portcalls": 7.814285714285714,
+    "z_rapid": 2.750494026771259,
+    "z_confirmed": 1.2171525438988087,
+    "region": "Americas"
+  },
+  {
+    "week": "2026-03-02",
+    "mean_portcalls": 7.84,
+    "z_rapid": 1.3140594626058735,
+    "z_confirmed": 1.258623586833384,
+    "region": "Americas"
+  },
+  {
+    "week": "2025-11-17",
+    "mean_portcalls": 40.02,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Asia"
+  },
+  {
+    "week": "2025-11-24",
+    "mean_portcalls": 41.2,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Asia"
+  },
+  {
+    "week": "2025-12-01",
+    "mean_portcalls": 41.02142857142857,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Asia"
+  },
+  {
+    "week": "2025-12-08",
+    "mean_portcalls": 40.371428571428574,
+    "z_rapid": -0.590724929408709,
+    "z_confirmed": NaN,
+    "region": "Asia"
+  },
+  {
+    "week": "2025-12-15",
+    "mean_portcalls": 41.635714285714286,
+    "z_rapid": 1.7791052857372904,
+    "z_confirmed": NaN,
+    "region": "Asia"
+  },
+  {
+    "week": "2025-12-22",
+    "mean_portcalls": 40.08571428571429,
+    "z_rapid": -1.8506113516931004,
+    "z_confirmed": NaN,
+    "region": "Asia"
+  },
+  {
+    "week": "2025-12-29",
+    "mean_portcalls": 33.08571428571429,
+    "z_rapid": -11.105650442527574,
+    "z_confirmed": -11.58247039157214,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-01-05",
+    "mean_portcalls": 39.69285714285714,
+    "z_rapid": 0.23239179415925915,
+    "z_confirmed": 0.020834017200055177,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-01-12",
+    "mean_portcalls": 39.71428571428572,
+    "z_rapid": 0.28764489705989493,
+    "z_confirmed": 0.02753951714886897,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-01-19",
+    "mean_portcalls": 40.7,
+    "z_rapid": 0.7565963097006706,
+    "z_confirmed": 0.4121694441950589,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-01-26",
+    "mean_portcalls": 40.67142857142857,
+    "z_rapid": 0.6767823669890782,
+    "z_confirmed": 0.37799243338700467,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-02-02",
+    "mean_portcalls": 39.17142857142857,
+    "z_rapid": -1.8038857958087766,
+    "z_confirmed": -0.28626238423353534,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-02-09",
+    "mean_portcalls": 39.02142857142857,
+    "z_rapid": -1.3884417196189218,
+    "z_confirmed": -0.3416760067212028,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-02-16",
+    "mean_portcalls": 37.77857142857143,
+    "z_rapid": -2.296970465408038,
+    "z_confirmed": -0.8599831796254086,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-02-23",
+    "mean_portcalls": 37.62857142857143,
+    "z_rapid": -1.2930370598369747,
+    "z_confirmed": -0.7961679440517874,
+    "region": "Asia"
+  },
+  {
+    "week": "2026-03-02",
+    "mean_portcalls": 37.45,
+    "z_rapid": -1.1745560729448912,
+    "z_confirmed": -0.7521717942578521,
+    "region": "Asia"
+  },
+  {
+    "week": "2025-11-17",
+    "mean_portcalls": 13.54,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Europe"
+  },
+  {
+    "week": "2025-11-24",
+    "mean_portcalls": 13.485714285714286,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Europe"
+  },
+  {
+    "week": "2025-12-01",
+    "mean_portcalls": 13.442857142857145,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Europe"
+  },
+  {
+    "week": "2025-12-08",
+    "mean_portcalls": 13.75,
+    "z_rapid": 5.350416932082172,
+    "z_confirmed": NaN,
+    "region": "Europe"
+  },
+  {
+    "week": "2025-12-15",
+    "mean_portcalls": 13.235714285714286,
+    "z_rapid": -2.3421519093779573,
+    "z_confirmed": NaN,
+    "region": "Europe"
+  },
+  {
+    "week": "2025-12-22",
+    "mean_portcalls": 11.321428571428571,
+    "z_rapid": -10.207519292866522,
+    "z_confirmed": NaN,
+    "region": "Europe"
+  },
+  {
+    "week": "2025-12-29",
+    "mean_portcalls": 10.521428571428572,
+    "z_rapid": -2.2006274964259456,
+    "z_confirmed": -2.8943993696888106,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-01-05",
+    "mean_portcalls": 11.821428571428571,
+    "z_rapid": -0.251354086539224,
+    "z_confirmed": -0.7285627332266335,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-01-12",
+    "mean_portcalls": 13.1,
+    "z_rapid": 1.2054896393819097,
+    "z_confirmed": 0.37301190194419387,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-01-19",
+    "mean_portcalls": 12.435714285714283,
+    "z_rapid": 0.6887392459762351,
+    "z_confirmed": -0.21924749623684953,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-01-26",
+    "mean_portcalls": 12.335714285714284,
+    "z_rapid": 0.33351782698775545,
+    "z_confirmed": -0.299593264291921,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-02-02",
+    "mean_portcalls": 12.435714285714283,
+    "z_rapid": 0.023793380016384907,
+    "z_confirmed": -0.1904490410839568,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-02-09",
+    "mean_portcalls": 13.007142857142858,
+    "z_rapid": 1.222673086299051,
+    "z_confirmed": 0.38769786897217967,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-02-16",
+    "mean_portcalls": 13.35,
+    "z_rapid": 2.6024234071994123,
+    "z_confirmed": 0.8009482714878977,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-02-23",
+    "mean_portcalls": 13.864285714285714,
+    "z_rapid": 2.2525131495532205,
+    "z_confirmed": 1.358992972708505,
+    "region": "Europe"
+  },
+  {
+    "week": "2026-03-02",
+    "mean_portcalls": 13.8,
+    "z_rapid": 1.0595238095238162,
+    "z_confirmed": 1.2024153904631525,
+    "region": "Europe"
+  },
+  {
+    "week": "2025-11-17",
+    "mean_portcalls": 31.068,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Global"
+  },
+  {
+    "week": "2025-11-24",
+    "mean_portcalls": 31.382857142857144,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Global"
+  },
+  {
+    "week": "2025-12-01",
+    "mean_portcalls": 31.497142857142855,
+    "z_rapid": NaN,
+    "z_confirmed": NaN,
+    "region": "Global"
+  },
+  {
+    "week": "2025-12-08",
+    "mean_portcalls": 30.84285714285714,
+    "z_rapid": -2.1289145975981896,
+    "z_confirmed": NaN,
+    "region": "Global"
+  },
+  {
+    "week": "2025-12-15",
+    "mean_portcalls": 31.154285714285717,
+    "z_rapid": -0.14565892233598202,
+    "z_confirmed": NaN,
+    "region": "Global"
+  },
+  {
+    "week": "2025-12-22",
+    "mean_portcalls": 29.845714285714287,
+    "z_rapid": -4.759298398397341,
+    "z_confirmed": NaN,
+    "region": "Global"
+  },
+  {
+    "week": "2025-12-29",
+    "mean_portcalls": 25.782857142857143,
+    "z_rapid": -7.099692960337359,
+    "z_confirmed": -8.705267070150649,
+    "region": "Global"
+  },
+  {
+    "week": "2026-01-05",
+    "mean_portcalls": 30.045714285714286,
+    "z_rapid": 0.2578437687884982,
+    "z_confirmed": -0.08811001734864794,
+    "region": "Global"
+  },
+  {
+    "week": "2026-01-12",
+    "mean_portcalls": 30.417142857142856,
+    "z_rapid": 0.513954922928909,
+    "z_confirmed": 0.11402849215017535,
+    "region": "Global"
+  },
+  {
+    "week": "2026-01-19",
+    "mean_portcalls": 30.83142857142857,
+    "z_rapid": 0.832316619745781,
+    "z_confirmed": 0.34327967262501685,
+    "region": "Global"
+  },
+  {
+    "week": "2026-01-26",
+    "mean_portcalls": 30.934285714285718,
+    "z_rapid": 0.7096167370014203,
+    "z_confirmed": 0.3870230214904712,
+    "region": "Global"
+  },
+  {
+    "week": "2026-02-02",
+    "mean_portcalls": 29.8,
+    "z_rapid": -1.8571623768282686,
+    "z_confirmed": -0.3412310208462031,
+    "region": "Global"
+  },
+  {
+    "week": "2026-02-09",
+    "mean_portcalls": 30.36285714285714,
+    "z_rapid": -0.2580454493594973,
+    "z_confirmed": 0.040883871591015926,
+    "region": "Global"
+  },
+  {
+    "week": "2026-02-16",
+    "mean_portcalls": 28.92,
+    "z_rapid": -3.013830351858215,
+    "z_confirmed": -0.8727554871793864,
+    "region": "Global"
+  },
+  {
+    "week": "2026-02-23",
+    "mean_portcalls": 29.202857142857145,
+    "z_rapid": -0.933561004746318,
+    "z_confirmed": -0.5510659259998272,
+    "region": "Global"
+  },
+  {
+    "week": "2026-03-02",
+    "mean_portcalls": 28.72,
+    "z_rapid": -1.3249723575320798,
+    "z_confirmed": -0.7733773935753677,
+    "region": "Global"
+  }
+]

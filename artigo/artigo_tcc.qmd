@@ -1,0 +1,1214 @@
+---
+title: "Monitoramento e Diagnóstico de Eventos Disruptivos nos Portos Brasileiros: Detecção de Anomalias Operacionais e Análise de Exposição Comercial"
+author:
+  - name: "Fábio Kouri Paim"
+    affiliations:
+      - name: "Escola Nacional de Administração Pública (ENAP)"
+        department: "MBA em Ciência de Dados"
+date: "2026-04-10"
+lang: pt-BR
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    fontsize: 12pt
+    mainfont: "Times New Roman"
+    geometry:
+      - top=3cm
+      - bottom=1.5cm
+      - left=3cm
+      - right=1.5cm
+      - headheight=1.5cm
+      - headsep=0.7cm
+      - footskip=0.25cm
+    linestretch: 1.5
+    number-sections: true
+    toc: false
+    fig-pos: "H"
+    fig-cap-location: top
+    tbl-cap-location: top
+    fig-width: 6.3
+    fig-dpi: 300
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage{float}
+        \usepackage{booktabs}
+        \usepackage{caption}
+        \usepackage{graphicx}
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \fancyhf{}
+        \fancyhead[L]{\hspace{-2cm}\includegraphics[height=1.5cm]{logo_enap.png}}
+        \fancyhead[R]{\footnotesize\textit{Escola Nacional de Administra\c{c}\~ao P\'ublica}}
+        \fancyfoot[R]{\thepage}
+        \renewcommand{\headrulewidth}{0pt}
+        \fancypagestyle{plain}{\fancyhf{}\fancyfoot[R]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+        \usepackage{indentfirst}
+        \setlength{\parindent}{1.25cm}
+        \captionsetup{font=small, labelfont=bf, skip=6pt}
+        \captionsetup[figure]{position=above}
+        \captionsetup[table]{position=above}
+        \usepackage{xurl}
+        \urlstyle{same}
+        \sloppy
+        \setlength{\emergencystretch}{3em}
+        \DeclareCaptionLabelSeparator{emdash}{ --- }
+        \captionsetup{labelsep=emdash}
+        \usepackage{tcolorbox}
+        \tcbuselibrary{skins}
+        \newenvironment{screenshotfig}[1][]
+          {\begin{figure}[H]%
+           \let\origpb\pandocbounded%
+           \renewcommand{\pandocbounded}[1]{%
+             \begin{tcolorbox}[enhanced, sharp corners, boxrule=0.5pt,
+               colframe=gray!50, colback=white,
+               shadow={2mm}{-2mm}{0.5mm}{black!18},
+               left=1pt, right=1pt, top=1pt, bottom=1pt, boxsep=0pt]%
+             \origpb{##1}%
+             \end{tcolorbox}}%
+          }%
+          {\let\pandocbounded\origpb\end{figure}}
+        \fancypagestyle{coverpage}{%
+          \fancyhf{}%
+          \fancyhead[L]{\hspace{-2cm}\includegraphics[height=1.5cm]{logo_enap.png}}%
+          \fancyhead[R]{\footnotesize\textit{Escola Nacional de Administra\c{c}\~ao P\'ublica}}%
+          \renewcommand{\headrulewidth}{0pt}%
+          \renewcommand{\footrulewidth}{0pt}%
+        }
+        \renewcommand{\maketitle}{}
+        \newsavebox{\abstractbox}
+        \renewenvironment{abstract}%
+          {\begin{lrbox}{\abstractbox}\begin{minipage}{\textwidth}}%
+          {\end{minipage}\end{lrbox}}
+        \newenvironment{fonte}{\par\vspace{-6pt}\noindent\footnotesize}{\par\vspace{6pt}}
+    include-before-body: before-body.tex
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+bibliography: references.bib
+csl: abnt.csl
+keywords:
+  - detecção de anomalias
+  - portos brasileiros
+  - machine learning
+  - cadeia de suprimentos
+  - vulnerabilidade comercial
+abstract: |
+
+    Este artigo propõe um sistema integrado de detecção e classificação de anomalias operacionais em portos brasileiros, articulando três bases públicas: o Anuário Estatístico Aquaviário (ANTAQ), o PortWatch/FMI e o ComexStat/MDIC. Esse cruzamento liga a atividade portuária no nível da atracação individual aos fluxos de exportação detalhados por produto, UF de origem e país de destino, conectando a operação física à cadeia produtiva exportadora. A partir de séries temporais semanais de 18 portos, modelos XGBoost com correção AR(1) aprendem o padrão operacional de cada porto, e um ensemble de três métodos estatísticos identifica desvios significativos. Um sistema de classificação dual categoriza cada anomalia quanto à sua abrangência (isolada, nacional ou global), distinguindo choques domésticos de choques no comércio marítimo global. Validado contra eventos históricos, o sistema identifica 1.609 anomalias no período 2015–2026. A integração com dados de exportação por cadeia produtiva mapeia pares porto-cadeia de fragilidade estrutural e estados com dependência elevada de um único porto. Os resultados sugerem que a articulação de dados públicos já disponíveis pode oferecer a gestores públicos uma base analítica reprodutível para avaliar a exposição de cadeias exportadoras a disrupções. Como entrega prática, o trabalho disponibiliza um painel interativo de monitoramento com atualização semanal.
+---
+
+```{python}
+#| label: setup
+#| include: false
+#| echo: false
+
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning, module='matplotlib')
+warnings.filterwarnings('ignore', message='.*transform.*')
+warnings.filterwarnings('ignore', message='.*FancyArrowPatch.*')
+import logging
+logging.getLogger('matplotlib').setLevel(logging.ERROR)
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.patches as mpatches
+from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
+from statsmodels.tsa.stattools import acf as calc_acf
+matplotlib.rcParams['font.family'] = 'serif'
+matplotlib.rcParams['font.serif'] = ['Times New Roman']
+matplotlib.rcParams['font.size'] = 10
+matplotlib.rcParams['axes.spines.top'] = False
+matplotlib.rcParams['axes.spines.right'] = False
+
+# === Caminhos (relativos à pasta artigo/artigo/) ===
+DATA_DIR = "../data/processed/"
+OUTPUT_DIR = "../data/output/"
+FIG_DIR = "../outputs/figuras_v2/"
+
+# === Carregar dados principais uma vez ===
+features = pd.read_parquet(DATA_DIR + "features_semanal.parquet")
+features['date'] = pd.to_datetime(features['date'])
+anomalias = pd.read_parquet(OUTPUT_DIR + "anomalias_classificadas.parquet")
+anomalias['date'] = pd.to_datetime(anomalias['date'])
+residuos = pd.read_parquet(OUTPUT_DIR + "residuos.parquet")
+residuos['date'] = pd.to_datetime(residuos['date'])
+fingerprints_df = pd.read_parquet(OUTPUT_DIR + "fingerprints.parquet")
+indice_global = pd.read_parquet(DATA_DIR + "indice_global.parquet")
+indice_global['date'] = pd.to_datetime(indice_global['date'])
+
+# Remover última semana incompleta (2026-W05: apenas 6 dias, dados ANTAQ não consolidados)
+_CUTOFF = pd.Timestamp("2026-01-19")
+features  = features[features['date']  <= _CUTOFF]
+anomalias  = anomalias[anomalias['date'] <= _CUTOFF]
+residuos   = residuos[residuos['date']   <= _CUTOFF]
+fingerprints_df = fingerprints_df[fingerprints_df['date'] <= _CUTOFF] if 'date' in fingerprints_df.columns else fingerprints_df
+mapeamento = pd.read_csv(DATA_DIR + "mapeamento_portos.csv")
+vuln_matriz = pd.read_csv(OUTPUT_DIR + "comex_v2_matriz_vulnerabilidade.csv")
+ranking_portos = pd.read_csv(OUTPUT_DIR + "comex_v2_ranking_portos.csv")
+```
+
+
+# Introdução {.unnumbered}
+
+O transporte marítimo responde por cerca de 87% do total exportado pelo Brasil em valor FOB na última década, proporção que se elevou consistentemente em função da expansão das commodities (soja, minério de ferro e petróleo bruto), cujo escoamento depende quase exclusivamente da via portuária (cálculo próprio a partir de dados do ComexStat [@comexstat2026]). A concentração da pauta exportadora em poucos produtos de grande volume e a dependência de um número limitado de portos de navegação de longo curso tornam o sistema logístico brasileiro particularmente sensível a eventos disruptivos, sejam eles de origem global (pandemias, conflitos geopolíticos), nacional (greves, choques regulatórios) ou local (eventos climáticos, falhas operacionais).
+
+Eventos recentes ilustram essa vulnerabilidade. A pandemia de COVID-19 provocou oscilações simultâneas em praticamente todos os portos do país entre março e junho de 2020. A greve dos caminhoneiros de maio de 2018 interrompeu o fluxo de carga terrestre para os terminais marítimos, gerando queda abrupta na tonelagem embarcada. As enchentes no Rio Grande do Sul em 2024 paralisaram parcialmente as operações nos portos de Rio Grande e Porto Alegre. Em cada caso, o impacto não se limitou ao porto afetado: propagou-se pelas cadeias de exportação que dele dependem, afetando estados produtores e setores econômicos a montante.
+
+Apesar da relevância estratégica, o monitoramento sistemático de disrupções portuárias no Brasil ainda carece de uma abordagem que integre três dimensões complementares: (i) a detecção automatizada de anomalias operacionais a partir de dados de alta frequência, (ii) a classificação do escopo e da natureza dos eventos detectados, e (iii) a avaliação da exposição econômica das cadeias produtivas afetadas. Iniciativas como o PortWatch do Fundo Monetário Internacional [@portwatch2024] fornecem indicadores globais de atividade portuária, mas não operam sobre microdados operacionais nacionais. Ferramentas nacionais, como o painel estatístico da ANTAQ, disponibilizam dados operacionais detalhados, porém sem camada analítica de detecção de anomalias e sem vínculo com as cadeias produtivas por estado de origem.
+
+Essa fragmentação analítica tem consequências práticas. Sem uma ferramenta que articule detecção de anomalias, classificação de escopo e mapeamento de exposição comercial, autoridades portuárias e órgãos como o MDIC e a ANTAQ dispõem de visibilidade limitada sobre quais produtos, estados e parceiros comerciais são mais afetados por uma disrupção em curso. Da mesma forma, discussões sobre investimentos em infraestrutura portuária e diversificação de rotas de escoamento carecem de insumos analíticos que considerem a concentração de cadeias produtivas, e não apenas o volume movimentado.
+
+Este trabalho propõe um sistema analítico que preenche essa lacuna a partir de uma premissa simples: as três bases de dados necessárias já existem e são de acesso público. O Anuário Estatístico Aquaviário da ANTAQ fornece microdados de atracação (2010–2026), o PortWatch/FMI oferece atividade portuária global diária (2019–2025) e o ComexStat/MDIC detalha exportações por produto, unidade aduaneira e destino (1997–2026). Nenhuma dessas fontes, isoladamente, permite detectar uma disrupção, classificar seu escopo e estimar sua exposição econômica. Combinadas, sem coleta primária nem infraestrutura dedicada, elas viabilizam um fluxo integrado de detecção, classificação e análise de vulnerabilidade. Um painel interativo, produto complementar deste trabalho, consolida os principais resultados.
+
+O objetivo geral é desenvolver e validar um sistema de monitoramento e diagnóstico de eventos disruptivos nos portos brasileiros de navegação de longo curso. Os objetivos específicos são: (a) construir modelos preditivos do comportamento operacional esperado de cada porto em quatro dimensões (atracações, tonelagem de exportação, tempo de espera para atracar e tempo atracado) e identificar desvios significativos via ensemble de métodos de detecção; (b) classificar cada anomalia detectada quanto à sua abrangência espacial (isolada, nacional ou global) a partir de scores de co-ocorrência e de choque global; (c) mapear a exposição das cadeias produtivas exportadoras brasileiras a disrupções portuárias, identificando pontos de fragilidade pela concentração de fluxos comerciais; e (d) disponibilizar os resultados em um painel interativo que permita consulta e acompanhamento operacional dos portos monitorados.
+
+O artigo está organizado da seguinte forma. A Seção 1 apresenta o referencial teórico que fundamenta a pesquisa. A Seção 2 descreve os dados, o pipeline metodológico e os critérios de validação. A Seção 3 expõe os resultados em quatro blocos: modelagem, detecção e classificação, vulnerabilidade econômica e sistema de alerta. A Seção 4 discute os achados à luz da literatura e das limitações do trabalho. A conclusão sintetiza as contribuições e aponta direções futuras.
+
+
+# Referencial Teórico
+
+## Resiliência de cadeias de suprimentos e disrupções portuárias
+
+A literatura sobre resiliência de cadeias de suprimentos (*supply chain resilience*) cresceu substancialmente após os choques globais da década de 2020. @christopher2004 definem resiliência como a capacidade de um sistema de retornar ao estado original ou a um novo estado desejável após uma perturbação. No contexto portuário, essa definição se traduz na capacidade de um porto de manter níveis operacionais aceitáveis durante e após eventos adversos. @chopra2004 sistematizam as fontes de risco em cadeias de suprimentos, distinguindo riscos de oferta, demanda, e ambientais, categoria na qual se enquadram desastres naturais, pandemias e conflitos geopolíticos que afetam a infraestrutura portuária.
+
+Portos são nós críticos (*chokepoints*) nas cadeias logísticas globais. @notteboom2021 argumentam que a concentração de fluxos em poucos hubs amplia o risco sistêmico: a paralisação de um único terminal pode gerar efeitos em cascata sobre rotas marítimas, armazéns e modais terrestres conectados. @verschuur2022 propõem um framework de risco sistêmico para portos que integra três camadas (infraestrutura local, rede de transporte hinterland e rede marítima global), demonstrando que os riscos indiretos (propagação por rede) são frequentemente maiores que os danos diretos à infraestrutura portuária.
+
+Essas fragilidades foram evidenciadas em eventos recentes. O bloqueio do Canal de Suez em março de 2021 atrasou 432 navios com carga estimada em US$ 92,7 bilhões, gerando perdas globais em cascata [@qu2024]. @verschuur2023 estimam que US$ 81 bilhões em comércio global e pelo menos US$ 122 bilhões em atividade econômica estão em risco anualmente devido a disrupções portuárias induzidas por eventos climáticos, com efeitos que se propagam por setores e geografias. @verschuur2021 demonstraram, a partir de dados AIS, que a pandemia de COVID-19 reduziu o comércio marítimo global entre 7,0% e 9,6% nos primeiros oito meses de 2020, com impactos desproporcionais sobre economias dependentes de poucos parceiros comerciais.
+
+No Brasil, a dependência portuária é agravada pela composição da pauta exportadora: commodities agrícolas e minerais representam parcela dominante do valor exportado, e sua movimentação ocorre por portos específicos (Santos para soja e açúcar, Itaguaí para petróleo bruto e minério de ferro, Paranaguá para grãos e carnes), criando pontos de concentração de risco que não encontram alternativa logística imediata. @wendlerbosco2020 revisam sistematicamente a literatura sobre impactos de disrupções portuárias nas cadeias de suprimentos marítimas, identificando lacunas significativas na quantificação de efeitos indiretos e na capacidade de monitoramento em tempo real. O presente trabalho busca preencher essas lacunas no contexto brasileiro.
+
+
+## Detecção de anomalias em séries temporais
+
+A detecção de anomalias em séries temporais é um campo consolidado da estatística e do aprendizado de máquina, com aplicações em domínios que vão de monitoramento industrial a detecção de fraudes. @chandola2009 oferecem uma taxonomia abrangente dos métodos de detecção, distinguindo abordagens baseadas em classificação, nearest-neighbor, clustering e estatística. @boniol2024, em revisão recente, categorizam a literatura da última década sob taxonomia orientada a processos, destacando a crescente adoção de métodos híbridos que combinam modelos preditivos com detectores estatísticos.
+
+No contexto de transportes e logística, abordagens baseadas em modelos preditivos, que aprendem o comportamento "normal" e sinalizam desvios significativos, têm se mostrado eficazes por capturarem padrões sazonais e tendências sem supervisão humana [@ahmad2017]. Métodos de ensemble, que combinam múltiplos detectores para reduzir falsos positivos, ganharam destaque na literatura. @aggarwal2017 demonstra que a concordância entre detectores independentes (votação majoritária) é mais robusta do que qualquer método isolado, especialmente em séries com sazonalidade complexa e mudanças de regime. A abordagem de ensemble ≥ 2/3 adotada neste trabalho, combinando MAD, decomposição STL [@cleveland1990] e Isolation Forest [@liu2008], segue essa lógica de diversidade metodológica.
+
+O uso de gradient boosting (XGBoost) como modelo-base para captura do comportamento normal é respaldado por @chen2016 e por aplicações recentes em previsão de demanda logística [@punia2020]. A vantagem do XGBoost sobre modelos puramente autorregressivos reside na capacidade de incorporar features exógenas (calendário, médias móveis, variáveis de tendência) sem especificação paramétrica rígida da estrutura temporal. A combinação de XGBoost como modelo preditivo com um filtro AR(1) para remoção de autocorrelação residual, seguida por ensemble de detecção, constitui uma arquitetura não encontrada na literatura aplicada a portos, embora cada componente individualmente seja bem documentado.
+
+
+## Monitoramento portuário e iniciativas existentes
+
+O PortWatch, desenvolvido pelo FMI em parceria com a Universidade de Oxford, é atualmente a principal iniciativa de monitoramento portuário global de acesso aberto [@arslanalp2024; @portwatch2024]. Baseado em dados AIS (*Automatic Identification System*), o sistema acompanha chamadas de navios (*port calls*) em cerca de 2.000 portos em 180 países, oferecendo indicadores diários de atividade e um simulador de impacto de disrupções. O PortWatch permite identificar choques globais com rapidez, como demonstrado durante os ataques Houthi no Mar Vermelho (nov/2023–jun/2024), quando a plataforma documentou em tempo quase real o desvio de tráfego pelo Cabo da Boa Esperança.
+
+Contudo, o PortWatch opera exclusivamente sobre dados AIS, não capturando microdados operacionais como tempos de espera e tempos de operação no berço. Embora forneça estimativas de tonelagem desagregadas por tipo de embarcação (contêiner, granéis sólidos, carga geral, ro-ro e tanker) e por direção (importação e exportação), essa classificação reflete o tipo de navio, não a natureza específica da mercadoria — distinção disponível apenas nos microdados ANTAQ. Essa granularidade é essencial para o diagnóstico operacional, como distinguir se uma queda de atividade resulta de falta de carga (problema logístico terrestre) ou de congestionamento portuário (problema de capacidade). @verschuur2020 destacam que a integração de fontes complementares de dados (AIS global combinado com dados operacionais locais) é uma fronteira importante para a análise de resiliência portuária.
+
+No Brasil, a ANTAQ disponibiliza microdados do Anuário Estatístico Aquaviário com registros individuais de atracação, incluindo timestamps detalhados e informações de carga. Contudo, esses dados são disponibilizados com defasagem e sem detecção automatizada de anomalias ou cruzamento com cadeias produtivas por estado de origem. O presente trabalho busca preencher essa lacuna ao combinar a granularidade operacional da ANTAQ com o sinal global do PortWatch, integrando ainda dados de comércio exterior do ComexStat para contextualização econômica.
+
+
+## Concentração comercial e vulnerabilidade
+
+O Índice Herfindahl-Hirschman (HHI) é amplamente utilizado como medida de concentração de mercado [@rhoades1993]. No contexto do comércio exterior, o HHI pode ser aplicado em duas direções complementares: (i) HHI da pauta do porto, que mede o grau de dependência de um porto em relação a poucos produtos exportados, e (ii) HHI da cadeia produtiva, que mede o grau de concentração da exportação de um produto em poucos portos. Pares produto-porto no quadrante de dupla concentração (ambos os HHIs elevados) representam pontos de fragilidade sistêmica: se o porto para, não há alternativa portuária para o produto, e se o produto desaparece, o porto perde parcela significativa de sua movimentação.
+
+Essa perspectiva de dupla concentração conecta-se ao conceito de *criticality* portuária desenvolvido por @verschuur2022b, que quantificam a importância de cada porto para as cadeias globais de suprimentos pela alocação de fluxos comerciais na rede de transporte marítimo. No contexto brasileiro, onde a via marítima responde por cerca de 87% das exportações em valor, a concentração de cadeias produtivas inteiras em um ou dois portos, como o petróleo bruto em São João da Barra e Itaguaí ou o níquel em Santos, configura vulnerabilidades que transcendem o domínio logístico e adquirem relevância macroeconômica. A identificação sistemática desses pontos de fragilidade pode contribuir para que discussões sobre investimento em infraestrutura portuária e diversificação de rotas de escoamento incorporem critérios de concentração de risco como insumo complementar ao volume movimentado.
+
+A Classificação Uniforme para o Comércio Internacional (CUCI), adotada pela SECEX nas divulgações semanais da balança comercial, fornece a taxonomia de produtos utilizada neste trabalho no nível de Grupo (3 dígitos), oferecendo granularidade adequada para distinguir cadeias produtivas relevantes (soja ≠ café ≠ minério de ferro) sem excessiva fragmentação.
+
+
+# Metodologia
+
+## Dados
+
+O pipeline analítico integra três bases de dados públicas, cada uma contribuindo com uma camada específica de informação.
+
+**ANTAQ: Anuário Estatístico Aquaviário.** Microdados de atracação extraídos do portal de dados abertos da Agência Nacional de Transportes Aquaviários. O conjunto bruto contém 1,3 milhão de registros de atracação (2010–2026). Após filtragem para navegação de longo curso e seleção dos 18 principais portos exportadores, restaram 319.414 registros cobrindo o período de janeiro de 2014 a janeiro de 2026. Cada registro corresponde a uma atracação individual de navio, com informações de timestamps operacionais (chegada, atracação, início e fim de operação, desatracação), tonelagem movimentada e tipo de carga. A partir desses microdados, foram construídas séries temporais semanais em quatro dimensões operacionais (@tbl-dimensoes).
+
+| Dimensão | O que mede | Exemplo de anomalia |
+|:---------|:-----------|:-------------------|
+| Atracações/semana | Volume operacional (contagem) | Queda abrupta por greve ou clima |
+| Tonelagem de exportação | Throughput de carga (toneladas) | Desvio de rota, safra atípica |
+| Tempo de espera para atracar (h) | Congestionamento externo (T1) | Fila de navios por excesso de demanda |
+| Tempo atracado (h) | Eficiência de berço (T2+T3+T4) | Operação prolongada, paralisação |
+
+: Dimensões operacionais monitoradas por porto. {#tbl-dimensoes}
+
+A granularidade semanal foi adotada como compromisso entre resolução temporal e estabilidade estatística: séries diárias apresentam excesso de zeros (portos com poucas atracações por dia), enquanto séries mensais diluem eventos de curta duração como greves e bloqueios logísticos.
+
+A @fig-series-santos ilustra as quatro dimensões para o Porto de Santos, principal hub exportador do país, ao longo de toda a série disponível (2014–2026). Os painéis permitem visualizar tanto os padrões sazonais regulares (ciclos de safra, variações de fim de ano) quanto as perturbações provocadas por eventos disruptivos conhecidos: a Greve dos Caminhoneiros (maio–junho de 2018), a pandemia de COVID-19 (março–junho de 2020) e as Enchentes do Rio Grande do Sul (abril–junho de 2024). É esse tipo de variabilidade que o pipeline de detecção descrito na seção seguinte buscará capturar automaticamente.
+
+```{python}
+#| label: fig-series-santos
+#| fig-cap: "Séries temporais semanais do Porto de Santos nas quatro dimensões operacionais (2014–2026). Faixas verticais indicam períodos de eventos de referência: Greve dos Caminhoneiros (mai–jun/2018, laranja), COVID-19 (mar–jun/2020, vermelho) e Enchentes do RS (abr–jun/2024, azul)."
+#| echo: false
+
+# Dados de Santos
+santos = features[features['porto'] == 'Santos'].sort_values('date').copy()
+
+dims = [('atracacoes', 'Atracações'),
+        ('tonelagem_exp', 'Tonelagem Exportação'),
+        ('t1_mediano', 'Espera p/ Atracar (h)'),
+        ('tatracado_mediano', 'Tempo no Berço (h)')]
+
+# Eventos de referência
+eventos = [
+    ('2018-05-01', '2018-06-30', 'Greve\nCaminhoneiros', '#E67E22'),
+    ('2020-03-01', '2020-06-30', 'COVID-19', '#C0392B'),
+    ('2024-04-25', '2024-06-30', 'Enchentes RS', '#3498DB'),
+]
+
+fig, axes = plt.subplots(4, 1, figsize=(6.3, 8), sharex=True)
+
+for i, (col, title) in enumerate(dims):
+    ax = axes[i]
+    ax.plot(santos['date'], santos[col], color='#2C3E50', linewidth=0.8)
+
+    # Faixas de eventos
+    for start, end, label, color in eventos:
+        ax.axvspan(pd.Timestamp(start), pd.Timestamp(end), alpha=0.12, color=color)
+        if i == 0:
+            ax.text(pd.Timestamp(start), ax.get_ylim()[1] * 0.95, label,
+                    fontsize=6, color=color, va='top', fontweight='bold')
+
+    ax.set_title(title, fontsize=8, loc='left', pad=2)
+    ax.tick_params(labelsize=8)
+    if col == 'tonelagem_exp':
+        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{x/1e6:.1f}M'))
+
+axes[-1].set_xlabel('Ano', fontsize=9)
+import matplotlib.dates as mdates
+axes[-1].xaxis.set_major_locator(mdates.YearLocator())
+axes[-1].xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+plt.tight_layout()
+plt.subplots_adjust(left=0.02, right=0.999)
+plt.show()
+```
+
+::: {.fonte}
+Fonte: Elaboração própria com dados ANTAQ (2026).
+:::
+
+**PortWatch/FMI.** Dados diários de atividade portuária global, cobrindo ~2.000 portos em 180 países, disponibilizados tanto em *bulk download* quanto via API REST — esta última utilizada especialmente no painel de alertas para atualização com os dados mais recentes. Para a construção do índice global, foram selecionados os 50 maiores portos não-brasileiros por volume médio de chamadas de navios. A partir das médias semanais de *port calls*, calculou-se um z-score com janela móvel de 12 semanas (com mínimo de 6 observações para início do cálculo). Os dados diários do PortWatch iniciam em janeiro de 2019, o que impõe uma limitação temporal ao Score B de classificação global.
+
+**ComexStat/MDIC.** Estatísticas de comércio exterior brasileiro em dados abertos, extraídas da plataforma do Ministério do Desenvolvimento, Indústria, Comércio e Serviços, com agregação mensal no nível Produto (Grupo CUCI) × UF de origem × URF de exportação × País de destino. O conjunto cobre o período de 2014 a janeiro de 2026, totalizando 16,3 milhões de registros brutos. Após filtro por via de transporte marítimo e mapeamento da Unidade da Receita Federal (URF) de despacho para o porto correspondente, restaram 7,5 milhões de registros cobrindo 16 dos 18 portos monitorados (Porto Alegre e Barra do Riacho foram excluídos por não possuírem URF dedicada no ComexStat).
+
+
+## Pipeline de detecção de anomalias
+
+O sistema de detecção opera em quatro etapas sequenciais, ilustradas na @fig-pipeline. Os scripts de coleta, processamento e análise estão disponíveis em repositório público no GitHub, descrito na seção de Disponibilidade de Dados e Código.
+
+```{python}
+#| label: fig-pipeline
+#| fig-cap: "Pipeline de detecção e classificação de anomalias portuárias."
+#| echo: false
+
+fig, ax = plt.subplots(figsize=(6.3, 1.6))
+ax.set_xlim(0, 10)
+ax.set_ylim(0, 2)
+ax.axis('off')
+
+steps = [
+    (0.2,  'Séries\nsemanais',   '#2C3E50'),
+    (2.1,  'XGBoost',            '#2C3E50'),
+    (4.0,  'Resíduos\n+ AR(1)',  '#2C3E50'),
+    (5.9,  'Ensemble\n≥ 2/3',    '#E67E22'),
+    (7.8,  'Classificação\n(A+B)', '#27AE60'),
+]
+
+box_w, box_h = 1.7, 0.9
+box_y = 0.55
+
+for x, label, color in steps:
+    bbox = FancyBboxPatch((x, box_y), box_w, box_h,
+                          boxstyle='round,pad=0.08',
+                          facecolor='white', edgecolor=color, linewidth=1.8)
+    ax.add_patch(bbox)
+    ax.text(x + box_w / 2, box_y + box_h / 2, label,
+            ha='center', va='center', fontsize=8,
+            fontweight='bold', color=color)
+
+# Setas entre caixas
+for i in range(len(steps) - 1):
+    x_start = steps[i][0] + box_w + 0.02
+    x_end   = steps[i + 1][0] - 0.02
+    y_mid   = box_y + box_h / 2
+    ax.annotate('', xy=(x_end, y_mid), xytext=(x_start, y_mid),
+                arrowprops=dict(arrowstyle='->', color='#7f8c8d', lw=1.5,
+                                mutation_scale=14))
+
+plt.tight_layout()
+plt.show()
+```
+
+::: {.fonte}
+Fonte: Elaboração própria (2026).
+:::
+
+**Etapa 1: Modelagem preditiva (XGBoost).** Para cada porto e cada dimensão operacional, um modelo XGBoost aprende o padrão normal de operação a partir de 15 features temporais restritas à própria dimensão-alvo: lags semanais (1, 4, 13, 52 semanas), médias móveis (4, 8, 12 semanas), variações percentuais, desvio em relação à média móvel, volatilidade de curto prazo e variáveis calendário (seno e cosseno do mês, semana do ano). A restrição de features à dimensão própria (*own-only*) evita contaminação cruzada entre dimensões. Os hiperparâmetros (`max_depth=4`, `n_estimators=200`, `learning_rate=0.05`) foram selecionados por validação cruzada com janela expansível (*expanding window*).
+
+**Etapa 2: Correção AR(1) e inovações.** Os resíduos do XGBoost ($r_t = y_t - \hat{y}_t$) apresentam autocorrelação remanescente (mediana do ACF(1) ≈ 0,21 nos dados atualizados). Um filtro autorregressivo de primeira ordem é aplicado individualmente a cada par porto×dimensão:
+
+$$\varepsilon_t = r_t - \hat{\rho} \cdot r_{t-1}$$
+
+onde $\hat{\rho}$ é estimado pela autocorrelação amostral dos resíduos. As inovações $\varepsilon_t$ resultantes apresentam ACF(1) mediana de -0,03 e 96% dos pares porto×dimensão com |ACF(1)| < 0,15, permitindo que os métodos de detecção operem sobre desvios aproximadamente independentes.
+
+**Etapa 3: Ensemble de detecção (≥ 2/3).** Três métodos independentes avaliam as inovações:
+
+- *MAD (Median Absolute Deviation)* [@leys2013]: threshold adaptativo por porto×dimensão, calibrado sobre a distribuição local das inovações;
+- *STL (Seasonal-Trend decomposition using Loess)*: detecção sobre o componente residual da decomposição sazonal;
+- *Isolation Forest*: detecção multivariada baseada em isolamento de observações anômalas.
+
+Uma semana é marcada como anomalia se ao menos dois dos três métodos concordam (regra de votação ≥ 2/3). O threshold adaptativo do MAD utiliza $k_{base} = 3,0$, ajustado para cima em portos com variabilidade naturalmente elevada, evitando excesso de falsos positivos.
+
+**Etapa 4: Walk-forward.** Todo o pipeline é executado em regime walk-forward: o modelo é re-estimado periodicamente em janela expansível, acumulando todo o histórico disponível a cada retreinamento. Isso garante que apenas informação passada é utilizada na previsão, eliminando *data leakage*. As primeiras 78 semanas (~1,5 ano) de cada série são descartadas como *burn-in* para estabilização do modelo.
+
+
+## Classificação das anomalias
+
+Cada anomalia detectada é classificada em três categorias (isolada, nacional ou global) por meio de dois scores independentes, calibrados contra 10 eventos históricos conhecidos (@tbl-eventos).
+
+**Score A: co-ocorrência espacial.** Conta quantos portos brasileiros apresentaram anomalia na mesma dimensão dentro de uma janela de ±4 semanas:
+
+$$S_A = |\{p \in P : \exists \text{ anomalia}_p \text{ em } [t-4, t+4] \text{ sem}\}|$$
+
+Score A alto indica evento sistêmico (muitos portos afetados simultaneamente).
+
+**Score B: índice de choque global.** Construído a partir do z-score da atividade portuária global (PortWatch), tomando o máximo |z| numa janela de ±2 semanas em torno de cada anomalia:
+
+$$S_B = \max_{|w| \leq 2} |z_{GI}(t + w)|$$
+
+Score B alto indica choque externo severo no comércio marítimo global.
+
+A regra de classificação combina ambos os scores com limiares $t_a = 3$ e $t_b = 0{,}8$, encontrados por *grid search* exaustivo sobre o espaço $t_a \in \{3, 4, 5, 6\}$ e $t_b \in \{0{,}8;\ 1{,}0;\ 1{,}2;\ 1{,}5\}$, maximizando o recall ponderado contra os 10 eventos de calibração (@tbl-eventos). Os limites inferiores foram definidos a priori: $t_a \geq 3$ porque, com 18 portos monitorados, co-ocorrência de apenas 2 representa ruído estatístico; $t_b \geq 0{,}8$ (percentil 79 do z-score global) para evitar classificação espúria de flutuações normais como choques globais. O par ($t_a = 3$, $t_b = 0{,}8$) detectou todos os 10 eventos de referência, com precisão de classificação de 90%:
+
+| Tipo | Condição | Interpretação |
+|:-----|:---------|:-------------|
+| **Global** | Score B ≥ 0,8 | Choque externo detectado |
+| **Nacional** | Score A ≥ 3 e Score B < 0,8 | Co-ocorrência sem trigger global |
+| **Isolado** | Score A < 3 e Score B < 0,8 | Evento localizado |
+
+: Regra de classificação das anomalias. {#tbl-classificacao}
+
+A regra de promoção por Score B, que classifica como global mesmo anomalias com poucos portos brasileiros afetados, foi introduzida para capturar eventos como o bloqueio do Canal de Suez, que afetou o comércio mundial mas impactou poucos portos brasileiros diretamente.
+
+Cabe notar que as janelas simétricas do Score A (±4 semanas) e do Score B (±2 semanas) incorporam observações posteriores à semana da anomalia, tornando a classificação intrinsecamente retrospectiva. Essa é uma escolha deliberada: para diagnóstico histórico, janelas simétricas produzem classificações mais precisas por capturarem tanto o onset quanto a propagação de cada evento. Em aplicação operacional, a detecção de anomalias (etapas 1–3 do pipeline) opera de forma causal, utilizando apenas dados passados no regime walk-forward. A classificação do tipo de evento, porém, requer que a janela se feche para ser aplicada, o que introduz uma latência de 2–4 semanas entre a detecção e a classificação definitiva. O painel de alertas do dashboard contorna essa latência ao utilizar z-scores PortWatch com atualização semanal como mecanismo de vigilância independente do pipeline de classificação.
+
+| # | Evento | Período | Classificação | Portos |
+|:--|:-------|:--------|:-------------|:-------|
+| 1 | Greve dos Caminhoneiros | mai–jun/2018 | Nacional | 4 |
+| 2 | COVID-19 | mar–jun/2020 | Global | 18 |
+| 3 | COVID recuperação | set/2020–jun/2021 | Global | 18 |
+| 4 | Bloqueio Canal de Suez | mar–abr/2021 | Global | 18 |
+| 5 | Guerra na Ucrânia | fev–dez/2022 | Global | 18 |
+| 6 | Lockdowns China | mar–jun/2022 | Global | 18 |
+| 7 | Ataques Houthi | nov/2023–jun/2024 | Global | 18 |
+| 8 | Enchentes RS | abr–jun/2024 | Isolado | 2 |
+| 9 | Greve Receita Federal | dez/2024–jan/2025 | Nacional | 3 |
+| 10 | Tarifação EUA | fev–jun/2025 | Global | 18 |
+
+: Eventos utilizados para calibração (10 eventos, 135 pares porto×evento). {#tbl-eventos}
+
+
+## Análise de vulnerabilidade econômica
+
+A camada de exposição comercial cruza os dados de anomalias com os fluxos de exportação por cadeia produtiva. Duas métricas de concentração são calculadas:
+
+- **HHI do porto** ($HHI_p$): grau de concentração da pauta exportadora de cada porto (quanto maior, mais o porto depende de poucos produtos);
+- **HHI da cadeia** ($HHI_c$): grau de concentração portuária de cada cadeia produtiva (quanto maior, mais a exportação do produto depende de poucos portos).
+
+Pares $(p, c)$ com ambos os HHIs elevados (> 0,20) representam **pontos de fragilidade dupla**: uma disrupção no porto afeta severamente a cadeia, e a cadeia não dispõe de rota alternativa.
+
+
+# Resultados
+
+## Desempenho da modelagem preditiva
+
+```{python}
+#| label: tbl-mae
+#| tbl-cap: "Redução do MAE em relação ao modelo naïve (lag-52 semanal), com IC 95% por dimensão no regime walk-forward."
+#| echo: false
+
+# ============================================================
+# TABELA: MAE naïve vs. XGBoost por dimensão
+# ============================================================
+# Dados do walk-forward completo (residuos.parquet):
+#   Dimensão          | MAE Naïve | MAE XGBoost | Redução | Anomalias
+#   Atracações/sem    |   3,96    |    0,73     |  ↓ 82%  |   429
+#   Tonelagem exp.    | 172.760   |   41.329    |  ↓ 76%  |   477
+#   Espera atracar (h)|  37,29    |   10,08     |  ↓ 73%  |   316
+#   Tempo no berço (h)|  15,13    |    3,28     |  ↓ 78%  |   387
+#
+# Nota: MAE CV (validação cruzada) são 0.63/36387/7.12/2.46 com reduções
+#   de 84/79/81/84%. Os valores acima são do walk-forward completo.
+#
+# Renderizar como pd.DataFrame com .style ou display(Markdown(...))
+# para que Quarto capture como tabela nativa.
+# ============================================================
+import pandas as pd
+from IPython.display import Markdown
+
+mae_data = pd.DataFrame({
+    'Dimensão': ['Atracações', 'Tonelagem Exp.', 'Espera p/ Atracar (h)', 'Tempo no Berço (h)'],
+    'MAE Naïve': ['3,96', '172.760', '37,29', '15,13'],
+    'MAE XGBoost': ['0,73', '41.329', '10,08', '3,28'],
+    'Redução (%)': ['82', '76', '73', '78'],
+    'IC 95%': ['[79; 84]', '[73; 80]', '[67; 81]', '[73; 84]'],
+    'Anomalias': [429, 477, 316, 387]
+})
+
+md = mae_data.to_markdown(index=False)
+Markdown(md)
+```
+
+::: {.fonte}
+Fonte: Elaboração própria com dados ANTAQ (2026).
+:::
+
+O modelo XGBoost com correção AR(1) demonstrou capacidade consistente de capturar a variabilidade operacional semanal dos portos. Conforme ilustrado para Santos (@fig-series-santos), as séries apresentam sazonalidade marcada e perturbações pontuais; o modelo foi capaz de separar ambos os componentes. Em validação cruzada com janela expansível, as reduções de MAE em relação ao baseline naïve (lag-52 semanal, o valor da mesma semana no ano anterior) variaram de 79% a 84% conforme a dimensão. Na avaliação walk-forward completa, as reduções pontuais de MAE variam de 73% a 82% conforme a dimensão (@tbl-mae), refletindo o cenário mais conservador em que o modelo opera estritamente sobre dados passados. Os intervalos de confiança bootstrap (IC 95%, 10.000 iterações reamostrando portos) confirmam a robustez: mesmo o limite inferior mais conservador (67%), observado no tempo de espera, permanece elevado.
+
+As features mais relevantes para o XGBoost, avaliadas por ganho médio entre portos, são consistentes entre dimensões: o desvio em relação à média móvel de 8 semanas (`dev_mm8`) e a média móvel de 4 semanas (`mm4`) dominam em todas as quatro dimensões, indicando que o modelo captura o padrão normal principalmente pela tendência de curto prazo e seus desvios recentes.
+
+A correção AR(1) reduziu a autocorrelação mediana dos resíduos de 0,21 para -0,03. Embora o teste de Ljung-Box rejeite ruído branco em todos os portos (p < 0,05), resultado esperado com séries de ~550 observações em que mesmo autocorrelações de magnitude negligível são estatisticamente significativas, a métrica operacionalmente relevante é a magnitude: 96% dos pares porto×dimensão apresentam |ACF(1)| < 0,15 após o filtro, indicando que a dependência serial residual é insuficiente para comprometer a detecção de anomalias. Adicionalmente, a modelagem absorveu a co-variação esperada entre dimensões: a correlação entre atracações e tonelagem, o par mais forte, caiu de $r = 0{,}57$ nas séries brutas para $r = 0{,}24$ nos resíduos, confirmando que os resíduos capturam desvios genuinamente independentes e justificando o tratamento separado de cada dimensão na etapa de detecção.
+
+A @fig-deteccao-exemplo ilustra o pipeline de detecção aplicado à dimensão Atracações do Porto de Santos. No painel superior, a série observada é comparada com a previsão do XGBoost; no painel inferior, as inovações (resíduos corrigidos pelo AR(1)) permitem identificar os desvios que excedem o limiar do ensemble, marcados como anomalias detectadas.
+
+```{python}
+#| label: fig-deteccao-exemplo
+#| fig-cap: "Exemplo do pipeline de detecção para Santos, Atracações. Painel superior: série observada (escuro) e previsão XGBoost (azul tracejado). Painel inferior: inovações semanais (resíduos após AR(1)); barras vermelhas indicam semanas com anomalia detectada pelo ensemble."
+#| echo: false
+
+import matplotlib.dates as mdates
+
+# Dados do pipeline para Santos — atracações
+res_santos = residuos[(residuos['porto'] == 'Santos') & (residuos['dim'] == 'atracacoes')].copy()
+res_santos['date'] = pd.to_datetime(res_santos['date'])
+res_santos = res_santos.sort_values('date')
+
+anom_santos_atrac = anomalias[(anomalias['porto'] == 'Santos') & (anomalias['dim'] == 'atracacoes')].copy()
+anom_santos_atrac['date'] = pd.to_datetime(anom_santos_atrac['date'])
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6.3, 5), sharex=True,
+                                gridspec_kw={'height_ratios': [1.2, 1]})
+
+# --- Painel superior: real vs predito ---
+# Observado primeiro (fundo) — sólido, escuro
+ax1.plot(res_santos['date'], res_santos['y_true'], color='#2C3E50', linewidth=0.7,
+         label='Observado')
+# Predito por cima — tracejado azul claro
+ax1.plot(res_santos['date'], res_santos['y_pred'], color='#85C1E9', linewidth=0.7,
+         linestyle='--', label='Predito (XGBoost)')
+
+ax1.set_title('Atracações', fontsize=8, loc='left', pad=2)
+ax1.legend(fontsize=7.5, loc='upper left', framealpha=0.9)
+ax1.tick_params(labelsize=8)
+
+# --- Painel inferior: resíduos como barras discretas ---
+anom_dates = set(anom_santos_atrac['date'].values)
+colors_bar = ['#C0392B' if d in anom_dates else '#BDC3C7'
+              for d in res_santos['date'].values]
+
+ax2.bar(res_santos['date'], res_santos['innovation'], width=5, color=colors_bar,
+        edgecolor='none', linewidth=0)
+ax2.axhline(0, color='#7f8c8d', linewidth=0.4)
+
+# Legenda manual
+from matplotlib.patches import Patch
+leg_elements = [
+    Patch(facecolor='#C0392B', label='Anomalia detectada'),
+    Patch(facecolor='#BDC3C7', label='Normal'),
+]
+ax2.legend(handles=leg_elements, fontsize=7, loc='upper left', framealpha=0.9)
+
+ax2.set_title('Inovação (resíduo AR(1))', fontsize=8, loc='left', pad=2)
+ax2.set_xlabel('Ano', fontsize=9)
+ax2.tick_params(labelsize=8)
+ax2.xaxis.set_major_locator(mdates.YearLocator())
+ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+
+plt.tight_layout()
+plt.subplots_adjust(left=0.02, right=0.999)
+plt.show()
+```
+
+::: {.fonte}
+Fonte: Elaboração própria com dados ANTAQ (2026).
+:::
+
+
+## Anomalias detectadas e classificação
+
+As classificações apresentadas a seguir resultam da análise retrospectiva com janelas simétricas descrita na Seção 2.3.
+
+O ensemble de detecção identificou **1.609 anomalias** no período de junho de 2015 a janeiro de 2026, correspondendo a aproximadamente 4,0% das observações pós-*burn-in* (39.744 semanas-porto-dimensão). A distribuição por classificação é: 636 globais (40%), 912 nacionais (57%) e 61 isoladas (4%). A @fig-scatter-scores apresenta a classificação no espaço bidimensional Score A × Score B.
+
+A classificação global depende do z-score PortWatch (Score B), cujos dados diários iniciam em janeiro de 2019; como o cálculo usa janela móvel de 12 semanas com mínimo de 6 observações, o Score B passa a assumir valores positivos a partir de fevereiro de 2019 (com estabilização da janela completa ao longo de março). As 862 anomalias detectadas antes de **01/02/2019** (53,6% do total) são classificadas como nacionais ou isoladas por construção, o que infla a primeira categoria e deflaciona a segunda na distribuição agregada. A primeira anomalia classificada como global no arquivo final ocorre em 18/02/2019. Quando se restringe a análise ao período com cobertura PortWatch efetiva (fevereiro de 2019 a janeiro de 2026, 747 anomalias), a distribuição se inverte substancialmente, como mostra a @tbl-dist-periodo. A manutenção de 636 anomalias globais nessa restrição é proposital: no arquivo de classificação final, não há anomalias globais antes de fevereiro de 2019.
+
+| Classificação | Período completo | Com PortWatch (fev/2019+) |
+|:---|---:|---:|
+| Global | 636 (40%) | 636 (85%) |
+| Nacional | 912 (57%) | 80 (11%) |
+| Isolado | 61 (4%) | 31 (4%) |
+| **Total** | **1.609** | **747** |
+
+: Distribuição das anomalias por classificação e período de cobertura. No período completo, 862 anomalias pré-2019 não dispõem de Score B e são classificadas como nacionais ou isoladas por construção. {#tbl-dist-periodo}
+
+A inversão é coerente com a sequência de choques sistêmicos do período 2019–2026 (COVID-19, crise de contêineres, ataques Houthi).
+
+A predominância de anomalias nacionais na distribuição agregada reflete tanto a sensibilidade do Score A à co-ocorrência doméstica — ajustes cambiais, safras atípicas e mudanças regulatórias afetam múltiplos portos sem configurar choque global — quanto o viés de janela descrito acima. A proporção reduzida de eventos isolados (4%) decorre em parte do limiar conservador ($t_a = 3$): um evento que afeta dois portos é classificado como isolado, mas a maioria dos choques, mesmo os aparentemente locais, tende a reverberar em pelo menos três terminais pela interconexão das cadeias logísticas. Os 61 eventos isolados concentram-se em São João da Barra (14) e Imbituba (10), são predominantemente unidimensionais, e em quase metade dos casos afetam apenas o tempo de espera. O Score A desses eventos varia entre 1 e 2, confirmando que se trata de perturbações genuinamente localizadas e não artefatos do limiar.
+
+```{python}
+#| label: fig-scatter-scores
+#| fig-cap: "Classificação das anomalias detectadas por Score A (co-ocorrência entre portos) e Score B (índice de choque global PortWatch). Cada ponto representa um par porto×semana; tamanho proporcional ao número de dimensões com anomalia simultânea (1–4). Limiares ótimos: $t_a = 3$, $t_b = 0{,}8$. Anotações indicam a localização dos principais eventos de referência. Pontos com Score B = 0 correspondem a anomalias anteriores a 2019, período sem cobertura PortWatch."
+#| echo: false
+
+import matplotlib.patches as mpatches
+
+color_map = {'global': '#C0392B', 'nacional': '#E67E22', 'isolado': '#3498DB'}
+size_map = {1: 12, 2: 35, 3: 75, 4: 130}
+
+# Agregar por porto×semana: contar dimensões simultâneas
+agg = (anomalias
+       .groupby(['porto', 'date'])
+       .agg(score_a=('score_a', 'first'),
+            score_b=('score_b', 'first'),
+            classificacao=('classificacao', 'first'),
+            n_dims=('dim', 'count'))
+       .reset_index())
+
+fig, ax = plt.subplots(figsize=(6.3, 5))
+
+# --- Quadrant shading ---
+_ta, _tb = 3, 0.8
+ax.add_patch(mpatches.Rectangle((0, 0), _ta, _tb,
+    alpha=0.06, color='#4A90D9', zorder=0))
+ax.add_patch(mpatches.Rectangle((_ta, 0), 18 - _ta, _tb,
+    alpha=0.06, color='#E8913A', zorder=0))
+ax.add_patch(mpatches.Rectangle((0, _tb), 18, 3.5 - _tb,
+    alpha=0.06, color='#D94A4A', zorder=0))
+
+# Quadrant labels
+ax.text(1.5, 0.35, 'ISOLADO', fontsize=12, fontweight='bold', color='#3498DB',
+        ha='center', alpha=0.25, zorder=0)
+ax.text(10, 0.35, 'NACIONAL', fontsize=12, fontweight='bold', color='#E67E22',
+        ha='center', alpha=0.25, zorder=0)
+ax.text(10, 2.8, 'GLOBAL', fontsize=12, fontweight='bold', color='#C0392B',
+        ha='center', alpha=0.25, zorder=0)
+
+# Threshold lines (thin solid)
+ax.axvline(_ta, color='#888888', linestyle='-', linewidth=0.8, alpha=0.6, zorder=1)
+ax.axhline(_tb, color='#888888', linestyle='-', linewidth=0.8, alpha=0.6, zorder=1)
+
+# --- Score B = 0 band ---
+ax.axhspan(-0.08, 0.08, alpha=0.06, color='gray', zorder=0)
+
+# --- Scatter points ---
+rng = np.random.default_rng(42)
+for cls, color in color_map.items():
+    sub = agg[agg['classificacao'] == cls]
+    jitter_x = rng.uniform(-0.25, 0.25, len(sub))
+    jitter_y = rng.uniform(-0.05, 0.05, len(sub))
+    sizes = sub['n_dims'].map(size_map)
+    ax.scatter(sub['score_a'] + jitter_x, sub['score_b'] + jitter_y,
+               s=sizes, color=color, alpha=0.4,
+               label=cls.capitalize(), edgecolors='none', zorder=5)
+
+# --- Event annotations ---
+_bbox = dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor='#cccccc', alpha=0.9)
+_arrow = dict(arrowstyle='->', color='#666666', lw=1.0)
+
+ax.annotate('COVID-19\n(mar–jun/2020)',
+    xy=(6.0, 2.33), xytext=(13.5, 3.1),
+    fontsize=7, fontweight='bold', color='#333333',
+    arrowprops=_arrow, bbox=_bbox, ha='center', zorder=10)
+
+ax.annotate('Ataques Houthi\n(nov/2023–jun/2024)',
+    xy=(3.0, 1.53), xytext=(7.5, 2.7),
+    fontsize=7, fontweight='bold', color='#333333',
+    arrowprops=_arrow, bbox=_bbox, ha='center', zorder=10)
+
+ax.annotate('Greve\ncaminhoneiros\n(mai–jun/2018)',
+    xy=(6.0, 0.0), xytext=(14.5, -0.55),
+    fontsize=7, fontweight='bold', color='#333333',
+    arrowprops=_arrow, bbox=_bbox, ha='center', zorder=10)
+
+# Score B=0 note
+ax.annotate('Score B = 0: anomalias pré-2019 (PortWatch indisponível)',
+    xy=(9, 0), xytext=(9, -0.9),
+    fontsize=7, fontstyle='italic', color='#666666',
+    ha='center', arrowprops=dict(arrowstyle='->', color='#999999', lw=0.7),
+    zorder=10)
+
+# --- Axes ---
+ax.set_xlim(0, 18)
+ax.set_ylim(-1.1, 3.5)
+
+for spine in ax.spines.values():
+    spine.set_visible(False)
+ax.set_axisbelow(True)
+ax.tick_params(axis='both', length=0, labelsize=8, pad=4)
+
+ax.set_xlabel(
+    'Score A: co-ocorrência entre portos\n'
+    '(nº de portos com anomalia na mesma dimensão, janela ±4 sem.)',
+    fontsize=8.5, labelpad=8)
+ax.set_ylabel(
+    'Score B: choque global\n(z-score PortWatch, max |z| ±2 sem.)',
+    fontsize=8.5, labelpad=8)
+
+# Classification legend
+leg_cls = ax.legend(fontsize=8, loc='upper left', framealpha=0.9)
+
+# Size legend
+from matplotlib.lines import Line2D
+size_handles = [Line2D([0], [0], marker='o', color='w', markerfacecolor='#7f8c8d',
+                       markersize=np.sqrt(s), alpha=0.6, label=f'{n} dim.')
+                for n, s in size_map.items()]
+ax.legend(handles=size_handles, fontsize=7, loc='upper right',
+          framealpha=0.9, title='Dims.', title_fontsize=7)
+ax.add_artist(leg_cls)
+
+plt.tight_layout()
+plt.show()
+```
+
+::: {.fonte}
+Fonte: Elaboração própria com dados ANTAQ (2026) e PortWatch/FMI (2024).
+:::
+
+A validação contra os 10 eventos históricos de referência, expandidos em 135 pares porto×evento, produziu as seguintes métricas:
+
+- **Recall de detecção**: 71% (IC 95%: [64%, 79%]; 96/135 pares com ao menos uma anomalia detectada na janela do evento)
+- **Precisão da classificação**: 90% (IC 95%: [83%, 95%]; 86/96 anomalias detectadas classificadas corretamente)
+- **Recall da classificação**: 64% (IC 95%: [56%, 72%]; 86/135 pares com classificação correta)
+
+Cabe distinguir os dois indicadores de recall. O primeiro (71%) mede se o sistema *detecta* que algo anômalo ocorreu. O segundo (64%) mede se, além de detectar, o sistema *classifica corretamente* a natureza do evento. A diferença (7 pontos percentuais) resulta de anomalias detectadas na janela do evento mas classificadas no tipo errado, tipicamente eventos globais classificados como nacionais quando o Score B ficou abaixo do limiar.
+
+A estabilidade dos limiares foi verificada por validação *leave-one-event-out* (LOEO): em cada um dos 10 folds, os limiares foram re-otimizados sobre 9 eventos e avaliados no evento excluído. O par ($t_a = 3$, $t_b = 0{,}8$) foi selecionado em 10 dos 10 folds, com recall médio de detecção de 68% ± 26% e precisão média de classificação de 83% ± 32%, confirmando que a calibração não apresenta overfitting ao conjunto de eventos de referência. A maior dispersão das métricas LOEO em relação às globais decorre do tamanho variável dos eventos: folds que excluem eventos de poucos pares (e.g., Enchentes RS, 2 pares) produzem estimativas mais voláteis.
+
+Dois eventos de referência apresentaram detecção nula: a Greve da Receita Federal (dez/2024–jan/2025) nos três portos testados, e a Tarifação EUA (fev/2025 em diante), cujo período cai no fim da série disponível. Ambos são limitações conhecidas: o primeiro por tratar-se de evento de impacto difuso sobre tempos administrativos não capturados pelas quatro dimensões operacionais; o segundo por insuficiência de dados pós-evento na série atual.
+
+
+### Fingerprints operacionais
+
+Cada evento disruptivo produz uma assinatura operacional distinta, o *fingerprint*, que revela quais dimensões do porto são mais afetadas. O fingerprint é o vetor de intensidade relativa do z-score residual nas quatro dimensões, calculado como a média dos desvios normalizados nas semanas de anomalia do evento (@fig-fingerprints). Para a visualização dos fingerprints, utilizam-se janelas temporais mais amplas que as da calibração (@tbl-eventos), incluindo todos os portos com anomalia no período, o que permite capturar o perfil agregado do evento sem restringi-lo aos portos originalmente selecionados para validação.[^janelas]
+
+[^janelas]: As janelas de calibração (@tbl-eventos) são intencionalmente mais estreitas para calcular recall e precisão de forma conservadora. As janelas de visualização seguem a abordagem do dashboard interativo, que adota limites mais amplos para capturar efeitos de onset e recuperação.
+
+```{python}
+#| label: fig-fingerprints
+#| fig-cap: "Perfil operacional (fingerprint) de quatro eventos de referência. Barras representam o z-score médio do resíduo normalizado em cada dimensão, calculado sobre as semanas de anomalia nos portos afetados."
+#| echo: false
+
+# Definir períodos dos eventos (mesmas datas/filtros do dashboard)
+eventos_fp = {
+    'Greve\nCaminhoneiros': {
+        'start': '2018-05-01', 'end': '2018-06-30',
+    },
+    'COVID-19': {
+        'start': '2020-03-01', 'end': '2020-06-30',
+    },
+    'Enchentes RS': {
+        'start': '2024-04-25', 'end': '2024-06-30',
+    },
+    'Ataques\nHouthi': {
+        'start': '2023-11-15', 'end': '2024-06-30',
+    },
+}
+
+dims_fp = ['atracacoes', 'tonelagem_exp', 't1_mediano', 'tatracado_mediano']
+dim_labels = ['Atracações', 'Tonelagem Exp.', 'Espera p/ Atracar', 'Tempo no Berço']
+dim_colors = ['#2C3E50', '#27AE60', '#E67E22', '#8E44AD']
+
+# Calcular z-score médio por evento e dimensão usando fingerprints_df
+fp_dates = pd.to_datetime(fingerprints_df['date'])
+fingerprints_calc = []
+
+for evento, info in eventos_fp.items():
+    start, end = pd.Timestamp(info['start']), pd.Timestamp(info['end'])
+    mask = (fp_dates >= start) & (fp_dates <= end)
+    sub = fingerprints_df[mask]
+    if len(sub) > 0:
+        vals = sub[dims_fp].mean().values
+        max_val = np.max(np.abs(vals))
+        if max_val > 0:
+            vals = vals / max_val
+        fingerprints_calc.append((evento, vals))
+
+# Radar chart — estilo acadêmico, fundo branco, grid polar padrão
+event_colors_radar = ['#E67E22', '#E74C3C', '#3498DB', '#2C3E50']
+n_dims = len(dims_fp)
+angles = np.linspace(0, 2 * np.pi, n_dims, endpoint=False).tolist()
+angles += angles[:1]
+
+fig, axes = plt.subplots(2, 2, figsize=(6.3, 6.3),
+                         subplot_kw=dict(polar=True))
+
+for idx, (ax, (evento, vals)) in enumerate(zip(axes.flat, fingerprints_calc)):
+    color = event_colors_radar[idx]
+    values = vals.tolist() + [vals[0]]
+
+    ax.fill(angles, values, alpha=0.20, color=color)
+    ax.plot(angles, values, linewidth=2, color=color)
+    ax.scatter(angles[:-1], vals, s=30, color=color, zorder=5)
+
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(dim_labels, fontsize=7.5)
+    ax.set_ylim(0, 1.1)
+    ax.set_yticks([0.25, 0.50, 0.75, 1.0])
+    ax.set_yticklabels(['0.25', '0.50', '0.75', '1.00'], fontsize=6, color='#7f8c8d')
+    ax.set_title(evento, fontsize=9, fontweight='bold', pad=15)
+    ax.spines['polar'].set_color('#bdc3c7')
+    ax.grid(color='#ecf0f1', linewidth=0.5)
+
+plt.tight_layout()
+plt.show()
+```
+
+::: {.fonte}
+Fonte: Elaboração própria com dados ANTAQ (2026).
+:::
+
+Os padrões observados são qualitativamente distintos. A Greve dos Caminhoneiros concentrou anomalias em tempo no berço (predominantemente elevado) e atracações, enquanto a tonelagem, menos frequente como dimensão anômala, registrou quedas intensas nos portos afetados — perfil consistente com navios que chegaram ao terminal mas enfrentaram operações prolongadas por escassez de carga terrestre. A COVID-19 afetou sobretudo tempo no berço e tonelagem de exportação, com efeito mínimo sobre o tempo de espera para atracar, o que aponta para redução de atividade operacional e não para congestionamento. As Enchentes do RS tiveram na tonelagem a dimensão mais atingida, porém com direções opostas entre portos — quedas nos terminais gaúchos e possível redirecionamento de carga para outros.[^enchentes_portos]
+
+[^enchentes_portos]: Parte dos portos com anomalia no período das enchentes (Manaus, Santos, Suape) provavelmente reflete perturbações concorrentes não ligadas ao evento gaúcho. Os Ataques Houthi elevaram o tempo no berço de forma consistente (11 de 13 anomalias positivas), enquanto o tempo de espera, embora frequente, apresentou direções mistas entre portos, indicando que o desvio de rotas não impactou os terminais de forma homogênea. O fingerprint permite levantar hipóteses sobre a natureza de um evento anômalo, mas a interpretação causal requer cautela quando a janela temporal coincide com perturbações de origens distintas.
+
+
+### Panorama temporal e perfis de vulnerabilidade
+
+O panorama de anomalias por porto (@fig-portos-anomalias) revela padrões significativos na distribuição por classificação. Portos como Paranaguá (123 anomalias), Imbituba (121), Vila do Conde (111), Pecém (110) e São João da Barra (109) acumularam anomalias recorrentes ao longo da série, sugerindo vulnerabilidade estrutural. A proporção entre tipos varia entre portos: Manaus (68,4%) e Barra do Riacho (62,0%) apresentam predominância de anomalias globais, enquanto São João da Barra e São Francisco do Sul são dominados por anomalias nacionais — proporção que deve ser interpretada à luz do viés de janela descrito acima, já que 53,6% das anomalias ocorrem no período sem cobertura PortWatch e são classificadas como nacionais ou isoladas por construção. O ano de 2016 concentrou o maior número absoluto de anomalias no sistema, período associado ao forte ajuste econômico e cambial brasileiro. A COVID-19 em 2020, embora com menor número absoluto, foi o evento com maior dispersão geográfica simultânea: 17 dos 18 portos apresentaram anomalias.
+
+```{python}
+#| label: fig-portos-anomalias
+#| fig-cap: "Distribuição de anomalias por porto e classificação (global, nacional, isolado). Portos ordenados por total de anomalias. A predominância de anomalias nacionais em alguns portos é parcialmente influenciada pela ausência de Score B no período pré-2019 (53,6% do total); ver discussão sobre viés de janela no texto."
+#| echo: false
+
+# Contar anomalias por porto e classificação
+ct = anomalias.groupby(['porto', 'classificacao']).size().unstack(fill_value=0)
+# Reordenar classificações
+for c in ['global', 'nacional', 'isolado']:
+    if c not in ct.columns:
+        ct[c] = 0
+ct = ct[['global', 'nacional', 'isolado']]
+ct['total'] = ct.sum(axis=1)
+ct = ct.sort_values('total', ascending=True)
+
+fig, ax = plt.subplots(figsize=(6.3, 6))
+
+colors = {'global': '#C0392B', 'nacional': '#E67E22', 'isolado': '#3498DB'}
+y = np.arange(len(ct))
+
+left = np.zeros(len(ct))
+for cls in ['global', 'nacional', 'isolado']:
+    vals = ct[cls].values
+    ax.barh(y, vals, left=left, color=colors[cls], label=cls.capitalize(), height=0.7)
+    left += vals
+
+# Total à direita
+for i, total in enumerate(ct['total'].values):
+    ax.text(total + 1, i, str(total), va='center', fontsize=7.5, color='#2C3E50')
+
+ax.set_yticks(y)
+ax.set_yticklabels(ct.index, fontsize=8)
+ax.set_xlabel('Número de anomalias', fontsize=9)
+ax.legend(fontsize=8, loc='lower right', framealpha=0.9)
+ax.set_xlim(0, ct['total'].max() * 1.12)
+plt.tight_layout()
+plt.show()
+```
+
+::: {.fonte}
+Fonte: Elaboração própria com dados ANTAQ (2026) e PortWatch/FMI (2024).
+:::
+
+A análise de clusterização multidimensional identificou quatro perfis de disrupção entre as semanas anômalas: (i) picos de volume, com aumento simultâneo de atracações e tonelagem, típico de choques de demanda; (ii) gargalos extremos, com tempo atracado e tempo de espera muito elevados, concentrados em portos menores; (iii) eficiência extrema, com tempos operacionais anormalmente baixos, possivelmente indicando navios menores ou desembarques parciais; e (iv) quedas de volume, com redução de atracações e tonelagem, o padrão mais frequente, associado a greves, bloqueios logísticos e crises econômicas. A análise de componentes principais (PCA) sobre os resíduos das quatro dimensões revela que esses perfis se organizam em dois eixos ortogonais: um modo de volume (atracações e tonelagem com cargas de 0,69 no PC1, explicando 31,6% da variância) e um modo de tempo (T1 e TAtracado com cargas de 0,67–0,74 no PC2, explicando 26,7%). Essa estrutura fatorial dá sustentação conceitual aos *fingerprints* dimensionais: as quatro dimensões não variam de forma aleatória nas anomalias, mas se agrupam em dois modos de disrupção distintos.
+
+
+## Vulnerabilidade econômica cruzada
+
+A @fig-hhi-cruzado cruza as duas dimensões de concentração num espaço bidimensional onde cada ponto representa um par (porto, cadeia CUCI 3 dígitos) com FOB acumulado superior a US\$ 1 bilhão. O eixo vertical identifica as cadeias produtivas com maior concentração portuária, ou seja, aquelas para as quais uma disrupção no porto dominante não encontra rota alternativa viável. O eixo horizontal revela o grau de especialização do porto: valores elevados indicam terminais cuja pauta se concentra em poucos produtos, sinalizando tanto uma vulnerabilidade setorial quanto uma oportunidade de política pública — portos altamente especializados são candidatos prioritários a estratégias de diversificação e adensamento da malha logística. Pares situados no quadrante superior-direito (ambos os HHIs acima de 0,20) combinam dependência da cadeia com especialização do porto, configurando os nós onde investimentos em redundância teriam maior retorno para a resiliência do sistema.
+
+```{python}
+#| label: fig-hhi-cruzado
+#| fig-cap: "Concentração cruzada porto–cadeia produtiva. Cada ponto representa um par (porto, cadeia CUCI 3 dígitos) com FOB acumulado superior a US$ 1 bilhão (2015–2025). Eixo horizontal: HHI do porto (concentração da pauta exportadora). Eixo vertical: HHI da cadeia (concentração portuária). Tamanho das bolhas proporcional ao FOB acumulado do par. Linhas tracejadas indicam o limiar de concentração elevada (HHI = 0,20). Pares no quadrante superior-direito representam pontos de fragilidade dupla."
+#| echo: false
+
+from adjustText import adjust_text as _adjust_text
+
+# --- 1. Build pair-level data with both HHIs ---
+_hhi_porto = pd.read_csv("../data/output/comex_v2_hhi_porto.csv")
+_hhi_cadeia = pd.read_csv("../data/output/comex_v2_hhi_cadeia.csv")
+_perfil = pd.read_csv("../data/output/comex_v2_perfil_cuci_porto.csv")
+
+_df = _perfil[['porto', 'CO_CUCI_GRUPO', 'NO_CUCI_GRUPO', 'fob']].copy()
+_df = _df.merge(_hhi_porto[['porto', 'hhi_pauta']], on='porto', how='left')
+_df = _df.merge(_hhi_cadeia[['CO_CUCI_GRUPO', 'hhi_portuario']], on='CO_CUCI_GRUPO', how='left')
+
+# --- 2. Filter to FOB > US$ 1 billion ---
+_df = _df[_df['fob'] > 1e9].copy()
+
+# --- 3. Short names for labeling ---
+_nomes_curtos = {
+    '333': 'Petróleo bruto',
+    '281b': 'Minério de ferro',
+    '222a1': 'Soja',
+    '061a': 'Açúcar',
+    '011a': 'Carnes bovinas',
+    '012a': 'Carnes de aves',
+    '251a1': 'Celulose',
+    '281a': 'Minério de cobre',
+    '283b': 'Minérios não ferrosos',
+    '044': 'Milho',
+    '081a': 'Farelo de soja',
+    '671': 'Ferro-gusa',
+    '672': 'Semi-acabados aço',
+    '674a': 'Laminados planos Fe',
+    '674b': 'Laminados planos lig.',
+    '071a': 'Café',
+    '334c': 'Óleos combustíveis',
+    '058a': 'Suco de laranja',
+    '057a': 'Frutas frescas',
+    '611a': 'Couro',
+    '512a': 'Álcoois',
+    '522a': 'Alumina',
+    '685a': 'Níquel',
+}
+def _short_name(cuci, nome):
+    if cuci in _nomes_curtos:
+        return _nomes_curtos[cuci]
+    return str(nome)[:20]
+
+_df['label'] = _df.apply(lambda r: _short_name(r['CO_CUCI_GRUPO'], r['NO_CUCI_GRUPO']), axis=1)
+
+# --- 4. Identify fragility quadrant and top FOB for labeling ---
+_th = 0.20
+_df['fragil'] = (_df['hhi_pauta'] > _th) & (_df['hhi_portuario'] > _th)
+_top5_fob = set(_df.nlargest(5, 'fob').index)
+
+# --- 5. Color by port (highlight fragility ports, grey for others) ---
+_fragil_portos = sorted(_df[_df['fragil']]['porto'].unique())
+_pal = ['#E74C3C', '#2980B9', '#27AE60', '#F39C12', '#8E44AD', '#1ABC9C',
+        '#D35400', '#2C3E50', '#C0392B', '#7F8C8D']
+_port_colors = {p: _pal[i % len(_pal)] for i, p in enumerate(_fragil_portos)}
+
+_df['color'] = _df['porto'].map(lambda p: _port_colors.get(p, '#BBBBBB'))
+_df['alpha'] = _df['fragil'].map(lambda f: 0.75 if f else 0.35)
+
+# --- 6. Scatter plot ---
+_fob_max = _df['fob'].max()
+_sizes = 40 + (_df['fob'] / _fob_max) * 1200
+
+fig, ax = plt.subplots(figsize=(6.3, 5.2))
+
+# Shade fragility quadrant
+ax.axvspan(_th, ax.get_xlim()[1] if ax.get_xlim()[1] > _th else 0.7,
+           ymin=0, ymax=1, color='#FDEDEC', zorder=0)
+ax.axhspan(_th, 1.0, xmin=0, xmax=1, color='#FDEDEC', zorder=0)
+# Intersection gets double shade -> redraw just the quadrant
+ax.fill_between([_th, 0.72], _th, 1.05, color='#F5B7B1', alpha=0.25, zorder=0)
+
+# Threshold lines
+ax.axvline(_th, color='#999999', ls='--', lw=0.8, zorder=1)
+ax.axhline(_th, color='#999999', ls='--', lw=0.8, zorder=1)
+
+# Plot non-fragile first (grey, behind)
+_nf = _df[~_df['fragil']]
+ax.scatter(_nf['hhi_pauta'], _nf['hhi_portuario'],
+           s=40 + (_nf['fob'] / _fob_max) * 1200,
+           c='#BBBBBB', alpha=0.35, edgecolors='white', linewidths=0.3, zorder=2)
+
+# Plot fragile points (colored, on top)
+_fr = _df[_df['fragil']]
+for _porto in _fragil_portos:
+    _sub = _fr[_fr['porto'] == _porto]
+    ax.scatter(_sub['hhi_pauta'], _sub['hhi_portuario'],
+               s=40 + (_sub['fob'] / _fob_max) * 1200,
+               c=_port_colors[_porto], alpha=0.75, edgecolors='white',
+               linewidths=0.5, label=_porto, zorder=3)
+
+# --- 7. Labels for fragility quadrant + top FOB ---
+# Label only: fragility pairs with FOB > 10B, or top 5 FOB overall
+_texts = []
+for _idx, _row in _df.iterrows():
+    if (_row['fragil'] and _row['fob'] > 10e9) or _idx in _top5_fob:
+        _lbl = _row['label']
+        if _row['fragil']:
+            _lbl = _lbl + '\n' + _row['porto']
+        _texts.append(ax.text(_row['hhi_pauta'], _row['hhi_portuario'], _lbl,
+                              fontsize=5, color='#2C3E50', zorder=4))
+import io as _io, contextlib as _contextlib
+with _contextlib.redirect_stderr(_io.StringIO()):
+    _adjust_text(_texts, ax=ax, arrowprops=dict(arrowstyle='->', color='gray', lw=0.5),
+                 force_points=(0.5, 0.5), force_text=(1.0, 1.0),
+                 expand_points=(2.0, 2.0), expand_text=(1.5, 1.5))
+
+# --- 8. Axes and legend ---
+ax.set_xlabel('HHI do porto (concentração da pauta)', fontsize=8.5)
+ax.set_ylabel('HHI da cadeia (concentração portuária)', fontsize=8.5)
+ax.set_xlim(0, 0.72)
+ax.set_ylim(0, 1.05)
+ax.tick_params(labelsize=7.5)
+from matplotlib.lines import Line2D as _Line2D
+_handles = [_Line2D([0], [0], marker='o', color='w', markerfacecolor=_port_colors[p],
+                     markersize=6, label=p) for p in _fragil_portos]
+ax.legend(handles=_handles, fontsize=6.5, loc='upper left', framealpha=0.9,
+          title='Porto', title_fontsize=7)
+
+with _contextlib.redirect_stderr(_io.StringIO()):
+    plt.tight_layout()
+    plt.show()
+```
+
+::: {.fonte}
+Fonte: Elaboração própria com dados ComexStat/MDIC (2015–2025) e NB3 (HHI).
+:::
+
+O gráfico identifica 36 pares na zona de fragilidade dupla. Os casos mais críticos incluem minério de ferro exportado por São Luís (US\$ 135 bilhões, **HHI da cadeia** no eixo vertical = 0,32), petróleo bruto (cadeia CUCI 333, **HHI da cadeia** = 0,34, com porto principal em Itaguaí) e minério de ferro por Vitória (US\$ 81 bilhões). Em todos esses casos, uma paralisação prolongada do porto principal não encontra rota alternativa viável no curto prazo. São João da Barra aparece com posicionamento extremo no eixo horizontal (**HHI do porto** = 0,64, pauta dominada por petróleo bruto e minério de ferro), confirmando que sua diversificação é mínima.
+
+No quadrante inferior-esquerdo concentram-se pares de baixo risco estrutural: cadeias dispersas por vários portos e portos com pauta diversificada. Santos aparece tanto no quadrante de baixo risco (soja, carnes, açúcar) como fora do eixo de fragilidade, refletindo a dualidade de seu papel como *hub* generalista: seu HHI de pauta é o mais baixo da amostra (0,05), o que o protege estruturalmente, embora seja o principal porto para centenas de cadeias.
+
+A análise retrospectiva de FOB exposto complementa essa visão estrutural com a dimensão temporal. No período 2015–2025, portos menores como Imbituba operaram com até 47,0% de seu fluxo em condições anômalas, enquanto Santos ficou em 37,7% e São João da Barra em apenas 12,9%. Essa assimetria confirma que vulnerabilidade estrutural (concentração) e vulnerabilidade operacional (frequência de anomalias) são dimensões distintas que se reforçam nos nós mais críticos da rede. Cabe ressalvar que FOB exposto não equivale a perda efetiva, já que nem toda anomalia resulta em prejuízo; ainda assim, o volume de valor em trânsito durante disrupções indica a escala do risco a que cada porto está sujeito.
+
+Essa análise retrospectiva fundamenta a lógica do painel de alerta apresentado na seção seguinte: quando o painel de vigilância sinaliza atividade anormal num porto, o gestor pode consultar o perfil histórico de exposição daquele porto para estimar rapidamente quanto valor de exportação está potencialmente em risco, segmentado por tipo de evento, produto e UF de origem.
+
+A análise por região de destino, no recorte acumulado 2015–2025 dos arquivos de exposição do pipeline, mostrou que a Ásia absorve 57,3% do FOB exportado pelos 16 portos mapeados, seguida pelas Américas (20,3%) e Europa (18,7%). A @fig-mapa-fluxos ilustra a estrutura de dependência UF–porto para os sete principais estados exportadores por via marítima. Santos domina os fluxos de São Paulo (US\$ 153 bilhões, HHI = 1,00) e Mato Grosso (US\$ 118 bilhões, HHI = 0,72), mas Minas Gerais distribui seus fluxos entre Santos, Itaguaí e Vitória (HHI = 0,29). O Paraná apresenta dependência extrema de Paranaguá (90% do FOB, HHI = 0,82), configurando um dos pontos de maior fragilidade UF–porto do sistema. O Rio Grande do Sul depende integralmente de Rio Grande (HHI = 1,00), porto que demonstrou vulnerabilidade a eventos climáticos em 2024.
+
+```{python}
+#| label: fig-mapa-fluxos
+#| fig-cap: "Fluxos de exportação UF → Porto para os sete principais estados exportadores. Largura dos arcos proporcional ao FOB acumulado (2015–2025). Intensidade do preenchimento das UFs por concentração portuária (HHI). Tamanho dos marcadores portuários proporcional ao FOB total recebido."
+#| echo: false
+
+import geopandas as gpd
+from matplotlib.path import Path
+import matplotlib.cm as cm
+import matplotlib.colors as mcolors
+
+# Carregar GeoJSON dos estados
+geo_path = "../data/dashboard_json/brazil_states.geojson"
+estados = gpd.read_file(geo_path)
+
+# Coordenadas dos portos (lon, lat)
+portos_coords = {
+    'Santos': (-46.31, -23.95),
+    'Paranaguá': (-48.51, -25.52),
+    'Rio Grande': (-52.10, -32.03),
+    'Itaguaí': (-43.86, -22.90),
+    'São Luís': (-44.26, -2.50),
+    'Vila do Conde': (-48.74, -1.55),
+    'Vitória': (-40.29, -20.32),
+    'São João da Barra': (-41.05, -21.64),
+    'Imbituba': (-48.66, -28.23),
+    'Manaus': (-60.03, -3.14),
+    'Salvador': (-38.52, -12.97),
+    'São Francisco do Sul': (-48.64, -26.24),
+}
+
+# Dados de fluxo UF → Porto
+uf_cuci_porto = pd.read_csv(OUTPUT_DIR + "comex_v2_uf_cuci_porto.csv")
+ufs_sel = ['SP', 'MG', 'MT', 'PA', 'PR', 'RS', 'BA']
+uf_colors = {'SP': '#2980B9', 'MG': '#8E44AD', 'MT': '#27AE60', 'PA': '#E67E22',
+             'PR': '#C0392B', 'RS': '#1ABC9C', 'BA': '#D35400'}
+
+fluxos = uf_cuci_porto[uf_cuci_porto['SG_UF_NCM'].isin(ufs_sel)].groupby(
+    ['SG_UF_NCM', 'porto'])['fob'].sum().reset_index()
+fluxos = fluxos[fluxos['fob'] > 3e9].copy()
+fluxos['fob_norm'] = fluxos['fob'] / fluxos['fob'].max()
+
+# HHI per UF
+_uf_totals = fluxos.groupby('SG_UF_NCM')['fob'].sum()
+_uf_all = uf_cuci_porto[uf_cuci_porto['SG_UF_NCM'].isin(ufs_sel)].groupby(
+    ['SG_UF_NCM', 'porto'])['fob'].sum().reset_index()
+_uf_all_tot = _uf_all.groupby('SG_UF_NCM')['fob'].sum()
+_hhi_uf = {}
+for uf in ufs_sel:
+    sub = _uf_all[_uf_all['SG_UF_NCM'] == uf]
+    shares = sub['fob'] / _uf_all_tot[uf]
+    _hhi_uf[uf] = (shares**2).sum()
+
+# FOB total per porto (for marker sizes)
+_porto_fob = fluxos.groupby('porto')['fob'].sum()
+
+# Centroides das UFs
+uf_centroids = {}
+for _, row in estados.iterrows():
+    c = row.geometry.centroid
+    uf_centroids[row['uf']] = (c.x, c.y)
+
+fig, ax = plt.subplots(figsize=(6.3, 7.5), constrained_layout=True)
+
+# HHI colormap for UF fill
+_cmap = cm.YlOrRd
+_norm = mcolors.Normalize(vmin=0.2, vmax=1.0)
+
+# Plot all states grey
+estados.plot(ax=ax, color='#ecf0f1', edgecolor='#bdc3c7', linewidth=0.4)
+
+# Fill selected UFs by HHI
+for uf in ufs_sel:
+    _color = _cmap(_norm(_hhi_uf[uf]))
+    estados[estados['uf'] == uf].plot(ax=ax, color=_color, alpha=0.45,
+                                       edgecolor='#888888', linewidth=0.6)
+
+# Porto markers (size proportional to FOB received)
+_porto_fob_max = _porto_fob.max()
+portos_plotados = set()
+for _, row in fluxos.iterrows():
+    porto = row['porto']
+    if porto in portos_coords and porto not in portos_plotados:
+        lon, lat = portos_coords[porto]
+        _ms = 4 + (_porto_fob.get(porto, 0) / _porto_fob_max) * 8
+        ax.plot(lon, lat, 'o', color='#2C3E50', markersize=_ms,
+                zorder=10, markeredgecolor='white', markeredgewidth=0.5)
+        # Porto label
+        _ha = 'left'
+        _xoff = 4
+        if porto in ('Vitória', 'São João da Barra', 'Salvador'):
+            _ha = 'left'
+            _xoff = 5
+        ax.annotate(porto, (lon, lat), fontsize=5, ha=_ha,
+                    xytext=(_xoff, 2), textcoords='offset points',
+                    color='#2C3E50', fontweight='bold',
+                    bbox=dict(boxstyle='round,pad=0.12', facecolor='white',
+                              edgecolor='none', alpha=0.8))
+        portos_plotados.add(porto)
+
+# Draw curved arcs UF → Porto
+for _, row in fluxos.iterrows():
+    uf = row['SG_UF_NCM']
+    porto = row['porto']
+    if uf in uf_centroids and porto in portos_coords:
+        x1, y1 = uf_centroids[uf]
+        x2, y2 = portos_coords[porto]
+        mid_x = (x1 + x2) / 2 + (y2 - y1) * 0.15
+        mid_y = (y1 + y2) / 2 - (x2 - x1) * 0.15
+        verts = [(x1, y1), (mid_x, mid_y), (x2, y2)]
+        codes = [Path.MOVETO, Path.CURVE3, Path.CURVE3]
+        path = Path(verts, codes)
+        lw = max(0.6, row['fob_norm'] * 8)
+        patch = mpatches.PathPatch(path, facecolor='none',
+                                   edgecolor=uf_colors[uf], lw=lw, alpha=0.55)
+        ax.add_patch(patch)
+
+# UF labels with HHI
+for uf in ufs_sel:
+    if uf in uf_centroids:
+        x, y = uf_centroids[uf]
+        _lbl = '%s\n(%.2f)' % (uf, _hhi_uf[uf])
+        ax.text(x, y, _lbl, ha='center', va='center', fontsize=7,
+                fontweight='bold', color=uf_colors[uf],
+                bbox=dict(boxstyle='round,pad=0.2', facecolor='white',
+                          edgecolor=uf_colors[uf], alpha=0.85, linewidth=0.8))
+
+# Legend: UF colors
+from matplotlib.lines import Line2D
+legend_elements = [Line2D([0], [0], color=uf_colors[uf], lw=3, alpha=0.55,
+                          label=uf) for uf in ufs_sel]
+ax.legend(handles=legend_elements, loc='lower left', fontsize=7,
+          title='UF de origem', title_fontsize=7.5, framealpha=0.9)
+
+# Colorbar for HHI
+_sm = cm.ScalarMappable(cmap=_cmap, norm=_norm)
+_sm.set_array([])
+_cbar = fig.colorbar(_sm, ax=ax, shrink=0.3, aspect=15, pad=0.02)
+_cbar.set_label('HHI portuário da UF', fontsize=7)
+_cbar.ax.tick_params(labelsize=6)
+
+ax.set_xlim(-75, -33)
+ax.set_ylim(-34, 6)
+ax.set_aspect('equal')
+ax.axis('off')
+
+plt.show()
+```
+
+::: {.fonte}
+Fonte: Elaboração própria com dados ComexStat/MDIC (2026).
+:::
+
+
+## Sistema de alerta
+
+As seções anteriores construíram três camadas analíticas complementares: a detecção e classificação de anomalias operacionais a partir das séries ANTAQ (Seção 3.1–3.2), o mapeamento de cadeias produtivas e UFs expostas a fragilidades portuárias via ComexStat (Seção 3.3), e a integração com o índice global PortWatch para distinguir choques domésticos de externos. Isoladamente, cada camada responde a uma pergunta distinta; combinadas, elas permitem uma quarta pergunta operacional: *quando uma disrupção está em curso, quais cadeias, produtos e estados são afetados, e qual a magnitude da exposição?*
+
+Hoje, essa pergunta não encontra resposta numa ferramenta única. O painel estatístico da ANTAQ publica dados operacionais sem camada de detecção; o PortWatch monitora atividade global sem vínculo com cadeias exportadoras nacionais; o ComexStat disponibiliza fluxos comerciais sem conexão com anomalias portuárias. O dashboard desenvolvido neste trabalho reúne as três fontes numa plataforma interativa Quarto com visualizações D3.js, estruturada em duas camadas de vigilância.
+
+O **Painel de Alerta Origem** (@fig-alerta-origem) oferece vigilância operacional dos portos brasileiros utilizando z-scores semanais do PortWatch contra uma baseline rolling de 52 semanas. Para cada porto, o painel exibe o z-score atual, a contagem histórica de anomalias com barra de classificação (isolado/nacional/global), e o fingerprint dimensional como radar chart. O status é categorizado em três níveis: Alerta (|z| > 1,5), Vigilância (|z| > 1,0) e Normal.
+
+![Painel de Alerta Origem: z-scores semanais PortWatch e classificação de anomalias por porto. Fonte: Elaboração própria com dados ANTAQ (2026) e PortWatch/FMI (2024).](artigo_tcc_files/figure-pdf/alertas_nacional.PNG){#fig-alerta-origem fig-env="screenshotfig"}
+
+O **Painel de Alerta Destino** (@fig-alerta-destino) monitora disrupções nos portos de destino das exportações brasileiras. A partir dos dados PortWatch de ~2.000 portos globais e do mapeamento ComexStat de fluxos por produto e UF de origem, o painel identifica quais cadeias exportadoras estão expostas quando um porto de destino apresenta atividade anormal. Isso permite antecipar impactos sobre exportadores brasileiros mesmo quando a disrupção ocorre no destino.
+
+![Painel de Alerta Destino: monitoramento de disrupções nos portos de destino e exposição das cadeias exportadoras por UF. Fonte: Elaboração própria com dados ANTAQ (2026) e PortWatch/FMI (2024).](artigo_tcc_files/figure-pdf/alertas_destino.PNG){#fig-alerta-destino fig-env="screenshotfig"}
+
+Para ilustrar um fluxo hipotético de uso (independente do estado instantâneo exibido na captura da @fig-alerta-origem): suponha que Paranaguá entre em status de Alerta no painel de origem (z-score > 1,5). O fingerprint dimensional indica concentração em tonelagem de exportação com tempo no berço normal, o que aponta para interrupção de carga terrestre, não congestionamento portuário. A barra de classificação histórica revela que anomalias anteriores nesse porto foram predominantemente nacionais. No painel de destino, o analista verifica se há disrupções simultâneas nos portos asiáticos que absorvem cerca de 57% das exportações brasileiras no recorte de referência. Com o perfil de concentração à mão (Paraná depende 90% de Paranaguá, HHI = 0,82), a estimativa de FOB mensal em risco é da ordem de US$ 8 bilhões, concentrados em soja, carnes e farelo. Esse percurso, que hoje exigiria consultas separadas à ANTAQ, ao PortWatch e ao ComexStat, é realizado integralmente no dashboard.
+
+
+# Discussão
+
+Os resultados apresentados devem ser interpretados à luz da literatura sobre resiliência portuária e das limitações metodológicas do trabalho.
+
+**Detecção e classificação: desempenho em contexto.** O recall de detecção obtido (Seção 3.2) situa o sistema numa faixa operacionalmente útil. A maioria dos eventos disruptivos conhecidos é identificada automaticamente. Os 29% não detectados concentram-se em dois casos: eventos de impacto difuso, como a Greve da Receita Federal, cujo efeito recai sobre tempos administrativos de liberação de carga que a ANTAQ não captura; e eventos no fim da série, com dados insuficientes pós-evento. A taxa de alertas de 4,0% equilibra sensibilidade e carga cognitiva do analista. Taxas mais altas gerariam fadiga de alerta; taxas mais baixas comprometeriam a cobertura.
+
+A precisão da classificação indica que, uma vez detectada a anomalia, o sistema dual-score acerta a natureza do evento na grande maioria dos casos. Os erros residuais concentram-se na fronteira entre nacional e global, em anomalias com Score B próximo ao limiar de 0,8. Somam-se a eles os erros do período pré-2019, em que a classificação opera só com o Score A e, por construção, superestima a categoria nacional. Essa limitação é documentada e pode ser atenuada caso o PortWatch retroalimente dados históricos.
+
+**Por que 57% das anomalias são nacionais?** Parte da resposta é metodológica. O Score A capta co-ocorrência entre portos brasileiros, e eventos como safras atípicas, mudanças regulatórias e flutuações cambiais afetam vários portos ao mesmo tempo sem configurar choque global. Mas há também uma explicação estrutural, coerente com @marchetti2012: os elevados custos logísticos do sistema portuário brasileiro, estimados em 11% do PIB, revelam gargalos crônicos de acesso terrestre que reduzem a folga operacional do sistema. Com pouca folga, perturbações que cadeias mais redundantes absorveriam acabam gerando anomalia detectável.
+
+**Vulnerabilidade cruzada e implicações para política pública.** Os pares de dupla concentração identificados na Seção 3.3 têm implicação direta para a gestão de riscos da cadeia exportadora. Os casos mais críticos, como o petróleo bruto dependente de três portos (HHI da cadeia = 0,34), configuram o que @verschuur2022 denominam risco sistêmico portuário: disrupções nesses nós propagam-se por setores e geografias sem rota alternativa viável no curto prazo. O níquel, com 99% do FOB concentrado em Santos, ilustra um caso complementar que não aparece na @fig-hhi-cruzado. Como Santos tem pauta diversificada (HHI = 0,05), a vulnerabilidade é unilateral: a cadeia depende do porto, mas não o contrário. Esse risco soma-se à concentração geográfica de destinos. No mesmo recorte acumulado 2015–2025, a Ásia absorve 57,3% do FOB total e Itaguaí direciona 80,6% do seu FOB à Ásia, o que cria uma dupla concentração — no destino agregado e no nó de Itaguaí — com exposição a eventos como os ataques Houthi (nov/2023–jun/2024), que o Painel de Alerta Destino foi concebido para monitorar.
+
+**Fingerprints como ferramenta de diagnóstico.** As assinaturas dimensionais distinguem os eventos de referência de forma visível e são coerentes com o conceito de resiliência diferenciada de @notteboom2021: cada tipo de choque ativa mecanismos de transmissão distintos na cadeia logística. O radar tem limites. Mede *frequência* de detecção por dimensão, não magnitude ou direção, e janelas amplas podem sobrepor perturbações independentes. Foi o que ocorreu nas Enchentes do RS, quando portos distantes do evento também flagraram anomalias no mesmo período. A interpretação causal exige, portanto, validação com informações contextuais.
+
+**Limitações.** O sistema tem quatro limitações estruturais. Primeira, opera apenas sobre variáveis operacionais portuárias: choques financeiros, comerciais ou geopolíticos manifestam-se com defasagem e magnitude incertas, e o pipeline detecta a manifestação, não a causa. Segunda, a validação walk-forward com janela expansível incorpora eventos passados ao treino, o que pode reduzir a sensibilidade a eventos similares subsequentes, como em Paranaguá durante a recuperação da COVID-19. Terceira, os limiares de classificação ($t_a = 3$, $t_b = 0{,}8$) foram calibrados contra 10 eventos específicos e não são universais, devendo ser revistos periodicamente em uso operacional. Quarta, Porto Alegre e Barra do Riacho não possuem URF dedicada no ComexStat, o que impede o cruzamento com dados de exportação. Soma-se a isso a defasagem de publicação da ANTAQ, que inviabiliza detecção em tempo real por essa via. Esse papel cabe ao PortWatch, de atualização semanal, enquanto a classificação retrospectiva exige o fechamento das janelas de co-ocorrência (4 semanas) e de choque global (2 semanas).
+
+
+# Conclusão {.unnumbered}
+
+Este trabalho desenvolveu e validou um sistema de monitoramento e diagnóstico de eventos disruptivos nos portos brasileiros de navegação de longo curso, integrando microdados operacionais da ANTAQ, indicadores globais do PortWatch/FMI e fluxos de exportação do ComexStat/MDIC.
+
+O pipeline proposto, composto por modelagem preditiva XGBoost com correção AR(1), detecção por ensemble ≥ 2/3 e classificação dual-score, demonstrou capacidade de identificar e classificar anomalias operacionais em 18 portos ao longo de uma década, com desempenho validado contra eventos históricos conhecidos (Seção 3.2). A integração com dados de comércio exterior revelou dezenas de pares críticos produto-porto de dupla concentração, onde disrupções representam risco econômico sistêmico para as cadeias exportadoras brasileiras. A métrica de FOB exposto, o valor de exportação que transitou por cada porto durante meses com anomalia detectada, revelou que portos menores operam com parcela proporcionalmente elevada do seu fluxo em condições anômalas, invertendo a hierarquia de risco sugerida pelo volume absoluto e demonstrando que a vulnerabilidade relativa é frequentemente maior onde a escala é menor.
+
+A principal contribuição é demonstrar que dados públicos já disponíveis podem ser integrados num sistema de diagnóstico portuário operacional sem coleta primária. A combinação de ANTAQ, PortWatch e ComexStat gera uma capacidade que nenhuma dessas fontes oferece isoladamente: detectar uma anomalia, classificar se ela é local ou sistêmica, e estimar quanto valor de exportação está exposto. O framework de classificação dual (Score A + Score B) automatiza a primeira distinção; a métrica de FOB exposto traduz a segunda em termos econômicos concretos, revelando assimetrias que o volume absoluto esconde. O dashboard interativo, um dos produtos deste trabalho, reúne essas camadas numa ferramenta que pode ser operada por gestores sem formação em ciência de dados.
+
+Os achados sinalizam pontos que merecem atenção na formulação de política de infraestrutura logística. A existência de dezenas de pares produto-porto com concentração elevada em ambos os eixos, associada à dependência de estados como Paraná (90% do FOB via Paranaguá) e Rio Grande do Sul (100% via Rio Grande) de um único terminal, sugere que critérios de concentração de cadeias podem ser um complemento relevante ao volume movimentado na avaliação de prioridades de investimento. Portos altamente especializados, como São João da Barra, representam ao mesmo tempo pontos de fragilidade e potenciais candidatos a estratégias de diversificação, hipótese que demandaria estudos específicos de viabilidade logística e econômica.
+
+O código-fonte completo do pipeline está disponível no repositório já citado, permitindo a replicação e extensão dos resultados.
+
+Como direções futuras, destacam-se: a extensão do sistema para monitoramento contínuo com atualização automática dos dados ANTAQ; a incorporação de controles sintéticos como camada adicional de validação; a calibração de limiares por dimensão e por porto, em vez de limiares globais; e a integração de variáveis exógenas (câmbio, preço de commodities, sazonalidade agrícola) como features do modelo preditivo, ampliando a capacidade de antecipação do sistema.
+
+
+# Disponibilidade de Dados e Código {.unnumbered}
+
+Este trabalho adere às práticas de Ciência Aberta. Todo o código-fonte do pipeline — coleta, tratamento, modelagem preditiva, detecção e classificação de anomalias, análise de vulnerabilidade e construção do dashboard — está disponível em repositório público no GitHub: <https://github.com/fabiokp/tcc-mba-portos>. O repositório inclui um arquivo README.md com instruções de instalação de dependências, execução dos scripts e reprodução dos resultados e figuras apresentados neste artigo.
+
+Os dados processados gerados pelo trabalho (séries temporais semanais por porto e dimensão, resíduos dos modelos, anomalias detectadas e classificadas, e métricas de concentração porto-cadeia) estão depositados em repositório de acesso aberto com DOI: <https://doi.org/10.5281/zenodo.20946715> (registro: <https://zenodo.org/record/20946715>). Esses conjuntos permitem reproduzir as análises a partir das etapas intermediárias do pipeline, sem necessidade de reprocessar as bases brutas.
+
+As bases brutas não são redistribuídas, por serem de autoria e governança de terceiros e estarem disponíveis publicamente em suas fontes oficiais: o Anuário Estatístico Aquaviário da ANTAQ (<https://web3.antaq.gov.br/ea/sense/download.html>), o ComexStat do MDIC (<http://comexstat.mdic.gov.br/>) e o PortWatch do FMI e da Universidade de Oxford (<https://portwatch.imf.org/>).
+
+Para assegurar a reprodutibilidade, o repositório inclui um manifesto de proveniência (`raw_file_provenance.csv`) que registra, para cada arquivo bruto utilizado, a fonte, o nome do arquivo, a data de obtenção e o hash criptográfico SHA-256, permitindo verificar a integridade e a versão exata dos dados originais. Ao todo, o manifesto documenta 44 arquivos, somando aproximadamente 2,5 GB, com cobertura de 2010 a 2026 (ANTAQ) e 2011 a 2026 (ComexStat).
+
+Os dados utilizados são de natureza operacional e estatística agregada, não contendo dados pessoais na acepção da Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
+
+
+# Referências {.unnumbered}
+
+::: {#refs}
+:::
+
+
+\newpage
+
+# Declaração de uso de inteligência artificial {.unnumbered}
+
+Utilizei o modelo **Claude Opus 4.6** (Anthropic) como ferramenta de apoio em duas modalidades: via interface web, para revisão de literatura, desenvolvimento metodológico e revisão editorial do texto; e via GitHub Copilot no VSCode, para implementação do código Python de coleta, tratamento, modelagem e visualização, além da construção do dashboard Quarto. Todas as saídas do modelo foram verificadas contra as fontes primárias (artigos, documentação das APIs, dados brutos) e os resultados computacionais foram validados por inspeção direta dos notebooks e confronto com estatísticas descritivas independentes. Todas as decisões metodológicas, interpretações e conclusões são de minha responsabilidade.
+
+\newpage
+
+<!-- Appendix: pode ser incluído se houver espaço dentro das 30 laudas -->
+
+# Apêndice A: Tipologia dos portos monitorados {.unnumbered .appendix}
+
+A clusterização dos 18 portos brasileiros monitorados, realizada via K-Means ($k = 4$) sobre 12 features operacionais normalizadas (volume médio, coeficiente de variação, tempo de espera e atracação, taxa de anomalias), identificou quatro perfis estruturais descritos a seguir.
+
+**Cluster 0: Hubs exportadores** (Itaguaí, Santos, São Luís, Vila do Conde, Vitória): média de 36 atracações de longo curso por semana e tonelagem de exportação elevada (1,9 milhão t/semana). Tempos de espera acima da média (82 h), refletindo congestionamento crônico. Das anomalias nesses portos, 41,2% são classificadas como globais e 56,6% como nacionais, indicando alta sensibilidade tanto a choques nas rotas internacionais quanto a disrupções domésticas.
+
+**Cluster 1: Nichos voláteis** (Imbituba, Manaus, São João da Barra): volume baixo (5 atracações/semana), mas alta variabilidade ($CV_{atracações} = 0{,}54$; $CV_{tonelagem} = 0{,}73$). São os portos com maior participação relativa de anomalias isoladas (5,7%), coerente com operações especializadas sujeitas a oscilações idiossincráticas. Os nichos concentram a maior proporção de anomalias globais entre os clusters (45,3%). Há heterogeneidade intracluster: Manaus concentra 68,4% de anomalias globais, enquanto São João da Barra registra 18,3%; o valor do cluster reflete essa composição.
+
+**Cluster 2: Generalistas** (Barra do Riacho, Itajaí, Paranaguá, Pecém, Rio de Janeiro, Rio Grande, Salvador, São Francisco do Sul, Suape): grupo mais numeroso (9 portos), com volume intermediário (20 atracações/semana) e diversificação de cargas. Tempos operacionais mais baixos (T1 = 21 h). Predominam anomalias nacionais (60,5%) no agregado do cluster, sugerindo maior sensibilidade a fatores domésticos (greves, safras atípicas, gargalos rodoviários) do que a choques nas rotas marítimas globais. Barra do Riacho é exceção dentro do grupo, com predominância de anomalias globais; trata-se de heterogeneidade intracluster, e não de contradição do padrão agregado.
+
+**Cluster 3: Microporto** (Porto Alegre): operação de longo curso residual (2 atracações/semana, tonelagem média de 1,4 mil t/semana), com variabilidade extrema ($CV = 0{,}77$ para atracações, $CV = 3{,}54$ para tonelagem). Taxa de anomalias mais baixa (7,6%), mas com predominância de anomalias globais (57,4%) sobre nacionais (38,3%), o inverso do padrão dos demais clusters. Isso sugere que o volume residual de Porto Alegre responde mais a oscilações do comércio internacional do que a eventos domésticos.
+
+\enlargethispage{2\baselineskip}
+
+O cruzamento entre perfis de porto e classificação de anomalias confirma a utilidade da tipologia para gestão de risco diferenciada: hubs e generalistas demandam monitoramento prioritário de eventos nacionais (greves, bloqueios logísticos), enquanto nichos e microportos requerem atenção especial a choques nas cadeias globais que alimentam suas operações especializadas.
