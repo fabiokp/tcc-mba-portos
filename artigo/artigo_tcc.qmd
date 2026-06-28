@@ -4,7 +4,7 @@ author:
   - name: "Fábio Kouri Paim"
     affiliations:
       - name: "Escola Nacional de Administração Pública (ENAP)"
-        department: "MBA em Ciência de Dados"
+        department: "MBA em Ciência de Dados e Inteligência Artificial"
 date: "2026-04-10"
 lang: pt-BR
 format:
